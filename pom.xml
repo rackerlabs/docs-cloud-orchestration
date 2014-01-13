@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.rackspace.cloud.apidocs</groupId>
+    <artifactId>orchestration-docs</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Orchestration API Docs</name>
+    <packaging>jar</packaging>
+    <!-- ################################################ -->
+    <!-- USE "mvn clean generate-sources" to run this POM -->
+    <!-- ################################################ -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.rackspace.cloud.api</groupId>
+                <artifactId>clouddocs-maven-plugin</artifactId>
+                <!-- this <version> relates only to the *plugin* used for document formatting -->
+                <!-- the version of the *API* that is the subject of the document is indicated within each document -->
+                <version>1.12.2</version>
+                <executions>
+                    
+                    
+                    <execution>
+                        <id>orchestration-templates-devguide-internal</id>
+                        <goals>
+                            <goal>generate-webhelp</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <!-- this is the public-facing client developer guide formerly known as PublicAPISpec.xml -->
+                            <!-- this document that will be published as clb-devguide-latest.pdf at http://docs.rackspacecloud.com/api/ -->
+                            <includes>orchestration-templates-devguide.xml</includes>
+                            <canonicalUrlBase>http://docs-internal.rackspace.com/deployments/api/v1.0/orchestration-templates-devguide/content</canonicalUrlBase>
+                            
+                            <security>reviewer</security>
+                        </configuration>
+                    </execution>
+                    
+                    <execution>
+                        <id>orchestration-api-v1-reference</id>
+                        <goals>
+                            <goal>generate-webhelp</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <!-- this is the public-facing client developer guide formerly known as PublicAPISpec.xml -->
+                            <!-- this document that will be published as clb-devguide-latest.pdf at http://docs.rackspacecloud.com/api/ -->
+                            <includes>api-ref.xml</includes>
+                            <canonicalUrlBase>http://docs-internal.rackspace.com/deployments/api/v1.0/orchestration-api-v1-reference/content</canonicalUrlBase>
+                           
+                            <trimWadlUriCount>2</trimWadlUriCount>
+                            <security>reviewer</security>
+                        </configuration>
+                    </execution>
+                    
+                    <!-- MA: added this to generate public release notes -->
+                    
+                </executions>
+                <configuration>
+                    <!-- Global config for all docs -->
+                    <sourceDirectory>src/main/resources</sourceDirectory>
+                    <enableDisqus>intranet</enableDisqus>
+                    <socialIcons>1</socialIcons>
+                    <enableGoogleAnalytics>1</enableGoogleAnalytics>
+                    <feedbackEmail>mike.asthalter@rackspace.com</feedbackEmail>
+                    <highlightSource>false</highlightSource>
+                    <showXslMessages>true</showXslMessages>
+		            <security>internal</security>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>includewars.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>assembly</id>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <defaultGoal>generate-webhelp</defaultGoal>
+    </build>
+    <!-- <pluginRepositories> -->
+    <!--   <pluginRepository> -->
+    <!--     <id>rackspace-research</id> -->
+    <!--     <name>Rackspace Research Repository</name> -->
+    <!--     <url>http://maven.research.rackspacecloud.com/content/groups/public/</url> -->
+    <!--   </pluginRepository> -->
+    <!-- </pluginRepositories> -->
+    <profiles>
+        <profile>
+            <id>Rackspace Research Repositories</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>rackspace-research</id>
+                    <name>Rackspace Research Repository</name>
+                    <url>http://maven.research.rackspacecloud.com/content/groups/public/</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>rackspace-research</id>
+                    <name>Rackspace Research Repository</name>
+                    <url>http://maven.research.rackspacecloud.com/content/groups/public/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+    <!-- scm> -->
+        <!-- connection>scm:git:ssh://git@github.com:lbrackspace/atlas-lb-docbook.git</connection> -->
+    <!--/scm> -->
+</project>
