@@ -1,0 +1,47 @@
+
+HTTP/1.1 200 OK
+Content-Length: 1679
+Content-Type: application/json; charset=UTF-8
+Date: Thu, 16 Jan 2014 17:36:53 GMT
+
+{
+    "links": [
+        {
+            "href": "http://10.0.2.15:8004/v1/622dd71147164a92bf3915f5cbdfe261/stacks?limit=2&marker=5d0daddb-2a24-475b-853d-4ab4e1522c63",
+            "rel": "next"
+        }
+    ],
+    "stacks": [
+        {
+            "creation_time": "2014-01-16T17:15:47Z",
+            "description": "AWS CloudFormation Sample Template WordPress_Single_Instance: WordPress is web software you can use to create a beautiful website or blog. This template installs a single-instance WordPress deployment using a local MySQL database to store the data.",
+            "id": "a240abd6-43c7-4479-9730-ea0bcd97fd9a",
+            "links": [
+                {
+                    "href": "http://10.0.2.15:8004/v1/622dd71147164a92bf3915f5cbdfe261/stacks/stack04/a240abd6-43c7-4479-9730-ea0bcd97fd9a",
+                    "rel": "self"
+                }
+            ],
+            "stack_name": "stack04",
+            "stack_status": "CREATE_FAILED",
+            "stack_status_reason": "Resource create failed: Error: Creation of server stack04-WikiDatabase-fvclbcgzsfu3 failed: No valid host was found.  (500)",
+            "updated_time": "2014-01-16T17:15:48Z"
+        },
+        {
+            "creation_time": "2014-01-16T17:15:31Z",
+            "description": "AWS CloudFormation Sample Template WordPress_Single_Instance: WordPress is web software you can use to create a beautiful website or blog. This template installs a single-instance WordPress deployment using a local MySQL database to store the data.",
+            "id": "5d0daddb-2a24-475b-853d-4ab4e1522c63",
+            "links": [
+                {
+                    "href": "http://10.0.2.15:8004/v1/622dd71147164a92bf3915f5cbdfe261/stacks/stack03/5d0daddb-2a24-475b-853d-4ab4e1522c63",
+                    "rel": "self"
+                }
+            ],
+            "stack_name": "stack03",
+            "stack_status": "CREATE_IN_PROGRESS",
+            "stack_status_reason": "Resource create failed: Error: Creation of server stack03-WikiDatabase-hlyh46kohdxy failed: No valid host was found.  (500)",
+            "updated_time": "2014-01-16T17:15:32Z"
+        }
+    ]
+}
+
