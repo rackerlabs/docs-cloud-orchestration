@@ -9,13 +9,14 @@
 <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
 ]>
 <application xmlns="http://wadl.dev.java.net/2009/02"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
     xmlns:wadl="http://wadl.dev.java.net/2009/02">
     <resources base="https://heat.example.com/"
         xml:id="orchestration-api-v1.0">
         <resource id="version" path="v1">
             <resource id="tenant_id" path="{tenant_id}">
-                <param name="tenant_id" style="template">
+                <param name="tenant_id" style="template" type="xs:string">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN">
                         <para>The unique identifier of the tenant or
@@ -26,8 +27,7 @@
                     <method href="#stack_create"/>
                     <method href="#stack_list"/>
                     <resource path="{stack_name}" id="stack_name">
-                        <param name="stack_name" style="template"
-                            required="true">
+                        <param name="stack_name" style="template">
                             <wadl:doc
                                 xmlns="http://docbook.org/ns/docbook"
                                 xml:lang="EN"><para>The name of a
@@ -107,7 +107,7 @@
                 <resource id="resource_types" path="resource_types">
                     <method href="#resource_type_list"/>
                     <resource id="resource_schema" path="{type_name}">
-                        <param name="type_name" style="template"
+                        <param name="type_name" style="template" type="string"
                             required="true">
                             <wadl:doc
                                 xmlns="http://docbook.org/ns/docbook"
@@ -139,56 +139,55 @@
             <para role="shortdesc">Creates a stack.</para>
         </wadl:doc>
         <request>
-            <param name="stack_name" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>The name of the stack to
-                        create.</para></wadl:doc>
-            </param>
-            <param name="template_url" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>The URL of the template to
-                        instantiate. This is ignored if the template
-                        is supplied inline.</para></wadl:doc>
-            </param>
-            <param name="template" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>A JSON template to
-                        instantiate. This takes precedence over the
-                        template URL if both are
-                    supplied.</para></wadl:doc>
-            </param>
-            <param name="environment" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>A JSON environment for the
-                        stack.</para></wadl:doc>
-            </param>
-            <param name="files" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>A map of file names (Provider
-                        resource templates, as referenced in the
-                        environment) to JSON template
-                    bodies.</para></wadl:doc>
-            </param>
-            <param name="param_name-n" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>User-defined parameter names
-                        to pass to the template.</para></wadl:doc>
-            </param>
-            <param name="param_value-n" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>User-defined parameter values
-                        to pass to the template.</para></wadl:doc>
-            </param>
-            <param name="timeout_mins" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>The timeout for stack creation
-                        in minutes.</para></wadl:doc>
-            </param>
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
                     <xsdxt:code href="samples/stack_create.json"/>
                 </wadl:doc>
+                <param name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>The name of the stack to
+                            create.</para></wadl:doc>
+                </param>
+                <param name="template_url" style="plain" required="true" path="$.template_url" type="string" >
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>The URL of the template to
+                            instantiate. This is ignored if the template
+                            is supplied inline.</para></wadl:doc>
+                </param>
+                <param name="template" style="plain" required="true" type="object" path="$.template"><!-- required? type? path? -->
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>A JSON template to
+                            instantiate. This takes precedence over the
+                            template URL if both are
+                        supplied.</para></wadl:doc>
+                </param>
+                <param name="environment" style="plain" required="true" type="string" path="$.environment"><!-- required? type? path? -->
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>A JSON environment for the
+                            stack.</para></wadl:doc>
+                </param>
+                <param name="files" style="plain" required="true" type="string" path="$.files"><!-- required? type? path? -->
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>A map of file names (Provider
+                            resource templates, as referenced in the
+                            environment) to JSON template
+                        bodies.</para></wadl:doc>
+                </param>
+                <param name="parameters" style="plain" required="false" type="string" path="$.parameters">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>User-defined parameters to pass to the template.</para></wadl:doc>
+                </param>    
+                <param name="param_name-n" style="plain" required="false" type="string" path="$.parameters.param_name-n">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>User-defined parameter names
+                            to pass to the template.</para></wadl:doc>
+                </param>
+                <param name="timeout_mins" style="plain" required="true" type="integer" path="$.timeout_mins">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>The timeout for stack creation
+                            in minutes.</para></wadl:doc>
+                </param>
             </representation>
         </request>
         <response status="201"/>
@@ -275,51 +274,50 @@
             <para role="shortdesc">Updates a specified stack.</para>
         </wadl:doc>
         <request>
-            <param name="template_url" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>The URL of the template to
-                        instantiate. This is ignored if the template
-                        is supplied inline.</para></wadl:doc>
-            </param>
-            <param name="template" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>A JSON template to
-                        instantiate. This takes precedence over the
-                        template URL if both are
-                    supplied.</para></wadl:doc>
-            </param>
-            <param name="environment" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>A JSON environment for the
-                        stack.</para></wadl:doc>
-            </param>
-            <param name="files" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>A map of file names (Provider
-                        resource templates, as referenced in the
-                        environment) to JSON template
-                    bodies.</para></wadl:doc>
-            </param>
-            <param name="param_name-n" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>User-defined parameter names
-                        to pass to the template.</para></wadl:doc>
-            </param>
-            <param name="param_value-n" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>User-defined parameter values
-                        to pass to the template.</para></wadl:doc>
-            </param>
-            <param name="timeout_mins" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>The timeout for stack creation
-                        in minutes.</para></wadl:doc>
-            </param>
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
                     <xsdxt:code href="samples/stack_update.json"/>
                 </wadl:doc>
+                <param name="template_url" style="plain" required="true" path="$.template_url" type="string" >
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>The URL of the template to
+                            instantiate. This is ignored if the template
+                            is supplied inline.</para></wadl:doc>
+                </param>
+                <param name="template" style="plain" required="true" type="object" path="$.template"><!-- required? type? path? -->
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>A JSON template to
+                            instantiate. This takes precedence over the
+                            template URL if both are
+                            supplied.</para></wadl:doc>
+                </param>
+                <param name="environment" style="plain" required="true" type="string" path="$.environment"><!-- required? type? path? -->
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>A JSON environment for the
+                            stack.</para></wadl:doc>
+                </param>
+                <param name="files" style="plain" required="true" type="string" path="$.files"><!-- required? type? path? -->
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>A map of file names (Provider
+                            resource templates, as referenced in the
+                            environment) to JSON template
+                            bodies.</para></wadl:doc>
+                </param>
+                <param name="parameters" style="plain" required="false" type="string" path="$.parameters">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>User-defined parameters to pass to the template.</para></wadl:doc>
+                </param>    
+                <param name="param_name-n" style="plain" required="false" type="string" path="$.parameters.param_name-n">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>User-defined parameter names
+                            to pass to the template.</para></wadl:doc>
+                </param>
+                <param name="timeout_mins" style="plain" required="true" type="integer" path="$.timeout_mins">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>The timeout for stack creation
+                            in minutes.</para></wadl:doc>
+                </param>
             </representation>
         </request>
         <response status="202"/>
@@ -338,25 +336,25 @@
                 template.</para>
         </wadl:doc>
         <request>
-            <param name="template_url" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>The URL of the template to
-                        instantiate. This is ignored if the template
-                        is supplied inline.</para></wadl:doc>
-            </param>
-            <param name="template" style="plain" required="true">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN"><para>A JSON template to
-                        instantiate. Takes precedence over the
-                        template URL if both are
-                    supplied.</para></wadl:doc>
-            </param>
             <representation mediaType="application/json">
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
                     <xsdxt:code href="samples/template_validate.json"
                     />
                 </wadl:doc>
+                <param name="template_url" style="plain" required="true" path="$.template_url" type="string">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>The URL of the template to
+                            instantiate. This is ignored if the template
+                            is supplied inline.</para></wadl:doc>
+                </param>
+                <param name="template" style="plain" required="true" path="$.template" type="string">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>A JSON template to
+                            instantiate. Takes precedence over the
+                            template URL if both are
+                            supplied.</para></wadl:doc>
+                </param>
             </representation>
         </request>
         <response status="200"/>
