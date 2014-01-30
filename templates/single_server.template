@@ -1,0 +1,4 @@
+heat_template_version: 2013-05-23
+resources:  compute_instance:    type: "Rackspace::Cloud::Server"    properties:      flavor: 1GB Standard Instance      image: CentOS 6.4      name: Single Server Stack
+
+outputs:  public_ip:    description: public IP address of the deployed compute instance    value: { get_attr: [compute_instance, PublicIp] }

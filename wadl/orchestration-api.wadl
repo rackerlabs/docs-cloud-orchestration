@@ -72,13 +72,18 @@
                                    stack.</para></wadl:doc>
                                    </param>
                                    <method href="#resource_show"/>
+                                    
+                                   <resource path="events" id="events4">
+                                   <method href="#resource_event_list"/>
+                                   </resource>
+                                    
                                    <resource path="metadata"
                                    id="metadata">
                                    <method href="#resource_metadata"/>
                                    </resource>
                                 </resource>
                                 <resource path="events" id="events3">
-                                   <method href="#resource_event_list"/>
+                                   
                                    <resource path="{event_id}"
                                    id="event_id">
                                    <param name="event_id"

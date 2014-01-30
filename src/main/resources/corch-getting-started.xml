@@ -1,0 +1,3004 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book [
+        <!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash  "&#x2013;">
+        <!ENTITY mdash  "&#x2014;">
+        <!ENTITY hellip "&#x2026;">
+
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+        
+        <!-- changing authentication endpoints; define entities for US & UK rather than maintaining in text -->
+        <!ENTITY ENDPOINT-US "https://identity.api.rackspacecloud.com/v1.1/">
+        <!ENTITY ENDPOINT-UK "https://lon.identity.api.rackspacecloud.com/v1.1/">
+        <!ENTITY ENDPOINT-US-20 "https://identity.api.rackspacecloud.com/v2.0/">
+        <!ENTITY ENDPOINT-UK-20 "https://lon.identity.api.rackspacecloud.com/v2.0/">
+
+        <!-- Useful for specs -->
+        <!ENTITY MAY    '<emphasis xmlns="http://docbook.org/ns/docbook" role="strong">MAY</emphasis>'>
+        <!ENTITY SHOULD '<emphasis xmlns="http://docbook.org/ns/docbook" role="strong">SHOULD</emphasis>'>
+        <!ENTITY MUST   '<emphasis xmlns="http://docbook.org/ns/docbook" role="strong">MUST</emphasis>'>
+        <!ENTITY MUST_NOT   '<emphasis xmlns="http://docbook.org/ns/docbook" role="strong">MUST NOT</emphasis>'>
+        <!ENTITY Deployment "Cloud Orchestration">
+]>
+
+<book version="5.0"
+         xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:m="http://www.w3.org/1998/Math/MathML"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xml:id="cdb-getting-started">
+    
+    <?rax title.font.size="35px" subtitle.font.size="20px"?>
+    <title>Rackspace Cloud Orchestration Getting Started Guide</title>
+    <titleabbrev>Rackspace Cloud Orchestration Getting Started
+        Guide</titleabbrev>
+     
+    <info>
+        
+        <copyright>
+            <year>2012</year>
+            <year>2013</year>
+            <year>2014</year>
+            <holder>Rackspace US, Inc.</holder>
+        </copyright>
+        <releaseinfo>API v1.0</releaseinfo>
+        <productname>Rackspace Cloud Orchestration</productname>
+        <pubdate>2014-02-14</pubdate>
+        <legalnotice role="rs-api">
+            <annotation>
+                <remark>Copyright details are filled in by the template.</remark>
+            </annotation>
+        </legalnotice>
+        <revhistory>
+            <revision>
+                <date>2014-02-14</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Initial release.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>           
+        </revhistory>
+    <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
+      <raxm:displayname>Getting Started Guide</raxm:displayname>
+      <raxm:product version="v1.0">cdb</raxm:product>
+      <raxm:priority>10</raxm:priority>
+    </raxm:metadata> 
+    </info>
+    <chapter xml:id="DB_Doc_Change_History">
+        <title>Document Change History</title>
+        <para>This version of the Getting Started replaces and
+            obsoletes all previous versions. The most recent changes
+            are described in the table below:</para>
+        <?rax revhistory?>
+    </chapter>
+    <chapter xml:id="DB_Overview">
+        <title>Overview</title>
+        <para>Follow the steps described in this guide to use the
+            Rackspace Cloud Orchestration API to create and access
+            your deployments.</para>
+        
+        <para>The simple exercises in this guide help you get started
+            with the API by showing you how to access the API through
+            either heat client commands or cURL commands. </para>
+        <para>For each exercise in this guide, you choose one of the
+            following methods to make API calls: <itemizedlist>
+                <listitem>
+                    <para>The <emphasis role="bold">heat client
+                            commands</emphasis>. The heat client
+                        provides easy command line access to the
+                        orchestration API operations. We recommend
+                        that you use the heat client to run simple
+                        commands that make API calls. You can specify
+                        a <code>--debug</code> parameter on any heat
+                        command to show the underlying API request for
+                        the command. This is a good way to become
+                        familiar with the API requests. See <xref
+                            linkend="heatclient"/> for details.</para>
+                </listitem>
+                <listitem>
+                    <para><emphasis role="bold"><link
+                                xlink:href="http://curl.haxx.se/"
+                                >cURL</link> commands</emphasis>. If
+                        you are familiar with or want to learn cURL
+                        commands, choose this method. With cURL, you
+                        send HTTP requests with embedded API calls
+                        from the command line. The cURL examples in
+                        this guide include request bodies in JSON
+                        format. See <xref linkend="curl"/> for
+                        details.</para>
+                </listitem>
+            </itemizedlist>If you like, you can use cURL in one
+            example and switch to the heat client in the next example.
+            If you choose to use a cURL command for any example, you
+            must export the environment variables required to run the
+            cURL examples. See <xref linkend="Export_CURL_ENV_VARS"/>
+            for details. </para>
+        
+        <para>To use the API, it helps to be familiar with HTTP 1.1,
+            RESTful web services, the Rackspace Cloud Servers service,
+            and JSON data serialization format.</para>
+        
+        
+       
+        <section xml:id="Additional_Info-dle5378">
+            <title>Additional Sources of Information</title>
+            <para>For details about using the Cloud Orchestration API,
+                refer to the <citetitle>Cloud Orchestration Developer
+                    Guide</citetitle> at <link
+                    xlink:href="http://docs.rackspace.com/"
+                    >http://docs.rackspace.com/</link>.</para>
+            <para>For more details about Rackspace Cloud
+                Orchestration, refer to <link
+                    xlink:href="http://www.rackspace.com/cloud/orchestration/"
+                    >http://www.rackspace.com/cloud/orchestration/</link>.
+                This site also offers links to Rackspace's official
+                support channels, including knowledge center articles,
+                forums, phone, chat, and email. </para>
+            <remark>Reviewer: is the link and descriptive text above
+                correct for product launch?</remark>
+            <para security="writeronly">Please visit our <link
+                    xlink:href="http://feedback.rackspacecloud.com/forums/71021-product-feedback/category/42449-cloud-databases"
+                    >Product Feedback Forum</link> and let us know
+                what you think about Cloud Orchestration!</para>
+            <remark>Hiding text above for the Product Feedback Forum
+                until we are able to get the correct link.</remark>
+        </section>
+        
+        <section xml:id="Prerequisites_Examples">
+            <title>Prerequisites for Running Examples</title>
+            <para>In order to run the examples in this guide, you must
+                have the following prerequisites: <itemizedlist
+                    spacing="compact">
+                    <listitem>
+                        <para>Rackspace Cloud account</para>
+                    </listitem>
+                    <listitem>
+                        <para>Rackspace Cloud username and password,
+                            as specified during registration</para>
+                    </listitem>
+                </itemizedlist></para>
+        </section>
+        
+        <section xmlns="http://docbook.org/ns/docbook"
+            xmlns:xi="http://www.w3.org/2001/XInclude"
+            xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+            xml:id="heatclient">
+            <title>How the Heat Client Works</title>
+            <para>The heat client is an open-source Python client that
+                lets you run simple commands to make API calls. This
+                client is easy to learn and use. Each heat client
+                command runs cURL commands that embed API requests.
+                You can run the heat client from a desktop machine or
+                remote system, such as a Cloud Server. </para>
+            <para>You install the heat client on a Linux distribution
+                or on Mac OS X. You install the heat client in <xref
+                    linkend="Install_Heat_Client"/>. </para>
+            <para>To configure the heat client, you update your
+                .bash_profile file (or .bashrc) to set and export heat
+                environment variables. </para>
+            <note>
+                <para>You can specify the <code>--debug</code>
+                    parameter on any heat command to show the
+                    underlying API request for the command. This is a
+                    good way to become familiar with the API requests. </para>
+            </note>
+            <para>Rackspace does not maintain the heat client, which
+                is considered to be software in development. </para>
+        </section>
+        
+        <section xmlns="http://docbook.org/ns/docbook"
+            xmlns:xi="http://www.w3.org/2001/XInclude"
+            xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+            xml:id="curl">
+            <title>How cURL Commands Work</title>
+            <para>cURL is a command-line tool that you can use to interact
+                with <glossterm>REST</glossterm> interfaces. cURL lets you to
+                transmit and receive <glossterm>HTTP</glossterm> requests and
+                responses from the command line or a shell script, which
+                enables you to work with the API directly. It is available for
+                Linux distributions, Mac OS X, and Windows. For information
+                about cURL, see <link xlink:href="http://curl.haxx.se/"
+                    >http://curl.haxx.se/</link>. </para>
+            
+            <para>To run the cURL request examples shown in this guide, copy
+                each example from the HTML version of this guide directly to
+                the command line or a script.</para>
+            
+            <para>The following command is an example cURL command for
+                a JSON request that provisions a server with an
+                isolated network:</para>
+            
+            <example xml:id="JSON_Example">
+                <title>cURL Command Example: JSON Request </title><programlisting language="bash" role="gutter: false"><?db-font-size 60%?><prompt>$</prompt> curl https://dfw.servers.api.rackspacecloud.com/v2/$account/servers \
+       -X POST \
+       -H "X-Auth-Project-Id: $account" \
+       -H "Content-Type: application/json" \
+       -H "Accept: application/json" \
+       -H "X-Auth-Token: $token" \
+       -d '{"server": {"name": "my_server_with_network", "imageRef": "d42f821e-c2d1-4796-9f07-af5ed7912d0e", "flavorRef": "2", "max_count": 1, "min_count": 1, "networks": [{"uuid": "538a112a-34d1-47ff-bf1e-c40639e886e2"}, {"uuid": "00000000-0000-0000-0000-000000000000"}, {"uuid": "11111111-1111-1111-1111-111111111111"}]}}' \
+      | python -m json.tool</programlisting></example>
+            <note>
+                <para>The carriage returns in the cURL request examples are
+                    escaped with a backslash (<literal>\</literal>) character.
+                    The escape character allows continuation of the command
+                    across multiple lines. However, do not include the escape
+                    character in the JSON or XML request body within the cURL
+                    command.</para>
+            </note>
+            <?hard-pagebreak?>
+            
+        </section>
+        <section xml:id="Pricing_SLA-d1e1362">
+            <title>Pricing and Service Level</title>
+            <para>&Deployment; is part of the Rackspace Cloud and your
+                use through the API will be billed as per the pricing
+                schedule at <link
+                    xlink:href="http://www.rackspace.com/cloud/orchestration/pricing/"
+                    >http://www.rackspace.com/cloud/orchestration/pricing/</link>.</para>
+            <remark>Reviewer: Please verify that the link shown above
+                will be correct for product launch.</remark>
+            <para>The Service Level Agreement (SLA) for &Deployment;
+                is available at <link
+                    xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_orchestration"
+                    >http://www.rackspace.com/information/legal/cloud/sla#cloud_orchestration</link>.</para>
+            <remark>Reviewer: Please verify that the link shown above
+                will be correct for product launch.</remark>
+        </section>
+    </chapter>
+    <chapter xml:id="Create_Cloud_Orchestration"><title>Create Your First Cloud Orchestration</title>
+        <section xml:id="Install_Heat_Client">
+            <title>Step 1. Install the heat Client</title>
+            <para>To manage your stacks from the command line, you can
+                use the open-source heat client application. </para>
+            <para audience="gsonly">If you want to run the cURL
+                examples, skip this step and proceed to <xref
+                    linkend="Export_CURL_ENV_VARS"/>. </para>
+            <para>To install the heat client, you first install the
+                    <literal>python-heatclient</literal> package. </para>
+            <note>
+                <para>The heat client is not maintained by Rackspace
+                    and should be considered software in development. </para>
+                <remark>Reviewer: is there a link we can provide where
+                    users can post bugs for heat client? If so please
+                    give it to me.</remark>
+            </note>
+            <para>Before you begin, install the following prerequisite
+                    software:<table rules="all" width="90%">
+                    <caption>heat Client Prerequisite
+                        Software</caption>
+                    <col width="25%"/>
+                    <col width="75%"/>
+                    <thead>
+                        <tr>
+                            <th>Prerequisite</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td valign="top">
+                                <para>Python 2.7 or later</para>
+                            </td>
+                            <td>
+                                <para>Currently, the heat client is
+                                   tested with Python 2.7. </para>
+                                <procedure>
+                                   <title>To check if python 2.7 is
+                                   installed on your machine:</title>
+                                   <step>
+                                   <para> Open shell terminal (Cmd
+                                   prompt on Windows), type
+                                   <code>python</code>, and press
+                                   Enter. </para>
+                                   </step>
+                                   <step>
+                                   <para> If you see output similar to
+                                   the one shown below, python is
+                                   installed. The first line in the
+                                   output below shows the installed
+                                   python version: </para>
+                                   <programlisting><emphasis role="italic">Python <emphasis role="bold">2.7</emphasis>.1</emphasis>  (r271:86832, Aug  5 2011, 03:30:24) 
+[GCC 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2335.15.00)] on darwin 
+Type "help", "copyright", "credits" or "license" for more information. 
+&gt;&gt;&gt;  </programlisting>
+                                   <note>
+                                   <para> To exit the python
+                                   interpreter prompt, type
+                                   <code>exit()</code>. </para>
+                                   </note>
+                                   </step>
+                                   <step>
+                                   <para> If the version information
+                                   displayed does not start with 2.7,
+                                   you need to install python2.7.
+                                   Follow the procedure below to
+                                   install it.</para>
+                                   </step>
+                                </procedure>
+                                <procedure>
+                                   <title>To install python
+                                   2.7:</title>
+                                   <step>
+                                   <para> If python was not installed,
+                                   run the command below to install
+                                   python2.7 (on Ubuntu Linux):</para>
+                                   <programlisting>sudo apt-get install python2.7-dev</programlisting>
+                                   <note>
+                                   <para>On Windows and Mac download
+                                   the python 2.7 installation file
+                                   from <link
+                                   xlink:href="http://www.python.org/getit/"
+                                   >http://www.python.org/getit/</link>
+                                   and install it.</para>
+                                   </note>
+                                   </step>
+                                </procedure>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <para><command>setuptools</command>
+                                   package </para>
+                            </td>
+                            <td>
+                                <para>Installed by default on Mac OS
+                                   X. </para>
+                                <para>Many Linux distributions provide
+                                   packages to make
+                                   <command>setuptools</command> easy
+                                   to install.</para>
+                                <para>Search your package manager for
+                                   <command>setuptools</command> to
+                                   find an installation package. If
+                                   you cannot find one, download the
+                                   <command>setuptools</command>
+                                   package directly from <link
+                                   xlink:href="http://pypi.python.org/pypi/setuptools"
+                                   >http://pypi.python.org/pypi/setuptools</link>.
+                                </para>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top"><command>pip</command>
+                                package</td>
+                            <td>
+                                <para>To install the heat client on a
+                                   Mac OS X or Linux system, use
+                                   <command>pip</command> because it
+                                   is easy and ensures that you get
+                                   the latest version of the heat
+                                   client from the <link
+                                   xlink:href="https://pypi.python.org/pypi/python-heatclient/"
+                                   >Python Package Index</link>. Also,
+                                   it lets you update the package
+                                   later on.</para>
+                                <para> If <command>pip</command> is
+                                   not installed, install it as
+                                   described below.</para>
+                                <para>Install <command>pip</command>
+                                   through the package manager for
+                                   your system:<itemizedlist>
+                                   <listitem>
+                                   <para>Mac OS X
+                                   <programlisting language="bash" role="gutter: false"><prompt>$</prompt> sudo easy_install pip</programlisting></para>
+                                   </listitem>
+                                   <listitem>
+                                   <para>Ubuntu
+                                   <programlisting language="bash" role="gutter: false"><prompt>$</prompt> apt get install python-pip </programlisting></para>
+                                   </listitem>
+                                   <listitem>
+                                   <para>Debian
+                                   <programlisting language="bash" role="gutter: false"><prompt>$</prompt> aptitude install python-pip </programlisting></para>
+                                   </listitem>
+                                   <listitem>
+                                   <para>Fedora
+                                   <programlisting language="bash" role="gutter: false"><prompt>$</prompt> yum install python-pip</programlisting></para>
+                                   </listitem>
+                                   <listitem>
+                                   <para>CentOS, or RHEL (from EPEL or
+                                   another 3rd party repository)
+                                   <programlisting language="bash" role="gutter: false"><prompt>$</prompt> yum install python-pip</programlisting></para>
+                                   </listitem>
+                                   </itemizedlist>
+                                </para>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table></para>
+            <?hard-pagebreak?>
+            <procedure>
+                <title>To install the heat client:</title>
+                <step>
+                    <title>Install or update the heat client
+                        package</title>
+                    <para>The <literal>python-heatclient</literal>
+                        package contains the heat client. </para>
+                    <para>Run the following command for your operating
+                        system to install the
+                            <literal>python-heatclient</literal>
+                        package:</para>
+                    <para>For Ubuntu, Debian, or OS X: </para>
+                    <programlisting language="bash" role="gutter: false"><prompt>$</prompt> sudo pip install python-heatclient</programlisting>
+                    <para>For RHEL, CentOS, or Fedora: </para>
+                    <programlisting language="bash" role="gutter: false"><prompt>$</prompt> sudo python-pip install python-heatclient</programlisting>
+                    <note>
+                        <para>If you previously installed the
+                                <literal>python-heatclient</literal>
+                            package, run the following command for
+                            your operating system to upgrade
+                            it:</para>
+                        <para> For Ubuntu, Debian, or OS X:
+                            <programlisting language="bash" role="gutter: false"><prompt>$</prompt> sudo pip install --upgrade python-heatclient</programlisting>
+                            For RHEL, CentOS, or Fedora:
+                            <programlisting language="bash" role="gutter: false"><prompt>$</prompt> sudo python-pip install --upgrade python-heatclient</programlisting>
+                        </para>
+                    </note>
+                </step>
+                <step>
+                    <title>Set environment variables</title>
+                    <para>Edit your .bash_profile file (or .bashrc) to
+                        add and set environment variables that enable
+                        the heat client to connect to your Rackspace
+                        Cloud account. Use nano or a text editor of
+                        your choice to edit your
+                            <filename>.bash_profile</filename> or
+                            <filename>.bashrc</filename> file
+                        (whichever is used in your
+                        environment):</para>
+                    <programlisting language="bash" role="gutter: false"><prompt>$</prompt> nano ~/.bash_profile </programlisting>
+                    <para audience="gs">Depending on your account
+                        location, add one of the following sets of
+                        lines to your bash profile and save the file:<example>
+                            <title>US Data Center Example</title>
+                            <?dbfo keep-together="always"?>
+                            <screen><computeroutput><?db-font-size 65%?>export OS_AUTH_URL=https://identity.api.rackspacecloud.com/v2.0/
+export OS_USERNAME=&lt;username>
+export OS_TENANT_ID=&lt;tenant_id>
+export HEAT_URL=<link xlink:href="https://ord.orchestration.api.rackspacecloud.com/v1/">https://ord.orchestration.api.rackspacecloud.com/v1/</link>${OS_TENANT_ID}  
+export OS_PASSWORD=&lt;password>
+</computeroutput></screen>                            
+                        </example>
+                        
+                        <example>
+                            <title>UK Data Center Example</title>
+                            <?dbfo keep-together="always"?>
+                            <screen><computeroutput><?db-font-size 65%?>export OS_AUTH_URL=https://lon.identity.api.rackspacecloud.com/v2.0/
+export OS_USERNAME=&lt;username>
+export OS_TENANT_ID=&lt;tenant_id>
+export HEAT_URL=<link xlink:href="https://ord.orchestration.api.rackspacecloud.com/v1/">https://ord.orchestration.api.rackspacecloud.com/v1/</link>${OS_TENANT_ID}
+export OS_PASSWORD=&lt;password>
+</computeroutput></screen>
+                        </example></para>
+                    <para audience="admin">In the environment
+                        variables above, <code>username</code>,
+                            <code>password</code>, and
+                            <code>tenant_id</code> refer to your
+                        Rackspace cloud account username, password,
+                        and tenant_id, respectively. Edit the values
+                        for <code>username</code>,
+                            <code>password</code>,
+                            <code>tenant_id</code> to provide your
+                        information as appropriate. Please also set
+                        the HEAT_URL endpoint to the appropriate
+                        regional endpoint where you want to deploy
+                        resources, if it is different that ORD. Refer
+                        to <xref
+                            linkend="Service_Access_Endpoints-d1e753"
+                        /> for details. Remember to source the file
+                        containing the environment variables after
+                        editing (for example: <code>source
+                            .bashrc</code>) so that the new settings
+                        will take effect immediately. </para>
+                    <para audience="admin">The following table
+                        describes the environment variables: <table
+                            xml:id="Heat_Client_Env_Vars" rules="all"
+                            width="100%">
+                            <caption>heat Client Environment
+                                Variables</caption>
+                            <col width="25%"/>
+                            <col width="75%"/>
+                            <thead>
+                                <tr>
+                                   <th>Environment Variable</th>
+                                   <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                   <td>OS_AUTH_URL</td>
+                                   <td>
+                                   <para>The endpoint for the
+                                   Rackspace Identity Service, which
+                                   the heat client uses for
+                                   authentication. </para>
+                                   </td>
+                                </tr>
+                                <tr>
+                                   <td>OS_USERNAME</td>
+                                   <td>Your Rackspace Cloud user
+                                   name.</td>
+                                </tr>
+                                <tr>
+                                   <td>OS_TENANT_ID</td>
+                                   <td>Your Rackspace Cloud tenant id
+                                   (account number).</td>
+                                </tr>
+                                <tr>
+                                   <td>HEAT_URL</td>
+                                   <td>The service endpoint where you
+                                   want to deploy the &Deployment;
+                                   resources.</td>
+                                </tr>
+                                <tr>
+                                   <td>OS_PASSWORD</td>
+                                   <td>Your Rackspace Cloud
+                                   password.</td>
+                                </tr>
+                            </tbody>
+                        </table></para>
+                </step>
+                <step>
+                    <title>Set permissions on the bash profile or
+                        .bashrc file</title>
+                    <para>Because the bash profile (or .bashrc)
+                        contains a password, set permissions on it so
+                        other people cannot read it:</para>
+                    <programlisting language="bash" role="gutter: false"><prompt>$</prompt> chmod 600 ~/.bash_profile </programlisting>
+                </step>
+                <step>
+                    <title>Source the environment variables</title>
+                    <para>To source the variables to make them
+                        available in your current shell, run the
+                        following command if you set your environment
+                        variables in the .bash_profile file:</para>
+                    <programlisting language="bash" role="gutter: false"><prompt>$</prompt> source ~/.bash_profile </programlisting>
+                    <para>Otherwise, run the following command if you
+                        set your environment variables in the .bashrc
+                        file:</para>
+                    <programlisting language="bash" role="gutter: false"><prompt>$</prompt> source ~/.bashrc </programlisting>
+                </step>
+                <step>
+                    <title>Test the heat client</title>
+                    <para>To verify that you can talk to the API
+                        server, authenticate and list
+                        stacks:<programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-list </programlisting></para>
+                </step>
+                <step>
+                    <title>Get help for heat client commands</title>
+                    <para>To get help for heat client commands, run
+                        the following command:</para>
+                    <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat help </programlisting>
+                    <para>To get help for a specific command, type the
+                        command name after the
+                            <parameter>help</parameter> parameter, as
+                        follows:</para>
+                    <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat help &lt;command_name> </programlisting>
+                    <note>
+                        <para>To show and become familiar with the
+                            underlying API request for a command,
+                            specify the <literal>--debug</literal>
+                            parameter as the first parameter on any
+                            command. For example:
+                            <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat --debug stack-list</programlisting></para>
+                    </note>
+                    <para>If you can run the heat commands
+                        successfully, skip the Troubleshooting step
+                        below. Otherwise, continue to the
+                        Troubleshooting step below.</para>
+                </step>
+                <step>
+                    <title>Troubleshooting</title>
+                    <para>Rackspace does not maintain the heat client,
+                        which is considered to be software in
+                        development. </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>If you cannot run commands
+                                successfully, make sure that you
+                                entered your user name, password, and
+                                tenant ID correctly in the bash
+                                profile (or .bashrc) file. </para>
+                        </listitem>
+                        <listitem>
+                            <para>Enter the following command
+                                   <command>heat --debug
+                                   stack-list</command> and check the
+                                corresponding cURL command that is
+                                displayed to confirm that your
+                                settings for user name, password, and
+                                tenant ID are correct. </para>
+                        </listitem>
+                        <listitem>
+                            <para>If you need to change any
+                                environment variables, either log out
+                                and back in or source your bash
+                                profile (or .bashrc) file. </para>
+                        </listitem>
+                        <listitem>
+                            <para>To override some environment
+                                variable settings, you can use the
+                                options that are listed at the end of
+                                the <command>heat help</command>
+                                output. For example, you can override
+                                the <literal>OS_PASSWORD</literal>
+                                setting in the bash profile by
+                                specifying a password on a heat
+                                command, as follows: </para>
+                            <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat --os-password &lt;password> stack-list </programlisting>
+                            <para>Where
+                                   <parameter>password</parameter> is
+                                your Rackspace Cloud password.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Try entering the following command
+                                (using the --debug
+                                option):<programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat --debug stack-list </programlisting>Then
+                                inspect the values reported in the
+                                corresponding cURL command that is
+                                displayed. Are the values you entered
+                                for <code>username</code>,
+                                   <code>password</code>, and
+                                   <code>tenant_id</code> correct? If
+                                not you need to correct the settings
+                                you saved to the .bash_profile or
+                                .bashrc file, source the file, and
+                                retry the command.</para>
+                        </listitem>
+                    </itemizedlist>
+                </step>
+            </procedure>
+        </section>
+        <section xml:id="DB_Sending_API_Requests">
+            <title>Step 2. Send Requests to the API using cURL,
+                Firefox, or rest-client</title>
+            <para>You have several options for sending requests
+                through an API: </para>
+            <itemizedlist spacing="compact">
+                <listitem>
+                    <para>Developers and testers may prefer to use
+                        cURL, the command-line tool from <link
+                            xlink:href="http://curl.haxx.se/"
+                            >http://curl.haxx.se/</link>. </para>
+                    <para>With cURL you can send HTTP requests and
+                        receive responses back from the command line.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>If you like to use a more graphical
+                        interface, the ReST client for Firefox also
+                        works well for testing and trying out
+                        commands, see <link
+                            xlink:href="https://addons.mozilla.org/en-US/firefox/addon/restclient/"
+                            >https://addons.mozilla.org/en-US/firefox/addon/restclient/</link>.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>You can also download and install
+                        rest-client, a Java application to test
+                        ReSTful web services, from <link
+                            xlink:href="http://code.google.com/p/rest-client/"
+                            >http://code.google.com/p/rest-client/</link>.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <section xml:id="DB_using-curl-cli">
+                <title>Send API Requests Using cURL</title>
+                <para>cURL is a command-line tool that is available on
+                    most UNIX®-like environments and Mac OS X® and can
+                    be downloaded for Windows® in order to interact
+                    with the ReST interfaces. For more information on
+                    cURL, visit <link
+                        xlink:href="http://curl.haxx.se/"
+                        >http://curl.haxx.se/</link>. </para>
+                <para>cURL allows you to transmit and receive HTTP
+                    requests and responses from the command-line or
+                    from within a shell script. This makes it possible
+                    to work with the ReST API directly without using
+                    one of the client APIs. </para>
+                <para>The following cURL command-line options will be
+                    used in this guide to run the examples:</para>
+                <table xml:id="curl-options" rules="all" width="75%">
+                    <caption>cURL Command-Line Options</caption>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <option>-d</option>
+                            </td>
+                            <td>
+                                <para>Sends the specified data in a
+                                   &POST; request to the HTTP server.
+                                   Use this option to send a JSON or
+                                   XML request body to the
+                                   server.</para>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <option>-H</option>
+                            </td>
+                            <td>
+                                <para>Specifies an extra HTTP header
+                                   in the request. You can specify any
+                                   number of extra headers. Precede
+                                   each header with the
+                                   <option>-H</option> option. </para>
+                                <para>Common headers in Rackspace API
+                                   requests are:<itemizedlist>
+                                   <listitem>
+                                   <para><literal>Content-Type</literal>.
+                                   Required for operations with a
+                                   request body. </para>
+                                   <para>Specifies the format of the
+                                   request body. The syntax for the
+                                   <literal>Content-Type</literal>
+                                   header is:</para>
+                                   <screen><computeroutput>Content-Type: application/<parameter>format</parameter></computeroutput></screen>
+                                   <para>Where
+                                   <parameter>format</parameter> is
+                                   either <literal>json</literal> or
+                                   <literal>xml</literal>.</para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><literal>X-Auth-Project-Id</literal>.
+                                   Optional. Specifies the project ID,
+                                   which can be your account number or
+                                   another value.</para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><literal>Accept</literal>.
+                                   Optional. </para>
+                                   <para>Specifies the format of the
+                                   response body. The syntax for the
+                                   <literal>Accept</literal> header
+                                   is:</para>
+                                   <screen><computeroutput>Accept: application/<parameter>format</parameter></computeroutput></screen>
+                                   <para>Where
+                                   <parameter>format</parameter> is
+                                   either <literal>json</literal> or
+                                   <literal>xml</literal>. Default is
+                                   <literal>json</literal>.</para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><literal>X-Auth-Token</literal>.
+                                   Required. Specifies the
+                                   authentication token.</para>
+                                   </listitem>
+                                   </itemizedlist></para>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <option>-i</option>
+                            </td>
+                            <td>
+                                <para>Includes the HTTP header in the
+                                   output. </para>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <option>-s</option>
+                            </td>
+                            <td>
+                                <para>Silent or quiet mode. Does not
+                                   show progress or error messages.
+                                   Makes cURL mute. </para>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <option>-T</option>
+                            </td>
+                            <td>
+                                <para>Transfers the specified local
+                                   file to the remote URL.</para>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <option>-X</option>
+                            </td>
+                            <td>
+                                <para>Specifies the request method to
+                                   use when communicating with the
+                                   HTTP server. The specified request
+                                   is used instead of the default
+                                   method, which is &GET;. </para>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <note xml:id="json-tool">
+                    <title>json.tool</title>
+                    <para>For commands that return a response, you can
+                        append the following code to the command to
+                        call the json.tool to pretty-print output: </para>
+                    <programlisting language="bash" role="gutter: false">| python -m json.tool</programlisting>
+                    <para>To use the json.tool, import the json
+                        module. For information about the json.tool,
+                        see <link
+                            xlink:href="http://docs.python.org/2/library/json.html"
+                            >json — JSON encoder and decoder</link>. </para>
+                    <para>If you run a Python version older than 2.6,
+                        import the simplejson module and use the
+                        simplejson.tool. For information about the
+                        simple.json tool, see <link
+                            xlink:href="http://simplejson.googlecode.com/svn/tags/simplejson-2.0.9/docs/index.html"
+                            >simplejson — JSON encoder and
+                            decoder</link>.</para>
+                    <para>If you do not want to pretty-print JSON
+                        output, omit this code. </para>
+                </note>
+            </section>
+            <section xml:id="DB_copy_paste_examples">
+                <title>Copying and Pasting cURL Request Examples into
+                    a Terminal Window</title>
+                <para>To run the cURL request examples shown in this
+                    guide on Linux or Mac systems, select the desired
+                    example from the HTML version of this guide by
+                    clicking the Select Text icon to the right of the
+                    example and then select Edit->Copy. Then paste it
+                    into an ASCII editor (for example <emphasis
+                        role="bold">vi</emphasis> or <emphasis
+                        role="bold">TextEdit</emphasis>). Next modify
+                    the example with your required account information
+                    and so forth, as detailed in this guide.</para>
+                <note>
+                    <para>The carriage returns in the cURL request
+                        examples that are part of the cURL syntax are
+                        escaped with a backslash ('\') in order to
+                        avoid prematurely terminating the command.
+                        However you should not escape carriage returns
+                        inside the xml or json message within the
+                        command.</para>
+                </note>
+                <para>Consider the following cURL Authenticate
+                    Request: JSON example that is described in detail
+                    in <xref linkend="Generating_Auth_Token"/>:</para>
+                <example>
+                    <title>cURL Authenticate Request: JSON</title>
+                    <?dbfo keep-together="always"?>
+                    <screen language="bash"><command>curl</command> <option>-s</option> <option>-d</option> \
+'{
+    "auth":
+    {
+       "RAX-KSKEY:apiKeyCredentials":
+       {  
+          "username": "<emphasis role="bold">your_username</emphasis>",  
+          "apiKey": "<emphasis role="bold">your_api_key</emphasis>"}
+    }  
+}' \
+<option>-H 'Content-Type: application/json'</option> \
+<uri>'https://identity.api.rackspacecloud.com/v2.0/tokens'</uri> | python -m json.tool</screen>
+                </example>
+                <para>You can see that the lines that are part of the
+                    cURL command syntax have all been escaped with a
+                    backslash ('\') to indicate that the command
+                    continues on the next line:</para>
+                <screen language="bash"><command>curl</command> <option>-i</option> <option>-d</option> \
+  
+   
+(... lines within the json portion of the message are not shown in this example)
+(... the example only shows lines that are part of cURL syntax)     
+     
+    
+   
+}' \
+<option>-H 'Content-Type: application/json'</option> \
+<uri>'https://identity.api.rackspacecloud.com/v2.0/tokens'</uri> | python -m json.tool</screen>
+                <para>However the lines <emphasis>within</emphasis>
+                    the json portion of the message are
+                        <emphasis>not</emphasis> escaped with a
+                    backslash ('\') in order to avoid issues with the
+                    json processing:</para>
+                <screen language="bash">'{
+    "auth":
+    {
+       "RAX-KSKEY:apiKeyCredentials":
+       {  
+          "username": "<emphasis role="bold">your_username</emphasis>",  
+          "apiKey": "<emphasis role="bold">your_api_key</emphasis>"}
+    }  
+}' \
+</screen>
+                <note>
+                    <para>The final line of the json message is
+                        escaped since the backslash lies
+                            <emphasis>outside</emphasis> the json
+                        message and continues the cURL command to the
+                        next line.</para>
+                </note>
+                <para>After you are finished modifying the text for
+                    the cURL request example with your information
+                    (for example <emphasis role="bold"
+                            ><code>your_username</code></emphasis> and
+                        <emphasis role="bold"
+                            ><code>your_api_key</code></emphasis>),
+                    paste it into your terminal window. Then execute
+                    the cURL command by pressing
+                        <guilabel>Enter</guilabel>.</para>
+                <para>If you have trouble copying and pasting the
+                    examples as described, try typing the entire
+                    example on one long line, removing all the
+                    backslash line continuation characters.</para>
+            </section>
+        </section>
+        <section xml:id="Generating_Auth_Token">
+            <title>Step 3. Generate an Authentication Token</title>
+            <para>You need to generate a token if use cURL.</para>
+            <para>If you are using heat client, the authentication
+                token is generated for you automatically, so please
+                skip this section and go to <xref
+                    linkend="Create_Simple_Stack_CS"/>.</para>
+            <para>In order to use the ReST API, you will first need to
+                obtain an authentication token, which will need to be
+                passed in for each request using the
+                    <code>X-Auth-Token</code> header. </para>
+            <para>The following example demonstrates how to use cURL
+                to obtain the authentication token and the account
+                number. You will need to supply the authentication
+                token and account number when making subsequent Cloud
+                Orchestration API calls.</para>
+            <para>Remember to replace the names in the Authenticate
+                Request examples below with their respective
+                    values:<itemizedlist spacing="compact">
+                    <listitem>
+                        <para><emphasis role="bold"
+                                >your_username</emphasis> &mdash; The
+                            username is your common Rackspace Cloud
+                            username, as supplied during
+                            registration.</para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis role="bold"
+                                >your_api_key</emphasis> &mdash; The
+                            key is your API access key.</para>
+                        <para><emphasis role="bold">To find your API
+                                Key:</emphasis></para>
+                        <orderedlist>
+                            <listitem>
+                                <para>Log in to the Cloud Control
+                                   Panel (<link
+                                   xlink:href="https://mycloud.rackspace.com"
+                                   >https://mycloud.rackspace.com</link>).</para>
+                            </listitem>
+                            <listitem>
+                                <para>On the upper-right side of the
+                                   top navigation pane, click your
+                                   username.</para>
+                            </listitem>
+                            <listitem>
+                                <para>From the menu, select
+                                   <guimenuitem>Account
+                                   Settings</guimenuitem>.</para>
+                            </listitem>
+                            <listitem>
+                                <para>In the Login Details section of
+                                   the Account Settings page, locate
+                                   the <guilabel>API Key</guilabel>
+                                   field and click
+                                   <guibutton>Show</guibutton>.</para>
+                            </listitem>
+                            <listitem>
+                                <para>Copy the value of the API Key
+                                   and paste it into a text editor of
+                                   your choice.</para>
+                            </listitem>
+                            <listitem>
+                                <para>Click
+                                   <guibutton>Hide</guibutton> to hide
+                                   the value of the API Key. </para>
+                            </listitem>
+                        </orderedlist>
+                        <para>You also need your cloud account number.
+                            In the documentation, the account number
+                            is often referred to as your tenant name
+                            or tenant ID (technically, the ID is
+                            different from the name, but at Rackspace,
+                            they are the same thing). Together, three
+                            components—your username, your API Key,
+                            and your tenant ID or cloud account
+                            number—form the authentication credentials
+                            that are required to connect to the
+                            Rackspace cloud. To find your tenant ID or
+                            cloud account number, locate your username
+                            on the upper-right side of the top
+                            navigation pane in the Cloud Control
+                            Panel. The tenant ID or account number is
+                            in parentheses just to the right of your
+                            username.</para>
+                    </listitem>
+                </itemizedlist></para>
+            <para> You can use either of the following endpoints to
+                access the Authentication Service, regardless of US or
+                UK identities: </para>
+            <itemizedlist spacing="compact">
+                <listitem>
+                    <para><link xlink:href="&ENDPOINT-US-20;"
+                            >&ENDPOINT-US-20;</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para><link xlink:href="&ENDPOINT-UK-20;"
+                            >&ENDPOINT-UK-20;</link></para>
+                </listitem>
+            </itemizedlist>
+            <para> Your account may be based in either the US or the
+                UK; this is not determined by your physical location
+                but by the location of the Rackspace retail site which
+                was used to create your account: </para>
+            <itemizedlist spacing="compact">
+                <listitem>
+                    <para> If your account was created via <link
+                            xlink:href="http://www.rackspacecloud.com"
+                            >http://www.rackspacecloud.com</link>, it
+                        is a US-based account. </para>
+                </listitem>
+                <listitem>
+                    <para> If your account was created via <link
+                            xlink:href="http://www.rackspace.co.uk"
+                            >http://www.rackspace.co.uk</link>, it is
+                        a UK-based account. </para>
+                </listitem>
+            </itemizedlist>
+            <para>Notice that you authenticate using a special URL for
+                Cloud authentication services. For example, you may
+                use
+                    <code>https://identity.api.rackspacecloud.com/v2.0/tokens</code>,
+                as shown in the following Authenticate Request
+                examples. Note that the <code>v2.0</code> component in
+                the URL indicates that you are using version 2.0 of
+                the Cloud Auth API.</para>
+            <example>
+                <title>cURL Authenticate Request: XML</title>
+                <?dbfo keep-together="always"?>
+                <screen language="bash"><command>curl</command> <option>-s</option> <option>-d</option> \
+'&lt;?xml version="1.0" encoding="UTF-8"?>  
+&lt;auth>
+   &lt;apiKeyCredentials
+      xmlns="http://docs.rackspace.com/identity/api/ext/RAX-KSKEY/v1.0"
+         username="<emphasis role="bold">your_username</emphasis>" 
+         apiKey="<emphasis role="bold">your_api_key</emphasis>"/>
+&lt;/auth>' \
+<option>-H 'Content-Type: application/xml'</option> \
+<option>-H 'Accept: application/xml'</option> \
+<uri>'https://identity.api.rackspacecloud.com/v2.0/tokens'</uri></screen>
+            </example>
+            <example>
+                <title>cURL Authenticate Request: JSON</title>
+                <?dbfo keep-together="always"?>
+                <screen language="bash"><command>curl</command> <option>-s</option> <option>-d</option> \
+'{
+    "auth":
+    {
+       "RAX-KSKEY:apiKeyCredentials":
+       {  
+          "username": "<emphasis role="bold">your_username</emphasis>",  
+          "apiKey": "<emphasis role="bold">your_api_key</emphasis>"}
+    }  
+}' \
+<option>-H 'Content-Type: application/json'</option> \
+<uri>'https://identity.api.rackspacecloud.com/v2.0/tokens'</uri> | python -m json.tool</screen>
+            </example>
+            <note>
+                <para>For UK-based accounts, you may decide to use
+                        <code>'https://lon.identity.api.rackspacecloud.com/v2.0/tokens'</code>
+                    instead.</para>
+            </note>
+            <example>
+                <title>Authenticate Response: XML</title>
+                <programlisting language="xml"><xi:include href="samples/db-auth-20.xml" parse="text"><xi:fallback>Missing code sample! <?rax fail?></xi:fallback></xi:include></programlisting>
+            </example>
+            <example>
+                <title>Authenticate Response: JSON</title>
+                <programlisting language="json"><xi:include href="samples/db-auth-20.json" parse="text"><xi:fallback>Missing code sample! <?rax fail?></xi:fallback></xi:include></programlisting>
+            </example>
+            <para>The authentication token <code>id</code> is returned
+                along with an <code>expires</code> attribute that
+                specifies when the token expires. </para>
+            <note>
+                <title>Notes</title>
+                <itemizedlist spacing="compact">
+                    <listitem>
+                        <para>For all response examples in this guide,
+                            the field values you receive in your
+                            responses will vary from those shown here
+                            since they will be specific to your
+                            account.</para>
+                    </listitem>
+                    <listitem>
+                        <para>The information shown in the
+                            Authenticate Response examples above is
+                            for US-based accounts. If you authenticate
+                            against the UK-endpoint for auth, you will
+                            see the service catalog information for
+                            UK-based accounts.</para>
+                    </listitem>
+                    <listitem>
+                        <para>The <code>id</code> attribute in the
+                            Authenticate Response specifies the
+                            authentication token. Tokens are valid for
+                            a finite duration.</para>
+                        <para>You will set an environment variable
+                                (<code>token</code>) to specify your
+                            auth token for the Cloud Orchestration API
+                            calls in <xref
+                                linkend="Export_CURL_ENV_VARS"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para> The <code>expires</code> attribute
+                            denotes the time after which the token
+                            will automatically become invalid. A token
+                            may be manually revoked before the time
+                            identified by the expires attribute;
+                                <code>expires</code> predicts a
+                            token's maximum possible lifespan but does
+                            not guarantee that it will reach that
+                            lifespan. Clients are encouraged to cache
+                            a token until it expires.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Applications should be designed to
+                            re-authenticate after receiving a 401
+                            (Unauthorized) response from a service
+                            endpoint.</para>
+                    </listitem>
+                </itemizedlist>
+            </note>
+            <para>The <code>publicURL</code> endpoints for
+                    <code>cloudOrchestration</code> (for example
+                    <code>https://ord.orchestration.api.rackspacecloud.com/v1/1100111</code>)
+                are also returned in the response. </para>
+            <para>You will find the actual account number after the
+                final '/' in the <code>publicURL</code> field. In this
+                example, you can see that the account number is
+                1100111. You will set an environment variable
+                    (<code>account</code>) to specify your account
+                number for the Cloud Orchestration API calls in <xref
+                    linkend="Export_CURL_ENV_VARS"/></para>
+            <para>After authentication, you can use cURL to perform
+                &GET;, &DELETE;, and &POST; requests for the Cloud
+                Orchestration API.</para>
+        </section>
+        <section xml:id="Service_Access_Endpoints-d1e753">
+            <title>Step 4. Choose Service Access/Endpoints</title>
+            <para>If you are using cURL, the endpoints to use for your
+                Cloud Orchestration API calls are summarized in the
+                table below.</para>
+            <para>If you are using heat client, the endpoints to use
+                for your Cloud Orchestration API calls are set
+                automatically by specifying a region using the
+                HEAT_URL environment variable, so skip this section
+                and go to <xref linkend="Create_Simple_Stack_CS"
+                /></para>
+            <para>
+                <table rules="all">
+                    <caption>Regionalized Service Endpoints</caption>
+                    <thead>
+                        <tr align="center">
+                            <td colspan="2">Region</td>
+                            <td colspan="5">Endpoint</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr align="left">
+                            <td colspan="2">Chicago (ORD)</td>
+                            <td colspan="5"
+                                   ><code>https://ord.orchestration.api.rackspacecloud.com/v1/</code><parameter>1234</parameter>/ </td>
+                        </tr>
+                        <tr align="left">
+                            <td colspan="2">Dallas/Ft. Worth
+                                (DFW)</td>
+                            <td colspan="5"
+                                   ><code>https://dfw.orchestration.api.rackspacecloud.com/v1/</code><parameter>1234</parameter>/ </td>
+                        </tr>
+                        <tr align="left">
+                            <td colspan="2">Northern Virginia
+                                (IAD)</td>
+                            <td colspan="5"
+                                   ><code>https://iad.orchestration.api.rackspacecloud.com/v1/</code><parameter>1234</parameter>/ </td>
+                        </tr>
+                        <tr align="left">
+                            <td colspan="2">London (LON)</td>
+                            <td colspan="5">
+                                <code>https://lon.orchestration.api.rackspacecloud.com/v1/</code><parameter>1234</parameter>/ </td>
+                        </tr>
+                        <tr align="left">
+                            <td colspan="2">Sydney (SYD)</td>
+                            <td colspan="5">
+                                <code>https://syd.orchestration.api.rackspacecloud.com/v1/</code><parameter>1234</parameter>/ </td>
+                        </tr>
+                        <tr align="left">
+                            <td colspan="2">Hong Kong (HKG)</td>
+                            <td colspan="5">
+                                <code>https://hkg.orchestration.api.rackspacecloud.com/v1/</code><parameter>1234</parameter>/ </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </para>
+            <note>
+                <title>Notes:</title>
+                <itemizedlist>
+                    <listitem>
+                        <para>Choose the endpoint from the table for
+                            the datacenter where your Cloud resources
+                            are located.</para>
+                    </listitem>
+                    <listitem>
+                        <para>All examples in this guide assume that
+                            you are operating against the ORD
+                            datacenter, however if you are using a
+                            different datacenter, be sure to use the
+                            associated endpoint from the table above
+                            instead.</para>
+                    </listitem>
+                </itemizedlist>
+            </note>
+            <para>Replace the sample account ID number,
+                    <parameter>1234</parameter>, with your actual
+                account number returned as part of the authentication
+                response. You will set an environment variable
+                    (<code>account</code>) to specify your account
+                number for the Cloud Orchestration API calls in <xref
+                    linkend="Export_CURL_ENV_VARS"/>. Refer to <xref
+                    linkend="Generating_Auth_Token"/> for the account
+                number.</para>
+            <para>When making a Cloud Orchestration API call, place
+                the endpoint at the beginning of the request URL, for
+                example:
+                    (<code>https://ord.orchestration.api.rackspacecloud.com/v1/$account/</code>),
+                as you can see in the cURL Create Stack Request
+                example in <xref linkend="Create_Simple_Stack_CS_CURL"
+                />.</para>
+        </section>
+        <section xml:id="Export_CURL_ENV_VARS">
+            <title>Step 5. Export Environment Variables to Run cURL
+                Commands</title>
+            <para>To run the cURL command examples in this guide,
+                follow this procedure to export environment variables. </para>
+            <para audience="gsonly">Otherwise, if you are using heat
+                client commands, proceed to <xref
+                    linkend="Create_Simple_Stack_CS"/>. </para>
+            <para>Export your tenant ID and authentication token to
+                environment variables. All cURL examples in this guide
+                use these environment variables.</para>
+            <procedure>
+                <title>To export environment variables:</title>
+                <step>
+                    <para>Export your tenant ID to the
+                            <literal>account</literal> environment
+                        variable:</para>
+                    <screen><computeroutput>$ export account="&lt;tenantId&gt;"</computeroutput></screen>
+                    <para>Where <parameter>tenantId</parameter> is the
+                        value in the <literal>tenantId</literal> field
+                        in the authentication response. </para>
+                </step>
+                <step>
+                    <para>Export your authentication token to the
+                            <literal>token</literal> environment
+                        variable:
+                        <screen><computeroutput>$ export token="&lt;id&gt;"</computeroutput></screen>Where
+                            <parameter>id</parameter> is the
+                        authentication token value in the
+                            <literal>id</literal> field in the
+                            <literal>token</literal> element in the
+                        authentication response. Refer to <xref
+                            linkend="Generating_Auth_Token"/> for
+                        information about the token id.</para>
+                </step>
+            </procedure>
+        </section>
+        <section xml:id="Create_Simple_Stack_CS">
+            <title>Step 6. Create Simple Stack for a Cloud
+                Server</title>
+            <para>Assume you want to create a very simple stack that
+                defines a single Cloud Server. Use a text editor such
+                as nano or vi to create the following heat
+                orchestration template (HOT) file and then save it as
+                    <filename>single_server.template</filename>:</para>
+            <example>
+                <title><filename>single_server.template</filename>
+                    Example HOT Template File</title>
+                <programlisting language="bash">
+heat_template_version: 2013-05-23
+
+resources:
+  compute_instance:  
+    type: "Rackspace::Cloud::Server"
+    properties:
+      flavor: 1GB Standard Instance
+      image: CentOS 6.4
+      name: Single Server Stack
+      
+outputs:
+  public_ip:
+    description: public IP address of the deployed compute instance
+    value: { get_attr: [compute_instance, PublicIp] }      
+                </programlisting> 
+            </example>
+            <para>This stack consists of a <code>resources</code>
+                section that creates a single Cloud Server with a 1GB
+                Standard Instance flavor size (which identifies a
+                particular combination of memory capacity and priority
+                for CPU time). It has CentOS 6.4 installed, and is
+                called Simple Stack. </para>
+            <para>This stack also has an <code>outputs</code> section.
+                Outputs are used to provide important information to
+                users, such as the IP address for the Cloud Server in
+                this example. The output in this example is named
+                    <code>public_ip</code> and its description says
+                    "<code>public IP address of the deployed compute
+                    instance</code>." Its value is set by calling the
+                intrinsic function <code>get_attr</code>, passing it
+                the name <code>compute_instance</code>, which is the
+                name of the Cloud Server resource and the attribute
+                whose value is desired, that is,
+                <code>PublicIp</code>. You will see shortly how this
+                public IP address is displayed to the user. You can
+                find out more about intrinsic functions at <link
+                    xlink:href="http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content/Defining_Template_dle245.html#intrinsic_functions_d1e725"
+                    >http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content/Defining_Template_dle245.html#intrinsic_functions_d1e725</link></para>
+            <remark>Reviewer: I notice that Paul  Nelson has changed
+                the spelling of PublicIp to public_ip, however
+                PublicIp seems to work. Please advise.</remark>
+            <para>Choose one of the following methods:<itemizedlist>
+                    <listitem>
+                        <para><xref
+                                linkend="Create_Simple_Stack_CS_Heat"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para><xref
+                                linkend="Create_Simple_Stack_CS_CURL"
+                            /></para>
+                    </listitem>
+                </itemizedlist></para>
+            <section xml:id="Create_Simple_Stack_CS_Heat">
+                <title>Create Stack with the heat Client</title>
+                <procedure>
+                    <title>To create the stack with the heat
+                        client:</title>
+                    <step>
+                        <para>Issue the following command:</para>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-create Single-Server-Stack --template-file single_server.template</programlisting>
+                        <para>You should get a list of your stacks,
+                            including one with a stack_name of
+                                <code>Single-Server-Stack</code> with
+                            a stack_status of
+                                <code>CREATE_IN_PROGRESS</code>, for
+                            example: </para>
+                        <informalexample>
+                            <?dbfo pgwide="1"?>
+                            <screen><computeroutput><?db-font-size 10%?>
++--------------------------------------+---------------------+--------------------+----------------------+
+| id                                   | stack_name          | stack_status       | creation_time        |
++--------------------------------------+---------------------+--------------------+----------------------+
+| 3bd2c230-b02a-45d8-9f16-88c9a9f64d2d | Single-Server-Stack | CREATE_IN_PROGRESS | 2014-01-24T20:12:47Z |
++--------------------------------------+---------------------+--------------------+----------------------+</computeroutput></screen>
+                        </informalexample>
+                    </step>
+                </procedure>
+            </section>
+            <?hard-pagebreak?>
+            <section xml:id="Create_Simple_Stack_CS_CURL">
+                <title>Create Stack with cURL</title>
+                <procedure>
+                    <title>To create a stack with cURL</title>
+                    <step>
+                        <para>Use the Create Stack API call
+                                (<code>/stacks</code>) call.</para>
+                        <para>Execute the desired cURL request for
+                            Create Stack:</para>
+                        <example>
+                            <title>cURL Create Stack Request:
+                                JSON</title>
+                            <programlisting language="bash"><command>curl -s -d</command> \
+'{
+  "stack_name": "Single-Server-Stack",
+  "disable_rollback": true,
+  "parameters": {
+    
+  },
+  "template": "heat_template_version: 2013-05-23
+  resources:
+    compute_instance:
+      type: "Rackspace::Cloud::Server"  
+      properties:
+        flavor: 1GB Standard Instance
+        image: CentOS 6.4
+        name: Single Server Stack
+        
+   outputs:  
+     public_ip:
+     description: public IP address of the deployed compute instance\n    
+     value: { get_attr: [compute_instance, PublicIp] }
+     
+  ",
+  "timeout_mins": 60
+}' \
+<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "Accept: application/json"</option> \
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks</uri> | python -m json.tool</programlisting>
+                        </example>
+                        <example>
+                            <title>cURL Create Stack Request:
+                                JSON</title>
+                            <programlisting language="bash"><command>curl -s -i -X POST -d</command> \
+'{
+  "stack_name": "Single-Server-Stack",
+  "disable_rollback": true,
+  "parameters": {},
+  "timeout_mins": 60,
+  "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"Rackspace::Cloud::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }      \n\n\n"  
+}' \
+<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "Accept: application/json"</option> \
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks</uri> | python -m json.tool</programlisting>
+                        </example>
+                        <example>
+                            <title>cURL Create Stack Request:
+                                JSON</title>
+                            <programlisting language="bash"><command>curl -s -d</command> \
+'{
+  "stack_name": "Single-Server-Stack",
+  "disable_rollback": true,
+  "parameters": {},
+  "template_url": "file:///Users/mike.asthalter/Documents/Orchestration/Misc/single_server.template",
+  "timeout_mins": 60
+}' \
+<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "Accept: application/json"</option> \
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks</uri> | python -m json.tool</programlisting>
+                        </example>
+                    </step>
+                    <step>
+                        <para>The following example shows the response
+                            for Create Stack:</para>
+                        <example>
+                            <title>cURL Create Stack Response:
+                                JSON</title>
+                            <programlisting language="json">
+HTTP/1.1 201 Created
+content-length: 192
+via: 1.0 Repose (Repose/2.13.0)
+server: nginx/1.2.1
+connection: keep-alive
+location: https://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d
+date: Thu, 23 Jan 2014 19:38:09 GMT
+content-type: application/json
+
+{
+  "stack": {
+    "id": "3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
+    "links": [
+      {
+        "href": "http://localhost:8004/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
+        "rel": "self"
+      }
+    ]
+  }
+}
+                            </programlisting>
+                        </example>
+                        <para>In the previous example, you can see
+                            that the stack was created and has id
+                                <code>3bd2c230-b02a-45d8-9f16-88c9a9f64d2d</code>. </para>
+                        <para>Notice that there is a <code>self</code>
+                            link that contains a
+                                <emphasis>versioned</emphasis> link to
+                            the flavor resource. This link should be
+                            used in cases where the link will be
+                            followed immediately.</para>
+                    </step>
+                </procedure>
+            </section>
+        </section>
+        <section xml:id="List_Stacks">
+            <title>Step 7. List Stacks</title>
+            <para>Now you can list stacks and confirm that your stack
+                has been created.</para>
+            <para>Choose one of the following methods:<itemizedlist>
+                    <listitem>
+                        <para><xref linkend="List_Stacks_Heat"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para><xref linkend="List_Stacks_CURL"
+                            /></para>
+                    </listitem>
+                </itemizedlist></para>
+            <section xml:id="List_Stacks_Heat">
+                <title>List Stacks with the heat Client</title>
+                <para>This example lists stacks using the heat client.  </para>
+                <procedure>
+                    <title>To list stacks using the heat
+                        client:</title>
+                    <step>
+                        <para>Issue the following command:</para>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-list</programlisting>
+                        <para>The command returns the id, stack_name,
+                            stack_status, and creation_time for your
+                            stacks:</para>
+                        
+                        <informalexample>
+                            <?dbfo pgwide="1"?>
+                            <screen><?db-font-size 90%?>
++--------------------------------------+---------------------+-----------------+----------------------+
+| id                                   | stack_name          | stack_status    | creation_time        |
++--------------------------------------+---------------------+-----------------+----------------------+
+| bd2c230-b02a-45d8-9f16-88c9a9f64d2d  | Single-Server-Stack | CREATE_COMPLETE | 2014-01-23T19:41:05Z |
++--------------------------------------+---------------------+-----------------+----------------------+
+</screen>
+                        </informalexample>
+                        <para>In this case, you have just the
+                                <code>Single-Server-Stack</code> and
+                            its <code>stack_status</code> is now
+                                <code>CREATE_COMPLETE</code>.</para>
+                        
+                    </step>
+                </procedure>
+            </section>
+            <section xml:id="List_Stacks_CURL">
+                <title>List Stacks with cURL</title>
+                <procedure>
+                    <title>To list stacks with cURL:</title>
+                    <step>
+                        <para>Execute the cURL request for List
+                            Stacks:</para>
+                        <example>
+                            <title>cURL List Stacks Request:
+                                JSON</title>
+                            <programlisting language="bash"><command>curl</command> <option>-s</option> \
+<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "Content-Type: application/json"</option> \
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks</uri> | python -m json.tool</programlisting>
+                        </example>
+                    </step>
+                    <step>
+                        <para>The following example shows the List
+                            Stacks response:</para>
+                        <example>
+                            <title>List Stacks  Response: JSON</title>
+                            <programlisting language="json">
+HTTP/1.1 200 OK
+Server: nginx/1.2.1
+Date: Thu, 23 Jan 2014 20:39:33 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 443
+Connection: keep-alive
+Via: 1.0 Repose (Repose/2.13.0)
+
+{
+  "stacks": [
+    {
+      "description": "No description",
+      "links": [
+        {
+          "href": "http://localhost:8004/v1/1234/stacks/Single-Server-Stack/bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
+          "rel": "self"
+        }
+      ],
+      "stack_status_reason": "Stack create completed successfully",
+      "stack_name": "Single-Server-Stack",
+      "creation_time": "2014-01-23T19:41:05Z",
+      "updated_time": "2014-01-23T19:45:54Z",
+      "stack_status": "CREATE_COMPLETE",
+      "id": "bd2c230-b02a-45d8-9f16-88c9a9f64d2d"
+    }
+  ]
+}</programlisting>
+                        </example>
+                        <para>You can see that your stack named
+                                <code>Single-Server-Stack</code> with
+                                <code>id
+                                bd2c230-b02a-45d8-9f16-88c9a9f64d2d</code>
+                            has been successfully created.</para>
+                    </step>
+                </procedure>
+            </section>
+        </section>
+        <section xml:id="Show_Stack_Details">
+            <title>Step 8. Show Stack Details</title>
+            <para>In this section you will show the details for your
+                stack.</para>
+            <para>Choose one of the following methods:<itemizedlist>
+                    <listitem>
+                        <para><xref linkend="Show_Stack_Details_Heat"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para><xref linkend="Show_Stack_Details_CURL"
+                            /></para>
+                    </listitem>
+                </itemizedlist></para>
+            <section xml:id="Show_Stack_Details_Heat">
+                <title>Show Stack Details with the heat Client</title>
+                <procedure>
+                    <title>To show details for the stack with the
+                        specified name using the heat client:</title>
+                    <step>
+                        <para>Show the details for your stack
+                                <code>Single-Server-Stack</code> by
+                            issuing the following command:</para>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-show Single-Server-Stack</programlisting>
+                        <para>The command returns the details for the
+                            stack:</para>
+                        <informalexample>
+                            <?dbfo pgwide="1"?>
+                            <screen><computeroutput><?db-font-size 44%?>
++----------------------+------------------------------------------------------------------------------------------------------------------+
+| capabilities         | []                                                                                                               |
+| creation_time        | 2014-01-24T20:12:47Z                                                                                             |
+| description          | No description                                                                                                   |
+| disable_rollback     | True                                                                                                             |
+| id                   | 3bd2c230-b02a-45d8-9f16-88c9a9f64d2d                                                                             |
+| links                | http://localhost:8004/v1/647683/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d                  |
+| notification_topics  | []                                                                                                               |
+| outputs              | [                                                                                                                |
+|                      |   {                                                                                                              |
+|                      |     "output_value": "23.253.88.131",                                                                             |
+|                      |     "description": "public IP address of the deployed compute instance",                                         |
+|                      |     "output_key": "public_ip"                                                                                    |
+|                      |   }                                                                                                              |
+|                      | ]                                                                                                                |
+| parameters           | {                                                                                                                |
+|                      |   "AWS::StackId": "arn:openstack:heat::647683:stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",  |
+|                      |   "AWS::Region": "ap-southeast-1",                                                                               |
+|                      |   "AWS::StackName": "Single-Server-Stack"                                                                        |
+|                      | }                                                                                                                |
+| stack_name           | Single-Server-Stack                                                                                              |
+| stack_status         | CREATE_COMPLETE                                                                                                  |
+| stack_status_reason  | Stack create completed successfully                                                                              |
+| template_description | No description                                                                                                   |
+| timeout_mins         | 60                                                                                                               |
+| updated_time         | 2014-01-24T20:14:12Z                                                                                             |
++----------------------+------------------------------------------------------------------------------------------------------------------+
+
+
+</computeroutput></screen>
+                        </informalexample>
+                    </step>
+                </procedure>
+                <para>Notice this is where you can see the information
+                    created by the output parameter you created in the
+                    following section of your template file in <xref
+                        linkend="Create_Simple_Stack_CS"/>:<example>
+                        <title>outputs Section for Template
+                            single_server.template</title>
+                        <programlisting language="bash">outputs:
+  public_ip:
+    description: public IP address of the deployed compute instance
+    value: { get_attr: [compute_instance, PublicIp] } </programlisting>
+                    </example>Locate the <code>outputs</code> property
+                    in the table of information returned by the
+                        <code>stack-show</code> heat client command
+                    above and look at the <code>output value</code>
+                    for the <code>output_key</code>
+                    <code>public_ip</code>. The
+                        <code>output_value</code> is
+                        <code>23.253.88.56</code>. So that gives the
+                    user the public IP address for the Cloud Server
+                    that has been created by the stack
+                        <code>Single-Server-Stack</code>. If the
+                    output parameter <code>public_ip</code> had not
+                    been provided in the template, there would have
+                    been no easy way to access the new Cloud Server
+                    (other than by using the Control Panel). Using
+                    output parameters provides a method for returning
+                    important information to the API users.</para>
+            </section>
+            <section xml:id="Show_Stack_Details_CURL">
+                <title>Show Stack Details with cURL</title>
+                <procedure>
+                    <title>To show details for the stack with the
+                        specified name using cURL:</title>
+                    <step>
+                        <para>Show stack details by executing the
+                            request below.</para>
+                        <para>This operation does not require a
+                            request body.</para>
+                        <example>
+                            <?dbfo keep-together="always"?>
+                            <title>cURL Show Stack Details Request:
+                                JSON</title>
+                            <programlisting language="bash"><command>curl</command> <option>-s</option> \
+<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "Content-Type: application/json"</option> \
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks/</uri><emphasis role="bold">Single-Server-Stack</emphasis>/<emphasis role="bold">stack_id</emphasis> | python -m json.tool</programlisting>
+                        </example>
+                        <para>Remember to replace the names in the
+                            examples above with their actual
+                            respective values:<itemizedlist
+                                spacing="compact">
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >Single-Server-Stack</emphasis>
+                                   &mdash; if you used a different
+                                   name for your stack, please
+                                   substitute it here (see the example
+                                   in <xref
+                                   linkend="Create_Simple_Stack_CS_CURL"
+                                   />)</para>
+                                </listitem>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >stack_id</emphasis> &mdash; as
+                                   returned in your create stack
+                                   response (see the example in <xref
+                                   linkend="Create_Simple_Stack_CS_CURL"
+                                   />)</para>
+                                </listitem>
+                            </itemizedlist></para>
+                    </step>
+                    <step>
+                        <para>The following example shows the response
+                            for Show Stack Details:</para>
+                        <example>
+                            <title>Show Stack Details Response:
+                                JSON</title>
+                            <programlisting language="json">
+HTTP/1.1 200 OK
+Server: nginx/1.2.1
+Date: Fri, 24 Jan 2014 20:23:18 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 919
+Connection: keep-alive
+Via: 1.0 Repose (Repose/2.13.0)
+
+{
+  "stack": {
+    "disable_rollback": true,
+    "description": "No description",
+    "parameters": {
+      "AWS::StackId": "arn:openstack:heat::1234:stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
+      "AWS::Region": "ap-southeast-1",
+      "AWS::StackName": "Single-Server-Stack"
+    },
+    "stack_status_reason": "Stack create completed successfully",
+    "stack_name": "Single-Server-Stack",
+    "outputs": [
+      {
+        "output_value": "23.253.88.131",
+        "description": "public IP address of the deployed compute instance",
+        "output_key": "public_ip"
+      }
+    ],
+    "creation_time": "2014-01-24T20:12:47Z",
+    "links": [
+      {
+        "href": "http://localhost:8004/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
+        "rel": "self"
+      }
+    ],
+    "capabilities": [
+      
+    ],
+    "notification_topics": [
+      
+    ],
+    "timeout_mins": 60,
+    "stack_status": "CREATE_COMPLETE",
+    "updated_time": "2014-01-24T20:14:12Z",
+    "id": "3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
+    "template_description": "No description"
+  }
+} 
+</programlisting>
+                        </example>
+                    </step>
+                </procedure>
+                <para>Notice this is where you can see the information
+                    created by the output parameter you created in the
+                        <code>outputs</code> section of your template
+                    file in <xref linkend="Create_Simple_Stack_CS"/>:<example>
+                        <title>outputs Section for Template
+                            single_server.template</title>
+                        <programlisting language="bash">outputs:
+  public_ip:
+    description: public IP address of the deployed compute instance
+    value: { get_attr: [compute_instance, PublicIp] } </programlisting>
+                    </example>Locate the <code>outputs</code> property
+                    in the response information returned in the
+                    example above and look at the <code>output
+                        value</code> for the <code>output_key</code>
+                    <code>public_ip</code>. The
+                        <code>output_value</code> is
+                        <code>23.253.88.56</code>. So that gives the
+                    user the public IP address for the Cloud Server
+                    that has been created by the stack
+                        <code>Single-Server-Stack</code>. If the
+                    output parameter <code>public_ip</code> had not
+                    been provided in the template, there would have
+                    been no easy way to access the new Cloud Server
+                    (other than by using the Control Panel). Using
+                    output parameters provides a method for returning
+                    important information to the API users.</para>
+            </section>
+        </section>
+        <section xml:id="Delete_Stack">
+            <title>Step 9. Delete Stack</title>
+            <para>Since you are done using the stack, you can now
+                delete it.</para>
+            <para>Choose one of the following methods:<itemizedlist>
+                    <listitem>
+                        <para><xref linkend="Delete_Stack_Heat"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para><xref linkend="Delete_Stack_Curl"
+                            /></para>
+                    </listitem>
+                </itemizedlist></para>
+            <section xml:id="Delete_Stack_Heat">
+                <title>Delete Stack with the heat Client</title>
+                <procedure>
+                    <title>To delete the stack with the specified name
+                        using the heat client:</title>
+                    <step>
+                        <para>Delete your stack
+                                <code>Single-Server-Stack</code> by
+                            issuing the following command:</para>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-delete Single-Server-Stack</programlisting>
+                        <para>The command returns the following
+                            information for the stack:</para>
+                        <informalexample>
+                            <?dbfo pgwide="1"?>
+                            <screen><computeroutput><?db-font-size 44%?>
++--------------------------------------+---------------------+--------------------+----------------------+
+| id                                   | stack_name          | stack_status       | creation_time        |
++--------------------------------------+---------------------+--------------------+----------------------+
+| bd2c230-b02a-45d8-9f16-88c9a9f64d2d  | Single-Server-Stack | DELETE_IN_PROGRESS | 2014-01-23T19:41:05Z |
++--------------------------------------+---------------------+--------------------+----------------------+
+
+</computeroutput></screen>
+                        </informalexample>
+                    </step>
+                </procedure>
+                <para>You can see from the <code>stack_status</code>
+                    that the stack is now in the process of being
+                    deleted. After a minute or so, you can execute the
+                    List Stacks call (refer to <xref
+                        linkend="List_Stacks_Heat"/>) and observe that
+                    there are now no stacks listed.</para>
+            </section>
+            <section xml:id="Delete_Stack_Curl">
+                <title>Delete Stack with cURL</title>
+                <procedure>
+                    <title>To delete the stack with the specified name
+                        using cURL:</title>
+                    <step>
+                        <para>Delete your stack
+                                <code>Single-Server-Stack</code> by
+                            executing the request below.</para>
+                        <para>This operation does not require a
+                            request body.</para>
+                        <example>
+                            <?dbfo keep-together="always"?>
+                            <title>cURL Delete Stack Request:
+                                JSON</title>
+                            <programlisting language="bash"><command>curl</command> <option>-s -i -X DELETE</option> \
+<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "Content-Type: application/json"</option> \
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks/</uri><emphasis role="bold">Single-Server-Stack</emphasis>/<emphasis role="bold">stack_id</emphasis> | python -m json.tool</programlisting>
+                        </example>
+                        <para>Remember to replace the names in the
+                            examples above with their actual
+                            respective values:<itemizedlist
+                                spacing="compact">
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >Single-Server-Stack</emphasis>
+                                   &mdash; if you used a different
+                                   name for your stack, please
+                                   substitute it here (see the example
+                                   in <xref
+                                   linkend="Create_Simple_Stack_CS_CURL"
+                                   />)</para>
+                                </listitem>
+                                <listitem>
+                                   <para><emphasis role="bold"
+                                   >stack_id</emphasis> &mdash; as
+                                   returned in your create stack
+                                   response (see the example in <xref
+                                   linkend="Create_Simple_Stack_CS_CURL"
+                                   />)</para>
+                                </listitem>
+                            </itemizedlist></para>
+                    </step>
+                    <step>
+                        <para>The following example shows the response
+                            for Delete Stack:</para>
+                        <example>
+                            <title>Show Stack Details Response:
+                                JSON</title>
+                            <programlisting language="json">
+HTTP/1.1 200 OK
+Server: nginx/1.2.1
+Date: Fri, 24 Jan 2014 20:23:18 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 919
+Connection: keep-alive
+Via: 1.0 Repose (Repose/2.13.0)
+
+ {
+  "stacks": [
+    {
+      "description": "No description",
+      "links": [
+        {
+          "href": "http://localhost:8004/v1/1234/stacks/Single-Server-Stack/f43a0b0a-6bc4-44cd-a2d3-955de3b29a2b",
+          "rel": "self"
+        }
+      ],
+      "stack_status_reason": "Stack DELETE started",
+      "stack_name": "Single-Server-Stack",
+      "creation_time": "2014-01-28T16:56:42Z",
+      "updated_time": "2014-01-28T17:00:20Z",
+      "stack_status": "DELETE_IN_PROGRESS",
+      "id": "f43a0b0a-6bc4-44cd-a2d3-955de3b29a2b"
+    }
+  ]
+}  
+</programlisting>
+                        </example>
+                    </step>
+                </procedure>
+                <para>You can see from the <code>stack_status</code>
+                    that the stack is now in the process of being
+                    deleted. After a minute or so, you can execute the
+                    List Stacks call (refer to <xref
+                        linkend="List_Stacks_CURL"/>) and observe that
+                    there are now no stacks listed.</para>
+            </section>
+        </section>
+        <section xml:id="Create_Stack_W_RGroup">
+            <title>Step 10. Create Stack using a Resource
+                Group</title>
+            <para>Assume that you would like to stand up a Cloud Load
+                Balancer in front of some Cloud Servers. You will
+                begin working on this task by creating a resource
+                group to hold the Cloud Servers. The advantage of this
+                technique is that you can create the entire set of
+                Cloud Servers by creating one resource group, rather
+                than specifying each Cloud Server resource
+                separately.</para>
+            <para>First you need to create the following template and
+                save it in a file named
+                    <filename>servers-with-lb.template</filename>:</para>
+            <example>
+                <title><filename>servers-with-lb.template</filename>
+                    Example</title>
+                <programlisting language="bash">
+heat_template_version: 2013-05-23
+
+description: |   
+  Heat Orchestration Template that spins up a
+  resource group with 2 Rackspace Cloud Servers.
+
+resources:
+  web_nodes:
+    type: OS::Heat::ResourceGroup
+    properties:
+      count: 2
+      resource_def:
+        type: Rackspace::Cloud::Server
+        properties:
+          flavor: 1GB Standard Instance
+          image: CentOS 6.4
+          name: LB-Compute Web Nodes    
+                </programlisting>
+            </example>
+            <para>In the template above, you can see that a
+                    <code>description</code> is provided for the
+                template: <code>Heat Orchestration Template that spins
+                    up a resource group with 2 Rackspace Cloud
+                    Servers.</code></para>
+            <para>In the <code>resources</code> section, there is a
+                resource group named <code>web_nodes</code> of type
+                    <code>OS::Heat::ResourceGroup</code>. In the
+                    <code>properties</code> section for the group, the
+                attribute <code>count</code> is set to <code>2</code>,
+                which means that 2 resources of the type
+                    <code>Rackspace::Cloud::Server</code> (as defined
+                in the resource definition <code>resource_def</code>)
+                will be created in the group. The properties section
+                for the resource definition for each resource in the
+                group specifies:</para>
+            <itemizedlist>
+                <listitem>
+                    <para><code>1GB Standard Instance</code>
+                        flavor</para>
+                </listitem>
+                <listitem>
+                    <para><code>CentOS 6.4</code> image</para>
+                </listitem>
+                <listitem>
+                    <para>the name <code>LB-Compute Web
+                        Nodes</code></para>
+                </listitem>
+            </itemizedlist>
+            <note>
+                <para>The advantage of using a resource group to
+                    define your Cloud Servers is the fact that you can
+                    set the desired number of Cloud Servers to create
+                    by simply setting the value of <code>count</code>
+                    in the template. For example, to create 3 Cloud
+                    Servers instead of 2, you could modify the value
+                    of count as
+                    follows:<programlisting language="bash">count: 3</programlisting></para>
+            </note>
+            <para>Choose one of the following methods:<itemizedlist>
+                    <listitem>
+                        <para><xref
+                                linkend="Create_Stack_W_RGroup_Heat"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para><xref
+                                linkend="Create_Stack_W_RGroup_CURL"
+                            /></para>
+                    </listitem>
+                </itemizedlist></para>
+            <section xml:id="Create_Stack_W_RGroup_Heat">
+                <title>Create Stack using a Resource Group with the
+                    heat Client</title>
+                <procedure>
+                    <title>To create the stack with the resource group
+                        of Cloud Servers using the heat
+                        client:</title>
+                    <step>
+                        <para>Create the stack using the heat client. </para>
+                        <para>Issue the following command:</para>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-create Servers-With-LB-Stack --template-file servers-with-lb.template</programlisting>
+                        <para>The command returns the information
+                            about the stack, including its status
+                                <code>CREATE_IN_PROGRESS</code>:</para>
+                        <informalexample>
+                            <?dbfo pgwide="1"?>
+                            <screen><computeroutput><?db-font-size 44%?>
++--------------------------------------+-----------------------+--------------------+----------------------+
+| id                                   | stack_name            | stack_status       | creation_time        |
++--------------------------------------+-----------------------+--------------------+----------------------+
+| e7b67698-3929-43af-8e59-9652d00b7250 | Servers-With-LB-Stack | CREATE_IN_PROGRESS | 2014-01-28T18:00:27Z |
++--------------------------------------+-----------------------+--------------------+----------------------+
+
+</computeroutput></screen>
+                        </informalexample>
+                    </step>
+                    <step>
+                        <para>After a couple of minutes you can issue
+                            the List Stacks command (see <xref
+                                linkend="List_Stacks_Heat"/>) to
+                            confirm that your stack is now
+                            created:</para>
+                        <informalexample>
+                            <?dbfo pgwide="1"?>
+                            <screen><computeroutput><?db-font-size 44%?>
++--------------------------------------+-----------------------+-----------------+----------------------+
+| id                                   | stack_name            | stack_status    | creation_time        |
++--------------------------------------+-----------------------+-----------------+----------------------+
+| e7b67698-3929-43af-8e59-9652d00b7250 | Servers-With-LB-Stack | CREATE_COMPLETE | 2014-01-28T18:00:27Z |
++--------------------------------------+-----------------------+-----------------+----------------------+
+
+</computeroutput></screen>
+                        </informalexample>
+                    </step>
+                </procedure>
+            </section>
+            <section xml:id="Create_Stack_W_RGroup_CURL">
+                <title>Create Stack using a Resource Group with
+                    cURL</title>
+                <procedure>
+                    <title>To create the stack with the resource group
+                        of Cloud Servers using cURL:</title>
+                    <step>
+                        <para>Create the stack by executing the
+                            request below.</para>
+                        <example>
+                            <?dbfo keep-together="always"?>
+                            <title>cURL Create Stack Request:
+                                JSON</title>
+                            <programlisting language="bash"><command>curl -s -d</command> \
+'{
+  "stack_name": "Servers-With-LB-Stack",
+  "disable_rollback": true,
+  "parameters": {
+    
+  },
+  "template": "heat_template_version: 2013-05-23
+  
+  description: |   
+    Heat Orchestration Template that spins up a
+    resource group with 2 Rackspace Cloud Servers.
+
+  resources:
+    web_nodes:
+      type: OS::Heat::ResourceGroup
+    properties:
+      count: 2
+      resource_def:
+        type: Rackspace::Cloud::Server
+        properties:
+          flavor: 1GB Standard Instance
+          image: CentOS 6.4
+          name: LB-Compute Web Nodes      
+  ",
+  "timeout_mins": 60
+}'
+<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "Accept: application/json"</option> \
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks</uri> | python -m json.tool</programlisting>
+                        </example>
+                    </step>
+                    <step>
+                        <para>The following example shows the response
+                            for Create Stack:</para>
+                        <example>
+                            <title>Create Stack Response: JSON</title>
+                            <programlisting language="json">HTTP/1.1 201 Created
+content-length: 194
+via: 1.0 Repose (Repose/2.13.0)
+server: nginx/1.2.1
+connection: keep-alive
+location: https://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Servers-With-LB-Stack/e7b67698-3929-43af-8e59-9652d00b7250
+date: Tue, 28 Jan 2014 18:00:29 GMT
+content-type: application/json
+
+ {
+  "stack": {
+    "id": "e7b67698-3929-43af-8e59-9652d00b7250",
+    "links": [
+      {
+        "href": "http://localhost:8004/v1/1234/stacks/Servers-With-LB-Stack/e7b67698-3929-43af-8e59-9652d00b7250",
+        "rel": "self"
+      }
+    ]
+  }
+} </programlisting>
+                        </example>
+                        <para>You can see that the stack
+                                <code>Servers-With-LB-Stack</code> was
+                            successfully created and has id
+                                <code>e7b67698-3929-43af-8e59-9652d00b7250</code>.</para>
+                    </step>
+                </procedure>
+            </section>
+        </section>
+        <section xml:id="Update_Stack_W_LB">
+            <title>Step 11. Update Stack with Load Balancer</title>
+            <para>In this section you will update your stack by adding
+                a Cloud Load Balancer in front of the two Cloud
+                Servers.</para>
+            <para>First you need to add the Cloud Load Balancer to
+                your <filename>servers-with-lb.template</filename>
+                file. Modify the file by adding the highlighted text
+                shown below:</para>
+            <example>
+                <title>servers-with-lb.template with Load Balancer
+                    added Example</title>
+                <programlisting language="bash">
+heat_template_version: 2013-05-23
+
+description: |   
+  Heat Orchestration Template that spins up a
+  resource group with 2 Rackspace Cloud Servers
+  <emphasis role="bold">and a Cloud Load Balancer</emphasis>.
+
+resources:
+  web_nodes:
+    type: OS::Heat::ResourceGroup
+    properties:
+      count: 2
+      resource_def:
+        type: Rackspace::Cloud::Server
+        properties:
+          flavor: 1GB Standard Instance
+          image: CentOS 6.4
+          name: LB-Compute Web Nodes   
+
+<emphasis role="bold">      
+  lb:
+    type: Rackspace::Cloud::LoadBalancer
+    properties:
+      name: LB-Compute Load Balancer
+      nodes:
+      - addresses: { get_attr: [web_nodes, PrivateIp]} # This is where the
+                                                       # wiring magic happens
+        port: 80
+        condition: ENABLED
+      healthMonitor:
+        attemptsBeforeDeactivation: 3
+        delay: 10
+        timeout: 120
+        type: HTTP
+        path: "/"
+        statusRegex: "."
+        bodyRegex: "."
+      protocol: HTTP
+      port: 80
+      virtualIps:
+      - type: PUBLIC
+        ipVersion: IPV4
+
+outputs:
+  lb_public_ip:
+    description: The public IP address of the load balancer
+    value: { get_attr: [lb, PublicIp]}   </emphasis>
+            
+                </programlisting>
+            </example>
+            <para>In the <code>description</code> section, you added
+                the information that the template now also spins up a
+                load balancer.</para>
+            <para>For the <code>lb</code> resource (in the
+                    <code>resources</code> section), you added the
+                information to create the load balancer. The resource
+                type is <code>Rackspace::Cloud::LoadBalancer</code>.
+                The load balancer has the following
+                    <code>properties</code>:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>It is named <code>LB-Compute Load
+                            Balancer</code>. </para>
+                </listitem>
+                <listitem>
+                    <para>It defines a list of <code>addresses</code>
+                        for the back end nodes by calling the
+                            <code>get_attr</code> intrinsic function,
+                        passing it the name of the resource group
+                            (<code>web_nodes</code>) and the private
+                        IP address for each server resource
+                            (<code>PrivateIp</code>), as defined in
+                        the resource group above. <remark>Reviewer:
+                            how do we explain to the user how to find
+                            the available properties for the resource
+                            by looking at the code.</remark>These back
+                        end nodes are the Cloud Servers you created in
+                            <xref linkend="Create_Stack_W_RGroup"/>.
+                        Each node uses port 80, and all nodes are
+                        enabled. The load balancer protocol is HTTP
+                        and the service is defined on port 80. It
+                        specifies that one public IPV4 virtualIp
+                        should be added for the load balancer.</para>
+                </listitem>
+                <listitem>
+                    <para>It defines a health monitor with the
+                        following attributes set:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para><code>attemptsBeforeDeactivation</code> &ndash;
+                                number of attempts made before the
+                                node is removed from the
+                                rotation</para>
+                        </listitem>
+                        <listitem>
+                            <para><code>delay</code> &ndash; number of
+                                seconds to wait before executing the
+                                health monitor</para>
+                        </listitem>
+                        <listitem>
+                            <para><code>timeout</code> &ndash; number
+                                of seconds to wait for a connection to
+                                be made before timing out</para>
+                        </listitem>
+                        <listitem>
+                            <para><code>type</code> &ndash; type of
+                                the health monitor</para>
+                        </listitem>
+                        <listitem>
+                            <para><code>path</code> &ndash; HTTP path
+                                that will be used in the monitor
+                                request</para>
+                        </listitem>
+                        <listitem>
+                            <para><code>statusRegex</code> &ndash;
+                                regular expression that will be used
+                                to evaluate the HTTP status code
+                                returned in the response</para>
+                        </listitem>
+                        <listitem>
+                            <para><code>bodyRegex</code> &ndash;
+                                regular expression that will be used
+                                to evaluate the contents of the body
+                                of the response</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </itemizedlist>
+            <para>The <code>outputs</code> section defines a single
+                output <code>lb_public_ip</code>, which is the public
+                IP address for the Cloud Load Balancer. Its value is
+                assigned to  the result of calling the
+                    <code>get_attr</code> intrinsic function with the
+                name of the resource (<code>lb</code>) and its desired
+                attribute (<code>PublicIp</code>).</para>
+            <para>Choose one of the following methods:<itemizedlist>
+                    <listitem>
+                        <para><xref linkend="Update_Stack_W_LB_Heat"
+                            /></para>
+                    </listitem>
+                    <listitem>
+                        <para><xref linkend="Update_Stack_W_LB_Curl"
+                            /></para>
+                    </listitem>
+                </itemizedlist></para>
+            <section xml:id="Update_Stack_W_LB_Heat">
+                <title>Update Stack with Load Balancer with the heat
+                    Client</title>
+                <procedure>
+                    <title>To update the stack with the specified name
+                        using the heat client:</title>
+                    <step>
+                        <para>Update the stack using the heat client. </para>
+                        <para>Issue the following command:</para>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-update Servers-With-LB-Stack --template-file servers-with-lb.template</programlisting>
+                        <para>The command returns the information
+                            about the stack, including its status
+                                <code>UPDATE_IN_PROGRESS</code>:</para>
+                        <informalexample>
+                            <?dbfo pgwide="1"?>
+                            <screen><computeroutput><?db-font-size 44%?>
++--------------------------------------+-----------------------+--------------------+----------------------+
+| id                                   | stack_name            | stack_status       | creation_time        |
++--------------------------------------+-----------------------+--------------------+----------------------+
+| e7b67698-3929-43af-8e59-9652d00b7250 | Servers-With-LB-Stack | UPDATE_IN_PROGRESS | 2014-01-28T18:00:27Z |
++--------------------------------------+-----------------------+--------------------+----------------------+
+</computeroutput></screen>
+                        </informalexample>
+                    </step>
+                    <step>
+                        <para>Wait a couple of minutes and then issue
+                            the following command:</para>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-show Servers-With-LB-Stack</programlisting>
+                        <para>The command returns the details about
+                            the stack, including its
+                                <code>stack_status</code>
+                            <code>UPDATE_COMPLETE</code>:</para>
+                        <informalexample>
+                            <?dbfo pgwide="1"?>
+                            <screen><computeroutput><?db-font-size 44%?>
++----------------------+--------------------------------------------------------------------------------------------------------------------+
+| Property             | Value                                                                                                              |
++----------------------+--------------------------------------------------------------------------------------------------------------------+
+| capabilities         | []                                                                                                                 |
+| creation_time        | 2014-01-28T18:00:27Z                                                                                               |
+| description          | Heat Orchestration Template that spins up a resource                                                               |
+|                      | group with 2 Rackspace Cloud Servers and a Cloud Load                                                              |
+|                      | Balancer.                                                                                                          |
+| disable_rollback     | True                                                                                                               |
+| id                   | e7b67698-3929-43af-8e59-9652d00b7250                                                                               |
+| links                | http://localhost:8004/v1/647683/stacks/Servers-With-LB-Stack/e7b67698-3929-43af-8e59-9652d00b7250                  |
+| notification_topics  | []                                                                                                                 |
+| outputs              | [                                                                                                                  |
+|                      |   {                                                                                                                |
+|                      |     "output_value": "162.242.141.48",                                                                              |
+|                      |     "description": "The public IP address of the load balancer",                                                   |
+|                      |     "output_key": "lb_public_ip"                                                                                   |
+|                      |   }                                                                                                                |
+|                      | ]                                                                                                                  |
+| parameters           | {                                                                                                                  |
+|                      |   "AWS::StackId": "arn:openstack:heat::647683:stacks/Servers-With-LB-Stack/e7b67698-3929-43af-8e59-9652d00b7250",  |
+|                      |   "AWS::Region": "ap-southeast-1",                                                                                 |
+|                      |   "AWS::StackName": "Servers-With-LB-Stack"                                                                        |
+|                      | }                                                                                                                  |
+| stack_name           | Servers-With-LB-Stack                                                                                              |
+| stack_status         | UPDATE_COMPLETE                                                                                                    |
+| stack_status_reason  | Stack successfully updated                                                                                         |
+| template_description | Heat Orchestration Template that spins up a resource                                                               |
+|                      | group with 2 Rackspace Cloud Servers and a Cloud Load                                                              |
+|                      | Balancer..                                                                                                         |
+| timeout_mins         | 60                                                                                                                 |
+| updated_time         | 2014-01-28T21:34:47Z                                                                                               |
++----------------------+--------------------------------------------------------------------------------------------------------------------+</computeroutput></screen>
+                        </informalexample>
+                        <para>If you look at the <code>outputs</code>
+                            property (set in the <code>outputs</code>
+                            section of the template), you can see that
+                            the public IP address of the new load
+                            balancer is "162.242.141.48".</para>
+                    </step>
+                </procedure>
+            </section>
+            <section xml:id="Update_Stack_W_LB_Curl">
+                <title>Update Stack with Load Balancer with
+                    cURL</title>
+                <procedure>
+                    <title>To update the stack with the specified name
+                        using cURL:</title>
+                    <step>
+                        <para>Update the stack by executing the
+                            request below.</para>
+                        <para>This operation does not require a
+                            request body.</para>
+                        <example>
+                            <?dbfo keep-together="always"?>
+                            <title>cURL Update Stack with Load
+                                Balancer Request: JSON</title>
+                            <programlisting language="bash"><command>curl</command> <option>-i -X PUT</option> \
+'{
+  "stack_name": "Servers-With-LB-Stack",
+  "disable_rollback": true,
+  "parameters": {
+    
+  },
+  "template": "heat_template_version: 2013-05-23
+  
+  description: |   
+    Heat Orchestration Template that spins up a
+    resource group with 2 Rackspace Cloud Servers
+    and a Cloud Load Balancer.
+
+  resources:
+    web_nodes:
+      type: OS::Heat::ResourceGroup
+    properties:
+      count: 2
+      resource_def:
+        type: Rackspace::Cloud::Server
+        properties:
+          flavor: 1GB Standard Instance
+          image: CentOS 6.4
+          name: LB-Compute Web Nodes
+    lb:
+      type: Rackspace::Cloud::LoadBalancer
+      properties:
+        name: LB-Compute Load Balancer
+        nodes:
+        - addresses: { get_attr: [web_nodes, PrivateIp]} # This is where the
+                                                       # wiring magic happens
+          port: 80
+          condition: ENABLED
+      healthMonitor:
+        attemptsBeforeDeactivation: 3
+        delay: 10
+        timeout: 120
+        type: HTTP
+        path: "/"
+        statusRegex: "."
+        bodyRegex: "."
+      protocol: HTTP
+      port: 80
+      virtualIps:
+      - type: PUBLIC
+        ipVersion: IPV4
+
+outputs:
+  lb_public_ip:
+    description: The public IP address of the load balancer
+    value: { get_attr: [lb, PublicIp]}        
+  "
+}'
+<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "Content-Type: application/json"</option> \
+<uri>https://ord.databases.api.rackspacecloud.com/v1.0/</uri>$account<uri>/stacks/Servers-With-LB-Stack</uri> | python -m json.tool</programlisting>
+                        </example>
+                    </step>
+                    <step>
+                        <para>The following example shows the response
+                            for Update Stack with Load
+                            Balancer:</para>
+                        <example>
+                            <title>Update Stack with Load Balancer
+                                Response: JSON</title>
+                            <programlisting language="json">HTTP/1.1 200 OK
+content-length: 514
+via: 1.0 Repose (Repose/2.13.0)
+server: nginx/1.2.1
+connection: keep-alive
+date: Tue, 28 Jan 2014 21:34:32 GMT
+content-type: application/json; charset=UTF-8
+
+{
+  "stacks": [
+    {
+      "description": "Heat Orchestration Template that spins up a\nresource group with 2 Rackspace Cloud Servers.\n",
+      "links": [
+        {
+          "href": "http://localhost:8004/v1/1234/stacks/Servers-With-LB-Stack/e7b67698-3929-43af-8e59-9652d00b7250",
+          "rel": "self"
+        }
+      ],
+      "stack_status_reason": "Stack UPDATE started",
+      "stack_name": "Servers-With-LB-Stack",
+      "creation_time": "2014-01-28T18:00:27Z",
+      "updated_time": "2014-01-28T21:34:30Z",
+      "stack_status": "UPDATE_IN_PROGRESS",
+      "id": "e7b67698-3929-43af-8e59-9652d00b7250"
+    }
+  ]
+}</programlisting>
+                        </example>
+                        <para>You can see from the
+                                <code>description</code> that although
+                            the stack update is in progress
+                                (<code>"stack_status":
+                                "UPDATE_IN_PROGRESS"</code>), it is
+                            not yet complete, since the original
+                            description is still there rather than the
+                            updated description (with the added
+                            information about the Cloud Load
+                            Balancer).</para>
+                        <para>After a few minutes, you can execute the
+                            Show Stack Details command to ensure that
+                            the update completed successfully:</para>
+                        <example>
+                            <?dbfo keep-together="always"?>
+                            <title>cURL Show Stack Details Request:
+                                JSON</title>
+                            <programlisting language="bash"><command>curl</command> <option>-s</option> \
+<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "Content-Type: application/json"</option> \
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks</uri>/Servers-With-LB-Stack/<emphasis role="bold">stack_id</emphasis> | python -m json.tool</programlisting>
+                        </example>
+                    </step>
+                </procedure>
+                <para>The following example shows the response for
+                    Show Stack Details:</para>
+                <example>
+                    <?dbfo keep-together="always"?>
+                    <title>Show Stack Details Response: JSON</title>
+                    <programlisting language="bash"><command>curl</command> <option>-s</option> \
+<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "Content-Type: application/json"</option> \
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks/</uri><emphasis role="bold">Servers-With-LB-Stack</emphasis>/<emphasis role="bold">stack_id</emphasis> | python -m json.tool | python -m json.tool</programlisting>
+                </example>
+                <para>Remember to replace the names in the examples
+                    above with their actual respective
+                        values:<itemizedlist spacing="compact">
+                        <listitem>
+                            <para><emphasis role="bold"
+                                   >Servers-With-LB-Stack</emphasis>
+                                &mdash; if you used a different name
+                                for your stack, please substitute it
+                                here (see the example in <xref
+                                   linkend="Create_Stack_W_RGroup_CURL"
+                                />)</para>
+                        </listitem>
+                        <listitem>
+                            <para><emphasis role="bold"
+                                   >stack_id</emphasis> &mdash; as
+                                returned in your create stack response
+                                (see the example in <xref
+                                   linkend="Create_Simple_Stack_CS_CURL"
+                                />)</para>
+                        </listitem>
+                    </itemizedlist></para>
+            </section>
+        </section>
+        <section xml:id="Delete_Stack_W_LB">
+            <title>Step 10. Delete Stack with Load Balancer</title>
+            <para>When you are finished using your stack, delete it
+                using the commands shown in <xref
+                    linkend="Delete_Stack"/>. Make sure to adjust the
+                stack name (and for cURL, the <code>stack_id</code>)
+                as necessary to reflect the new
+                    <code>Servers-With-LB-Stack</code> you are
+                deleting.</para>
+            <para>This concludes the <citetitle>Getting
+                    Started</citetitle>. Thank you for using Rackspace
+                products! </para>
+            <para>See the following section for a summary of the heat
+                client commands.</para>
+            <para>For more tutorials on using Cloud Deployments,
+                please refer to the <link
+                    xlink:href="https://github.com/rackerlabs/heat-tutorial"
+                    >Heat Tutorial</link>.</para>
+        </section></chapter>
+    
+    <appendix xmlns="http://docbook.org/ns/docbook"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+        xml:id="heat_summary">
+        <title>heat Client Command Summary</title>
+        <para>Use the following heat client commands to perform API
+            operations: </para>
+        <section xml:id="heat_summary_stacks">
+            <title>Stack Operations</title>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Create
+                            stack</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-create &lt;STACK_NAME&gt; 
+[-f &lt;FILE&gt;] [-e &lt;FILE&gt;] [-u &lt;URL&gt;] [-o &lt;URL&gt;]  
+[-c &lt;TIMEOUT&gt;] [-r ] [-P &lt;KEY1=VALUE1;KEY2=VALUE2...>] </programlisting>
+                        <itemizedlist>
+                            <title>Positional Arguments</title>
+                            <listitem>
+                                <para>
+                                   <parameter>STACK_NAME</parameter>.
+                                   The name of the stack to create.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                        <itemizedlist>
+                            <title>Optional Arguments</title>
+                            <listitem>
+                                <para>
+                                   <option>-f &lt;FILE&gt; ,
+                                   --template-file
+                                   &lt;FILE&gt;</option>. The path to
+                                   the template. </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-e &lt;FILE&gt; ,
+                                   --environment-file
+                                   &lt;FILE&gt;</option>. The path to
+                                   the environment. </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-u &lt;URL&gt; ,
+                                   --template-url
+                                   &lt;URL&gt;</option>. The URL of
+                                   the template. </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-o &lt;URL&gt; ,
+                                   --template-object
+                                   &lt;URL&gt;</option>. The URL to
+                                   retrieve the template object (for
+                                   example from swift). </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-c &lt;TIMEOUT&gt; ,
+                                   --create-timeout
+                                   &lt;TIMEOUT&gt;</option>. The stack
+                                   creation timeout in minutes.
+                                   Default: 60. </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-r ,
+                                   --enable-rollback</option>. Enable
+                                   rollback on create/update
+                                   failure.</para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-P
+                                   &lt;KEY1=VALUE1;KEY2=VALUE2...&gt;
+                                   , --parameters
+                                   &lt;KEY1=VALUE1;KEY2=VALUE2...&gt;</option>.
+                                   Parameter values used to create the
+                                   stack. This can be specified
+                                   multiple times, or once with
+                                   parameters separated by semicolon.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">List stack
+                            data</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-list</programlisting>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Get stack
+                            data</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-show &lt;NAME or ID&gt;</programlisting>
+                        <para> Where <parameter>NAME</parameter> is
+                            the name of the stack or
+                                <parameter>ID</parameter> is the ID of
+                            the stack to show. </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Delete
+                            stack</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-delete &lt;NAME or ID&gt;</programlisting>
+                        <para> Where <parameter>NAME</parameter> is
+                            the name of the stack or
+                                <parameter>ID</parameter> is the ID of
+                            the stack to delete. </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Update
+                            stack</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-update &lt;NAME or ID&gt; 
+[-f &lt;FILE&gt;] [-e &lt;FILE&gt;] [-u &lt;URL&gt;] [-o &lt;URL&gt;]  
+[-P &lt;KEY1=VALUE1;KEY2=VALUE2...>] </programlisting>
+                        <para> Where <parameter>NAME</parameter> is
+                            the name of the stack or
+                                <parameter>ID</parameter> is the ID of
+                            the stack to update. </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </section>
+        <section xml:id="heat_summary_stack_actions">
+            <title>Stack Actions</title>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Resume
+                            stack</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat action-resume &lt;NAME or ID&gt;</programlisting>
+                        <para> Where <parameter>NAME</parameter> is
+                            the name of the stack or
+                                <parameter>ID</parameter> is the ID of
+                            the stack to resume. </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Suspend
+                            stack</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat action-suspend &lt;NAME or ID&gt;</programlisting>
+                        <para> Where <parameter>NAME</parameter> is
+                            the name of the stack or
+                                <parameter>ID</parameter> is the ID of
+                            the stack to suspend. </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </section>
+        <section xml:id="heat_summary_stack_resources">
+            <title>Stack Resources</title>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">List stack
+                            resources</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-list &lt;NAME or ID&gt;</programlisting>
+                        <para> Where <parameter>NAME</parameter> is
+                            the name of the stack or
+                                <parameter>ID</parameter> is the ID of
+                            the stack for which to list resources.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">List resource
+                            metadata</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-metadata &lt;NAME or ID&gt; &lt;RESOURCE></programlisting>
+                        <para> Where <parameter>NAME</parameter> is
+                            the name of the stack or
+                                <parameter>ID</parameter> is the ID of
+                            the stack for which to show resource
+                            metadata. </para>
+                        <para> And <parameter>RESOURCE</parameter> is
+                            the name of the resource for which to show
+                            metadata. </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Show
+                            resource</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-show &lt;NAME or ID&gt; &lt;RESOURCE></programlisting>
+                        <para> Where <parameter>NAME</parameter> is
+                            the name of the stack or
+                                <parameter>ID</parameter> is the ID of
+                            the stack for which to show the resource. </para>
+                        <para> And <parameter>RESOURCE</parameter> is
+                            the name of the resource for which to show
+                            the details. </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Generate template
+                            based on resource</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-template [-F &lt;FORMAT>] &lt;RESOURCE></programlisting>
+                        <itemizedlist>
+                            <title>Positional Arguments</title>
+                            <listitem>
+                                <para> Where
+                                   <parameter>RESOURCE</parameter> is
+                                   the name of the resource for which
+                                   to generate a template. </para>
+                            </listitem>
+                        </itemizedlist>
+                        <itemizedlist>
+                            <title>Optional Arguments</title>
+                            <listitem>
+                                <para><option>-F &lt;FORMAT></option>,
+                                   <option>--format
+                                   &lt;FORMAT></option>. The template
+                                   output format. <code>{'yaml':
+                                   &lt;function safe_dump at
+                                   0x1df7668>, 'json': &lt;function
+                                   &lt;lambda> at
+                                   0x1dfc230>}</code></para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </section>
+        <section xml:id="heat_summary_events">
+            <title>Events</title>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">List events for a
+                            stack</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat event-list [-r &lt;RESOURCE>] &lt;NAME or ID></programlisting>
+                        <itemizedlist>
+                            <title>Positional Arguments</title>
+                            <listitem>
+                                <para>
+                                   <parameter>&lt;NAME or
+                                   ID></parameter>. The name or ID of
+                                   the stack for which to show the
+                                   events.</para>
+                            </listitem>
+                        </itemizedlist>
+                        <itemizedlist>
+                            <title>Optional Arguments</title>
+                            <listitem>
+                                <para><option>-r
+                                   &lt;RESOURCE></option>,
+                                   <option>--resource
+                                   &lt;RESOURCE></option>. The name of
+                                   the resource by which to filter
+                                   events.</para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Describe
+                            event</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat event-show &lt;NAME or ID> &lt;RESOURCE> &lt;EVENT></programlisting>
+                        <itemizedlist>
+                            <title>Positional Arguments</title>
+                            <listitem>
+                                <para>
+                                   <parameter>&lt;NAME or
+                                   ID></parameter>. The name or ID of
+                                   the stack for which to show the
+                                   events.</para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                   <parameter>&lt;RESOURCE></parameter>.
+                                   The name of the resource to which
+                                   the event belongs.</para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                   <parameter>&lt;EVENT></parameter>.
+                                   The ID of the event for which to
+                                   display details.</para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <?hard-pagebreak?>
+        </section>
+        <section xml:id="heat_summary_templates">
+            <title>Templates</title>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Get template for a
+                            stack</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat template-show &lt;NAME or ID></programlisting>
+                        <para>Where <parameter>&lt;NAME or
+                                ID></parameter> is the name or ID of
+                            the stack for which to get the template.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Validate template with
+                            parameters</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat template-validate [-u &lt;URL>] [-f &lt;FILE>] [-e &lt;FILE>] [-o &lt;URL>]
+                              [-P &lt;KEY1=VALUE1;KEY2=VALUE2...>]</programlisting>
+                        <itemizedlist>
+                            <title>Optional Arguments</title>
+                            <listitem>
+                                <para><option>-u &lt;URL></option>,
+                                   <option>--template-url
+                                   &lt;URL></option>. The URL of the
+                                   template.</para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-f &lt;FILE></option>,
+                                   <option>--template-file
+                                   &lt;FILE></option>. The path to the
+                                   template.</para>
+                            </listitem>
+                            <listitem>
+                                <para><option> -e &lt;FILE></option>,
+                                   <option>--environment-file</option>.
+                                   The path to the environment.</para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-o &lt;URL></option>,
+                                   <option>--template-object
+                                   &lt;URL></option>. The URL from
+                                   which to retrieve the template
+                                   object (for example from
+                                   swift).</para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-P
+                                   &lt;KEY1=VALUE1;KEY2=VALUE2...></option>,
+                                   <option>--parameters
+                                   &lt;KEY1=VALUE1;KEY2=VALUE2...></option>.
+                                   The parameter values to validate.
+                                   This can be specified multiple
+                                   times, or once with parameters
+                                   separated by semicolons.</para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <?hard-pagebreak?>
+        </section>
+        <section xml:id="heat_summary_miscellaneous">
+            <title>Miscellaneous</title>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Display help for heat
+                            client</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat help</programlisting>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Display help for heat
+                            client command</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat help &lt;COMMAND&gt;</programlisting>
+                        <para> Where <parameter>COMMAND</parameter> is
+                            the name of the command for which to
+                            display help. </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </section>
+</appendix>
+    
+</book>

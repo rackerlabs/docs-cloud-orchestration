@@ -204,9 +204,10 @@
                     Developer Guide</citetitle> at <link
                     xlink:href="http://docs.rackspace.com"
                         >http://docs.rackspace.com</link>. </para>
-            <para>You can find example templates at <link
-                    xlink:href="https://github.com/heat-ci/heat-prod-templates/tree/master/example"
-                    >https://github.com/heat-ci/heat-prod-templates/tree/master/example</link>. </para>
+            <para>You can download the most current versions of
+                templates at <link
+                    xlink:href="https://github.com/openstack/heat-templates"
+                    >https://github.com/openstack/heat-templates</link>. </para>
             <para>For information about Rackspace services, refer to
                 <link xlink:href="http://docs.rackspace.com"
                     >http://docs.rackspace.com</link>.</para>
@@ -220,14 +221,14 @@
             <para>&Deployment; is part of the Rackspace Cloud and your
                 use through the API will be billed as per the pricing
                 schedule at <link
-                    xlink:href="http://www.rackspace.com/cloud/databases/pricing/"
-                    >http://www.rackspace.com/cloud/orchestration/pricing/</link>.<remark>Reviewer:
-                    Please verify that the link shown above will be
-                    correct for product launch.</remark></para>
+                    xlink:href="http://www.rackspace.com/cloud/orchestration/pricing/"
+                    >http://www.rackspace.com/cloud/orchestration/pricing/</link>.</para>
+            <remark>Reviewer: Please verify that the link shown above
+                will be correct for product launch.</remark>
             
             <para>The Service Level Agreement (SLA) for &Deployment;
                 is available at <link
-                    xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_databases"
+                    xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_orchestration"
                     >http://www.rackspace.com/information/legal/cloud/sla#cloud_orchestration</link>.</para>
             <remark>Reviewer: Please verify that the link shown above
                 will be correct for product launch.</remark>
@@ -250,14 +251,14 @@
         <section xml:id="Resource-d1e607">
             <title>Resource</title>
             <para>A resource is a template artifact that represents
-                some component of your desired architecture (a Nova
-                server, a group of scaled servers, a Cinder volume,
-                some configuration management system, and so
+                some component of your desired architecture (a Cloud
+                Server, a group of scaled Cloud Servers, a load
+                balancer, some configuration management system, and so
                 forth).</para>
         </section>
         <section xml:id="Blueprint-d1e588">
             <title>Template</title>
-            <para>An &Deployment; template is a portable file, written
+            <para>A &Deployment; template is a portable file, written
                 in a user-readable language, that describes how a set
                 of resources should be assembled and what software
                 should be installed in order to produce a working
@@ -522,9 +523,9 @@
                                 formatted differently in the US and
                                 UK. These response examples show the
                                 US format. For examples of the UK
-                                format please refer to <link
-                                   xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_authenticate_v2.0_tokens_.html"
-                                   >http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_authenticate_v2.0_tokens_.html</link>.</para>
+                                format please refer to the <link
+                                    xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_authenticate_v2.0_tokens_Token_Calls.html#POST_authenticate_v2.0_tokens_Token_Calls-Response"
+                                    >auth response examples in the Identity Guide</link>.</para>
                         </note>
                         <para> </para>
                     </callout>
@@ -985,26 +986,27 @@
             <remark>Reviewer: can you please supply the paging limit
                 for stacks so I can fill it in in the previous
                 sentence?</remark>
-            <para>See the examples of paged List Stacks calls that
-                follow.</para>
+            <para>See the example for a paged List Stacks call that
+                follows.</para>
             <example>
                 <title>List Stacks Paged Request: JSON</title>
                 <?dbfo keep-together="always"?>
                 <programlisting language="json"><xi:include href="samples/list-stacks-paged-request.json" parse="text"/></programlisting>
             </example>
-            <para>Notice that the paged request examples above set the
-                limit to 2 (<code>?limit=2</code>), so the responses
-                that follow each show 2 instances and return a
+            <para>Notice that the paged request example above sets the
+                limit to 2 (<code>?limit=2</code>), so the response
+                that follows shows 2 stacks and returns a
                     <emphasis>marker</emphasis> set to the UUID of the
-                last item in the returned list
-                    (<code>?marker=9cccb45e-e15d-4bcc-aedc-61a4bf3e4ad9</code>).
+                last stack in the returned list
+                    (<code>?marker=5d0daddb-2a24-475b-853d-4ab4e1522c63</code>).
                 Also a link is provided to retrieve the next 2 results
                     (<code>limit=2</code>) in the link element
-                identified by the attribute <code>rel="next"</code>
-                (XML) or <code>"rel":"next"</code> (JSON):</para>
+                identified by the attribute
+                <code>"rel":"next"</code>:</para>
+            
             <example>
                 <title>List Stacks Paged Response: JSON</title>
-                <?dbfo keep-together="always"?>
+                
                 <programlisting language="json"><xi:include href="samples/list-stacks-paged-response.json" parse="text"/></programlisting>
             </example>
         </section>
@@ -1219,26 +1221,29 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>dbaas:admin</td>
+                            <td>orch:admin</td>
                             <td>This role provides Create, Read,
                                 Update, and Delete permissions in
                                 &Deployment;, where access is
                                 granted.</td>
                         </tr>
                         <tr>
-                            <td>dbaas:creator</td>
+                            <td>orch:creator</td>
                             <td>This role provides Create, Read and
                                 Update permissions in &Deployment;,
                                 where access is granted.</td>
                         </tr>
                         <tr>
-                            <td>dbaas:observer</td>
+                            <td>orch:observer</td>
                             <td>This role provides Read permission in
                                 &Deployment;, where access is
                                 granted.</td>
                         </tr>
                     </tbody>
                 </table>
+                <remark>Reviewer: Please check that the Role Names
+                    shown above are correct. Namely, that the "orch"
+                    prefix is correct.</remark>
                 <para>Additionally, two multiproduct roles apply to
                     all products. Users with multiproduct roles
                     inherit access to future products when those
@@ -1344,9 +1349,9 @@
                         <link
                         xlink:href="http://www.rackspace.com/knowledge_center/article/permissions-matrix-for-role-based-access-control-rbac"
                         >the Knowledge Center article</link>.</para>
-                <remark>Reviewer: please let me know if RBAC will
-                    indeed be included in this doc as shown so I can
-                    ask Renee to create the required info in the
+                <remark>Reviewer: please give me the detailed RBAC
+                    permissions for each of the API calls so that I
+                    can ask Renee to create the required info in the
                     Knowledge Center article.</remark>
             </section>
         </section>
@@ -1354,13 +1359,9 @@
     
     <chapter xml:id="API_Operations_dle7023">
         <title>API Operations</title>
-        <para>This section describes the Orchestration API
-            operations.</para>
-        <remark security="writeronly">Reviewer: please give me a list
-            of section titles to use for dividing up the API calls
-            into related sections.</remark>
-        <remark security="writeronly">Reviewer: please give me the Error Response Codes for
-            each of the API calls.</remark>
+        <para>This section describes the Orchestration API operations. </para>
+        <remark>Reviewer: please add the Error Response Codes for each
+            of the API calls to the wadl.</remark>
         
         
         
@@ -1454,7 +1455,7 @@
                     <wadl:method href="stack_event_list"/>
                 </wadl:resource> 
                 
-                <wadl:resource href="../../../wadl/orchestration-api.wadl#events3">
+                <wadl:resource href="../../../wadl/orchestration-api.wadl#events4">
                     <wadl:method href="resource_event_list"/>
                 </wadl:resource>
                 
@@ -1490,9 +1491,9 @@
             RESTful API interface, we recommend using the service from
             a command line client executable for its ease of use.  The
             OpenStack community has developed a command line client
-            called “ <link
+            called “<link
                 xlink:href="https://pypi.python.org/pypi/python-heatclient"
-                >python-heatclient</link> ,” and for our examples here
+                >python-heatclient</link>” and for our examples here
             we will use this client. </para>
         <section xml:id="Install_Heat_Client">
             <title>Install the Heat Client</title>
@@ -1503,11 +1504,8 @@
             <note>
                 <para>The heat client is not maintained by Rackspace
                     and should be considered software in development.
-                    You can post bug reports at <link
-                        xlink:href="https://bugs.launchpad.net/heat-troveclient/+bugs"
-                        >https://bugs.launchpad.net/python-heatclient/+bugs</link>.</para>
-                <remark>Reviewer: is the previous link
-                    correct?</remark>
+                    </para>
+                <remark>Reviewer: is there a link we can provide where users can post bugs for heat client? If so please give it to me.</remark>
             </note>
             <para>Before you begin, install the following prerequisite
                     software:<table rules="all" width="90%">
@@ -1615,7 +1613,7 @@ Type "help", "copyright", "credits" or "license" for more information.
                                    is easy and ensures that you get
                                    the latest version of the heat
                                    client from the <link
-                                   xlink:href="http://pypi.python.org/pypi/python-novaclient/"
+                                       xlink:href="https://pypi.python.org/pypi/python-heatclient/"
                                    >Python Package Index</link>. Also,
                                    it lets you update the package
                                    later on.</para>
@@ -1816,17 +1814,6 @@ export OS_PASSWORD=&lt;password>
                             <parameter>help</parameter> parameter, as
                         follows:</para>
                     <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat help &lt;command_name> </programlisting>
-                    <para>You cannot use every command that is listed.
-                        For example, Rackspace &Deployment; does not
-                        yet support security groups, so you cannot use
-                        the security group commands. The heat client
-                        was written for use with recent development
-                        versions of OpenStack, so it includes support
-                        for some features that are not available in
-                        the Rackspace Cloud.</para>
-                    <remark>Reviewer: need input for previous
-                        paragraph about which items in heat client are
-                        not supported at Rackspace.</remark>
                     <note>
                         <para>To show and become familiar with the
                             underlying API request for a command,
@@ -1895,8 +1882,8 @@ export OS_PASSWORD=&lt;password>
                                    <code>tenant_id</code> correct? If
                                 not you need to correct the settings
                                 you saved to the .bash_profile or
-                                .bashrc file and retry the
-                                command.</para>
+                                .bashrc file, source the file, and
+                                retry the command.</para>
                         </listitem>
                     </itemizedlist>
                 </step>
@@ -2041,8 +2028,9 @@ export OS_PASSWORD=&lt;password>
                         <listitem>
                             <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat action-resume &lt;NAME or ID&gt;</programlisting>
                             <para> Where <parameter>NAME</parameter>
-                                is the name of the stack, or ID is the
-                                ID of the stack to resume. </para>
+                                is the name of the stack or
+                                   <parameter>ID</parameter> is the ID
+                                of the stack to resume. </para>
                         </listitem>
                     </varlistentry>
                 </variablelist>
@@ -2053,8 +2041,9 @@ export OS_PASSWORD=&lt;password>
                         <listitem>
                             <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat action-suspend &lt;NAME or ID&gt;</programlisting>
                             <para> Where <parameter>NAME</parameter>
-                                is the name of the stack, or ID is the
-                                ID of the stack to suspend. </para>
+                                is the name of the stack or
+                                   <parameter>ID</parameter> is the ID
+                                of the stack to suspend. </para>
                         </listitem>
                     </varlistentry>
                 </variablelist>
@@ -2068,8 +2057,9 @@ export OS_PASSWORD=&lt;password>
                         <listitem>
                             <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-list &lt;NAME or ID&gt;</programlisting>
                             <para> Where <parameter>NAME</parameter>
-                                is the name of the stack, or ID is the
-                                ID of the stack for which to list
+                                is the name of the stack or
+                                   <parameter>ID</parameter> is the ID
+                                of the stack for which to list
                                 resources. </para>
                         </listitem>
                     </varlistentry>
@@ -2081,8 +2071,9 @@ export OS_PASSWORD=&lt;password>
                         <listitem>
                             <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-metadata &lt;NAME or ID&gt; &lt;RESOURCE></programlisting>
                             <para> Where <parameter>NAME</parameter>
-                                is the name of the stack, or ID is the
-                                ID of the stack for which to show
+                                is the name of the stack or
+                                   <parameter>ID</parameter> is the ID
+                                of the stack for which to show
                                 resource metadata. </para>
                             <para> And <parameter>RESOURCE</parameter>
                                 is the name of the resource for which
@@ -2097,8 +2088,9 @@ export OS_PASSWORD=&lt;password>
                         <listitem>
                             <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-show &lt;NAME or ID&gt; &lt;RESOURCE></programlisting>
                             <para> Where <parameter>NAME</parameter>
-                                is the name of the stack, or ID is the
-                                ID of the stack for which to show the
+                                is the name of the stack or
+                                   <parameter>ID</parameter> is the ID
+                                of the stack for which to show the
                                 resource. </para>
                             <para> And <parameter>RESOURCE</parameter>
                                 is the name of the resource for which
@@ -2325,7 +2317,7 @@ export OS_PASSWORD=&lt;password>
         <glossentry xml:id="template-d1e016">
             <glossterm>template</glossterm>
             <glossdef>
-                <para>An &Deployment; template is a portable file,
+                <para>A &Deployment; template is a portable file,
                     written in a user-readable language, that
                     describes how a set of resources should be
                     assembled and what software should be installed in

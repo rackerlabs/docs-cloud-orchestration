@@ -50,7 +50,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-01-31</pubdate>
+        <pubdate>2014-02-14</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -66,7 +66,7 @@
         
         <revhistory>
             <revision>
-                <date>2014-01-31</date>
+                <date>2014-02-14</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
@@ -936,6 +936,16 @@ outputs:
                             <para>This attribute specifies the type of
                                 resource, such as
                                    <code>OS::Nova::Server</code>.</para>
+                            <note>
+                                <para>To find the various types of
+                                   supported template resources, use
+                                   the List resource types API
+                                   operation (&GET;
+                                   <emphasis role="bold">/resource_types</emphasis>).</para>
+                            </note>
+                            <remark>Writer: it would be good to add a
+                                cross reference for the above API call
+                                once we know the path.</remark>
                         </listitem>
                     </varlistentry>
                     <varlistentry>
@@ -1023,6 +1033,13 @@ outputs:
                         </listitem>
                     </varlistentry>
                 </variablelist>
+                <remark>Reviewer: if we are going to keep the Outputs
+                    example, we need to ensure that "first_address"
+                    works correctly with the OS::Nova::Server resource
+                    type. For Rackspace::Cloud::Server it appears you
+                    must use "PublicIp" instead. Also need to describe
+                    how to view the values of the output
+                    parameters.</remark>
             </section>
             <section xml:id="intrinsic_functions_d1e725">
                 <title>Intrinsic Functions</title>
@@ -1500,9 +1517,10 @@ resources:
                 parameters, you will typically want to provide outputs
                 to users, which can be done in the
                     <code>outputs</code> section of a template (see
-                also <xref linkend="outputs_d1e725"/>). For example,
-                the IP address by which the instance defined in the
-                example above can be accessed should be provided to
+                also <xref linkend="outputs_d1e725"/>). </para>
+            <para>For example, the IP address by which the instance
+                defined in the example above can be accessed
+                    (<code>instance_ip</code>) should be provided to
                 users. Otherwise, users would have to look it up
                 themselves. The definition for providing the IP
                 address of the compute instance as an output is shown
@@ -1519,6 +1537,15 @@ resources:
                     attribute names that my_instance has, or is this
                     just assumed to be know when using a
                     resource?</remark></para>
+            <para>Outputs can be viewed using Get stack data API call
+                (&GET; <emphasis role="bold"
+                    >/stacks{/stack_name}{/stack_id}</emphasis>) after
+                the stack is created. Refer to the <citetitle>Cloud
+                    Orchestration Getting Started Guide</citetitle>
+                for an example.</para>
+            <remark>Writer: please add the link to the GS Guide (Step
+                8. Show Stack Details) once the path is
+                known.</remark>
             <para>Our completed simple template example is shown
                 below:</para>
             <screen> heat_template_version: 2013-05-23
@@ -2048,15 +2075,6 @@ resources:
                 resulting map (in this example: <code> {'key': 'door',
                     'color': 'green'} </code> ).</para>
         </section>
-    </chapter>
-    <chapter xml:id="Rackspace_Resources-d1e832">
-        <title>Rackspace Resources</title>
-        <para>This chapter lists the Rackspace resources.</para>
-        <remark>Reviewer: we presumably need to add a list of
-            Rackspace Resource Types to this doc. Can you please
-            provide it to me so I can add it to this doc? I'm assuming
-            that we don't need to provide a list of OpenStack Resource
-            Types here; is that correct?</remark>
     </chapter>
     <chapter xml:id="Hello_World_Template-d1e724" security="writeronly">
         <title>Simple Template Example</title>
