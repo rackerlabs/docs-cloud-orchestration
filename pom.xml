@@ -22,7 +22,7 @@
                     
                     
                     <execution>
-                        <id>orchestration-templates-devguide-internal</id>
+                        <id>orchestration-templates-devguide</id>
                         <goals>
                             <goal>generate-webhelp</goal>
                         </goals>
@@ -31,14 +31,14 @@
                             <!-- this is the public-facing client developer guide formerly known as PublicAPISpec.xml -->
                             <!-- this document that will be published as clb-devguide-latest.pdf at http://docs.rackspacecloud.com/api/ -->
                             <includes>orchestration-templates-devguide.xml</includes>
-                            <canonicalUrlBase>http://docs-internal.rackspace.com/deployments/api/v1.0/orchestration-templates-devguide/content</canonicalUrlBase>
+                            <canonicalUrlBase>http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content</canonicalUrlBase>
                             
                             <security>reviewer</security>
                         </configuration>
                     </execution>
                     
                     <execution>
-                        <id>orchestration-api-v1-reference</id>
+                        <id>orchestration-devguide</id>
                         <goals>
                             <goal>generate-webhelp</goal>
                         </goals>
@@ -46,8 +46,8 @@
                         <configuration>
                             <!-- this is the public-facing client developer guide formerly known as PublicAPISpec.xml -->
                             <!-- this document that will be published as clb-devguide-latest.pdf at http://docs.rackspacecloud.com/api/ -->
-                            <includes>api-ref.xml</includes>
-                            <canonicalUrlBase>http://docs-internal.rackspace.com/deployments/api/v1.0/orchestration-api-v1-reference/content</canonicalUrlBase>
+                            <includes>orchestration-devguide.xml</includes>
+                            <canonicalUrlBase>http://docs.rackspace.com/orchestration/api/v1/orchestration-devguide/content</canonicalUrlBase>
                            
                             <trimWadlUriCount>2</trimWadlUriCount>
                             <security>reviewer</security>
@@ -55,7 +55,7 @@
                     </execution>
                     
                     <execution>
-                        <id>corch-getting-started</id>
+                        <id>orchestration-getting-started</id>
                         <goals>
                             <goal>generate-webhelp</goal>
                         </goals>
@@ -64,7 +64,7 @@
                             
                             <highlightSource>false</highlightSource>
                             <!-- this is the Rackspace Getting Started guide -->
-                            <includes>corch-getting-started.xml</includes>
+                            <includes>orchestration-getting-started.xml</includes>
                             <enableDisqus>1</enableDisqus>
                             <security>reviewer</security>
                             <chapterAutolabel>0</chapterAutolabel>
@@ -88,7 +88,7 @@
                                 set toc,title
                             </generateToc>
                             <googleAnalyticsId>UA-23102455-4</googleAnalyticsId>
-                            <canonicalUrlBase>http://docs-internal.rackspace.com/deployments/api/v1.0/corch-getting-started/content</canonicalUrlBase>
+                            <canonicalUrlBase>http://docs-internal.rackspace.com/orchestration/api/v1/orchestration-getting-started/content</canonicalUrlBase>
                         </configuration>
                     </execution>
                     
