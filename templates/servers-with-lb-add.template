@@ -1,0 +1,49 @@
+heat_template_version: 2013-05-23
+
+description: |   
+  Heat Orchestration Template that spins up a
+  resource group with 2 Rackspace Cloud Servers
+  and a Cloud Load Balancer.
+
+resources:
+  web_nodes:
+    type: OS::Heat::ResourceGroup
+    properties:
+      count: 2
+      resource_def:
+        type: Rackspace::Cloud::Server
+        properties:
+          flavor: 1GB Standard Instance
+          image: CentOS 6.4
+          name: LB-Compute Web Nodes
+
+  lb:
+    type: Rackspace::Cloud::LoadBalancer
+    properties:
+      name: LB-Compute Load Balancer
+      nodes:
+      - addresses: { get_attr: [web_nodes, PrivateIp]} # This is where the
+                                                       # wiring magic happens
+        port: 80
+        condition: ENABLED
+      healthMonitor:
+        attemptsBeforeDeactivation: 3
+        delay: 10
+        timeout: 120
+        type: HTTP
+        path: "/"
+        statusRegex: "."
+        bodyRegex: "."
+      protocol: HTTP
+      port: 80
+      virtualIps:
+      - type: PUBLIC
+        ipVersion: IPV4
+        
+outputs:
+  lb_public_ip:
+    description: The public IP address of the load balancer
+    value: { get_attr: [lb, PublicIp]} 
+
+
+
