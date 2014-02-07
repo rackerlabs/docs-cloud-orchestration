@@ -43,7 +43,7 @@ resources:
 outputs:
   lb_public_ip:
     description: The public IP address of the load balancer
-    value: { get_attr: [lb, PublicIp]} 
+    value: { get_attr: [lb, accessIPv4]} 
 
 
 

@@ -1,0 +1,20 @@
+HTTP/1.1 201 Created
+content-length: 192
+via: 1.0 Repose (Repose/2.13.0)
+server: nginx/1.2.1
+connection: keep-alive
+location: https://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d
+date: Thu, 23 Jan 2014 19:38:09 GMT
+content-type: application/json
+
+{
+  "stack": {
+    "id": "3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
+    "links": [
+      {
+        "href": "http://localhost:8004/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
+        "rel": "self"
+      }
+    ]
+  }
+}

@@ -7,11 +7,42 @@
 <!ENTITY PUT '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
 <!ENTITY POST '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
 <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+
+<!ENTITY commonFaults
+           '
+        <response status="400" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="heat:badRequest"/>
+            <representation mediaType="application/json"/>
+        </response>
+        <response status="401" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="heat:unauthorized"/>
+            <representation mediaType="application/json"/>
+        </response>
+           '>
+           
+<!ENTITY notFound '<response status="404" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="heat:notFound"/>
+            <representation mediaType="application/json"/>
+        </response> '> 
+        
+<!ENTITY conflict '<response status="409" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="heat:conflict"/>
+            <representation mediaType="application/json"/>
+        </response> '>
+        
+<!ENTITY intServerErr '<response status="500" xmlns="http://wadl.dev.java.net/2009/02">
+            <representation mediaType="application/xml" element="heat:internalServerError"/>
+            <representation mediaType="application/json"/>
+        </response> '>
+        
+        
+
 ]>
 <application xmlns="http://wadl.dev.java.net/2009/02"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
-    xmlns:wadl="http://wadl.dev.java.net/2009/02">
+    xmlns:wadl="http://wadl.dev.java.net/2009/02"
+    xmlns:heat="http://docs.openstack.org/orchestration/api/v1.0">
     <resources base="https://heat.example.com/"
         xml:id="orchestration-api-v1.0">
         <resource id="version" path="v1">
@@ -72,30 +103,27 @@
                                    stack.</para></wadl:doc>
                                    </param>
                                    <method href="#resource_show"/>
-                                    
+                                    <resource path="events" id="events3">   
+                                        <resource path="{event_id}"
+                                            id="event_id">
+                                            <param name="event_id"
+                                                style="template" required="true">
+                                                <wadl:doc
+                                                    xmlns="http://docbook.org/ns/docbook"
+                                                    xml:lang="EN"><para>The unique
+                                                        identifier of an event related to
+                                                        the resource in the
+                                                        stack.</para></wadl:doc>
+                                            </param>
+                                            <method href="#event_show"/>
+                                        </resource>
+                                    </resource>
                                    <resource path="events" id="events4">
                                    <method href="#resource_event_list"/>
                                    </resource>
-                                    
                                    <resource path="metadata"
                                    id="metadata">
                                    <method href="#resource_metadata"/>
-                                   </resource>
-                                </resource>
-                                <resource path="events" id="events3">
-                                   
-                                   <resource path="{event_id}"
-                                   id="event_id">
-                                   <param name="event_id"
-                                   style="template" required="true">
-                                   <wadl:doc
-                                   xmlns="http://docbook.org/ns/docbook"
-                                   xml:lang="EN"><para>The unique
-                                   identifier of an event related to
-                                   the resource in the
-                                   stack.</para></wadl:doc>
-                                   </param>
-                                   <method href="#event_show"/>
                                    </resource>
                                 </resource>
                             </resource>
@@ -136,7 +164,16 @@
             title="List stack data">
             <para role="shortdesc">Lists active stacks.</para>
         </wadl:doc>
-        <response status="200"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+            <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                xml:lang="EN">
+                <xsdxt:code href="samples/stack_list_response.json"/>
+            </wadl:doc>  
+            </representation>
+        </response>
+        &commonFaults;
+        &intServerErr;
     </method>
     <method name="POST" id="stack_create">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -195,7 +232,17 @@
                 </param>
             </representation>
         </request>
-        <response status="201"/>
+        <response status="201">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code href="samples/stack_create_response.json"/>
+                </wadl:doc>  
+            </representation>
+        </response>
+        &commonFaults;
+        &conflict;
+        &intServerErr;
     </method>
     <method name="POST" id="stack_action_suspend">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -255,7 +302,16 @@
                 to &GET; when you receive a 302 because this behavior
                 is ubiquitous in web browsers.</para>
         </wadl:doc>
-        <response status="302"/>
+        <response status="302">
+            <representation mediaType="application/json" >
+                <doc>
+                    <para xmlns="http://docbook.org/ns/docbook">Returns 302 response with a re-direction URL.</para>
+                </doc>
+            </representation>
+        </response>
+        &commonFaults;
+        &notFound;
+        &intServerErr;
     </method>
     <method name="GET" id="stack_show">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -263,7 +319,18 @@
             <para role="shortdesc">Gets data about a specified
                 stack.</para>
         </wadl:doc>
-        <response status="200"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <para xmlns="http://docbook.org/ns/docbook">Returns the given stack data in json format.</para>
+                    <xsdxt:code href="samples/get_stack_data_response.json"/>
+                </wadl:doc>
+            </representation>
+        </response>
+        &commonFaults;
+        &notFound;
+        &intServerErr;
     </method>
     <method name="GET" id="stack_template">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -271,7 +338,15 @@
             <para role="shortdesc">Gets a template for a specified
                 stack.</para>
         </wadl:doc>
-        <response status="200"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <para xmlns="http://docbook.org/ns/docbook">Returns the template for the specified stack.</para>
+                    <xsdxt:code href="samples/get_stack_template_response.json"/>
+                </wadl:doc>
+            </representation>
+        </response>
     </method>
     <method name="PUT" id="stack_update">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -333,6 +408,9 @@
             <para role="shortdesc">Deletes a specified stack.</para>
         </wadl:doc>
         <response status="204"/>
+        &commonFaults;
+        &notFound;
+        &intServerErr;
     </method>
     <method name="POST" id="template_validate">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -362,7 +440,17 @@
                 </param>
             </representation>
         </request>
-        <response status="200"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code href="samples/validate_stack_template_response.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
+        &commonFaults;
+        &notFound;
+        &intServerErr;
     </method>
     <method name="GET" id="resource_type_list">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -370,7 +458,15 @@
             <para role="shortdesc">Lists the supported template
                 resource types.</para>
         </wadl:doc>
-        <response status="200"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code href="samples/resource_type_list_response.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
+        &commonFaults;
     </method>
 
     <method name="GET" id="resource_type_get">
@@ -395,7 +491,16 @@
             <para role="shortdesc">Gets a template representation for
                 a specified resource type.</para>
         </wadl:doc>
-        <response status="200"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code href="samples/resource_type_template_response.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
+        &commonFaults;
+        &notFound;
     </method>
 
     <method name="GET" id="stack_resources_find">
@@ -404,14 +509,32 @@
             <para role="shortdesc">Finds the canonical URL for the
                 resource list of a specified stack.</para>
         </wadl:doc>
-        <response status="302"/>
+        <response status="302">
+            <representation mediaType="application/json" >
+                <doc>
+                    <para xmlns="http://docbook.org/ns/docbook">Returns a json response with a list of resources for the given stack.</para>
+                </doc>
+            </representation>
+        </response>
+        &commonFaults;
+        &notFound;
     </method>
     <method name="GET" id="resource_list">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="List resources">
             <para role="shortdesc">Lists resources in a stack.</para>
         </wadl:doc>
-        <response status="200"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <para xmlns="http://docbook.org/ns/docbook">Returns a json response with a list of resources in the given stack.</para>
+                    <xsdxt:code href="samples/list_stack_resources_response.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
+        &commonFaults;
+        &notFound;
     </method>
     <method name="GET" id="resource_show">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -419,15 +542,35 @@
             <para role="shortdesc">Gets data for a specified
                 resource.</para>
         </wadl:doc>
-        <response status="200"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <para xmlns="http://docbook.org/ns/docbook">Returns a json response with the specified resource data.</para>
+                    <xsdxt:code href="samples/get_resource_data_response.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
+        &commonFaults;
+        &notFound;
     </method>
     <method name="GET" id="resource_metadata">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Get resource metadata">
             <para role="shortdesc">Gets metadata for a specified
                 resource.</para>
+            <note><para>This operation is provided for CFN rather than Heat.</para></note>
         </wadl:doc>
-        <response status="200"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <doc>
+                    <para xmlns="http://docbook.org/ns/docbook">Returns specified resource metadata in json format. If there is no metadata associated with the given resource then following response will be returned
+                        <code>{"metadata": {}}</code></para>
+                </doc>
+            </representation>
+        </response>
+        &commonFaults;
+        &notFound;
     </method>
     <method name="GET" id="stack_events_find">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -435,7 +578,13 @@
             <para role="shortdesc">Finds the canonical URL for the
                 event list of a specified stack.</para>
         </wadl:doc>
-        <response status="302"/>
+        <response status="302">
+            <representation mediaType="application/json" >
+                <doc>
+                    <para xmlns="http://docbook.org/ns/docbook">Returns a 302 response with re-direction URL.</para>
+                </doc>
+            </representation>
+        </response>
     </method>
     <method name="GET" id="stack_event_list">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -443,7 +592,14 @@
             <para role="shortdesc">Lists events for a specified
                 stack.</para>
         </wadl:doc>
-        <response status="200"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code href="samples/stack_event_list_response.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
     </method>
     <method name="GET" id="resource_event_list">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -451,7 +607,15 @@
             <para role="shortdesc">Lists events for a specified stack
                 resource.</para>
         </wadl:doc>
-        <response status="200"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <para xmlns="http://docbook.org/ns/docbook">Returns events for the specified resource in the specified stack.</para>
+                    <xsdxt:code href="samples/list_resource_events_response.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
     </method>
     <method name="GET" id="event_show">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -459,6 +623,14 @@
             <para role="shortdesc">Gets data about a specified
                 event.</para>
         </wadl:doc>
-        <response status="200"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <para xmlns="http://docbook.org/ns/docbook">Returns the specified event details.</para>
+                    <xsdxt:code href="samples/show_event_response.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
     </method>
 </application>

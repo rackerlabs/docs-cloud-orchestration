@@ -51,7 +51,7 @@
         </copyright>
         <releaseinfo>API v1</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-02-14</pubdate>
+        <pubdate>2014-02-18</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -68,7 +68,7 @@
         
         <revhistory>
             <revision>
-                <date>2014-02-14</date>
+                <date>2014-02-18</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
@@ -84,8 +84,8 @@
     
     <chapter xml:id="overview">
         <title>Overview</title>
-        <para>Rackspace &Deployment; is the name of Rackspace's
-            deployment, orchestration, and deployment management
+        <para>Rackspace &Deployment; is the name of the Rackspace
+            orchestration, and application architecture management
             service.  &Deployment; provides a software API and a User
             Interface (through the Cloud Control Panel) to create and
             manipulate stacks of resources (for example load
@@ -117,11 +117,10 @@
                         and private OpenStack clouds</para>
                 </listitem>
                 <listitem>
-                    <para> A declarative (instead of imperative)
-                        resource specification within a simple
-                        template syntax for better flexibility in
-                        repeated deployment of an application across
-                        varied environments</para>
+                    <para> A declarative resource specification within
+                        a simple template syntax for better
+                        flexibility in repeated deployment of an
+                        application across varied environments</para>
                 </listitem>
                 <listitem>
                     <para>Standardized application deployments based
@@ -149,7 +148,7 @@
                 <citetitle>&Deployment; Developer
             Guide</citetitle>.</para>
         <para security="writeronly">The following figure shows an
-            overview of &Deployment; Infrastructure: <informalfigure
+            overview of  &Deployment; Infrastructure: <informalfigure
                 security="writeronly">
                 <mediaobject>
                     <imageobject>
@@ -160,9 +159,10 @@
                 </mediaobject>
             </informalfigure>
         </para>
-        <remark security="writeronly">Reviewer: Can you provide me
-            with a high-level Orchestration architecture diagram that
-            I can add to this section?</remark>
+        <remark>Writer: a diagram is available here:
+            https://one.rackspace.com/display/heat/Architecture+Diagram.
+            Investigate turning it into a svg format later for use in
+            this guide.</remark>
         <section xml:id="Intended_Audience-d1e122">
             <title>Intended Audience</title>
             <para> This Reference is intended to assist support teams,
@@ -206,25 +206,30 @@
                         >http://docs.rackspace.com</link>. </para>
             <para>You can download the most current versions of
                 templates at <link
-                    xlink:href="https://github.com/openstack/heat-templates"
-                    >https://github.com/openstack/heat-templates</link>. </para>
+                    xlink:href="https://github.com/rackspace-heat-templates"
+                    >https://github.com/rackspace-heat-templates</link>. </para>
             <para>For information about Rackspace services, refer to
                 <link xlink:href="http://docs.rackspace.com"
                     >http://docs.rackspace.com</link>.</para>
             <para> Issues and bug reports can be directed to your
                 support team via ticket, chat, email, or phone.</para>
             <remark>Reviewer: is the previous sentence OK for product
-                launch?</remark>
+                launch? Ask Keith Bray to ok this.</remark>
         </section>
         <section xml:id="Pricing_SLA-d1e1362">
             <title>Pricing and Service Level</title>
-            <para>&Deployment; is part of the Rackspace Cloud and your
+            <para>&Deployment; is part of the Rackspace Cloud and
+                although you will not be billed for using
+                &Deployment;, you will be billed for the stack
+                resources you create using &Deployment;.</para>
+            <para security='writeronly'>&Deployment; is part of the Rackspace Cloud and your
                 use through the API will be billed as per the pricing
                 schedule at <link
                     xlink:href="http://www.rackspace.com/cloud/orchestration/pricing/"
                     >http://www.rackspace.com/cloud/orchestration/pricing/</link>.</para>
-            <remark>Reviewer: Please verify that the link shown above
-                will be correct for product launch.</remark>
+            <remark>Reviewer: Please verify that the paragraph shown
+                above for pricing is correct for product
+                launch.</remark>
             
             <para>The Service Level Agreement (SLA) for &Deployment;
                 is available at <link
@@ -239,23 +244,6 @@
         <?dbhtml stop-chunking?>
         <para> To use &Deployment; effectively, you should understand
             several key concepts: </para>
-        <section xml:id="Stack-d1e573">
-            <title>Stack</title>
-            <para>A stack is a group of resources (servers, load
-                balancers, databases, and so forth) combined to
-                fulfill a useful purpose. A stack is a set of
-                resources that can be deployed. A stack contains a
-                template and generates resources to run the
-                application framework or component specified.</para>
-        </section>
-        <section xml:id="Resource-d1e607">
-            <title>Resource</title>
-            <para>A resource is a template artifact that represents
-                some component of your desired architecture (a Cloud
-                Server, a group of scaled Cloud Servers, a load
-                balancer, some configuration management system, and so
-                forth).</para>
-        </section>
         <section xml:id="Blueprint-d1e588">
             <title>Template</title>
             <para>A &Deployment; template is a portable file, written
@@ -267,6 +255,26 @@
                 parameters that are critical to the successful,
                 repeatable automation of a specific application
                 deployment.</para>
+        </section>
+        <section xml:id="Resource-d1e607">
+            <title>Resource</title>
+            <para>A resource is a template artifact that represents
+                some component of your desired architecture (a Cloud
+                Server, a group of scaled Cloud Servers, a load
+                balancer, some configuration management system, and so
+                forth).</para>
+        </section>
+        <section xml:id="Stack-d1e573">
+            <title>Stack</title>
+            <para>A stack is a group of resources (servers, load
+                balancers, databases, and so forth) combined to
+                fulfill a useful purpose. Based on a template, Heat
+                orchestration engine creates an instantiated set of
+                resources (a stack) to run the application framework
+                or component specified (in the template). A stack is a
+                running instance of a template. The result of creating
+                a stack is a deployment of the application framework
+                or component.</para>
         </section>
     </chapter>
     <chapter xml:id="General_API_Information-d1e843">
@@ -356,7 +364,7 @@
                     request will include a catalog of the services to
                     which you have subscribed rather than the sample
                     values shown here.</para>
-                <example>
+                <example security="writeronly">
                     <title>Auth Request for US Endpoint: XML</title>
                     <programlistingco>
                         <areaspec>
@@ -385,11 +393,11 @@
                     </programlistingco>
                 </example>
                 <calloutlist>
-                    <callout arearefs="credentials.xml.user">
+                    <callout arearefs="credentials.json.user">
                         <para> The username supplied here is your
                             common Rackspace Cloud username. </para>
                     </callout>
-                    <callout arearefs="credentials.xml.key">
+                    <callout arearefs="credentials.json.key">
                         <para> The key is your API access key.</para>
                         <para><emphasis role="bold">To find your API
                                 Key:</emphasis></para>
@@ -430,7 +438,7 @@
                         </orderedlist>
                     </callout>
                 </calloutlist>
-                <example>
+                <example security="writeronly">
                     <title>Auth Response for US Endpoint: XML</title>
                     <programlistingco>
                         <areaspec>
@@ -462,8 +470,6 @@
                     <title>Auth Response for US Endpoint: JSON</title>
                     <programlistingco>
                         <areaspec>
-                            <area xml:id="response.json.namespaces"
-                                units="linecolumn" coords="200 1"/>
                             <area xml:id="response.json.token"
                                 units="linecolumn" coords="9 8"/>
                             <area xml:id="response.json.dfltregion"
@@ -489,19 +495,13 @@
                 </example>
                 <note>
                     <para>The information shown in the Auth Response
-                        examples is for US-based accounts. If you
+                        example is for US-based accounts. If you
                         authenticate against the UK-endpoint for auth,
                         you will see the service catalog information
                         for UK-based accounts.</para>
                 </note>
                 <calloutlist>
-                    <callout arearefs="response.xml.namespaces">
-                        <para> In XML responses only, a list of
-                            namespaces identifies API extensions that
-                            add functionality to the core API. </para>
-                        <para> </para>
-                    </callout>
-                    <callout arearefs="response.xml.token">
+                    <callout arearefs="response.json.token">
                         <para> This token can be presented to a
                             service as evidence of authentication.
                             Tokens are valid for a finite duration; a
@@ -529,7 +529,7 @@
                         </note>
                         <para> </para>
                     </callout>
-                    <callout arearefs="response.xml.dfltregion">
+                    <callout arearefs="response.json.dfltregion">
                         <para> Users can be assigned a default region
                             so that, when there is a choice between
                             multiple endpoints associated with a
@@ -544,7 +544,7 @@
                             whenever possible. </para>
                         <para> </para>
                     </callout>
-                    <callout arearefs="response.xml.role">
+                    <callout arearefs="response.json.role">
                         <para> Users can be assigned multiple roles,
                             with each role providing specific
                             privileges. In this example,
@@ -559,7 +559,7 @@
                             Tester, or Trainer. </para>
                         <para> </para>
                     </callout>
-                    <callout arearefs="response.xml.catalog">
+                    <callout arearefs="response.json.catalog">
                         <para> The service catalog lists the services
                             this user can access. In this example, the
                             user can access one database service, one
@@ -567,16 +567,18 @@
                             services (Cloud Servers OpenStack and
                             Cloud Servers), two object storage
                             services (Cloud Files Content Distribution
-                            Network (CDN), and Cloud Files), and one
-                            DNS service. The catalog listing for each
-                            service provides at least one endpoint URL
-                            for that service. Other information, such
-                            as regions, versions, and tenants, is
+                            Network (CDN), and Cloud Files), the
+                            orchestration service (Cloud
+                            Orchestration), and one DNS service. The
+                            catalog listing for each service provides
+                            at least one endpoint URL for that
+                            service. Other information, such as
+                            regions, versions, and tenants, is
                             provided if it's relevant to this user's
                             access to this service. </para>
                         <para> </para>
                     </callout>
-                    <callout arearefs="response.xml.servicetype">
+                    <callout arearefs="response.json.servicetype">
                         <para> The service type attribute identifies
                             services that perform similar functions,
                             whatever those services might be named. In
@@ -596,7 +598,7 @@
                         </important>
                         <para> </para>
                     </callout>
-                    <callout arearefs="response.xml.servicename">
+                    <callout arearefs="response.json.servicename">
                         <para> The service name attribute identifies
                             each unique service in the catalog. Once a
                             service is created, its name does not
@@ -628,7 +630,7 @@
                         </important>
                         <para> </para>
                     </callout>
-                    <callout arearefs="response.xml.region">
+                    <callout arearefs="response.json.region">
                         <para> A service may expose endpoints in
                             different regions. Regional endpoints
                             allow clients to provision resources in a
@@ -639,7 +641,7 @@
                             access to internal URLs. </para>
                         <para> </para>
                     </callout>
-                    <callout arearefs="response.xml.tenant">
+                    <callout arearefs="response.json.tenant">
                         <para> Some services recognize specification
                             of a tenant. If a service does recognize
                             tenants, the format of the tenant
@@ -650,7 +652,7 @@
                             using.</para>
                         <para> </para>
                     </callout>
-                    <callout arearefs="response.xml.url">
+                    <callout arearefs="response.json.url">
                         <para> An endpoint can be assigned public and
                             internal URLs. A public URL is accessible
                             from anywhere. Access to a public URL
@@ -689,12 +691,15 @@
                         have different names; for example,
                             <code>type="compute"</code> identifies
                         compute services such as cloudServers and
-                        cloudServersOpenStack. Some developers have
-                        found the service type attribute to be useful
-                        in parsing the service catalog. For additional
-                        information on Auth 2.0 (also known as the
-                        Cloud Identity Service), refer to the
-                            <citetitle>Cloud Identity Client Developer
+                        cloudServersOpenStack. Also note that the
+                        service type for &Deployment; is
+                            <code>orchestration</code>. Some
+                        developers have found the service type
+                        attribute to be useful in parsing the service
+                        catalog. For additional information on Auth
+                        2.0 (also known as the Cloud Identity
+                        Service), refer to the <citetitle>Cloud
+                            Identity Client Developer
                             Guide</citetitle> at <link
                             xlink:href="http://docs.rackspace.com"
                             >http://docs.rackspace.com/</link>.</para>
@@ -978,7 +983,7 @@
                     </tr>
                 </tbody>
             </informaltable>
-            <para>&Deployment; has a paging limit of XX for stacks,
+            <para security="writeronly">&Deployment; has a paging limit of XX for stacks,
                 with the default limit set to the paging limit. If a
                 request supplies no limit or one that exceeds the
                 configured default limit, the default is used
@@ -1043,6 +1048,17 @@
                             for the current stack status; more than
                             one object exists for the specified
                             non-unique identifier.</td>
+                    </tr>
+                    <tr>
+                        
+                        <td colspan="1">413 Request Entity Too
+                            Large</td>
+                        <td colspan="3">When more than the allowed
+                            number of resources is specified for a
+                            given stack or the supplied template
+                            exceeds the size limit. Also returned when
+                            the number of requests per time slice
+                            exceeds the limit.</td>
                     </tr>
                     <tr>
                         
@@ -1221,29 +1237,26 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>orch:admin</td>
+                            <td>heat:admin</td>
                             <td>This role provides Create, Read,
                                 Update, and Delete permissions in
                                 &Deployment;, where access is
                                 granted.</td>
                         </tr>
                         <tr>
-                            <td>orch:creator</td>
+                            <td>heat:creator</td>
                             <td>This role provides Create, Read and
                                 Update permissions in &Deployment;,
                                 where access is granted.</td>
                         </tr>
                         <tr>
-                            <td>orch:observer</td>
+                            <td>heat:observer</td>
                             <td>This role provides Read permission in
                                 &Deployment;, where access is
                                 granted.</td>
                         </tr>
                     </tbody>
                 </table>
-                <remark>Reviewer: Please check that the Role Names
-                    shown above are correct. Namely, that the "orch"
-                    prefix is correct.</remark>
                 <para>Additionally, two multiproduct roles apply to
                     all products. Users with multiproduct roles
                     inherit access to future products when those
@@ -1349,10 +1362,6 @@
                         <link
                         xlink:href="http://www.rackspace.com/knowledge_center/article/permissions-matrix-for-role-based-access-control-rbac"
                         >the Knowledge Center article</link>.</para>
-                <remark>Reviewer: please give me the detailed RBAC
-                    permissions for each of the API calls so that I
-                    can ask Renee to create the required info in the
-                    Knowledge Center article.</remark>
             </section>
         </section>
     </chapter>
@@ -1360,8 +1369,14 @@
     <chapter xml:id="API_Operations_dle7023">
         <title>API Operations</title>
         <para>This section describes the Orchestration API operations. </para>
-        <remark>Reviewer: please add the Error Response Codes for each
-            of the API calls to the wadl.</remark>
+        <remark>Reviewer: please add the Error Response Codes that are
+            missing for any of the API calls to the wadl. Emailed
+            Vijendar 2-7-14 with the list: Update stack, Get resource
+            schema, Find stack events, List stack events, List
+            resource events, Show event, Get stack template</remark>
+        <remark>Reviewer: we still need to add the following 2 API
+            calls to the Devguide &amp; wadl: Abandon stack, Adopt
+            stack. See email from Vijendar.</remark>
         
         
         
@@ -1391,7 +1406,7 @@
             </wadl:resources>               
         </section>
         
-        <section xml:id="Stack_Actions">
+        <section xml:id="Stack_Actions" security="writeronly">
             <title>Stack Actions</title>
             <para>This section describes the operations that are supported for stack actions.</para>
             
@@ -1485,7 +1500,7 @@
         
         
     </chapter>
-    <chapter xml:id="using-heat-client-d1e019">
+    <chapter xml:id="using-heat-client-d1e019" security="writeronly">
         <title>Using the Heat Client</title>
         <para> While the Rackspace &Deployment; Service has a defined
             RESTful API interface, we recommend using the service from
@@ -1505,7 +1520,9 @@
                 <para>The heat client is not maintained by Rackspace
                     and should be considered software in development.
                     </para>
-                <remark>Reviewer: is there a link we can provide where users can post bugs for heat client? If so please give it to me.</remark>
+                <para>Bugs can be submitted at <link
+                        xlink:href="https://bugs.launchpad.net/heat"
+                        >https://bugs.launchpad.net/heat</link>.</para>
             </note>
             <para>Before you begin, install the following prerequisite
                     software:<table rules="all" width="90%">
@@ -1755,9 +1772,9 @@ export OS_PASSWORD=&lt;password>
                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>OS_USERNAME</td>
-                                    <td>Your Rackspace Cloud user
-                                        name.</td>
+                                   <td>OS_USERNAME</td>
+                                   <td>Your Rackspace Cloud user
+                                   name.</td>
                                 </tr>
                                 <tr>
                                    <td>OS_TENANT_ID</td>
@@ -1765,18 +1782,26 @@ export OS_PASSWORD=&lt;password>
                                    (account number).</td>
                                 </tr>
                                 <tr>
-                                    <td>HEAT_URL</td>
-                                    <td>The service endpoint where you
+                                   <td>HEAT_URL</td>
+                                   <td>The service endpoint where you
                                    want to deploy the &Deployment;
                                    resources.</td>
                                 </tr>
                                 <tr>
-                                    <td>OS_PASSWORD</td>
-                                    <td>Your Rackspace Cloud
-                                        password.</td>
+                                   <td>OS_PASSWORD</td>
+                                   <td>Your Rackspace Cloud
+                                   password.</td>
                                 </tr>
                             </tbody>
-                        </table></para>
+                        </table><note><title>Note for Windows Users</title>
+                            <para>You need to set the following
+                                environment
+                                variables:<programlisting>set OS_USERNAME=user-name
+set OS_PASSWORD=password
+set OS_TENANT_ID=tenant-id
+set OS_AUTH_URL=https://identity.api.rackspacecloud.com/v2.0/
+set HEAT_URL=https://ord.orchestration.api.rackspacecloud.com/v1/${OS_TENANT_ID}</programlisting></para>
+                        </note></para>
                 </step>
                 <step>
                     <title>Set permissions on the bash profile or
@@ -2019,21 +2044,8 @@ export OS_PASSWORD=&lt;password>
                     </varlistentry>
                 </variablelist>
             </section>
-            <section xml:id="heat_summary_stack_actions">
+            <section xml:id="heat_summary_stack_actions" security="writeronly">
                 <title>Stack Actions</title>
-                <variablelist wordsize="10%">
-                    <varlistentry>
-                        <term><emphasis role="bold">Resume
-                                stack</emphasis></term>
-                        <listitem>
-                            <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat action-resume &lt;NAME or ID&gt;</programlisting>
-                            <para> Where <parameter>NAME</parameter>
-                                is the name of the stack or
-                                   <parameter>ID</parameter> is the ID
-                                of the stack to resume. </para>
-                        </listitem>
-                    </varlistentry>
-                </variablelist>
                 <variablelist wordsize="10%">
                     <varlistentry>
                         <term><emphasis role="bold">Suspend
@@ -2044,6 +2056,19 @@ export OS_PASSWORD=&lt;password>
                                 is the name of the stack or
                                    <parameter>ID</parameter> is the ID
                                 of the stack to suspend. </para>
+                        </listitem>
+                    </varlistentry>
+                </variablelist>
+                <variablelist wordsize="10%">
+                    <varlistentry>
+                        <term><emphasis role="bold">Resume
+                                stack</emphasis></term>
+                        <listitem>
+                            <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat action-resume &lt;NAME or ID&gt;</programlisting>
+                            <para> Where <parameter>NAME</parameter>
+                                is the name of the stack or
+                                   <parameter>ID</parameter> is the ID
+                                of the stack to resume. </para>
                         </listitem>
                     </varlistentry>
                 </variablelist>
@@ -2292,28 +2317,6 @@ export OS_PASSWORD=&lt;password>
     </chapter>
     <glossary>
         <title>Glossary</title>
-        <glossentry xml:id="resource-d1e019">
-            <glossterm>resource</glossterm>
-            <glossdef>
-                <para>A resource is a template artifact that
-                    represents some component of your desired
-                    architecture (a Nova server, a group of scaled
-                    servers, a Cinder volume, some configuration
-                    management system, and so forth).</para>
-            </glossdef>
-        </glossentry>
-        <glossentry xml:id="stack-d1e017">
-            <glossterm>stack</glossterm>
-            <glossdef>
-                <para>A stack is a group of resources (servers, load
-                    balancers, databases, and so forth) combined to
-                    fulfill a useful purpose. A stack is a set of
-                    resources that can be deployed. A stack contains a
-                    template and generates resources to run the
-                    application framework or component
-                    specified.</para>
-            </glossdef>
-        </glossentry>
         <glossentry xml:id="template-d1e016">
             <glossterm>template</glossterm>
             <glossdef>
@@ -2327,6 +2330,31 @@ export OS_PASSWORD=&lt;password>
                     that are critical to the successful, repeatable
                     automation of a specific application
                     deployment.</para>
+            </glossdef>
+        </glossentry>
+        <glossentry xml:id="resource-d1e019">
+            <glossterm>resource</glossterm>
+            <glossdef>
+                <para>A resource is a template artifact that
+                    represents some component of your desired
+                    architecture (a Cloud Server, a group of scaled
+                    Cloud Servers, a load balancer, some configuration
+                    management system, and so forth).</para>
+            </glossdef>
+        </glossentry>
+        <glossentry xml:id="stack-d1e017">
+            <glossterm>stack</glossterm>
+            <glossdef>
+                <para>A stack is a group of resources (servers, load
+                    balancers, databases, and so forth) combined to
+                    fulfill a useful purpose. Based on a template,
+                    Heat orchestration engine creates an instantiated
+                    set of resources (a stack) to run the application
+                    framework or component specified (in the
+                    template). A stack is a running instance of a
+                    template. The result of creating a stack is a
+                    deployment of the application framework or
+                    component.</para>
             </glossdef>
         </glossentry>
     </glossary>

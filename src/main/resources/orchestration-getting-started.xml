@@ -50,7 +50,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-02-14</pubdate>
+        <pubdate>2014-02-18</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -58,7 +58,7 @@
         </legalnotice>
         <revhistory>
             <revision>
-                <date>2014-02-14</date>
+                <date>2014-02-18</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
@@ -85,7 +85,7 @@
         <title>Overview</title>
         <para>Follow the steps described in this guide to use the
             Rackspace Cloud Orchestration API to create and access
-            your deployments.</para>
+            your stacks.</para>
         
         <para>The simple exercises in this guide help you get started
             with the API by showing you how to access the API through
@@ -100,10 +100,11 @@
                         that you use the heat client to run simple
                         commands that make API calls. You can specify
                         a <code>--debug</code> parameter on any heat
-                        command to show the underlying API request for
-                        the command. This is a good way to become
-                        familiar with the API requests. See <xref
-                            linkend="heatclient"/> for details.</para>
+                        command to show the underlying cURL request
+                        for the API command. This is a good way to
+                        become familiar with the API requests. See
+                            <xref linkend="heatclient"/> for
+                        details.</para>
                 </listitem>
                 <listitem>
                     <para><emphasis role="bold"><link
@@ -134,6 +135,12 @@
             <title>Additional Sources of Information</title>
             <para>For details about using the Cloud Orchestration API,
                 refer to the <citetitle>Cloud Orchestration Developer
+                    Guide</citetitle> at <link
+                    xlink:href="http://docs.rackspace.com/"
+                    >http://docs.rackspace.com/</link>.</para>
+            <para>For information about understanding templates for
+                the Cloud Orchestration API, refer to the
+                    <citetitle>Cloud Orchestration Templates Developer
                     Guide</citetitle> at <link
                     xlink:href="http://docs.rackspace.com/"
                     >http://docs.rackspace.com/</link>.</para>
@@ -240,13 +247,18 @@
         </section>
         <section xml:id="Pricing_SLA-d1e1362">
             <title>Pricing and Service Level</title>
-            <para>&Deployment; is part of the Rackspace Cloud and your
+            <para>&Deployment; is part of the Rackspace Cloud and
+                although you will not be billed for using
+                &Deployment;, you will be billed for the stack
+                resources you create using &Deployment;.</para>
+            <para security="writeronly">&Deployment; is part of the Rackspace Cloud and your
                 use through the API will be billed as per the pricing
                 schedule at <link
                     xlink:href="http://www.rackspace.com/cloud/orchestration/pricing/"
                     >http://www.rackspace.com/cloud/orchestration/pricing/</link>.</para>
-            <remark>Reviewer: Please verify that the link shown above
-                will be correct for product launch.</remark>
+            <remark>Reviewer: Please verify that the pricing
+                information shown above is correct for product
+                launch.</remark>
             <para>The Service Level Agreement (SLA) for &Deployment;
                 is available at <link
                     xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_orchestration"
@@ -262,15 +274,15 @@
                 use the open-source heat client application. </para>
             <para audience="gsonly">If you want to run the cURL
                 examples, skip this step and proceed to <xref
-                    linkend="Export_CURL_ENV_VARS"/>. </para>
+                    linkend="DB_Sending_API_Requests"/>. </para>
             <para>To install the heat client, you first install the
                     <literal>python-heatclient</literal> package. </para>
             <note>
                 <para>The heat client is not maintained by Rackspace
                     and should be considered software in development. </para>
-                <remark>Reviewer: is there a link we can provide where
-                    users can post bugs for heat client? If so please
-                    give it to me.</remark>
+                <para>Bugs can be submitted at <link
+                    xlink:href="https://bugs.launchpad.net/python-heatclient"
+                    >https://bugs.launchpad.net/python-heatclient</link>.</para>
             </note>
             <para>Before you begin, install the following prerequisite
                     software:<table rules="all" width="90%">
@@ -373,7 +385,7 @@ Type "help", "copyright", "credits" or "license" for more information.
                                 package</td>
                             <td>
                                 <para>To install the heat client on a
-                                   Mac OS X or Linux system, use
+                                   Mac OS X or Linux systems, use
                                    <command>pip</command> because it
                                    is easy and ensures that you get
                                    the latest version of the heat
@@ -411,6 +423,63 @@ Type "help", "copyright", "credits" or "license" for more information.
                                    </listitem>
                                    </itemizedlist>
                                 </para>
+                                <note><title>Note for Windows Users</title>
+                                   <para>On Windows and Mac download
+                                   the python 2.7 installation file
+                                   from <link
+                                   xlink:href="http://www.python.org/getit/"
+                                   >http://www.python.org/getit/</link>
+                                   and install it.</para>
+                                   <para>If you have installed python
+                                   from <link
+                                       xlink:href="http://www.activestate.com/activepython/downloads"
+                                       >http://www.activestate.com/activepython/downloads</link>
+                                   
+                                   then <command>setuptools</command>
+                                   and <command>pip</command> were
+                                   already installed on your machine. </para>
+                                   <para>If you have installed python
+                                   from <link
+                                   xlink:href="http://www.python.org/getit/"
+                                   >http://www.python.org/getit/</link>,
+                                   then follow the  instructions
+                                   below:</para>
+                                   <orderedlist>
+                                   <listitem>
+                                   <para>If python was not in the
+                                   path, run the following command to
+                                   add it to the path set:
+                                   <command>PATH=%PATH%;c:\python27;c:\python27\scripts</command>.
+                                   Here, <code>c:\python27</code> is
+                                   the python installation directory.
+                                   If it is different on your machine,
+                                   you need to change it
+                                   appropriately.</para>
+                                   </listitem>
+                                   <listitem>
+                                   <para>Install the appropriate
+                                   version of
+                                   <command>setuptools</command> for
+                                   python2.7 from <link
+                                   xlink:href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools"
+                                   >http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools</link>.
+                                   If you have installed the 32-bit
+                                   version of python2.7, install
+                                   <code>setuptools-2.0.2.win32-py2.7.exe</code>,
+                                   and if you have the installed
+                                   64-bit version of python2.7, then
+                                   install
+                                   <code>setuptools-2.0.2.win-amd64-py2.7.exe</code>.</para>
+                                   </listitem>
+                                   <listitem>
+                                   <para>Install the appropriate
+                                   version (win32/amd64) of the pip
+                                   utility for python2.7 from <link
+                                   xlink:href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#pip"
+                                   >http://www.lfd.uci.edu/~gohlke/pythonlibs/#pip</link>. </para>
+                                   </listitem>
+                                   </orderedlist>
+                                </note>
                             </td>
                         </tr>
                     </tbody>
@@ -431,6 +500,12 @@ Type "help", "copyright", "credits" or "license" for more information.
                     <programlisting language="bash" role="gutter: false"><prompt>$</prompt> sudo pip install python-heatclient</programlisting>
                     <para>For RHEL, CentOS, or Fedora: </para>
                     <programlisting language="bash" role="gutter: false"><prompt>$</prompt> sudo python-pip install python-heatclient</programlisting>
+                    <note><title>Note for Windows Users</title>
+                        <para>For Windows, start the command prompt as
+                            an administrator user and then run
+                            following command:  <command>pip install
+                                python-heatclient</command>.</para>
+                    </note>
                     <note>
                         <para>If you previously installed the
                                 <literal>python-heatclient</literal>
@@ -479,6 +554,41 @@ export HEAT_URL=<link xlink:href="https://ord.orchestration.api.rackspacecloud.c
 export OS_PASSWORD=&lt;password>
 </computeroutput></screen>
                         </example></para>
+                    <note>
+                        <title>Note for Windows Users</title>
+                        <para>For Windows: <orderedlist>
+                                <listitem>
+                                   <para>Run the following commands to
+                                   set the required environment
+                                   variables in the current command
+                                   prompt (these environment variables
+                                   would be lost once the command
+                                   prompt is closed):
+                                   <screen><computeroutput>set OS_AUTH_URL=https://identity.api.rackspacecloud.com/v2.0/ 
+set OS_USERNAME=&lt;username>
+set OS_TENANT_ID=&lt;tenant_id>
+set HEAT_URL=https://ord.orchestration.api.rackspacecloud.com/v1/${OS_TENANT_ID}
+set OS_PASSWORD=&lt;password></computeroutput></screen>
+                                   </para>
+                                </listitem>
+                                <listitem>
+                                   <para>To persist these settings,
+                                   add them to system environment
+                                   variables by clicking
+                                   <guilabel>Start</guilabel>, then
+                                   right-click
+                                   <guilabel>Computer</guilabel>, and
+                                   select
+                                   <guilabel>Properties</guilabel>.
+                                   Select <guilabel>Advanced System
+                                   Settings</guilabel>. You may need
+                                   to confirm a UAC prompt. Then click
+                                   the <guibutton>Environment
+                                   Variables</guibutton>
+                                   button.</para>
+                                </listitem>
+                            </orderedlist></para>
+                    </note>
                     <para audience="admin">In the environment
                         variables above, <code>username</code>,
                             <code>password</code>, and
@@ -546,6 +656,11 @@ export OS_PASSWORD=&lt;password>
                                 </tr>
                             </tbody>
                         </table></para>
+                    <note>
+                        <title>Note for Windows Users</title>
+                        <para>For Windows, steps 3 and 4 below are not
+                            applicable.</para>
+                    </note>
                 </step>
                 <step>
                     <title>Set permissions on the bash profile or
@@ -1330,7 +1445,7 @@ resources:
 outputs:
   public_ip:
     description: public IP address of the deployed compute instance
-    value: { get_attr: [compute_instance, PublicIp] }      
+    value: { get_attr: [compute_instance, accessIPv4] }      
                 </programlisting> 
             </example>
             <para>This stack consists of a <code>resources</code>
@@ -1338,7 +1453,7 @@ outputs:
                 Standard Instance flavor size (which identifies a
                 particular combination of memory capacity and priority
                 for CPU time). It has CentOS 6.4 installed, and is
-                called Simple Stack. </para>
+                called Single Server Stack. </para>
             <para>This stack also has an <code>outputs</code> section.
                 Outputs are used to provide important information to
                 users, such as the IP address for the Cloud Server in
@@ -1350,14 +1465,11 @@ outputs:
                 the name <code>compute_instance</code>, which is the
                 name of the Cloud Server resource and the attribute
                 whose value is desired, that is,
-                <code>PublicIp</code>. You will see shortly how this
-                public IP address is displayed to the user. You can
-                find out more about intrinsic functions at <link
+                    <code>accessIPv4</code>. You will see shortly how
+                this public IP address is displayed to the user. You
+                can find out more about intrinsic functions at <link
                     xlink:href="http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content/Defining_Template_dle245.html#intrinsic_functions_d1e725"
-                    >http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content/Defining_Template_dle245.html#intrinsic_functions_d1e725</link></para>
-            <remark>Reviewer: I notice that Paul  Nelson has changed
-                the spelling of PublicIp to public_ip, however
-                PublicIp seems to work. Please advise.</remark>
+                    >http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content/Defining_Template_dle245.html#intrinsic_functions_d1e725</link>.</para>
             <para>Choose one of the following methods:<itemizedlist>
                     <listitem>
                         <para><xref
@@ -1377,7 +1489,7 @@ outputs:
                         client:</title>
                     <step>
                         <para>Issue the following command:</para>
-                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-create Single-Server-Stack --template-file single_server.template</programlisting>
+                        <programlisting language="bash" role="gutter: false"> heat stack-create Single-Server-Stack --template-file single_server.template</programlisting>
                         <para>You should get a list of your stacks,
                             including one with a stack_name of
                                 <code>Single-Server-Stack</code> with
@@ -1451,16 +1563,26 @@ outputs:
    "stack_name": "Single-Server-Stack", 
    "disable_rollback": true, 
    "parameters": {}, 
-   "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"Rackspace::Cloud::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }      \n\n\n", 
+   "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"Rackspace::Cloud::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, accessIPv4] }      \n\n\n", 
    "timeout_mins": 60
 }' \
 https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlisting>
                         </example>
-                        <remark>Reviewer: Example above defines a
+                        <remark>Reviewer:  Example above defines a
                             template object, which is generated by
                             --debug output from stack-create heat
-                            command. </remark>
-                        <note>
+                            client command. </remark>
+                        <example security="writeronly">
+                            <title>cURL Create Stack Request:
+                                JSON</title>
+                            <programlisting language="bash">curl -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json'  -H  "X-Auth-Token: $token" -d @single_server.template https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlisting>
+                        </example>
+                        <remark>Reviewer: Example above (hidden in the
+                            PDF) defines a template object which is
+                            read from a file using the -d option. This
+                            still does not work. Does anyone know how
+                            to get this to work correctly?</remark>
+                        
                             <para>We recommend producing the value for
                                 the <code>template</code> attribute
                                 shown in the above example by
@@ -1511,7 +1633,7 @@ https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlist
                                    ><code>--debug</code></emphasis>
                                 output instead of the cURL command
                                 shown in the example above.</para>
-                        </note>
+                        
                         <example security="writeronly">
                             <title>cURL Create Stack Request:
                                 JSON</title>
@@ -1576,7 +1698,7 @@ https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlist
                                 JSON</title>
                             <programlisting language="bash">curl -i -X POST -H 'X-Auth-User: mikeasthalter' -H 'X-Auth-Token: f067dca8068c477a9f98c851994d8659' -H 'X-Region-Name: DFW' -H 'X-Auth-Key: pinkH201' -H 'Accept: application/json' -H 'User-Agent: python-heatclient' -H 'Content-Type: application/json' -d '{"stack_name": "Single-Server-Stack", "disable_rollback": true, "parameters": {}, "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"Rackspace::Cloud::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }      \n\n\n", "timeout_mins": 60}' https://ord.orchestration.api.rackspacecloud.com/v1/647683/stacks</programlisting>
                         </example>
-                        <remark>Reviewer: Example above works. It is
+                        <remark security="writeronly">Reviewer: Example above works. It is
                             produced by --debug output from heat
                             client create-stack. However it is useless
                             as an example since it is not human
@@ -1610,7 +1732,7 @@ https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlist
 }' \
 https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlisting>
                         </example>
-                        <remark>Reviewer: Example above also works. It
+                        <remark security="writeronly">Reviewer: Example above also works. It
                             was built manually from the template file,
                             by replacing each newline by \n and
                             escaping the double quote marks around the
@@ -1681,9 +1803,11 @@ content-type: application/json
                         client:</title>
                     <step>
                         <para>Issue the following command:</para>
-                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-list</programlisting>
-                        <para>The command returns the id, stack_name,
-                            stack_status, and creation_time for your
+                        <programlisting language="bash" role="gutter: false"> heat stack-list</programlisting>
+                        <para>The command returns the <code>id</code>,
+                                <code>stack_name</code>,
+                                <code>stack_status</code>, and
+                                <code>creation_time</code> for your
                             stacks:</para>
                         
                         <informalexample>
@@ -1806,7 +1930,7 @@ content-type: application/json
                         <para>Show the details for your stack
                                 <code>Single-Server-Stack</code> by
                             issuing the following command:</para>
-                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-show Single-Server-Stack</programlisting>
+                        <programlisting language="bash" role="gutter: false"> heat stack-show Single-Server-Stack</programlisting>
                         <para>The command returns the details for the
                             stack:</para>
                         <informalexample>
@@ -1854,7 +1978,7 @@ content-type: application/json
                         <programlisting language="bash">outputs:
   public_ip:
     description: public IP address of the deployed compute instance
-    value: { get_attr: [compute_instance, PublicIp] } </programlisting>
+    value: { get_attr: [compute_instance, accessIPv4] } </programlisting>
                     </example>Locate the <code>outputs</code> property
                     in the table of information returned by the
                         <code>stack-show</code> heat client command
@@ -1974,7 +2098,7 @@ content-type: application/json
                         <programlisting language="bash">outputs:
   public_ip:
     description: public IP address of the deployed compute instance
-    value: { get_attr: [compute_instance, PublicIp] } </programlisting>
+    value: { get_attr: [compute_instance, accessIPv4] } </programlisting>
                     </example>Locate the <code>outputs</code> property
                     in the response information returned in the
                     example above and look at the <code>output
@@ -2016,7 +2140,7 @@ content-type: application/json
                         <para>Delete your stack
                                 <code>Single-Server-Stack</code> by
                             issuing the following command:</para>
-                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-delete Single-Server-Stack</programlisting>
+                        <programlisting language="bash" role="gutter: false"> heat stack-delete Single-Server-Stack</programlisting>
                         <para>The command returns the following
                             information for the stack:</para>
                         <informalexample>
@@ -2049,7 +2173,8 @@ content-type: application/json
                                 <code>Single-Server-Stack</code> by
                             executing the request below.</para>
                         <para>This operation does not require a
-                            request body.</para>
+                            request body. This operation does not
+                            return a response body.</para>
                         <example>
                             <?dbfo keep-together="always"?>
                             <title>cURL Delete Stack Request:
@@ -2208,7 +2333,7 @@ resources:
                     <step>
                         <para>Create the stack using the heat client. </para>
                         <para>Issue the following command:</para>
-                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-create Servers-With-LB-Stack --template-file servers-with-lb.template</programlisting>
+                        <programlisting language="bash" role="gutter: false"> heat stack-create Servers-With-LB-Stack --template-file servers-with-lb.template</programlisting>
                         <para>The command returns the information
                             about the stack, including its status
                                 <code>CREATE_IN_PROGRESS</code>:</para>
@@ -2267,16 +2392,18 @@ resources:
 }' \
 <uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks</uri></programlisting>
                             <remark>Reviewer: As of 1-31-2014 I am
-                                getting Bad Request due to the fact of
-                                Missing required credential:
-                                X-Auth-User &amp; X-Auth-Key. This was
-                                not required earlier this morning, but
-                                apparently now is required. Is this in
-                                fact now required for auth? An
-                                interesting point is that although
-                                these credentials seem to be required
-                                for this call to Create Stack, they do
-                                not seem to be required for the Create
+                                getting Bad Request if the credential
+                                following credentials are not added
+                                into the request: X-Auth-User &amp;
+                                X-Auth-Key. This was not required
+                                earlier this morning, but apparently
+                                now is required so I have added it to
+                                the above example. Is this in fact now
+                                required for auth? An interesting
+                                point is that although these
+                                credentials seem to be required for
+                                this call to Create Stack, they do not
+                                seem to be required for the Create
                                 Stack call shown in Example 10: Create
                                 Stack with cURL in Step 6 "Create
                                 Simple Stack for a Cloud Server".
@@ -2319,11 +2446,11 @@ Server: nginx/1.2.1
 Date: Fri, 31 Jan 2014 17:09:37 GMT
 Content-Type: application/json
 Content-Length: 192
-Location: https://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Single-Server-Stack/467f33cc-c311-412b-a61f-ad99ad935966
+Location: https://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Servers-With-LB-Stack/a87fc789-0ad3-4952-801f-70ef03b3fdac
 Connection: keep-alive
 Via: 1.0 Repose (Repose/2.13.0)
 
-{"stack": {"id": "467f33cc-c311-412b-a61f-ad99ad935966", "links": [{"href": "http://localhost:8004/v1/1234/stacks/Single-Server-Stack/467f33cc-c311-412b-a61f-ad99ad935966", "rel": "self"}]}}</programlisting>
+{"stack": {"id": "a87fc789-0ad3-4952-801f-70ef03b3fdac", "links": [{"href": "http://localhost:8004/v1/1234/stacks/Servers-With-LB-Stack/a87fc789-0ad3-4952-801f-70ef03b3fdac", "rel": "self"}]}}</programlisting>
                         </example>
                         <para>You can see that the stack
                                 <code>Servers-With-LB-Stack</code> was
@@ -2396,7 +2523,7 @@ resources:
 outputs:
   lb_public_ip:
     description: The public IP address of the load balancer
-    value: { get_attr: [lb, PublicIp]}   </emphasis>
+    value: { get_attr: [lb, accessIPv4]}   </emphasis>
             
                 </programlisting>
             </example>
@@ -2488,10 +2615,10 @@ outputs:
             <para>The <code>outputs</code> section defines a single
                 output <code>lb_public_ip</code>, which is the public
                 IP address for the Cloud Load Balancer. Its value is
-                assigned to  the result of calling the
+                assigned to the result of calling the
                     <code>get_attr</code> intrinsic function with the
                 name of the resource (<code>lb</code>) and its desired
-                attribute (<code>PublicIp</code>).</para>
+                attribute (<code>accessIPv4</code>).</para>
             <para>Choose one of the following methods:<itemizedlist>
                     <listitem>
                         <para><xref linkend="Update_Stack_W_LB_Heat"
@@ -2511,7 +2638,7 @@ outputs:
                     <step>
                         <para>Update the stack using the heat client. </para>
                         <para>Issue the following command:</para>
-                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-update Servers-With-LB-Stack --template-file servers-with-lb-add.template</programlisting>
+                        <programlisting language="bash" role="gutter: false"> heat stack-update Servers-With-LB-Stack --template-file servers-with-lb-add.template</programlisting>
                         <para>The command returns the information
                             about the stack, including its status
                                 <code>UPDATE_IN_PROGRESS</code>:</para>
@@ -2599,7 +2726,7 @@ outputs:
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
   "parameters": {}, 
-  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers\n  and a Cloud Load Balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: Rackspace::Cloud::Server\n        properties:\n          flavor: 1GB Standard Instance\n          image: CentOS 6.4\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute Load Balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, PrivateIp]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, PublicIp]}  \n\n", 
+  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers\n  and a Cloud Load Balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: Rackspace::Cloud::Server\n        properties:\n          flavor: 1GB Standard Instance\n          image: CentOS 6.4\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute Load Balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, PrivateIp]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, accessIPv4]}  \n\n", 
   "timeout_mins": 60
 }' \
 <uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks/</uri><emphasis role="bold">Servers-With-LB-Stack/stack_id</emphasis></programlisting>

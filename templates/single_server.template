@@ -11,7 +11,7 @@ resources:
 outputs:
   public_ip:
     description: public IP address of the deployed compute instance
-    value: { get_attr: [compute_instance, PublicIp] }
+    value: { get_attr: [compute_instance, accessIPv4] }
 
 
 

@@ -128,7 +128,33 @@ Date: Thu, 12 Apr 2012 18:45:13 GMT
                 ],
                 "name": "cloudFilesCDN", 
                 "type": "rax:object-cdn"
-            }, 
+            },          
+            {  
+                "endpoints": [
+                    {
+                        "region": "SYD",
+                        "tenantId": "1100111",
+                        "publicURL": "https://syd.orchestration.api.rackspacecloud.com/v1/1100111"
+                    },
+                    {
+                        "region": "IAD",
+                        "tenantId": "1100111",
+                        "publicURL": "https://iad.orchestration.api.rackspacecloud.com/v1/1100111"
+                    },
+                    {
+                         "region": "ORD",
+                         "tenantId": "1100111",
+                         "publicURL": "https://ord.orchestration.api.rackspacecloud.com/v1/1100111"
+                    },
+                    {
+                          "region": "DFW",
+                          "tenantId": "1100111",
+                          "publicURL": "https://dfw.orchestration.api.rackspacecloud.com/v1/1100111"
+                    }
+                ],
+                "name": "cloudOrchestration",
+                "type": "orchestration"
+            },
             {
                 "endpoints": [
                     {

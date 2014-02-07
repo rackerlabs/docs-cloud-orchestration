@@ -1,0 +1,23 @@
+{
+    "resource_types": [
+        "OS::Nova::Server",
+        "OS::Heat::RandomString",
+        "OS::Swift::Container",
+        "Rackspace::Cloud::Server",
+        "OS::Heat::ChefSolo",
+        "Rackspace::AutoScale::WebHook",
+        "Rackspace::AutoScale::Group",
+        "Rackspace::Cloud::Network",
+        "OS::Cinder::Volume",
+        "Rackspace::Cloud::WinServer",
+        "Rackspace::Cloud::LoadBalancer",
+        "OS::Heat::ResourceGroup",
+        "Rackspace::AutoScale::ScalingPolicy",
+        "Rackspace::Cloud::DNS",
+        "OS::Trove::Instance",
+        "OS::Nova::FloatingIPAssociation",
+        "OS::Cinder::VolumeAttachment",
+        "OS::Nova::FloatingIP",
+        "OS::Nova::KeyPair"
+    ]
+}
