@@ -347,6 +347,9 @@
                 </wadl:doc>
             </representation>
         </response>
+        &commonFaults;
+        &notFound;
+        &intServerErr;
     </method>
     <method name="PUT" id="stack_update">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -401,6 +404,9 @@
             </representation>
         </request>
         <response status="202"/>
+        &commonFaults;
+        &notFound;
+        &intServerErr;
     </method>
     <method name="DELETE" id="stack_delete">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -483,6 +489,9 @@
                 </wadl:doc>
             </representation>
         </response>
+        &commonFaults;
+        &notFound;
+        &intServerErr;
     </method>
 
     <method name="GET" id="resource_type_template">
@@ -585,6 +594,9 @@
                 </doc>
             </representation>
         </response>
+        &commonFaults;
+        &notFound;
+        &intServerErr;
     </method>
     <method name="GET" id="stack_event_list">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -600,6 +612,9 @@
                 </wadl:doc> 
             </representation>
         </response>
+        &commonFaults;
+        &notFound;
+        &intServerErr;
     </method>
     <method name="GET" id="resource_event_list">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -616,6 +631,9 @@
                 </wadl:doc> 
             </representation>
         </response>
+        &commonFaults;
+        &notFound;
+        &intServerErr;
     </method>
     <method name="GET" id="event_show">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -632,5 +650,8 @@
                 </wadl:doc> 
             </representation>
         </response>
+        &commonFaults;
+        &notFound;
+        &intServerErr;
     </method>
 </application>

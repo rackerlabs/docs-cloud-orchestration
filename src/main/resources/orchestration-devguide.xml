@@ -1377,6 +1377,11 @@
         <remark>Reviewer: we still need to add the following 2 API
             calls to the Devguide &amp; wadl: Abandon stack, Adopt
             stack. See email from Vijendar.</remark>
+        <remark>Reviewer: I have removed the Get resource metadata
+            call from the Stack Resources section at the request of
+            Randall, who said it is for CFN rather than Heat. Here is
+            the code to add it back if needed: method:
+            resource_metadata </remark>
         
         
         
@@ -1435,10 +1440,6 @@
                 
                 <wadl:resource href="../../../wadl/orchestration-api.wadl#resource_name">
                     <wadl:method href="resource_show"/>
-                </wadl:resource>
-                
-                <wadl:resource href="../../../wadl/orchestration-api.wadl#metadata">
-                    <wadl:method href="resource_metadata"/>
                 </wadl:resource>
                 
                 <wadl:resource href="../../../wadl/orchestration-api.wadl#resource_types">

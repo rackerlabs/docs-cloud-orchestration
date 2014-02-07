@@ -1469,7 +1469,11 @@ outputs:
                 this public IP address is displayed to the user. You
                 can find out more about intrinsic functions at <link
                     xlink:href="http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content/Defining_Template_dle245.html#intrinsic_functions_d1e725"
-                    >http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content/Defining_Template_dle245.html#intrinsic_functions_d1e725</link>.</para>
+                    >http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content/Defining_Template_dle245.html#intrinsic_functions_d1e725</link>. </para>
+            <para>You can look up the names for the supported
+                attributes for resources here: <link
+                    xlink:href="http://docs.openstack.org/developer/heat/template_guide/index.html"
+                    >http://docs.openstack.org/developer/heat/template_guide/index.html</link>.</para>
             <para>Choose one of the following methods:<itemizedlist>
                     <listitem>
                         <para><xref
@@ -2502,7 +2506,7 @@ resources:
     properties:
       name: LB-Compute Load Balancer
       nodes:
-      - addresses: { get_attr: [web_nodes, PrivateIp]} # This is where the
+      - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the
                                                        # wiring magic happens
         port: 80
         condition: ENABLED
@@ -2523,10 +2527,16 @@ resources:
 outputs:
   lb_public_ip:
     description: The public IP address of the load balancer
-    value: { get_attr: [lb, accessIPv4]}   </emphasis>
+    value: { get_attr: [lb, PublicIp]}   </emphasis>
             
                 </programlisting>
             </example>
+            <remark>Reviewer: the following extraneous text is placed
+                into the HTML version of  the above example as a
+                result of the emphasis: &lt;span class= "bold"
+                &gt;&lt;strong&gt; . It is placed immediately before
+                the lb: section. Need to ask David Cramer how to
+                fix.</remark>
             <para>In the <code>description</code> section, you added
                 the information that the template now also spins up a
                 load balancer.</para>
@@ -2546,20 +2556,17 @@ outputs:
                         for the back end nodes by calling the
                             <code>get_attr</code> intrinsic function,
                         passing it the name of the resource group
-                            (<code>web_nodes</code>) and the private
-                        IP address for each server resource
-                            (<code>PrivateIp</code>), as defined in
-                        the resource group above. <remark>Reviewer:
-                            how do we explain to the user how to find
-                            the available properties for the resource
-                            by looking at the code.</remark>These back
-                        end nodes are the Cloud Servers you created in
-                            <xref linkend="Create_Stack_W_RGroup"/>.
-                        Each node uses port 80, and all nodes are
-                        enabled. The load balancer protocol is HTTP
-                        and the service is defined on port 80. It
-                        specifies that one public IPV4 virtualIp
-                        should be added for the load balancer.</para>
+                            (<code>web_nodes</code>) and the IP
+                        address for each server resource
+                            (<code>accessIPv4</code>), as defined in
+                        the resource group above. These back end nodes
+                        are the Cloud Servers you created in <xref
+                            linkend="Create_Stack_W_RGroup"/>. Each
+                        node uses port 80, and all nodes are enabled.
+                        The load balancer protocol is HTTP and the
+                        service is defined on port 80. It specifies
+                        that one public IPV4 virtualIp should be added
+                        for the load balancer.</para>
                 </listitem>
                 <listitem>
                     <para>It defines a health monitor with the
@@ -2605,20 +2612,13 @@ outputs:
                     </itemizedlist>
                 </listitem>
             </itemizedlist>
-            <note>
-                <para>To see more information about the supported Load
-                    Balancer properties, please refer to <link
-                        xlink:href="https://github.com/rackerlabs/heat-tutorial/tree/master/102.Hello-CloudLB"
-                        >https://github.com/rackerlabs/heat-tutorial/tree/master/102.Hello-CloudLB</link>.
-                </para>
-            </note>
             <para>The <code>outputs</code> section defines a single
                 output <code>lb_public_ip</code>, which is the public
                 IP address for the Cloud Load Balancer. Its value is
                 assigned to the result of calling the
                     <code>get_attr</code> intrinsic function with the
                 name of the resource (<code>lb</code>) and its desired
-                attribute (<code>accessIPv4</code>).</para>
+                attribute (<code>PublicIp</code>).</para>
             <para>Choose one of the following methods:<itemizedlist>
                     <listitem>
                         <para><xref linkend="Update_Stack_W_LB_Heat"
@@ -2726,7 +2726,7 @@ outputs:
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
   "parameters": {}, 
-  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers\n  and a Cloud Load Balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: Rackspace::Cloud::Server\n        properties:\n          flavor: 1GB Standard Instance\n          image: CentOS 6.4\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute Load Balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, PrivateIp]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, accessIPv4]}  \n\n", 
+  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers\n  and a Cloud Load Balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: Rackspace::Cloud::Server\n        properties:\n          flavor: 1GB Standard Instance\n          image: CentOS 6.4\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute Load Balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, PublicIp]}  \n\n", 
   "timeout_mins": 60
 }' \
 <uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks/</uri><emphasis role="bold">Servers-With-LB-Stack/stack_id</emphasis></programlisting>
