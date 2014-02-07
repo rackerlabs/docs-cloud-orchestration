@@ -22,7 +22,7 @@ resources:
     properties:
       name: LB-Compute Load Balancer
       nodes:
-      - addresses: { get_attr: [web_nodes, PrivateIp]} # This is where the
+      - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the
                                                        # wiring magic happens
         port: 80
         condition: ENABLED
@@ -43,7 +43,7 @@ resources:
 outputs:
   lb_public_ip:
     description: The public IP address of the load balancer
-    value: { get_attr: [lb, accessIPv4]} 
+    value: { get_attr: [lb, PublicIp]} 
 
 
 
