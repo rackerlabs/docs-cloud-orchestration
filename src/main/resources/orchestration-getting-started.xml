@@ -1778,7 +1778,7 @@ content-type: application/json
                         <para>Notice that there is a <code>self</code>
                             link that contains a
                                 <emphasis>versioned</emphasis> link to
-                            the flavor resource. This link should be
+                            the stack resource. This link should be
                             used in cases where the link will be
                             followed immediately.</para>
                     </step>

@@ -836,14 +836,9 @@ outputs:
                                 />). Depending on the type of
                                 resource, the resource block might
                                 include more resource-specific
-                                metadata. Basically all resource types
-                                that can be used in CFN templates can
-                                also be used in Orchestration
-                                templates, adapted to the YAML
-                                structure as outlined above. Below is
-                                an example of a simple compute
-                                resource definition with some property
-                                values
+                                metadata. Below is an example of a
+                                simple compute resource definition
+                                with some property values
                                 fixed.<screen language="bash"> resources:
   my_instance:
     type: Rackspace::Cloud::Server
@@ -985,18 +980,6 @@ resources:
                             <listitem>
                                 <para>This parameter specifies the
                                    attribute to be resolved.</para>
-                                <para>An example of using the
-                                   <code>get_attr</code> function is
-                                   shown
-                                   below:<screen language="bash"> resources:
-  my_instance:
-    type: Rackspace::Cloud::Server
-    # ...
-
-outputs:
-  instance_ip:
-    description: IP address of the deployed compute instance
-    value: { get_attr: [my_instance, accessIPv4] } </screen></para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
@@ -1027,6 +1010,17 @@ outputs:
                             </listitem>
                         </varlistentry>
                     </variablelist>
+                    <para>An example of using the
+                            <code>get_attr</code> function is shown
+                        below:<screen language="bash"> resources:
+  my_instance:
+    type: Rackspace::Cloud::Server
+    # ...
+
+outputs:
+  instance_ip:
+    description: IP address of the deployed compute instance
+    value: { get_attr: [my_instance, accessIPv4] } </screen></para>
                 </section>
                 <section xml:id="str_replace_intrinsic_function">
                     <title>str_replace</title>
@@ -1074,8 +1068,8 @@ outputs:
                                    function in the
                                    <code>outputs</code> section of a
                                    template to build a URL for logging
-                                   into a deployed
-                                   application.<screen language="bash"> resources:
+                                   into a deployed application:</para>
+                                <screen language="bash"> resources:
   my_instance:
     type: Rackspace::Cloud::Server
     # general metadata and properties ...
@@ -1087,18 +1081,28 @@ outputs:
       str_replace:
         template: http://host/MyApplication
         params:
-          host: { get_attr: [ my_instance, accessIPv4 ] } </screen><remark>Reviewer:
-                                   Can you add more details to this
-                                   description? It's not clear exactly
-                                   how the params argument works here
-                                   and what will get substituted into
-                                   the final URL. I think a "for
-                                   example" is needed.</remark>The
-                                   <code>str_replace</code> function
-                                   can also be used for constructing
-                                   bigger chunks of text such as
-                                   scripts for initializing compute
-                                   instances, as shown in the example
+          host: { get_attr: [ my_instance, accessIPv4 ] } </screen>
+                                <para>The <code>str_replace</code>
+                                   works like a simple substitution.
+                                   It uses the <code>params</code>
+                                   section to replace corresponding
+                                   strings in the template section. So
+                                   in the example above, the host
+                                   portion of the URL
+                                   (http://<emphasis role="bold"
+                                   >host</emphasis>/MyApplication) is
+                                   replaced by value returned from
+                                   calling the <code>get_attr</code>
+                                   function, which is the IP address
+                                   (<code>accessIPv4</code>) of the
+                                   server instance
+                                   (<code>my_instance</code>).</para>
+                                <para>The <code>str_replace</code>
+                                   function can also be used for
+                                   constructing bigger chunks of text
+                                   such as scripts for initializing
+                                   compute instances, as shown in the
+                                   example
                                    below:<screen language="bash">  parameters:
   DBRootPassword:
     type: string
@@ -1129,12 +1133,7 @@ resources:
                                    as <code>user_data</code> to the
                                    compute instance, leveraging the
                                    <code>str_replace</code>
-                                   function.<remark>Reviewer: Can you
-                                   add more details to this
-                                   description? It's not clear to me
-                                   exactly how this example is
-                                   intended to
-                                   function.</remark></para>
+                                   function.</para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
@@ -1144,16 +1143,12 @@ resources:
     </chapter>
     <chapter xml:id="Simple_Template_Example-d1e637">
         <title>Simple Template Example</title>
-        <para>HOT is a new template format meant to replace the
-            CloudFormation-compatible format (CFN) as the native
-            format supported by &Checkmate;. This guide is targeted
-            towards template authors and explains how to write HOT
-            templates based on examples. A detailed specification of
-            HOT can be found in <xref
-                linkend="Intro_to_Templates-d1e633"/>.</para>
         <para>This chapter gives an introduction on how to write HOT
-            templates, starting from very basic steps and then going
-            into more and more detail by means of examples.</para>
+            (Heat Orchestration Template) templates, starting from
+            very basic steps and then going into more and more detail
+            by means of examples. A detailed specification of HOT can
+            be found in <xref linkend="Intro_to_Templates-d1e633"
+            />.</para>
         <section xml:id="Basic_Template_Example-d1e637">
             <title>A Most Basic Template</title>
             <para>The most basic template possible may contain only a
@@ -1409,11 +1404,13 @@ resources:
             <para>Output values are typically resolved using intrinsic
                 function such as the <code>get_attr</code> function in
                 the example above (see also <xref
-                    linkend="intrinsic_functions_d1e725"
-                    />).<remark>Reviewer: how do you figure out the
-                    attribute names that my_instance has, or is this
-                    just assumed to be know when using a
-                    resource?</remark></para>
+                    linkend="intrinsic_functions_d1e725"/>).</para>
+            <para>You can look up the names for the supported
+                attributes for resources (for example
+                    <code>accessIPv4</code> in the example above)
+                here: <link
+                    xlink:href="http://docs.openstack.org/developer/heat/template_guide/index.html"
+                    >http://docs.openstack.org/developer/heat/template_guide/index.html</link>.</para>
             <para>Outputs can be viewed using the Get stack data API
                 call (&GET; <emphasis role="bold"
                     >/stacks{/stack_name}{/stack_id}</emphasis>) after
