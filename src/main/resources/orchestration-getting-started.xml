@@ -33,7 +33,7 @@
          xmlns:svg="http://www.w3.org/2000/svg"
          xmlns:m="http://www.w3.org/1998/Math/MathML"
          xmlns:html="http://www.w3.org/1999/xhtml"
-         xml:id="cdb-getting-started">
+         xml:id="orchestration-getting-started">
     
     <?rax title.font.size="35px" subtitle.font.size="20px"?>
     <title>Rackspace Cloud Orchestration Getting Started Guide</title>
@@ -70,7 +70,7 @@
         </revhistory>
     <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
       <raxm:displayname>Getting Started Guide</raxm:displayname>
-      <raxm:product version="v1.0">cdb</raxm:product>
+      <raxm:product version="v1">orchestration</raxm:product>
       <raxm:priority>10</raxm:priority>
     </raxm:metadata> 
     </info>

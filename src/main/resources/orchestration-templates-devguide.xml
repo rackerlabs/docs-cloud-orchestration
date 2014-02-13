@@ -79,8 +79,8 @@
 	<raxm:metadata
 	    xmlns:raxm="http://docs.rackspace.com/api/metadata">
 	  <raxm:displayname>Templates Developer Guide</raxm:displayname>
-	  <raxm:product version="v1.0">deployments</raxm:product>
-	  <raxm:priority>2</raxm:priority>
+	  <raxm:product version="v1">orchestration</raxm:product>
+	  <raxm:priority>30</raxm:priority>
 	</raxm:metadata>
     </info>
     
