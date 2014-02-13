@@ -1,0 +1,33 @@
+{
+  "status": "COMPLETE",
+  "name": "teststack",
+  "template": {
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "MYSQL server cloud database instance running on Rackspace cloud",
+    "Resources": {
+      "MySqlCloudDatabaseServer": {
+        "Type": "OS::Trove::Instance",
+        "Properties": {
+          "flavor": "1GB Instance",
+          "size": 30,
+          "users": [{"password": "testpass123", "name": "testuser", "databases": ["testdbonetwo"]}],
+          "name": "test-trove-db",
+          "databases": [ {"name": "testdbonetwo"} ]
+        }
+      }
+    }
+  },
+  "action": "CREATE",
+  "id": "bxxxx4-0xx2-4xx1-axx6-exxxxxxxxc",
+  "resources": {
+    "MySqlCloudDatabaseServer": {
+      "status": "COMPLETE",
+      "name": "MySqlCloudDatabaseServer",
+      "resource_data": {},
+      "resource_id": "cxxx3-dxx3-4xx9-bxx2-3xxxxxxxxa",
+      "action": "CREATE",
+      "type": "OS::Trove::Instance",
+      "metadata": {}
+    }
+  }
+}

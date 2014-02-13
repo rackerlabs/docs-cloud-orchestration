@@ -505,7 +505,15 @@
             <para role="shortdesc">Deletes a specified stack, but leaves
                  stack resources intact.</para>
         </wadl:doc>
-        <response status="204"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <para xmlns="http://docbook.org/ns/docbook">Returns given stack representation in json format.</para>
+                    <xsdxt:code href="samples/stack_abandon_response.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
     </method>
     <method name="POST" id="template_validate">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
