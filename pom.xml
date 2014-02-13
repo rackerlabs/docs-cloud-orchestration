@@ -12,6 +12,21 @@
     <!-- ################################################ -->
     <build>
         <plugins>
+
+	  <plugin>
+            <groupId>com.rackspace.cloud.api</groupId>
+            <artifactId>olink-maven-plugin</artifactId>
+            <version>1.1.0</version>
+            <executions>
+              <execution>
+		<phase>initialize</phase>
+		<goals>
+		  <goal>olink</goal>
+		</goals>
+              </execution>
+            </executions>
+	  </plugin>
+
             <plugin>
                 <groupId>com.rackspace.cloud.api</groupId>
                 <artifactId>clouddocs-maven-plugin</artifactId>
@@ -19,8 +34,7 @@
                 <!-- the version of the *API* that is the subject of the document is indicated within each document -->
                 <version>1.13.0</version>
                 <executions>
-                    
-                    
+
                     <execution>
                         <id>orchestration-templates-devguide</id>
                         <goals>
@@ -65,7 +79,6 @@
                             <highlightSource>false</highlightSource>
                             <!-- this is the Rackspace Getting Started guide -->
                             <includes>orchestration-getting-started.xml</includes>
-                            <enableDisqus>1</enableDisqus>
                             <security>internal</security>
                             <chapterAutolabel>0</chapterAutolabel>
                             
@@ -87,7 +100,6 @@
                                 section toc
                                 set toc,title
                             </generateToc>
-                            <googleAnalyticsId>UA-23102455-4</googleAnalyticsId>
                             <canonicalUrlBase>http://docs-internal.rackspace.com/orchestration/api/v1/orchestration-getting-started/content</canonicalUrlBase>
                         </configuration>
                     </execution>
@@ -99,12 +111,11 @@
                     <!-- Global config for all docs -->
                     <sourceDirectory>src/main/resources</sourceDirectory>
                     <enableDisqus>intranet</enableDisqus>
-                    <socialIcons>1</socialIcons>
                     <enableGoogleAnalytics>1</enableGoogleAnalytics>
                     <feedbackEmail>mike.asthalter@rackspace.com</feedbackEmail>
                     <highlightSource>false</highlightSource>
                     <showXslMessages>true</showXslMessages>
-		            <security>internal</security>
+		    <security>internal</security>
                 </configuration>
             </plugin>
             <plugin>
@@ -129,36 +140,4 @@
         </plugins>
         <defaultGoal>generate-webhelp</defaultGoal>
     </build>
-    <!-- <pluginRepositories> -->
-    <!--   <pluginRepository> -->
-    <!--     <id>rackspace-research</id> -->
-    <!--     <name>Rackspace Research Repository</name> -->
-    <!--     <url>http://maven.research.rackspacecloud.com/content/groups/public/</url> -->
-    <!--   </pluginRepository> -->
-    <!-- </pluginRepositories> -->
-    <profiles>
-        <profile>
-            <id>Rackspace Research Repositories</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>rackspace-research</id>
-                    <name>Rackspace Research Repository</name>
-                    <url>http://maven.research.rackspacecloud.com/content/groups/public/</url>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>rackspace-research</id>
-                    <name>Rackspace Research Repository</name>
-                    <url>http://maven.research.rackspacecloud.com/content/groups/public/</url>
-                </pluginRepository>
-            </pluginRepositories>
-        </profile>
-    </profiles>
-    <!-- scm> -->
-        <!-- connection>scm:git:ssh://git@github.com:lbrackspace/atlas-lb-docbook.git</connection> -->
-    <!--/scm> -->
 </project>
