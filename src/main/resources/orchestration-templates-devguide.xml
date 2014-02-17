@@ -50,7 +50,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-02-13</pubdate>
+        <pubdate>2014-02-17</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -66,7 +66,7 @@
         
         <revhistory>
             <revision>
-                <date>2014-02-13</date>
+                <date>2014-02-17</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
@@ -907,9 +907,9 @@ outputs:
                 <para>You will be able to view the value for the
                     output parameter defined above when you view the
                     response received from calling the API operation
-                    Get stack data. Refer to the <citetitle>Getting
-                        Started Guide</citetitle> for an
-                    example.</para>
+                    Get stack data. Refer to "Step 8. Show Stack
+                    Details" in the <citetitle>Getting Started
+                        Guide</citetitle> for an example.</para>
                 <remark>Reviewer: need to add link in previous
                     sentence.</remark>
             </section>

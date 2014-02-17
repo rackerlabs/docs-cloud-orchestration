@@ -50,7 +50,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-02-13</pubdate>
+        <pubdate>2014-02-17</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -58,7 +58,7 @@
         </legalnotice>
         <revhistory>
             <revision>
-                <date>2014-02-13</date>
+                <date>2014-02-17</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
@@ -259,7 +259,10 @@
             <remark>Reviewer: Please verify that the pricing
                 information shown above is correct for product
                 launch.</remark>
-            <para>The Service Level Agreement (SLA) for &Deployment;
+            <para>&Deployment; is a Non-Standard Rackspace Service.
+                Applicable SLAs for the underlying infrastructure
+                apply for successfully launched cloud products.</para>
+            <para security="writeronly">The Service Level Agreement (SLA) for &Deployment;
                 is available at <link
                     xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_orchestration"
                     >http://www.rackspace.com/information/legal/cloud/sla#cloud_orchestration</link>.</para>

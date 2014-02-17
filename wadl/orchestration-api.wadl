@@ -324,6 +324,9 @@
             </representation>
         </request>
         <response status="201"/>
+        &commonFaults;
+        &conflict;
+        &intServerErr;
     </method>
     <method name="POST" id="stack_action_suspend">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -514,6 +517,9 @@
                 </wadl:doc> 
             </representation>
         </response>
+        &commonFaults;
+        &notFound;
+        &intServerErr;
     </method>
     <method name="POST" id="template_validate">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
