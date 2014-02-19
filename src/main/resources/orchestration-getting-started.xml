@@ -50,13 +50,25 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-02-17</pubdate>
+        <pubdate>2014-02-19</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2014-02-19</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated <xref linkend="heat_summary"
+                                /> for python-heatclient version
+                                0.2.7.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-02-17</date>
                 <revdescription>
@@ -3023,6 +3035,19 @@ The request is accepted for processing.
             </variablelist>
             <variablelist wordsize="10%">
                 <varlistentry>
+                    <term><emphasis role="bold">Abandon
+                            stack</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-abandon &lt;NAME or ID&gt;</programlisting>
+                        <para> Where <parameter>NAME</parameter> is
+                            the name of the stack or
+                                <parameter>ID</parameter> is the ID of
+                            the stack to abandon. </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
                     <term><emphasis role="bold">Update
                             stack</emphasis></term>
                     <listitem>
@@ -3143,6 +3168,28 @@ The request is accepted for processing.
                                    0x1dfc230>}</code></para>
                             </listitem>
                         </itemizedlist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">List resource
+                            types</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-type-list</programlisting>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Show resource
+                            type</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-type-list &lt;RESOURCE_TYPE></programlisting>
+                        <para> Where
+                                <parameter>RESOURCE_TYPE</parameter>
+                            is the type of the resource to show.
+                        </para>
                     </listitem>
                 </varlistentry>
             </variablelist>
@@ -3297,6 +3344,33 @@ The request is accepted for processing.
                         <para> Where <parameter>COMMAND</parameter> is
                             the name of the command for which to
                             display help. </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Display build
+                            information for heat
+                        client</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat build-info</programlisting>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Provide bash
+                            completion for heat</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat bash-completion</programlisting>
+                        <note>
+                            <para>To provide bash completion for heat
+                                for the current session, enter the
+                                following command:</para>
+                            <para><code>$ complete -W "`heat
+                                   bash-completion`"
+                                heat</code></para>
+                        </note>
                     </listitem>
                 </varlistentry>
             </variablelist>
