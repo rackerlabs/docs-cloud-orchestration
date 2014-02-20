@@ -58,6 +58,9 @@
                     <method href="#stack_create"/>
                     <method href="#stack_adopt"/>
                     <method href="#stack_list"/>
+                    <resource path="preview" id="preview">
+                        <method href="#stack_preview"/>
+                    </resource>
                     <resource path="{stack_name}" id="stack_name">
                         <param name="stack_name" style="template">
                             <wadl:doc
@@ -242,6 +245,80 @@
                     xml:lang="EN">
                     <xsdxt:code href="samples/stack_create_response.json"/>
                 </wadl:doc>  
+            </representation>
+        </response>
+        &commonFaults;
+        &conflict;
+        &intServerErr;
+    </method>
+    <method name="POST" id="stack_preview">
+        <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
+            title="Preview stack">
+            <para role="shortdesc">Previews a stack.</para>
+        </wadl:doc>
+        <request>
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code href="samples/stack_create.json"/>
+                </wadl:doc>
+                <param name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>The name of the stack to
+                            preview.</para></wadl:doc>
+                </param>
+                <param name="template_url" style="plain" required="true" path="$.template_url" type="string" >
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>The URL of the template to
+                            instantiate. This is ignored if the template
+                            is supplied inline.</para></wadl:doc>
+                </param>
+                <param name="template" style="plain" required="true" type="object" path="$.template"><!-- required? type? path? -->
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>A JSON template to
+                            instantiate. This takes precedence over the
+                            template URL if both are
+                        supplied.</para></wadl:doc>
+                </param>
+                <param name="environment" style="plain" required="true" type="string" path="$.environment"><!-- required? type? path? -->
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>A JSON environment for the
+                            stack.</para></wadl:doc>
+                </param>
+                <param name="files" style="plain" required="true" type="string" path="$.files"><!-- required? type? path? -->
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>A map of file names (Provider
+                            resource templates, as referenced in the
+                            environment) to JSON template
+                        bodies.</para></wadl:doc>
+                </param>
+                <param name="parameters" style="plain" required="false" type="string" path="$.parameters">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>User-defined parameters to pass to the template.</para></wadl:doc>
+                </param>
+                <param name="param_name-n" style="plain" required="false" type="string" path="$.parameters.param_name-n">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>User-defined parameter names
+                            to pass to the template.</para></wadl:doc>
+                </param>
+                <param name="timeout_mins" style="plain" required="true" type="integer" path="$.timeout_mins">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN">
+                        <para>
+                            The timeout for stack creation
+                            in minutes. During a stack preview, this value
+                            is only used as part of stack validation.
+                        </para>
+                    </wadl:doc>
+                </param>
+            </representation>
+        </request>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code href="samples/stack_preview_response.json"/>
+                </wadl:doc>
             </representation>
         </response>
         &commonFaults;
