@@ -1504,7 +1504,20 @@
             </wadl:resources> 
         </section>  
         
+        <section xml:id="Build_Info">
+            <title>Build Info</title>
+            <para>This section describes the operations that are supported for build info.</para>
+            
+            <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+                
+                <wadl:resource href="../../../wadl/orchestration-api.wadl#build_info">
+                    <wadl:method href="build_info_get"/>
+                </wadl:resource>
+                
+            </wadl:resources> 
+        </section>  
         
+
     </chapter>
     <chapter xml:id="using-heat-client-d1e019" security="writeronly">
         <title>Using the Heat Client</title>

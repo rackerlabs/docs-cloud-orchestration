@@ -160,6 +160,10 @@
                         </resource>
                     </resource>
                 </resource>
+                <resource id="build_info"
+                    path="build_info">
+                    <method href="#build_info_get"/>
+                </resource>
             </resource>
         </resource>
     </resources>
@@ -750,6 +754,22 @@
                     xml:lang="EN">
                     <para xmlns="http://docbook.org/ns/docbook">Returns the specified event details.</para>
                     <xsdxt:code href="samples/show_event_response.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
+        &commonFaults;
+        &notFound;
+        &intServerErr;
+    </method>
+    <method name="GET" id="build_info_get">
+        <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" title="Show build info">
+            <para role="shortdesc">Gets information about the current heat build.</para>
+        </wadl:doc>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN">
+                    <para xmlns="http://docbook.org/ns/docbook">Returns the heat build info.</para>
+                    <xsdxt:code href="samples/get_build_info.json"/>
                 </wadl:doc> 
             </representation>
         </response>
