@@ -50,13 +50,26 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-02-19</pubdate>
+        <pubdate>2014-03-04</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2014-03-04</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Fixed the HEAT_URL in Example 3 "UK
+                                Data Center Example" in <xref
+                                   linkend="Install_Heat_Client"/> to
+                                use the LON endpoint.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-02-19</date>
                 <revdescription>
@@ -565,7 +578,7 @@ export OS_PASSWORD=&lt;password>
                             <screen><computeroutput><?db-font-size 65%?>export OS_AUTH_URL=https://lon.identity.api.rackspacecloud.com/v2.0/
 export OS_USERNAME=&lt;username>
 export OS_TENANT_ID=&lt;tenant_id>
-export HEAT_URL=<link xlink:href="https://ord.orchestration.api.rackspacecloud.com/v1/">https://ord.orchestration.api.rackspacecloud.com/v1/</link>${OS_TENANT_ID}
+export HEAT_URL=<link xlink:href="https://ord.orchestration.api.rackspacecloud.com/v1/">https://lon.orchestration.api.rackspacecloud.com/v1/</link>${OS_TENANT_ID}
 export OS_PASSWORD=&lt;password>
 </computeroutput></screen>
                         </example></para>
