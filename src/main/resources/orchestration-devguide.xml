@@ -51,7 +51,7 @@
         </copyright>
         <releaseinfo>API v1</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-02-21</pubdate>
+        <pubdate>2014-03-11</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -68,29 +68,11 @@
         
         <revhistory>
             <revision>
-                <date>2014-02-21</date>
+                <date>2014-03-11</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Added new Preview stack API
-                                Operation (refer to <xref
-                                   linkend="Stack_Operations"
-                                />).</para>
-                        </listitem>
-                        <listitem>
-                            <para>Added new Show build info API
-                                Operation (refer to <xref
-                                   linkend="Build_Info"/>).</para>
-                        </listitem>
-                    </itemizedlist>
-                </revdescription>
-            </revision>
-            <revision>
-                <date>2014-02-17</date>
-                <revdescription>
-                    <itemizedlist spacing="compact">
-                        <listitem>
-                            <para>Initial internal release.</para>
+                            <para>Initial release.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -246,20 +228,9 @@
                 although you will not be billed for using
                 &Deployment;, you will be billed for the stack
                 resources you create using &Deployment;.</para>
-            <para security='writeronly'>&Deployment; is part of the Rackspace Cloud and your
-                use through the API will be billed as per the pricing
-                schedule at <link
-                    xlink:href="http://www.rackspace.com/cloud/orchestration/pricing/"
-                    >http://www.rackspace.com/cloud/orchestration/pricing/</link>.</para>
-            <remark>Reviewer: Please verify that the paragraph shown
-                above for pricing is correct for product
-                launch.</remark>
             <para>&Deployment; is a Non-Standard Rackspace Service.
                 Applicable SLAs for the underlying infrastructure
                 apply for successfully launched cloud products.</para>
-            <remark>Reviewer: Need to get the change above approved by
-                legal: Use "Cloud Orchestration" as the product name,
-                not "Heat Orchestration".</remark>
             
             <para security="writeronly">The Service Level Agreement (SLA) for &Deployment;
                 is available at <link
@@ -813,7 +784,8 @@
                     <code>cloudServers</code>
                     ("https://servers.api.rackspacecloud.com/v1.0/<emphasis
                     role="bold">1100111</emphasis>") that the account
-                number is 1100111.</para>
+                number (also referred to as tenant ID) is
+                1100111.</para>
         </section>
         <section xml:id="Contract_Version-d1e825">
             <title>Contract Version</title>

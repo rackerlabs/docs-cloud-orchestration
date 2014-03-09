@@ -50,7 +50,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-02-17</pubdate>
+        <pubdate>2014-03-11</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -66,11 +66,11 @@
         
         <revhistory>
             <revision>
-                <date>2014-02-17</date>
+                <date>2014-03-11</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Initial internal release.</para>
+                            <para>Initial release.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -307,7 +307,7 @@
                 of which are optional as noted. Templates are defined
                 in YAML and follow the structure outlined
                 below:</para>
-            <programlisting> heat_template_version: 2013-05-23
+            <programlisting>heat_template_version: 2013-05-23
 
 description:
   # a description of the template
@@ -414,6 +414,32 @@ outputs:
                 can be arranged in any order, except as described in
                 the following sections. Each section name must be
                 followed immediately by a colon.</para>
+            <note> <title>Rules for Template Formatting</title>
+                <para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>Main template sections
+                                   (<code>heat_template_version</code>,
+                                   <code>description</code>,
+                                   <code>parameter groups</code>,
+                                   <code>parameters</code>,
+                                   <code>resources</code>, and
+                                   <code>outputs</code>) must begin in
+                                column 1.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Sub-sections within a main section
+                                must be indented using TAB or spaces
+                                to maintain correct indentation to
+                                indicate the nesting level.</para>
+                        </listitem>
+                        <listitem>
+                            <para>The template must be valid
+                                YAML.</para>
+                        </listitem>
+                    </itemizedlist>
+                </para>
+            </note>
             <section xml:id="template_version_dle154">
                 <title>Template Version</title>
                 <para>The <code>heat_template_version</code> with
@@ -456,7 +482,7 @@ outputs:
                     associated to a specific group only once using the
                     parameter name to bind it to a defined parameter
                     in the <code>parameters</code> section.</para>
-                <screen language="bash"> parameter_groups:
+                <screen language="bash">parameter_groups:
 - label: &lt;human-readable label of parameter group>
   description: &lt;description of the parameter group>
   parameters:
@@ -511,7 +537,7 @@ outputs:
                     attributes such as <code>type</code> or
                         <code>default</code> defined as nested
                     elements.</para>
-                <screen language="bash"> parameters:
+                <screen language="bash">parameters:
   &lt;param name>:
     type: &lt;string | number | json | comma_delimited_list>
     description: &lt;description of the parameter>
@@ -598,7 +624,7 @@ outputs:
                     description is actually optional, but it is good
                     practice to provide a useful description for each
                     parameter.</para>
-                <screen language="bash"> parameters:
+                <screen language="bash">parameters:
   user_name:
     type: string
     description: User name to be configured for the application
@@ -666,7 +692,7 @@ outputs:
                     optional, it is good practice to provide concrete
                     descriptions so useful messages can be presented
                     to the user at deployment time.</para>
-                <screen language="bash"> parameters:
+                <screen language="bash">parameters:
   user_name:
     type: string
     description: User name to be configured for the application
@@ -741,7 +767,7 @@ outputs:
   - &lt;value>
   - &lt;value>
   - ... </screen>For
-                                example:<screen language="bash"> parameters:
+                                example:<screen language="bash">parameters:
   instance_type:
     type: string
     description: Instance type for compute instances
@@ -764,7 +790,7 @@ outputs:
                                 of the <code>allowed_pattern</code>
                                 constraint
                                 is:<screen language="bash">  allowed_pattern: &lt;regular expression> </screen>For
-                                example:<screen language="bash">  parameters:
+                                example:<screen language="bash">parameters:
   user_name:
     type: string
     description: User name to be configured for the application
@@ -785,7 +811,7 @@ outputs:
                     volumes) are defined. Each resource is defined as
                     a separate block in the resources section
                     according to the syntax below:</para>
-                <screen language="bash"> resources:
+                <screen language="bash">resources:
   &lt;resource ID>:
     type: &lt;resource type>
     properties:
@@ -839,7 +865,7 @@ outputs:
                                 metadata. Below is an example of a
                                 simple compute resource definition
                                 with some property values
-                                fixed.<screen language="bash"> resources:
+                                fixed.<screen language="bash">resources:
   my_instance:
     type: Rackspace::Cloud::Server
     properties:
@@ -859,7 +885,7 @@ outputs:
                     part of a stack. Each output parameter is defined
                     as a separate block within the outputs section
                     according to the following syntax:</para>
-                <screen language="bash">  outputs:
+                <screen language="bash">outputs:
   &lt;parameter name>:
     description: &lt;description>
     value: &lt;parameter value> </screen>
@@ -897,7 +923,7 @@ outputs:
                             <para>The example below shows how the IP
                                 address of a compute resource can be
                                 defined as an output
-                                parameter.<screen language="bash">  outputs:
+                                parameter.<screen language="bash">outputs:
   instance_ip:
     description: IP address of the deployed compute instance
     value: { get_attr: [my_instance, accessIPv4] }  </screen></para>
@@ -937,7 +963,7 @@ outputs:
                         to this function. A sample use of this
                         function in context of a resource definition
                         is shown below:</para>
-                    <screen language="bash">  parameters:
+                    <screen language="bash">parameters:
   instance_type:
     type: string
     description: Instance type to be used.
@@ -1012,7 +1038,7 @@ resources:
                     </variablelist>
                     <para>An example of using the
                             <code>get_attr</code> function is shown
-                        below:<screen language="bash"> resources:
+                        below:<screen language="bash">resources:
   my_instance:
     type: Rackspace::Cloud::Server
     # ...
@@ -1069,7 +1095,7 @@ outputs:
                                    <code>outputs</code> section of a
                                    template to build a URL for logging
                                    into a deployed application:</para>
-                                <screen language="bash"> resources:
+                                <screen language="bash">resources:
   my_instance:
     type: Rackspace::Cloud::Server
     # general metadata and properties ...
@@ -1103,7 +1129,7 @@ outputs:
                                    such as scripts for initializing
                                    compute instances, as shown in the
                                    example
-                                   below:<screen language="bash">  parameters:
+                                   below:<screen language="bash">parameters:
   DBRootPassword:
     type: string
     description: Root password for MySQL
@@ -1157,7 +1183,7 @@ resources:
                 version tag). For example, the template below could be
                 used to simply deploy a single compute
                 instance:</para>
-            <screen> heat_template_version: 2013-05-23
+            <screen>heat_template_version: 2013-05-23
 
 description: Simple template to deploy a single compute instance
 
@@ -1178,7 +1204,7 @@ resources:
                 to provide a longer description that does not fit on a
                 single line, you can provide multi-line text in YAML,
                 for
-                example:<screen>  description: >
+                example:<screen>description: >
     This is how you can provide a longer description
     of your template that goes over several lines.  </screen></para>
             <para>The <emphasis role="italic">resources</emphasis>
@@ -1212,7 +1238,7 @@ resources:
                 key-pairs, to provide their own image, and to select a
                 flavor for the compute instance. This can be achieved
                 by extending the initial template as follows:</para>
-            <screen> heat_template_version: 2013-05-23
+            <screen>heat_template_version: 2013-05-23
 
 description: Simple template to deploy a single compute instance
 
@@ -1248,7 +1274,7 @@ resources:
                 the <code>instance_type</code> parameter would select
                 the <code>1GB Standard Instance</code> flavor by
                 default unless specified otherwise by the user:</para>
-            <screen> parameters:
+            <screen>parameters:
   instance_type:
     type: string
     description: Type of instance (flavor) to be used
@@ -1259,13 +1285,13 @@ resources:
                 achieved by the <code>hidden</code> attribute and
                 useful, for example, when requesting passwords as user
                 input:</para>
-            <screen> parameters:
+            <screen>parameters:
   database_password:
     type: string
     description: Password to be used for database
     hidden: true </screen>
             <para>This extends our example as follows:</para>
-            <screen> heat_template_version: 2013-05-23
+            <screen>heat_template_version: 2013-05-23
 
 description: Simple template to deploy a single compute instance
 
@@ -1309,7 +1335,7 @@ resources:
                     three values to be provided as input for the
                         <emphasis role="italic"
                         >instance_type</emphasis> parameter:</para>
-                <screen> parameters:
+                <screen>parameters:
   instance_type:
     type: string
     description: Type of instance (flavor) to be used
@@ -1324,7 +1350,7 @@ resources:
                     following list of constraints could be used to
                     clearly specify format requirements on a password
                     to be provided by users:</para>
-                <screen> parameters:
+                <screen>parameters:
   database_password:
     type: string
     description: Password to be used for database
@@ -1338,7 +1364,7 @@ resources:
         description: Password must start with an uppercase character. </screen>
                 <para>This now extends our example as shown
                     below:</para>
-                <screen> heat_template_version: 2013-05-23
+                <screen>heat_template_version: 2013-05-23
 
 description: Simple template to deploy a single compute instance
 
@@ -1397,7 +1423,7 @@ resources:
                 themselves. The definition for providing the IP
                 address of the compute instance as an output is shown
                 below:</para>
-            <screen>  outputs:
+            <screen>outputs:
   instance_ip:
     description: The IP address of the deployed instance
     value: { get_attr: [my_instance, accessIPv4] }  </screen>
@@ -1414,15 +1440,13 @@ resources:
             <para>Outputs can be viewed using the Get stack data API
                 call (&GET; <emphasis role="bold"
                     >/stacks{/stack_name}{/stack_id}</emphasis>) after
-                the stack is created. Refer to the <citetitle>Cloud
-                    Orchestration Getting Started Guide</citetitle>
+                the stack is created. Refer to <link
+                    xlink:href="http://docs.rackspace.com/orchestration/api/v1/orchestration-getting-started/content/Show_Stack_Details.html"
+                    >http://docs.rackspace.com/orchestration/api/v1/orchestration-getting-started/content/Show_Stack_Details.html</link>
                 for an example.</para>
-            <remark>Writer: please add the link to the GS Guide (Step
-                8. Show Stack Details) once the path is
-                known.</remark>
             <para>Our completed simple template example is shown
                 below:</para>
-            <screen> heat_template_version: 2013-05-23
+            <screen>heat_template_version: 2013-05-23
 
 description: Simple template to deploy a single compute instance
 
@@ -1493,7 +1517,7 @@ resources:
                             <code>ImageId</code> into &Checkmate;,
                         overriding any values for these parameters
                         that are defined in the
-                        template:<screen> parameters:
+                        template:<screen>parameters:
   KeyName: heat_key
    flavor: 2GB Standard
    image: CentOS 6.2 </screen></para>

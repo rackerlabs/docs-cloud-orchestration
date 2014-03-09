@@ -50,7 +50,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-03-04</pubdate>
+        <pubdate>2014-03-11</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -58,36 +58,12 @@
         </legalnotice>
         <revhistory>
             <revision>
-                <date>2014-03-04</date>
+                <date>2014-03-11</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
-                            <para>Fixed the HEAT_URL in Example 3 "UK
-                                Data Center Example" in <xref
-                                   linkend="Install_Heat_Client"/> to
-                                use the LON endpoint.</para>
-                        </listitem>
-                    </itemizedlist>
-                </revdescription>
-            </revision>
-            <revision>
-                <date>2014-02-19</date>
-                <revdescription>
-                    <itemizedlist spacing="compact">
-                        <listitem>
-                            <para>Updated <xref linkend="heat_summary"
-                                /> for python-heatclient version
-                                0.2.7.</para>
-                        </listitem>
-                    </itemizedlist>
-                </revdescription>
-            </revision>
-            <revision>
-                <date>2014-02-17</date>
-                <revdescription>
-                    <itemizedlist spacing="compact">
-                        <listitem>
-                            <para>Initial internal release.</para>
+                            <para>Initial release.</para>
+                            <para>.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -2508,7 +2484,7 @@ Via: 1.0 Repose (Repose/2.13.0)
             <example>
                 <title>servers-with-lb-add.template with Load Balancer
                     added Example</title>
-                <programlisting language="bash">
+                <programlisting language="json">
 heat_template_version: 2013-05-23
 
 description: |   
@@ -2528,8 +2504,8 @@ resources:
           image: CentOS 6.4
           name: LB-Compute Web Nodes   
 
-<emphasis role="bold">      
-  lb:
+     
+<emphasis role="bold">  lb:
     type: Rackspace::Cloud::LoadBalancer
     properties:
       name: LB-Compute Load Balancer
@@ -2555,7 +2531,8 @@ resources:
 outputs:
   lb_public_ip:
     description: The public IP address of the load balancer
-    value: { get_attr: [lb, PublicIp]}   </emphasis>
+    value: { get_attr: [lb, PublicIp]}  </emphasis>
+    
             
                 </programlisting>
             </example>
