@@ -2484,7 +2484,7 @@ Via: 1.0 Repose (Repose/2.13.0)
             <example>
                 <title>servers-with-lb-add.template with Load Balancer
                     added Example</title>
-                <programlisting language="json">
+                <programlisting>
 heat_template_version: 2013-05-23
 
 description: |   
