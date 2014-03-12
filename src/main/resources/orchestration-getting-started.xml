@@ -50,13 +50,26 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-03-11</pubdate>
+        <pubdate>2014-03-13</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2014-03-13</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated examples to use CentOS 6.5
+                                (since CentOS 6.4 is no longer
+                                supported).</para>
+                            <para>.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-03-11</date>
                 <revdescription>
@@ -1443,7 +1456,7 @@ resources:
     type: "Rackspace::Cloud::Server"
     properties:
       flavor: 1GB Standard Instance
-      image: CentOS 6.4
+      image: CentOS 6.5
       name: Single Server Stack
       
 outputs:
@@ -1452,11 +1465,14 @@ outputs:
     value: { get_attr: [compute_instance, accessIPv4] }      
                 </programlisting> 
             </example>
+            <remark>Reviewer: note that when we convert these examples
+                to use Performance flavors, the setting is: "1 GB
+                Performance", with a space after the "1".</remark>
             <para>This stack consists of a <code>resources</code>
                 section that creates a single Cloud Server with a 1GB
                 Standard Instance flavor size (which identifies a
                 particular combination of memory capacity and priority
-                for CPU time). It has CentOS 6.4 installed, and is
+                for CPU time). It has CentOS 6.5 installed, and is
                 called Single Server Stack. </para>
             <para>This stack also has an <code>outputs</code> section.
                 Outputs are used to provide important information to
@@ -1571,7 +1587,7 @@ outputs:
    "stack_name": "Single-Server-Stack", 
    "disable_rollback": true, 
    "parameters": {}, 
-   "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"Rackspace::Cloud::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, accessIPv4] }      \n\n\n", 
+   "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"Rackspace::Cloud::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.5\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, accessIPv4] }      \n\n\n", 
    "timeout_mins": 60
 }' \
 https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlisting>
@@ -2271,7 +2287,7 @@ resources:
         type: Rackspace::Cloud::Server
         properties:
           flavor: 1GB Standard Instance
-          image: CentOS 6.4
+          image: CentOS 6.5
           name: LB-Compute Web Nodes    
                 </programlisting>
             </example>
@@ -2300,7 +2316,7 @@ resources:
                         flavor</para>
                 </listitem>
                 <listitem>
-                    <para><code>CentOS 6.4</code> image</para>
+                    <para><code>CentOS 6.5</code> image</para>
                 </listitem>
                 <listitem>
                     <para>the name <code>LB-Compute Web
@@ -2395,7 +2411,7 @@ resources:
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
   "parameters": {}, 
-  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: Rackspace::Cloud::Server\n        properties:\n          flavor: 1GB Standard Instance\n          image: CentOS 6.4\n          name: LB-Compute Web Nodes  \n\n\n", 
+  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: Rackspace::Cloud::Server\n        properties:\n          flavor: 1GB Standard Instance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n\n", 
   "timeout_mins": 60
 }' \
 <uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks</uri></programlisting>
@@ -2501,7 +2517,7 @@ resources:
         type: Rackspace::Cloud::Server
         properties:
           flavor: 1GB Standard Instance
-          image: CentOS 6.4
+          image: CentOS 6.5
           name: LB-Compute Web Nodes   
 
      
@@ -2731,7 +2747,7 @@ outputs:
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
   "parameters": {}, 
-  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers\n  and a Cloud Load Balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: Rackspace::Cloud::Server\n        properties:\n          flavor: 1GB Standard Instance\n          image: CentOS 6.4\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute Load Balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, PublicIp]}  \n\n", 
+  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers\n  and a Cloud Load Balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: Rackspace::Cloud::Server\n        properties:\n          flavor: 1GB Standard Instance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute Load Balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, PublicIp]}  \n\n", 
   "timeout_mins": 60
 }' \
 <uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks/</uri><emphasis role="bold">Servers-With-LB-Stack/stack_id</emphasis></programlisting>
