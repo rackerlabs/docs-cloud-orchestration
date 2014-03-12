@@ -65,7 +65,12 @@
                             <para>Updated examples to use CentOS 6.5
                                 (since CentOS 6.4 is no longer
                                 supported).</para>
-                            <para>.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Added note about copying template
+                                examples in <xref
+                                   linkend="Create_Simple_Stack_CS"
+                                /></para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -1468,6 +1473,25 @@ outputs:
             <remark>Reviewer: note that when we convert these examples
                 to use Performance flavors, the setting is: "1 GB
                 Performance", with a space after the "1".</remark>
+            <note><title>Notes</title>
+                <itemizedlist>
+                    <listitem>
+                        <para>If you enter in the template example
+                            text yourself, remember to use a 2 space
+                            indent (not TAB) for each subsection of
+                            the template.</para>
+                    </listitem>
+                    <listitem>
+                        <para>If you decide to copy the example above
+                            rather than enter the text, select the
+                            desired example from the HTML version of
+                            this guide by clicking the Select Text
+                            icon to the right of the example and then
+                            select Edit->Copy. Then paste it into your
+                            ASCII editor.</para>
+                    </listitem>
+                </itemizedlist>
+            </note>
             <para>This stack consists of a <code>resources</code>
                 section that creates a single Cloud Server with a 1GB
                 Standard Instance flavor size (which identifies a
@@ -3068,7 +3092,7 @@ The request is accepted for processing.
                 </varlistentry>
             </variablelist>
         </section>
-        <section xml:id="heat_summary_stack_actions">
+        <section xml:id="heat_summary_stack_actions" security="writeronly">
             <title>Stack Actions</title>
             <variablelist wordsize="10%">
                 <varlistentry>
