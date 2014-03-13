@@ -51,7 +51,7 @@
         </copyright>
         <releaseinfo>API v1</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-03-11</pubdate>
+        <pubdate>2014-03-13</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -67,6 +67,17 @@
         
         
         <revhistory>
+            <revision>
+                <date>2014-03-13</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated <xref linkend="overview"
+                                />.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-03-11</date>
                 <revdescription>
@@ -92,12 +103,11 @@
         <title>Overview</title>
         <para>Rackspace &Deployment; is the name of the Rackspace
             orchestration, and application architecture management
-            service.  &Deployment; provides a software API and a User
-            Interface (through the Cloud Control Panel) to create and
-            manipulate stacks of resources (for example load
+            service.  &Deployment; provides a software API to create
+            and manipulate stacks of resources (for example load
             balancers, web servers, databases, and so forth) and
             software that operates as part of those stacks (for
-            example apache, PHP, MySQL, Wordpress, and so
+            example Apache, PHP, MySQL, Wordpress, and so
             forth). &Deployment; is an engine that understands Cloud
             topologies, unlike Chef or Puppet, which are concerned
             with software on servers. Where applicable, &Deployment;

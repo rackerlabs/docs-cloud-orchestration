@@ -50,7 +50,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-03-12</pubdate>
+        <pubdate>2014-03-13</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -65,6 +65,18 @@
         
         
         <revhistory>
+            <revision>
+                <date>2014-03-13</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated references to CentOS from
+                                version 6.4 to 6.5 (since 6.4 is no
+                                longer supported).</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-03-12</date>
                 <revdescription>
@@ -882,7 +894,7 @@ outputs:
     type: Rackspace::Cloud::Server
     properties:
       flavor: 1GB Standard Instance
-      image: CentOS 6.4 </screen></para>
+      image: CentOS 6.5 </screen></para>
                         </listitem>
                     </varlistentry>
                 </variablelist>
@@ -1204,7 +1216,7 @@ resources:
     type: Rackspace::Cloud::Server
     properties:
       key_name: my_key
-      image: CentOS 6.4
+      image: CentOS 6.5
       flavor: 1GB Standard Instance </screen>
             <para>Each HOT template has to include the <emphasis
                     role="italic">heat_template_version</emphasis> key
@@ -1532,7 +1544,7 @@ resources:
                         template:<screen>parameters:
   KeyName: heat_key
    flavor: 2GB Standard
-   image: CentOS 6.2 </screen></para>
+   image: CentOS 6.5 </screen></para>
                 </listitem>
             </itemizedlist>
             <note>
