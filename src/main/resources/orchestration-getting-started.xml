@@ -50,13 +50,25 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-03-12</pubdate>
+        <pubdate>2014-03-13</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2014-03-13</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated <xref
+                                   linkend="heat_summary_stack_resources"
+                                />.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-03-12</date>
                 <revdescription>
@@ -70,7 +82,7 @@
                             <para>Added note about copying template
                                 examples in <xref
                                    linkend="Create_Simple_Stack_CS"
-                                /></para>
+                                />.</para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -3175,13 +3187,13 @@ The request is accepted for processing.
                     <term><emphasis role="bold">Generate template
                             based on resource</emphasis></term>
                     <listitem>
-                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-template [-F &lt;FORMAT>] &lt;RESOURCE></programlisting>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-template [-F &lt;FORMAT>] &lt;RESOURCE_TYPE></programlisting>
                         <itemizedlist>
                             <title>Positional Arguments</title>
                             <listitem>
                                 <para> Where
-                                   <parameter>RESOURCE</parameter> is
-                                   the name of the resource for which
+                                   <parameter>RESOURCE_TYPE</parameter>
+                                   is the type of resource for which
                                    to generate a template. </para>
                             </listitem>
                         </itemizedlist>
@@ -3215,7 +3227,7 @@ The request is accepted for processing.
                     <term><emphasis role="bold">Show resource
                             type</emphasis></term>
                     <listitem>
-                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-type-list &lt;RESOURCE_TYPE></programlisting>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-type-show &lt;RESOURCE_TYPE></programlisting>
                         <para> Where
                                 <parameter>RESOURCE_TYPE</parameter>
                             is the type of the resource to show.
