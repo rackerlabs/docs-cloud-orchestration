@@ -50,13 +50,39 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-03-13</pubdate>
+        <pubdate>2014-03-14</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2014-03-14</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated examples for Show Stack
+                                Details in <xref
+                                   linkend="Show_Stack_Details"/> and
+                                   <xref linkend="Update_Stack_W_LB"
+                                />.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <date>2014-03-13</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated <xref
+                                   linkend="heat_summary_stack_resources"
+                                />.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-03-13</date>
                 <revdescription>
@@ -1820,7 +1846,7 @@ content-type: application/json
     "id": "3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
     "links": [
       {
-        "href": "http://localhost:8004/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
+        "href": "http://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
         "rel": "self"
       }
     ]
@@ -1930,14 +1956,14 @@ content-type: application/json
       "description": "No description",
       "links": [
         {
-          "href": "http://localhost:8004/v1/1234/stacks/Single-Server-Stack/bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
+          "href": "https://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Single-Server-Stack/bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
           "rel": "self"
         }
       ],
-      "stack_status_reason": "Stack create completed successfully",
+      "stack_status_reason": "Stack CREATE completed successfully",
       "stack_name": "Single-Server-Stack",
       "creation_time": "2014-01-23T19:41:05Z",
-      "updated_time": "2014-01-23T19:45:54Z",
+      "updated_time": null,
       "stack_status": "CREATE_COMPLETE",
       "id": "bd2c230-b02a-45d8-9f16-88c9a9f64d2d"
     }
@@ -1996,33 +2022,32 @@ content-type: application/json
                         <informalexample>
                             <?dbfo pgwide="1"?>
                             <screen><computeroutput><?db-font-size 44%?>
-+----------------------+------------------------------------------------------------------------------------------------------------------+
-| capabilities         | []                                                                                                               |
-| creation_time        | 2014-01-24T20:12:47Z                                                                                             |
-| description          | No description                                                                                                   |
-| disable_rollback     | True                                                                                                             |
-| id                   | 3bd2c230-b02a-45d8-9f16-88c9a9f64d2d                                                                             |
-| links                | http://localhost:8004/v1/123456/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d                  |
-| notification_topics  | []                                                                                                               |
-| outputs              | [                                                                                                                |
-|                      |   {                                                                                                              |
-|                      |     "output_value": "23.253.88.131",                                                                             |
-|                      |     "description": "public IP address of the deployed compute instance",                                         |
-|                      |     "output_key": "public_ip"                                                                                    |
-|                      |   }                                                                                                              |
-|                      | ]                                                                                                                |
-| parameters           | {                                                                                                                |
-|                      |   "AWS::StackId": "arn:openstack:heat::123456:stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",  |
-|                      |   "AWS::Region": "ap-southeast-1",                                                                               |
-|                      |   "AWS::StackName": "Single-Server-Stack"                                                                        |
-|                      | }                                                                                                                |
-| stack_name           | Single-Server-Stack                                                                                              |
-| stack_status         | CREATE_COMPLETE                                                                                                  |
-| stack_status_reason  | Stack create completed successfully                                                                              |
-| template_description | No description                                                                                                   |
-| timeout_mins         | 60                                                                                                               |
-| updated_time         | 2014-01-24T20:14:12Z                                                                                             |
-+----------------------+------------------------------------------------------------------------------------------------------------------+
++----------------------+----------------------------------------------------------------------------------------------------------------------------+
+| capabilities         | []                                                                                                                         |
+| creation_time        | 2014-01-24T20:12:47Z                                                                                                       |
+| description          | No description                                                                                                             |
+| disable_rollback     | True                                                                                                                       |
+| id                   | 3bd2c230-b02a-45d8-9f16-88c9a9f64d2d                                                                                       |
+| links                | http://ord.orchestration.api.rackspacecloud.com/v1/123456/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d  |
+| notification_topics  | []                                                                                                                         |
+| outputs              | [                                                                                                                          |
+|                      |   {                                                                                                                        |
+|                      |     "output_value": "23.253.88.131",                                                                                       |
+|                      |     "description": "public IP address of the deployed compute instance",                                                   |
+|                      |     "output_key": "public_ip"                                                                                              |
+|                      |   }                                                                                                                        |
+|                      | ]                                                                                                                          |
+| parameters           | {                                                                                                                          |
+|                      |   "OS::stack_name": "Single-Server-Stack",                                                                                 |
+|                      |   "OS::stack_id": "3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",                                                                  |
+|                      | }                                                                                                                          |
+| stack_name           | Single-Server-Stack                                                                                                        |
+| stack_status         | CREATE_COMPLETE                                                                                                            |
+| stack_status_reason  | Stack CREATE completed successfully                                                                                        |
+| template_description | No description                                                                                                             |
+| timeout_mins         | 60                                                                                                                         |
+| updated_time         | None                                                                                                                       |
++----------------------+----------------------------------------------------------------------------------------------------------------------------+
 
 
 </computeroutput></screen>
@@ -2112,11 +2137,10 @@ content-type: application/json
     "disable_rollback": true,
     "description": "No description",
     "parameters": {
-      "AWS::StackId": "arn:openstack:heat::1234:stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
-      "AWS::Region": "ap-southeast-1",
-      "AWS::StackName": "Single-Server-Stack"
+      "OS::stack_name": "Single-Server-Stack",
+      "OS::stack_id": "3bd2c230-b02a-45d8-9f16-88c9a9f64d2d" 
     },
-    "stack_status_reason": "Stack create completed successfully",
+    "stack_status_reason": "Stack CREATE completed successfully",
     "stack_name": "Single-Server-Stack",
     "outputs": [
       {
@@ -2128,7 +2152,7 @@ content-type: application/json
     "creation_time": "2014-01-24T20:12:47Z",
     "links": [
       {
-        "href": "http://localhost:8004/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
+        "href": "http://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
         "rel": "self"
       }
     ],
@@ -2140,7 +2164,7 @@ content-type: application/json
     ],
     "timeout_mins": 60,
     "stack_status": "CREATE_COMPLETE",
-    "updated_time": "2014-01-24T20:14:12Z",
+    "updated_time": null,
     "id": "3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
     "template_description": "No description"
   }
@@ -2510,7 +2534,7 @@ Location: https://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Server
 Connection: keep-alive
 Via: 1.0 Repose (Repose/2.13.0)
 
-{"stack": {"id": "a87fc789-0ad3-4952-801f-70ef03b3fdac", "links": [{"href": "http://localhost:8004/v1/1234/stacks/Servers-With-LB-Stack/a87fc789-0ad3-4952-801f-70ef03b3fdac", "rel": "self"}]}}</programlisting>
+{"stack": {"id": "a87fc789-0ad3-4952-801f-70ef03b3fdac", "links": [{"href": "http://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Servers-With-LB-Stack/a87fc789-0ad3-4952-801f-70ef03b3fdac", "rel": "self"}]}}</programlisting>
                         </example>
                         <para>You can see that the stack
                                 <code>Servers-With-LB-Stack</code> was
@@ -2721,39 +2745,38 @@ outputs:
                         <informalexample>
                             <?dbfo pgwide="1"?>
                             <screen><computeroutput><?db-font-size 44%?>
-+----------------------+--------------------------------------------------------------------------------------------------------------------+
-| Property             | Value                                                                                                              |
-+----------------------+--------------------------------------------------------------------------------------------------------------------+
-| capabilities         | []                                                                                                                 |
-| creation_time        | 2014-01-28T18:00:27Z                                                                                               |
-| description          | Heat Orchestration Template that spins up a resource                                                               |
-|                      | group with 2 Rackspace Cloud Servers and a Cloud Load                                                              |
-|                      | Balancer.                                                                                                          |
-| disable_rollback     | True                                                                                                               |
-| id                   | e7b67698-3929-43af-8e59-9652d00b7250                                                                               |
-| links                | http://localhost:8004/v1/123456/stacks/Servers-With-LB-Stack/e7b67698-3929-43af-8e59-9652d00b7250                  |
-| notification_topics  | []                                                                                                                 |
-| outputs              | [                                                                                                                  |
-|                      |   {                                                                                                                |
-|                      |     "output_value": "162.242.141.48",                                                                              |
-|                      |     "description": "The public IP address of the load balancer",                                                   |
-|                      |     "output_key": "lb_public_ip"                                                                                   |
-|                      |   }                                                                                                                |
-|                      | ]                                                                                                                  |
-| parameters           | {                                                                                                                  |
-|                      |   "AWS::StackId": "arn:openstack:heat::123456:stacks/Servers-With-LB-Stack/e7b67698-3929-43af-8e59-9652d00b7250",  |
-|                      |   "AWS::Region": "ap-southeast-1",                                                                                 |
-|                      |   "AWS::StackName": "Servers-With-LB-Stack"                                                                        |
-|                      | }                                                                                                                  |
-| stack_name           | Servers-With-LB-Stack                                                                                              |
-| stack_status         | UPDATE_COMPLETE                                                                                                    |
-| stack_status_reason  | Stack successfully updated                                                                                         |
-| template_description | Heat Orchestration Template that spins up a resource                                                               |
-|                      | group with 2 Rackspace Cloud Servers and a Cloud Load                                                              |
-|                      | Balancer..                                                                                                         |
-| timeout_mins         | 60                                                                                                                 |
-| updated_time         | 2014-01-28T21:34:47Z                                                                                               |
-+----------------------+--------------------------------------------------------------------------------------------------------------------+</computeroutput></screen>
++----------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Property             | Value                                                                                                                        |
++----------------------+------------------------------------------------------------------------------------------------------------------------------+
+| capabilities         | []                                                                                                                           |
+| creation_time        | 2014-01-28T18:00:27Z                                                                                                         |
+| description          | Heat Orchestration Template that spins up a resource                                                                         |
+|                      | group with 2 Rackspace Cloud Servers and a Cloud Load                                                                        |
+|                      | Balancer.                                                                                                                    |
+| disable_rollback     | True                                                                                                                         |
+| id                   | e7b67698-3929-43af-8e59-9652d00b7250                                                                                         |
+| links                | http://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Servers-With-LB-Stack/e7b67698-3929-43af-8e59-9652d00b7250    |
+| notification_topics  | []                                                                                                                           |
+| outputs              | [                                                                                                                            |
+|                      |   {                                                                                                                          |
+|                      |     "output_value": "162.242.141.48",                                                                                        |
+|                      |     "description": "The public IP address of the load balancer",                                                             |
+|                      |     "output_key": "lb_public_ip"                                                                                             |
+|                      |   }                                                                                                                          |
+|                      | ]                                                                                                                            |
+| parameters           | {                                                                                                                            |
+|                      |   "OS::stack_name": "Servers-With-LB-Stack",                                                                                 |
+|                      |   "OS::stack_id": "e7b67698-3929-43af-8e59-9652d00b7250"                                                                     |
+|                      | }                                                                                                                            |
+| stack_name           | Servers-With-LB-Stack                                                                                                        |
+| stack_status         | UPDATE_COMPLETE                                                                                                              |
+| stack_status_reason  | Stack successfully updated                                                                                                   |
+| template_description | Heat Orchestration Template that spins up a resource                                                                         |
+|                      | group with 2 Rackspace Cloud Servers and a Cloud Load                                                                        |
+|                      | Balancer.                                                                                                                    |
+| timeout_mins         | 60                                                                                                                           |
+| updated_time         | 2014-01-28T21:34:47Z                                                                                                         |
++----------------------+------------------------------------------------------------------------------------------------------------------------------+</computeroutput></screen>
                         </informalexample>
                         <para>If you look at the <code>outputs</code>
                             property (set in the <code>outputs</code>
@@ -2888,7 +2911,7 @@ The request is accepted for processing.
         "id": "6574e1b1-4c22-49f5-a06d-6d99eb8d87c6", 
         "links": [
             {
-                "href": "http://localhost:8004/v1/1234/stacks/Servers-With-LB-Stack/6574e1b1-4c22-49f5-a06d-6d99eb8d87c6", 
+                "href": "http://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Servers-With-LB-Stack/6574e1b1-4c22-49f5-a06d-6d99eb8d87c6", 
                 "rel": "self"
             }
         ], 
@@ -2901,9 +2924,8 @@ The request is accepted for processing.
             }
         ], 
         "parameters": {
-            "AWS::Region": "ap-southeast-1", 
-            "AWS::StackId": "arn:openstack:heat::1234:stacks/Servers-With-LB-Stack/6574e1b1-4c22-49f5-a06d-6d99eb8d87c6", 
-            "AWS::StackName": "Servers-With-LB-Stack"
+            "OS::stack_name": "Servers-With-LB-Stack", 
+            "OS::stack_id": "6574e1b1-4c22-49f5-a06d-6d99eb8d87c6"
         }, 
         "stack_name": "Servers-With-LB-Stack", 
         "stack_status": "UPDATE_COMPLETE", 
