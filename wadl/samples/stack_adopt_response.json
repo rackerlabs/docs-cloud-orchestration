@@ -7,11 +7,11 @@ content-type: application/json; charset=UTF-8
   "status": "COMPLETE",
   "name": "trove",
   "template": {
-    "AWSTemplateFormatVersion": "2010-09-09",
-    "Resources": {
+    "heat-template-version": "2013-05-23",
+    "resources": {
       "MySqlCloudDatabaseServer": {
-        "Type": "OS::Trove::Instance",
-        "Properties": {
+        "type": "OS::Trove::Instance",
+        "properties": {
           "flavor": "1GB Instance",
           "databases": [
             {
@@ -32,11 +32,11 @@ content-type: application/json; charset=UTF-8
         }
       }
     },
-    "Description": "MYSQL server cloud database instance running on Rackspace cloud",
-    "Parameters": {
-      "InstanceName": {
-        "Type": "String",
-        "Description": "The database instance name"
+    "description": "MYSQL server cloud database instance running on Rackspace cloud",
+    "parameters": {
+      "instance_name": {
+        "type": "String",
+        "description": "The database instance name"
       }
     }
   },

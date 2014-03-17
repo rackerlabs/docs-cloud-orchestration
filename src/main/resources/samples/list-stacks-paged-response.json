@@ -13,7 +13,7 @@ Date: Thu, 16 Jan 2014 17:36:53 GMT
     "stacks": [
         {
             "creation_time": "2014-01-16T17:15:47Z",
-            "description": "AWS CloudFormation Sample Template WordPress_Single_Instance: WordPress is web software you can use to create a beautiful website or blog. This template installs a single-instance WordPress deployment using a local MySQL database to store the data.",
+            "description": "A simple stack that provides a single-instance Wordpress blog server",
             "id": "a240abd6-43c7-4479-9730-ea0bcd97fd9a",
             "links": [
                 {
@@ -22,13 +22,13 @@ Date: Thu, 16 Jan 2014 17:36:53 GMT
                 }
             ],
             "stack_name": "stack04",
-            "stack_status": "CREATE_FAILED",
-            "stack_status_reason": "Resource create failed: Error: Creation of server stack04-WikiDatabase-fvclbcgzsfu3 failed: No valid host was found.  (500)",
+            "stack_status": "CREATE_COMPLETE",
+            "stack_status_reason": "Create complete",
             "updated_time": "2014-01-16T17:15:48Z"
         },
         {
             "creation_time": "2014-01-16T17:15:31Z",
-            "description": "AWS CloudFormation Sample Template WordPress_Single_Instance: WordPress is web software you can use to create a beautiful website or blog. This template installs a single-instance WordPress deployment using a local MySQL database to store the data.",
+            "description": "A simple stack that provides a single-instance Wordpress blog server",
             "id": "5d0daddb-2a24-475b-853d-4ab4e1522c63",
             "links": [
                 {
@@ -38,7 +38,7 @@ Date: Thu, 16 Jan 2014 17:36:53 GMT
             ],
             "stack_name": "stack03",
             "stack_status": "CREATE_IN_PROGRESS",
-            "stack_status_reason": "Resource create failed: Error: Creation of server stack03-WikiDatabase-hlyh46kohdxy failed: No valid host was found.  (500)",
+            "stack_status_reason": "",
             "updated_time": "2014-01-16T17:15:32Z"
         }
     ]
