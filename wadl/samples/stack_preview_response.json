@@ -13,16 +13,15 @@
         "stack_status": "_",
         "stack_status_reason": "",
         "parameters": {
-            "AWS::Region": "ap-southeast-1",
-            "AWS::StackId": "arn:openstack:heat::2e327e5e7fa94b25a44be66fd9d1ec4d:stacks/sample_stack/None",
-            "AWS::StackName": "sample_stack",
-            "DBName": "wordpress",
-            "DBPassword": "******",
-            "DBRootPassword": "******",
-            "DBUsername": "******",
-            "InstanceType": "m1.small",
-            "KeyName": "heat_key",
-            "LinuxDistribution": "F17"
+            "OS::stack_id": "None",
+            "OS::stack_name": "sample_stack",
+            "db_name": "wordpress",
+            "db_pass": "******",
+            "db_root_pass": "******",
+            "db_user_name": "******",
+            "flavor": "1 GB Performance",
+            "key_name": "heat_key",
+            "image": "Fedora 19 (Schrodinger's Cat) (PVHVM)"
         },
         "links": [
             {
@@ -34,7 +33,7 @@
             {
                 "stack_name": "sample_stack",
                 "resource_name": "WikiDatabase-1",
-                "resource_type": "AWS::EC2::Instance",
+                "resource_type": "OS::Nova::Server",
                 "description": "",
                 "resource_action": "INIT",
                 "resource_status": "COMPLETE",
@@ -53,33 +52,7 @@
                     "stack_name": "sample_stack",
                     "tenant": "2e327e5e7fa94b25a44be66fd9d1ec4d"
                 },
-                "updated_time": "2014-02-19T16:04:56Z",
-                "metadata": {
-                    "AWS::CloudFormation::Init": {
-                        "config": {
-                            "packages": {
-                                "yum": {
-                                    "httpd": [],
-                                    "mysql": [],
-                                    "mysql-server": [],
-                                    "wordpress": []
-                                }
-                            },
-                            "services": {
-                                "systemd": {
-                                    "httpd": {
-                                        "enabled": "true",
-                                        "ensureRunning": "true"
-                                    },
-                                    "mysqld": {
-                                        "enabled": "true",
-                                        "ensureRunning": "true"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                "updated_time": "2014-02-19T16:04:56Z"
             },
             {
                 "other resources...": "other resources..."

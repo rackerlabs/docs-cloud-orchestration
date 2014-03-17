@@ -3,10 +3,9 @@
         "disable_rollback": true,
         "description": "MYSQL server cloud database instance running on Rackspace cloud",
         "parameters": {
-            "InstanceName": "testdb",
-            "AWS::StackId": "arn:openstack:heat::836933:stacks/trove2/879xxx21-9db9-49be-bc4f-a7f2exxxx68",
-            "AWS::Region": "ap-southeast-1",
-            "AWS::StackName": "trove2"
+            "instance_name": "testdb",
+            "OS::stack_id": "87xxx21-9db9-49be-bc4f-a7f2exxxx68",
+            "OS::stack_name": "trove2"
         },
         "stack_status_reason": "Stack create completed successfully",
         "stack_name": "trove2",
