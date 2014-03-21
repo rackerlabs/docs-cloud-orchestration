@@ -84,6 +84,10 @@
                                    linkend="resource_dependencies_d1e385"
                                 />).</para>
                         </listitem>
+                        <listitem>
+                            <para>Replaced standard flavors with
+                                performance flavors.</para>
+                        </listitem>
                     </itemizedlist>
                 </revdescription>
             </revision>
@@ -1365,7 +1369,7 @@ resources:
     properties:
       key_name: my_key
       image: CentOS 6.5
-      flavor: 1GB Standard Instance </screen>
+      flavor: 1 GB Performance</screen>
             <para>Each HOT template has to include the <emphasis
                     role="italic">heat_template_version</emphasis> key
                 with value '2013-05-23' (the current version of HOT).
@@ -1444,13 +1448,13 @@ resources:
                 not provide the respective parameter during
                 deployment. For example, the following definition for
                 the <code>instance_type</code> parameter would select
-                the <code>1GB Standard Instance</code> flavor by
-                default unless specified otherwise by the user:</para>
+                the <code>1 GB Performance</code> flavor by default
+                unless specified otherwise by the user:</para>
             <screen>parameters:
   instance_type:
     type: string
     description: Type of instance (flavor) to be used
-    default: 1GB Standard Instance</screen>
+    default: 1 GB Performance</screen>
             <para>Another option that can be specified for a parameter
                 is to hide its value when users request information
                 about a stack deployed from a template. This is
@@ -1477,7 +1481,7 @@ parameters:
   instance_type:
     type: string
     description: Type of instance (flavor) to be used
-    <emphasis role="bold">default: 1GB Standard Instance </emphasis>
+    <emphasis role="bold">default: 1 GB Performance</emphasis>
   <emphasis role="bold">database_password:
     type: string
     description: Password to be used for database
@@ -1513,8 +1517,8 @@ resources:
     description: Type of instance (flavor) to be used
     default: m1.small 
     constraints:
-      - allowed_values: [ 1GB Standard Instance, 2GB Standard Instance, 4GB Standard Instance ]
-        description: Value must be one of 1GB Standard Instance, 2GB Standard Instance, or 4GB Standard Instance. </screen>
+      - allowed_values: [ 1 GB Performance, 2 GB Performance, 4 GB Performance ]
+        description: Value must be one of 1 GB Performance, 2 GB Performance, or 4 GB Performance. </screen>
                 <para>The <code
                         >constraints</code> section allows for
                     defining a list of constraints that must all be
@@ -1552,8 +1556,8 @@ parameters:
     description: Type of instance (flavor) to be used
     default: m1.small
     <emphasis role="bold">constraints:
-      - allowed_values: [ 1GB Standard Instance, 2GB Standard Instance, 4GB Standard Instance ]
-        description: Value must be one of 1GB Standard Instance, 2GB Standard Instance, or 4GB Standard Instance. </emphasis>
+      - allowed_values: [ 1 GB Performance, 2 GB Performance, 4 GB Performance ]
+        description: Value must be one of 1 GB Performance, 2 GB Performance, or 4 GB Performance. </emphasis>
   database_password:
     type: string
     description: Password to be used for database
@@ -1634,8 +1638,8 @@ parameters:
     description: Type of instance (flavor) to be used
     default: m1.small
     constraints:
-      - allowed_values: [ 1GB Standard Instance, 2GB Standard Instance, 4GB Standard Instance ]
-        description: Value must be one of 1GB Standard Instance, 2GB Standard Instance, or 4GB Standard Instance.
+      - allowed_values: [ 1 GB Performance, 2 GB Performance, 4 GB Performance ]
+        description: Value must be one of 1 GB Performance, 2 GB Performance, or 4 GB Performance.
   database_password:
     type: string
     description: Password to be used for database
@@ -1691,7 +1695,7 @@ resources:
                         that are defined in the
                         template:<screen>parameters:
   KeyName: heat_key
-   flavor: 2GB Standard
+   flavor: 2 GB Performance
    image: CentOS 6.5 </screen></para>
                 </listitem>
             </itemizedlist>
