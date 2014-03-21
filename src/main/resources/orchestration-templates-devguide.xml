@@ -88,6 +88,11 @@
                             <para>Replaced standard flavors with
                                 performance flavors.</para>
                         </listitem>
+                        <listitem>
+                            <para>Updated <xref
+                                   linkend="Environment_Usage_Examples-d1e429"
+                                />.</para>
+                        </listitem>
                     </itemizedlist>
                 </revdescription>
             </revision>
@@ -1688,15 +1693,15 @@ resources:
                 <title>Pass Parameters into &Checkmate;</title>
                 <listitem>
                     <para>The following example passes three
-                        parameters <code>KeyName</code>,
-                            <code>InstanceType</code>, and
-                            <code>ImageId</code> into &Checkmate;,
+                        parameters <code>key_name</code>,
+                            <code>flavor</code>, and
+                            <code>image</code> into &Checkmate;,
                         overriding any values for these parameters
                         that are defined in the
                         template:<screen>parameters:
-  KeyName: heat_key
-   flavor: 2 GB Performance
-   image: CentOS 6.5 </screen></para>
+  key_name: heat_key
+  flavor: 2 GB Performance
+  image: CentOS 6.5</screen></para>
                 </listitem>
             </itemizedlist>
             <note>
