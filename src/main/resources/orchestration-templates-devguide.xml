@@ -50,7 +50,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-03-13</pubdate>
+        <pubdate>2014-03-21</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -65,6 +65,28 @@
         
         
         <revhistory>
+            <revision>
+                <date>2014-03-21</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated information for parameters
+                                   (<xref
+                                   linkend="parameters_section_d1e753"
+                                />), parameter constraints (<xref
+                                   linkend="parameter_constraints_d1e264"
+                                />), and resources (<xref
+                                   linkend="resources_d1e142"
+                                />).</para>
+                        </listitem>
+                        <listitem>
+                            <para>Added (<xref
+                                   linkend="resource_dependencies_d1e385"
+                                />).</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-03-13</date>
                 <revdescription>
@@ -555,15 +577,17 @@ outputs:
                     are typically used to customize each deployment,
                     for example by setting custom user names or
                     passwords or for binding to environment-specifics
-                    like certain images. Each parameter is specified
-                    in a separated nested block with the name of the
-                    parameter defined in the first line and additional
+                    like certain images. </para>
+                <para>Each parameter is specified in a separated
+                    nested block with the name of the parameter
+                    defined in the first line and additional
                     attributes such as <code>type</code> or
                         <code>default</code> defined as nested
                     elements.</para>
                 <screen language="bash">parameters:
   &lt;param name>:
     type: &lt;string | number | json | comma_delimited_list>
+    label: &lt;human-readable name of the parameter>
     description: &lt;description of the parameter>
     default: &lt;default value for parameter>
     hidden: &lt;true | false>
@@ -591,6 +615,15 @@ outputs:
                                    <code>number</code>,
                                    <code>comma_delimited_list</code>,
                                 or <code>json</code>.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term><code>label</code></term>
+                        <listitem>
+                            <para>This <emphasis role="italic"
+                                   >optional</emphasis> attribute
+                                allows for giving the parameter a
+                                human readable name.</para>
                         </listitem>
                     </varlistentry>
                     <varlistentry>
@@ -651,9 +684,11 @@ outputs:
                 <screen language="bash">parameters:
   user_name:
     type: string
+    label: User Name
     description: User name to be configured for the application
   port_number:
     type: number
+    label: Port Number
     description: Port number to be configured for the web server </screen>
             </section>
             <section xml:id="parameter_constraints_d1e264">
@@ -719,6 +754,7 @@ outputs:
                 <screen language="bash">parameters:
   user_name:
     type: string
+    label: User Name
     description: User name to be configured for the application
     constraints:
       - length: { min: 6, max: 8 }
@@ -794,12 +830,13 @@ outputs:
                                 example:<screen language="bash">parameters:
   instance_type:
     type: string
+    label: Instance Type
     description: Instance type for compute instances
     constraints:
       allowed_values:
-        - 1GB Standard Instance
-        - 2GB Standard Instance
-        - 4GB Standard Instance </screen></para>
+        - 1 GB Performance
+        - 2 GB Performance
+        - 4 GB Performance</screen></para>
                         </listitem>
                     </varlistentry>
                     <varlistentry>
@@ -817,10 +854,35 @@ outputs:
                                 example:<screen language="bash">parameters:
   user_name:
     type: string
+    label: User Name
     description: User name to be configured for the application
     constraints:
       - allowed_pattern: "[A-Z]+[a-zA-Z0-9]*"
         description: User name must start with an uppercase character
+  </screen></para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term><code>custom_constraint</code></term>
+                        <listitem>
+                            <para>The <code>custom_constraint</code>
+                                constraint adds an extra step of
+                                validation, generally to check that
+                                the specified resource exists in the
+                                backend. Custom constraints get
+                                implemented by plug-ins and can
+                                provide any kind of advanced
+                                constraint validation logic. The
+                                syntax of the
+                                   <code>allowed_pattern</code>
+                                constraint
+                                is:<screen language="bash">  custom_constraint: &lt;name> </screen>For
+                                example:<screen language="bash">parameters:
+  key_name
+    type: string
+    description: SSH key pair
+    constraints:
+      - custom_constraint: nova.keypair
   </screen></para>
                         </listitem>
                     </varlistentry>
@@ -840,7 +902,11 @@ outputs:
     type: &lt;resource type>
     properties:
       &lt;property name>: &lt;property value>
-    # more resource-specific metadata </screen>
+    metadata:
+      &lt;resource specific metadata>
+    depends_on: &lt;resource ID or list of ID>
+    update_policy: &lt;update policy>
+    deletion_policy: &lt;deletion policy>  </screen>
                 <variablelist>
                     <varlistentry>
                         <term><replaceable>resource ID</replaceable></term>
@@ -877,7 +943,8 @@ outputs:
                     <varlistentry>
                         <term><code>properties</code></term>
                         <listitem>
-                            <para>This section contains a list of
+                            <para>This <emphasis>optional</emphasis>
+                                section contains a list of
                                 resource-specific properties. The
                                 property value can be provided in
                                 place, or can be provided via a
@@ -889,15 +956,96 @@ outputs:
                                 metadata. Below is an example of a
                                 simple compute resource definition
                                 with some property values
-                                fixed.<screen language="bash">resources:
+                                fixed:<screen language="bash">resources:
   my_instance:
     type: Rackspace::Cloud::Server
     properties:
-      flavor: 1GB Standard Instance
+      flavor: 1 GB Performance
       image: CentOS 6.5 </screen></para>
                         </listitem>
                     </varlistentry>
+                    <varlistentry>
+                        <term><code>metadata</code></term>
+                        <listitem>
+                            <para>This <emphasis>optional</emphasis>
+                                section contains resource type
+                                specific metadata.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term><code>depends_on</code></term>
+                        <listitem>
+                            <para>This <emphasis>optional</emphasis>
+                                attribute allows for specifying
+                                dependencies of the current resource
+                                on one or more other resources. Refer
+                                to <xref
+                                   linkend="resource_dependencies_d1e385"
+                                /> for details.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term><code>update_policy</code></term>
+                        <listitem>
+                            <para>This <emphasis>optional</emphasis>
+                                attribute allows for specifying an
+                                update policy for the resource in the
+                                form of a nested dictionary
+                                (name-value pairs). Whether update
+                                policies are supported and what the
+                                exact semantics are depends on the
+                                type of the current resource.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term><code>deletion_policy</code></term>
+                        <listitem>
+                            <para>This <emphasis>optional</emphasis>
+                                attribute allows for specifying a
+                                deletion policy for the resource (one
+                                of the values <code>Delete</code>,
+                                   <code>Retain</code>, or
+                                   <code>Snapshot</code>). The type
+                                of deletion policy supported depends
+                                on the type of the current
+                                resource.</para>
+                        </listitem>
+                    </varlistentry>
                 </variablelist>
+                <section xml:id="resource_dependencies_d1e385">
+                    <title>Resource Dependencies</title>
+                    <para>Using the <code>depends_on</code> attribute
+                        within a resource section, it is possible to
+                        define a dependency between a resource and one
+                        or more other resources. This dependency means
+                        that the dependent resource must wait for
+                        another resource (or resources) to be created
+                        before being created itself.</para>
+                    <para>If a  resource depends on just one other
+                        resource, the ID of the other resource is
+                        specified as value of the
+                            <code>depends_on</code> attribute as shown
+                        in the following
+                        example:<programlisting>resources:    
+  server1:
+    type: Rackspace::Cloud::Server
+    depends_on: server2
+  server2:
+    type: Rackspace::Cloud::Server</programlisting>If
+                        a resource depends on more than one other
+                        resource, the value of the
+                            <code>depends_on</code> attribute is
+                        specified as a list of resource IDs as shown
+                        in the following
+                        example:<programlisting>resources:    
+  server1:
+    type: Rackspace::Cloud::Server
+    depends_on: [ server2, server3 ]
+  server2:
+    type: Rackspace::Cloud::Server
+  server3:
+    type: Rackspace::Cloud::Server</programlisting></para>
+                </section>
             </section>
             <section xml:id="outputs_d1e725">
                 <title>Outputs</title>
