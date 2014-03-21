@@ -1520,7 +1520,7 @@ resources:
   instance_type:
     type: string
     description: Type of instance (flavor) to be used
-    default: m1.small 
+    default: 1 GB Performance 
     constraints:
       - allowed_values: [ 1 GB Performance, 2 GB Performance, 4 GB Performance ]
         description: Value must be one of 1 GB Performance, 2 GB Performance, or 4 GB Performance. </screen>
@@ -1559,7 +1559,7 @@ parameters:
   instance_type:
     type: string
     description: Type of instance (flavor) to be used
-    default: m1.small
+    default: 1 GB Performance
     <emphasis role="bold">constraints:
       - allowed_values: [ 1 GB Performance, 2 GB Performance, 4 GB Performance ]
         description: Value must be one of 1 GB Performance, 2 GB Performance, or 4 GB Performance. </emphasis>
@@ -1641,7 +1641,7 @@ parameters:
   instance_type:
     type: string
     description: Type of instance (flavor) to be used
-    default: m1.small
+    default: 1 GB Performance
     constraints:
       - allowed_values: [ 1 GB Performance, 2 GB Performance, 4 GB Performance ]
         description: Value must be one of 1 GB Performance, 2 GB Performance, or 4 GB Performance.
@@ -1694,14 +1694,14 @@ resources:
                 <listitem>
                     <para>The following example passes three
                         parameters <code>key_name</code>,
-                            <code>flavor</code>, and
-                            <code>image</code> into &Checkmate;,
+                            <code>instance_type</code>, and
+                            <code>image_id</code> into &Checkmate;,
                         overriding any values for these parameters
                         that are defined in the
                         template:<screen>parameters:
   key_name: heat_key
-  flavor: 2 GB Performance
-  image: CentOS 6.5</screen></para>
+  instance_type: 2 GB Performance
+  image_id: CentOS 6.5</screen></para>
                 </listitem>
             </itemizedlist>
             <note>
