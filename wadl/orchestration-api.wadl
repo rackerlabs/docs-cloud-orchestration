@@ -220,9 +220,9 @@
                         xml:lang="EN"><para>A JSON environment for the
                             stack.</para></wadl:doc>
                 </param>
-                <param name="files" style="plain" type="map" path="$.files"><!-- required? type? path? -->
+                <param name="files" style="plain" required="false" type="map" path="$.files"><!-- required? type? path? -->
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN"><para>A map of file names (Provider
+                        xml:lang="EN"><para>A map of file names (provider
                             resource templates, as referenced in the
                             environment) to JSON template
                         bodies.</para></wadl:doc>
