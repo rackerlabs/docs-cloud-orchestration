@@ -12,7 +12,7 @@ content-type: application/json
     "id": "3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
     "links": [
       {
-        "href": "http://localhost:8004/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
+        "href": "http://hostname/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d",
         "rel": "self"
       }
     ]
