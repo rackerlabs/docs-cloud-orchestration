@@ -51,7 +51,7 @@
         </copyright>
         <releaseinfo>API v1</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-04-09</pubdate>
+        <pubdate>2014-04-25</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -67,6 +67,19 @@
         
         
         <revhistory>
+            <revision>
+                <date>2014-04-25</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Fixed endpoint for Validate template
+                                API Operation. Refer to <xref
+                                   linkend="POST_template_validate_v1__tenant_id__validate_Templates"
+                                /> for details.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-04-09</date>
                 <revdescription>
