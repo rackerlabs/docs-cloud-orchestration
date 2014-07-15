@@ -73,9 +73,9 @@
                     <itemizedlist spacing="compact">
                         <listitem>
                             <para>Fixed endpoint for Validate template
-                                API Operation. Refer to <xref
+                                API Operation.<!--   Refer to <xref
                                    linkend="POST_template_validate_v1__tenant_id__validate_Templates"
-                                /> for details.</para>
+                                /> for details.--></para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
@@ -98,10 +98,10 @@
                             <para>Fixed type of <code>files</code>
                                 parameter for Create Stack API
                                 operation to be <code>Map</code> and
-                                parameter to be optional. Refer to
+                                parameter to be optional.<!--   Refer to
                                    <xref
                                    linkend="POST_stack_create_v1__tenant_id__stacks_Stack_Operations"
-                                />.</para>
+                                />.--></para>
                         </listitem>
                     </itemizedlist>
                 </revdescription>
