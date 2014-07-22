@@ -791,12 +791,14 @@
             <para>The &Deployment; Service is a regionalized
                 service.</para>
             <para>You can find the available service access/endpoints
-                for &Deployment; summarized in the table below. To
-                help you decide which regionalized endpoint to use,
-                read about special considerations for choosing a data
-                center at <link
-                    xlink:href="http://ord.admin.kc.rakr.net/knowledge_center/article/what-is-ord-and-dfw"
-                    >http://ord.admin.kc.rakr.net/knowledge_center/article/what-is-ord-and-dfw</link>.</para>
+                for &Deployment; summarized in the table below. <tip>
+                    <para>To help you decide which regionalized
+                        endpoint to use, read about special
+                        considerations for choosing a data center at
+                            <link
+                            xlink:href="http://ord.admin.kc.rakr.net/knowledge_center/article/what-is-ord-and-dfw"
+                            >http://ord.admin.kc.rakr.net/knowledge_center/article/what-is-ord-and-dfw</link>.</para>
+                </tip></para>
             <?rax-fo keep-with-next?>
             <para>
                 <table rules="all">
