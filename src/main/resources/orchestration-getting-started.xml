@@ -1549,7 +1549,7 @@ heat_template_version: 2013-05-23
 
 resources:
   compute_instance:  
-    type: "Rackspace::Cloud::Server"
+    type: "OS::Nova::Server"
     properties:
       flavor: 1 GB Performance
       image: CentOS 6.5
@@ -1666,7 +1666,7 @@ outputs:
   "template": "heat_template_version: 2013-05-23
   resources:
     compute_instance:
-      type: "Rackspace::Cloud::Server"  
+      type: "OS::Nova::Server"  
       properties:
         flavor: 1GB Standard Instance
         image: CentOS 6.4
@@ -1699,7 +1699,7 @@ outputs:
    "stack_name": "Single-Server-Stack", 
    "disable_rollback": true, 
    "parameters": {}, 
-   "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"Rackspace::Cloud::Server\"\n    properties:\n      flavor: 1 GB Performance\n      image: CentOS 6.5\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, accessIPv4] }      \n\n\n", 
+   "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1 GB Performance\n      image: CentOS 6.5\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, accessIPv4] }      \n\n\n", 
    "timeout_mins": 60
 }' \
 https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlisting>
@@ -1753,7 +1753,7 @@ https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlist
                                 >\n</emphasis>, escaping any double
                                 quotation marks (for example
                                    <code>type:
-                                   \"Rackspace::Cloud::Server\"</code>),
+                                   \"OS::Nova::Server\"</code>),
                                 and maintaining correct spacing to
                                 indicate the correct nesting level for
                                 each block in the template. So it is
@@ -1832,7 +1832,7 @@ https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlist
                         <example security="writeronly">
                             <title>cURL Create Stack Request:
                                 JSON</title>
-                            <programlisting language="bash">curl -i -X POST -H 'X-Auth-User: mikeasthalter' -H 'X-Auth-Token: f067dca8068c477a9f98c851994d8659' -H 'X-Region-Name: DFW' -H 'X-Auth-Key: pinkH201' -H 'Accept: application/json' -H 'User-Agent: python-heatclient' -H 'Content-Type: application/json' -d '{"stack_name": "Single-Server-Stack", "disable_rollback": true, "parameters": {}, "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"Rackspace::Cloud::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }      \n\n\n", "timeout_mins": 60}' https://ord.orchestration.api.rackspacecloud.com/v1/647683/stacks</programlisting>
+                            <programlisting language="bash">curl -i -X POST -H 'X-Auth-User: mikeasthalter' -H 'X-Auth-Token: f067dca8068c477a9f98c851994d8659' -H 'X-Region-Name: DFW' -H 'X-Auth-Key: pinkH201' -H 'Accept: application/json' -H 'User-Agent: python-heatclient' -H 'Content-Type: application/json' -d '{"stack_name": "Single-Server-Stack", "disable_rollback": true, "parameters": {}, "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }      \n\n\n", "timeout_mins": 60}' https://ord.orchestration.api.rackspacecloud.com/v1/647683/stacks</programlisting>
                         </example>
                         <remark security="writeronly">Reviewer: Example above works. It is
                             produced by --debug output from heat
@@ -1847,7 +1847,7 @@ https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlist
    "stack_name": "Single-Server-Stack", 
    "disable_rollback": true, 
    "parameters": {}, 
-   "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"Rackspace::Cloud::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }      \n\n\n", 
+   "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }      \n\n\n", 
    "timeout_mins": 60
 }' \
 https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlisting>
@@ -1863,7 +1863,7 @@ https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlist
    "stack_name": "Single-Server-Stack", 
    "disable_rollback": true, 
    "parameters": {}, 
-   "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"Rackspace::Cloud::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n   \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }     \n\n\n", 
+   "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n   \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }     \n\n\n", 
    "timeout_mins": 60
 }' \
 https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlisting>
@@ -1873,7 +1873,7 @@ https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlist
                             by replacing each newline by \n and
                             escaping the double quote marks around the
                             resource type
-                            (\"Rackspace::Cloud::Server\"\).</remark>
+                            (\"OS::Nova::Server\"\).</remark>
                     </step>
                     <step>
                         <para>The following example shows the response
@@ -2394,7 +2394,7 @@ resources:
     properties:
       count: 2
       resource_def:
-        type: Rackspace::Cloud::Server
+        type: OS::Nova::Server
         properties:
           flavor: 1 GB Performance
           image: CentOS 6.5
@@ -2415,7 +2415,7 @@ resources:
                     <code>properties</code> section for the group, the
                 attribute <code>count</code> is set to <code>2</code>,
                 which means that 2 resources of the type
-                    <code>Rackspace::Cloud::Server</code> (as defined
+                    <code>OS::Nova::Server</code> (as defined
                 in the resource definition <code>resource_def</code>)
                 will be created in the group. The properties section
                 for the resource definition for each resource in the
@@ -2520,7 +2520,7 @@ resources:
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
   "parameters": {}, 
-  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: Rackspace::Cloud::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n\n", 
+  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n\n", 
   "timeout_mins": 60
 }' \
 <uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks</uri></programlisting>
@@ -2563,7 +2563,7 @@ resources:
                             <?dbfo keep-together="always"?>
                             <title>cURL Create Stack Request:
                                 JSON</title>
-                            <programlisting language="bash">curl -i -X POST -H 'X-Auth-User: mikeasthalter' -H 'X-Auth-Token: 6dee509fec7b450dac339ab0646d069c' -H 'X-Region-Name: DFW' -H 'X-Auth-Key: pinkH201' -H 'Accept: application/json' -H 'User-Agent: python-heatclient' -H 'Content-Type: application/json' -d '{"stack_name": "Servers-With-LB-Stack", "disable_rollback": true, "parameters": {}, "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: Rackspace::Cloud::Server\n        properties:\n          flavor: 1GB Standard Instance\n          image: CentOS 6.4\n          name: LB-Compute Web Nodes  \n\n\n", "timeout_mins": 60}' https://ord.orchestration.api.rackspacecloud.com/v1/647683/stacks</programlisting>
+                            <programlisting language="bash">curl -i -X POST -H 'X-Auth-User: mikeasthalter' -H 'X-Auth-Token: 6dee509fec7b450dac339ab0646d069c' -H 'X-Region-Name: DFW' -H 'X-Auth-Key: pinkH201' -H 'Accept: application/json' -H 'User-Agent: python-heatclient' -H 'Content-Type: application/json' -d '{"stack_name": "Servers-With-LB-Stack", "disable_rollback": true, "parameters": {}, "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1GB Standard Instance\n          image: CentOS 6.4\n          name: LB-Compute Web Nodes  \n\n\n", "timeout_mins": 60}' https://ord.orchestration.api.rackspacecloud.com/v1/647683/stacks</programlisting>
                         </example>
                         <remark security="writeronly">Reviewer: There
                             is a working example above from the
@@ -2623,7 +2623,7 @@ resources:
     properties:
       count: 2
       resource_def:
-        type: Rackspace::Cloud::Server
+        type: OS::Nova::Server
         properties:
           flavor: 1 GB Performance
           image: CentOS 6.5
@@ -2855,7 +2855,7 @@ outputs:
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
   "parameters": {}, 
-  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers\n  and a Cloud Load Balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: Rackspace::Cloud::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute Load Balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, PublicIp]}  \n\n", 
+  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers\n  and a Cloud Load Balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute Load Balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, PublicIp]}  \n\n", 
   "timeout_mins": 60
 }' \
 <uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks/</uri><emphasis role="bold">Servers-With-LB-Stack/stack_id</emphasis></programlisting>
@@ -3045,7 +3045,7 @@ The request is accepted for processing.
                     <listitem>
                         <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-create &lt;STACK_NAME&gt; 
 [-f &lt;FILE&gt;] [-e &lt;FILE&gt;] [-u &lt;URL&gt;] [-o &lt;URL&gt;]  
-[-c &lt;TIMEOUT&gt;] [-r ] [-P &lt;KEY1=VALUE1;KEY2=VALUE2...>] </programlisting>
+[-c &lt;TIMEOUT&gt;] [-c &lt;TIMEOUT&gt;] [-r ] [-P &lt;KEY1=VALUE1;KEY2=VALUE2...>] </programlisting>
                         <itemizedlist>
                             <title>Positional Arguments</title>
                             <listitem>
@@ -3086,6 +3086,14 @@ The request is accepted for processing.
                             <listitem>
                                 <para><option>-c &lt;TIMEOUT&gt; ,
                                    --create-timeout
+                                   &lt;TIMEOUT&gt;</option>. The stack
+                                   creation timeout in minutes.
+                                   Default: 60.
+                                   (DEPRECATED use -t instead) </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-t &lt;TIMEOUT&gt; ,
+                                   --timeout
                                    &lt;TIMEOUT&gt;</option>. The stack
                                    creation timeout in minutes.
                                    Default: 60. </para>
@@ -3159,6 +3167,167 @@ The request is accepted for processing.
                     </listitem>
                 </varlistentry>
             </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Cancel
+                            stack update</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-cancel-update &lt;NAME or ID&gt;</programlisting>
+                        <para> Where <parameter>NAME</parameter> is
+                            the name of the stack or
+                                <parameter>ID</parameter> is the ID of
+                            the stack. </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Preview
+                            stack</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-preview &lt;STACK_NAME&gt; 
+[-f &lt;FILE&gt;] [-e &lt;FILE&gt;] [-u &lt;URL&gt;] [-o &lt;URL&gt;]  
+[-c &lt;TIMEOUT&gt;] [-t &lt;TIMEOUT&gt;][-r ] [-P &lt;KEY1=VALUE1;KEY2=VALUE2...>] </programlisting>
+                        <itemizedlist>
+                            <title>Positional Arguments</title>
+                            <listitem>
+                                <para>
+                                   <parameter>STACK_NAME</parameter>.
+                                   The name of the stack to preview.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                        <itemizedlist>
+                            <title>Optional Arguments</title>
+                            <listitem>
+                                <para>
+                                   <option>-f &lt;FILE&gt; ,
+                                   --template-file
+                                   &lt;FILE&gt;</option>. The path to
+                                   the template. </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-e &lt;FILE&gt; ,
+                                   --environment-file
+                                   &lt;FILE&gt;</option>. The path to
+                                   the environment. </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-u &lt;URL&gt; ,
+                                   --template-url
+                                   &lt;URL&gt;</option>. The URL of
+                                   the template. </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-o &lt;URL&gt; ,
+                                   --template-object
+                                   &lt;URL&gt;</option>. The URL to
+                                   retrieve the template object (for
+                                   example from swift). </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-c &lt;TIMEOUT&gt; ,
+                                   --create-timeout
+                                   &lt;TIMEOUT&gt;</option>. The stack
+                                   creation timeout in minutes.
+                                   Default: 60.
+                                   (DEPRECATED use -t instead) </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-t &lt;TIMEOUT&gt; ,
+                                   --timeout
+                                   &lt;TIMEOUT&gt;</option>. The stack
+                                   creation timeout in minutes.
+                                   Default: 60. </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-r ,
+                                   --enable-rollback</option>. Enable
+                                   rollback on create/update
+                                   failure.</para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-P
+                                   &lt;KEY1=VALUE1;KEY2=VALUE2...&gt;
+                                   , --parameters
+                                   &lt;KEY1=VALUE1;KEY2=VALUE2...&gt;</option>.
+                                   Parameter values used to create the
+                                   stack. This can be specified
+                                   multiple times, or once with
+                                   parameters separated by semicolon.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Adopt
+                            stack</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat stack-adopt &lt;STACK_NAME&gt; 
+[-e &lt;FILE&gt;] [-c &lt;TIMEOUT&gt;] [-t &lt;TIMEOUT&gt;] [-a &lt;FILE&gt;]  
+[-r ] [-P &lt;KEY1=VALUE1;KEY2=VALUE2...>] </programlisting>
+                        <itemizedlist>
+                            <title>Positional Arguments</title>
+                            <listitem>
+                                <para>
+                                   <parameter>STACK_NAME</parameter>.
+                                   The name of the stack to adopt.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                        <itemizedlist>
+                            <title>Optional Arguments</title>
+                            <listitem>
+                                <para><option>-e &lt;FILE&gt; ,
+                                   --environment-file
+                                   &lt;FILE&gt;</option>. The path to
+                                   the environment. </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-c &lt;TIMEOUT&gt; ,
+                                   --create-timeout
+                                   &lt;TIMEOUT&gt;</option>. The stack
+                                   creation timeout in minutes.
+                                   Default: 60.
+                                   (DEPRECATED use -t instead) </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-t &lt;TIMEOUT&gt; ,
+                                   --timeout
+                                   &lt;TIMEOUT&gt;</option>. The stack
+                                   creation timeout in minutes.
+                                   Default: 60. </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-a &lt;FILE&gt; ,
+                                   --adopt-file
+                                   &lt;FILE&gt;</option>. The path to
+                                   adopt data file. </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-r ,
+                                   --enable-rollback</option>. Enable
+                                   rollback on create/update
+                                   failure.</para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-P
+                                   &lt;KEY1=VALUE1;KEY2=VALUE2...&gt;
+                                   , --parameters
+                                   &lt;KEY1=VALUE1;KEY2=VALUE2...&gt;</option>.
+                                   Parameter values used to create the
+                                   stack. This can be specified
+                                   multiple times, or once with
+                                   parameters separated by semicolon.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>            
             <variablelist wordsize="10%">
                 <varlistentry>
                     <term><emphasis role="bold">Update
@@ -3259,6 +3428,8 @@ The request is accepted for processing.
                             based on resource</emphasis></term>
                     <listitem>
                         <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-template [-F &lt;FORMAT>] &lt;RESOURCE_TYPE></programlisting>
+                        <para> DEPRECATED. use resource-type-template 
+                        instead </para>
                         <itemizedlist>
                             <title>Positional Arguments</title>
                             <listitem>
@@ -3274,11 +3445,7 @@ The request is accepted for processing.
                                 <para><option>-F &lt;FORMAT></option>,
                                    <option>--format
                                    &lt;FORMAT></option>. The template
-                                   output format. <code>{'yaml':
-                                   &lt;function safe_dump at
-                                   0x1df7668>, 'json': &lt;function
-                                   &lt;lambda> at
-                                   0x1dfc230>}</code></para>
+                                   output format. one of :yaml, json. </para>
                             </listitem>
                         </itemizedlist>
                     </listitem>
@@ -3306,6 +3473,61 @@ The request is accepted for processing.
                     </listitem>
                 </varlistentry>
             </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Generate a template based 
+                            on a resource type</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-type-template &lt;RESOURCE_TYPE> -F &lt;FORMAT></programlisting>
+                        <para> Where
+                                <parameter>RESOURCE_TYPE</parameter>
+                            is the type of the resource.
+                        </para>
+                        <itemizedlist>
+                            <title>Optional Arguments</title>
+                            <listitem>
+                                <para>
+                                   <option>-F &lt;FORMAT&gt; ,
+                                   --format
+                                   &lt;FORMAT&gt;</option>. The template 
+                                   output format, one of :yaml, json. </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%" security="writeronly">
+                <varlistentry>
+                    <term><emphasis role="bold">Send signal to a 
+                            resource</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat resource-signal &lt;NAME or ID&gt; &lt;RESOURCE&gt; -D &lt;DATA&gt; -f &lt;FILE&gt;  </programlisting>
+                        <para> Where <parameter>NAME</parameter> is
+                            the name of the stack or
+                                <parameter>ID</parameter> is the ID of
+                            the stack for which to show resource
+                            metadata. </para>
+                        <para> And <parameter>RESOURCE</parameter> is
+                            the name of the resource for which to show
+                            metadata. </para>
+                        <itemizedlist>
+                            <title>Optional Arguments</title>
+                            <listitem>
+                                <para><option>-D &lt;DATA></option>,
+                                   <option>--data
+                                   &lt;DATA></option>. JSON data to
+                                   send to the signal handler. </para>
+                            </listitem>
+                            <listitem>
+                                <para><option>-F &lt;FILE></option>,
+                                   <option>--data-file
+                                   &lt;FILE></option>. File containing JSON 
+                                   data to send to the signal handler. </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>            
         </section>
         <section xml:id="heat_summary_events">
             <title>Events</title>

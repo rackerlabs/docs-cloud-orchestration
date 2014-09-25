@@ -164,14 +164,7 @@
             this guide. &Checkmate; is based on the OpenStack open
             source project named Heat. Rackspace &Checkmate; currently
             supports only the HOT (Heat Orchestration Template) syntax
-            specification of Heat.  <note>
-                <para> The "Deployments" feature within the Rackspace
-                    Control Panel (<link
-                        xlink:href="https://mycloud.rackspace.com/"
-                        >https://mycloud.rackspace.com/</link>) is
-                    provided by an orchestration system similar to
-                    Heat.</para>
-            </note></para>
+            specification of Heat. </para>
         <itemizedlist>
             <title>How &Checkmate; Works</title>
             <listitem>
@@ -359,10 +352,13 @@
             <para>Once you have created a template, you can check it
                 into your local github repository if desired. If you
                 would rather not start from scratch, browse the
-                &Checkmate; github repository (<link
+                OpenStack github repository (<link
                     xlink:href="https://github.com/openstack/heat-templates"
                     >https://github.com/openstack/heat-templates</link>)
-                for a template that closely matches your needs, clone
+                or &Checkmate; github repository (<link
+                    xlink:href="https://github.com/rackspace-orchestration-templates"
+                    >https://github.com/rackspace-orchestration-templates</link>) 
+					for a template that closely matches your needs, clone
                 it to a local repository, and then modify it for your
                 unique architecture.<remark security="writeronly"
                     >Reviewer: do we have a process to allow users to
@@ -765,9 +761,6 @@ outputs:
                         </listitem>
                     </varlistentry>
                 </variablelist>
-                <para>The set of currently supported constraints and
-                    the concrete syntax for each constraint type is
-                    shown following the example below.</para>
                 <para>The following example shows the definition of a
                     string parameter with two constraints. Note that
                     while the descriptions for each constraint are
@@ -784,9 +777,7 @@ outputs:
         description: User name must be between 6 and 8 characters
       - allowed_pattern: "[A-Z]+[a-zA-Z0-9]*"
         description: User name must start with an uppercase character </screen>
-                <para>The supported types of parameter constraints,
-                    along with the concrete syntax for each type, are
-                    as follows:</para>
+                <para>The following sections list the supported types of parameter constraints, along with the concrete syntax for each type.</para>
                 <variablelist>
                     <varlistentry>
                         <term><code>length</code></term>
@@ -946,7 +937,7 @@ outputs:
                         <listitem>
                             <para>This attribute specifies the type of
                                 resource, such as
-                                   <code>Rackspace::Cloud::Server</code>.</para>
+                                   <code>OS::Nova::Server</code>.</para>
                             <note>
                                 <para>To find the various types of
                                    supported template resources, use
@@ -981,7 +972,7 @@ outputs:
                                 with some property values
                                 fixed:<screen language="bash">resources:
   my_instance:
-    type: Rackspace::Cloud::Server
+    type: OS::Nova::Server
     properties:
       flavor: 1 GB Performance
       image: CentOS 6.5 </screen></para>
@@ -1051,10 +1042,10 @@ outputs:
                         in the following
                         example:<programlisting>resources:    
   server1:
-    type: Rackspace::Cloud::Server
+    type: OS::Nova::Server
     depends_on: server2
   server2:
-    type: Rackspace::Cloud::Server</programlisting>If
+    type: OS::Nova::Server</programlisting>If
                         a resource depends on more than one other
                         resource, the value of the
                             <code>depends_on</code> attribute is
@@ -1062,12 +1053,12 @@ outputs:
                         in the following
                         example:<programlisting>resources:    
   server1:
-    type: Rackspace::Cloud::Server
+    type: OS::Nova::Server
     depends_on: [ server2, server3 ]
   server2:
-    type: Rackspace::Cloud::Server
+    type: OS::Nova::Server
   server3:
-    type: Rackspace::Cloud::Server</programlisting></para>
+    type: OS::Nova::Server</programlisting></para>
                 </section>
             </section>
             <section xml:id="outputs_d1e725">
@@ -1165,7 +1156,7 @@ outputs:
 
 resources:
   my_instance:
-    type: Rackspace::Cloud::Server
+    type: OS::Nova::Server
     properties:
       flavor: { get_param: instance_type}
  </screen>
@@ -1235,7 +1226,7 @@ resources:
                             <code>get_attr</code> function is shown
                         below:<screen language="bash">resources:
   my_instance:
-    type: Rackspace::Cloud::Server
+    type: OS::Nova::Server
     # ...
 
 outputs:
@@ -1292,7 +1283,7 @@ outputs:
                                    into a deployed application:</para>
                                 <screen language="bash">resources:
   my_instance:
-    type: Rackspace::Cloud::Server
+    type: OS::Nova::Server
     # general metadata and properties ...
 
 outputs:
@@ -1332,7 +1323,7 @@ outputs:
 
 resources:
   my_instance:
-    type: Rackspace::Cloud::Server
+    type: OS::Nova::Server
     properties:
       # general properties ...
       user_data:
@@ -1384,7 +1375,7 @@ description: Simple template to deploy a single compute instance
 
 resources:
   my_instance:
-    type: Rackspace::Cloud::Server
+    type: OS::Nova::Server
     properties:
       key_name: my_key
       image: CentOS 6.5
@@ -1450,7 +1441,7 @@ parameters:
 
 resources:
   my_instance:
-    type: Rackspace::Cloud::Server
+    type: OS::Nova::Server
     properties:
       key_name: { get_param: key_name }
       image: { get_param: image_id }
@@ -1508,7 +1499,7 @@ parameters:
 
 resources:
   my_instance:
-    type: Rackspace::Cloud::Server
+    type: OS::Nova::Server
     properties:
       key_name: { get_param: key_name }
       image: { get_param: image_id }
@@ -1591,7 +1582,7 @@ parameters:
 
 resources:
   my_instance:
-    type: Rackspace::Cloud::Server
+    type: OS::Nova::Server
     properties:
       key_name: { get_param: key_name }
       image: { get_param: image_id }
@@ -1673,7 +1664,7 @@ parameters:
 
 resources:
   my_instance:
-    type: Rackspace::Cloud::Server
+    type: OS::Nova::Server
     properties:
       key_name: { get_param: key_name }
       image: { get_param: image_id }
@@ -1731,7 +1722,7 @@ resources:
                     TemplateResource</title>
                 <listitem>
                     <screen> resource_registry:
-  "Rackspace::Cloud::Server": file:///home/mine/my_instance_with_better_defaults.yaml 
+  "OS::Nova::Server": file:///home/mine/my_instance_with_better_defaults.yaml 
  </screen>
                     <para>Heat allows you to implement resources using
                         your own template to map parameters and
