@@ -50,7 +50,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-03-21</pubdate>
+        <pubdate>2014-09-25</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -65,6 +65,20 @@
         
         
         <revhistory>
+            <revision>
+                <date>2014-09-25</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated link to repository with
+                                current Rackspace orchestration
+                                templates. Refer to <xref
+                                   linkend="Additional_Resources-d1e532"
+                                /> for details.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-03-21</date>
                 <revdescription>
@@ -280,8 +294,8 @@
             <title>Additional Resources</title>
             <para>You can download the most current versions of
                 templates from <link
-                    xlink:href="https://github.com/rackspace-heat-templates"
-                    >https://github.com/rackspace-heat-templates</link>.</para>
+                    xlink:href="https://github.com/rackspace-orchestration-templates"
+                    >https://github.com/rackspace-orchestration-templates</link>.</para>
             <para>For information about Rackspace Cloud products,
                 refer to <link
                     xlink:href="http://www.rackspace.com/cloud/"
