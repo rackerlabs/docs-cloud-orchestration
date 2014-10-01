@@ -206,7 +206,7 @@
             manage an application’s cloud infrastructure.  Choosing to
             use &Deployment; at Rackspace provides for:<itemizedlist>
                 <listitem>
-                    <para>Portability of deployments between public
+                    <para>Portability of stacks between public
                         and private OpenStack clouds</para>
                 </listitem>
                 <listitem>
@@ -216,7 +216,7 @@
                         application across varied environments</para>
                 </listitem>
                 <listitem>
-                    <para>Standardized application deployments based
+                    <para>Standardized application stacks based
                         on determined best practices by Rackspace and
                         backed by expertise in Fanatical
                         Support</para>
@@ -336,11 +336,11 @@
                 in a user-readable language, that describes how a set
                 of resources should be assembled and what software
                 should be installed in order to produce a working
-                deployment. The template specifies what resources
+                stack. The template specifies what resources
                 should be used, what attributes can be set, and other
                 parameters that are critical to the successful,
                 repeatable automation of a specific application
-                deployment.</para>
+                stack.</para>
         </section>
         <section xml:id="Resource-d1e607">
             <title>Resource</title>
@@ -1216,10 +1216,18 @@
                         is being reverted.</para>
                 </listitem>
                 <listitem>
+                    <para>ADOPT &ndash; The stack/resource is
+                        adopted.</para>
+                </listitem>
+                <listitem>
+                    <para>CHECK &ndash; The stack/resoruce health is
+                        checked.</para>
+                </listitem>
+                <listitem security="writeronly">
                     <para>SUSPEND &ndash; (Stacks only) The stack is
                         suspended.</para>
                 </listitem>
-                <listitem>
+                <listitem security="writeronly">
                     <para>RESUME &ndash; (Stacks only) The stack is
                         resumed.</para>
                 </listitem>
@@ -1534,6 +1542,14 @@
                 <wadl:resource href="../../../wadl/orchestration-api.wadl#resource_name">
                     <wadl:method href="resource_show"/>
                 </wadl:resource>
+
+                <wadl:resource href="../../../wadl/orchestration-api.wadl#metadata">
+                    <wadl:method href="resource_metadata"/>
+                </wadl:resource>
+
+                <wadl:resource href="../../../wadl/orchestration-api.wadl#signal" security="writeronly">
+                    <wadl:method href="resource_signal"/>
+                </wadl:resource>
                 
                 <wadl:resource href="../../../wadl/orchestration-api.wadl#resource_types">
                     <wadl:method href="resource_type_list"/>
@@ -1599,12 +1615,41 @@
             <wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
                 
                 <wadl:resource href="../../../wadl/orchestration-api.wadl#build_info">
-                    <wadl:method href="build_info_get"/>
+                    <wadl:method href="build_info_show"/>
                 </wadl:resource>
                 
             </wadl:resources> 
         </section>  
-        
+
+		<section xml:id="software-config" security="writeronly">
+			<title>Software configuration</title>
+			<wadl:resources xmlns:wadl="http://wadl.dev.java.net/2009/02">
+				<wadl:resource
+					href="../../../wadl/orchestration-api.wadl#software_configs">
+					<wadl:method href="software_config_create"/>
+				</wadl:resource>
+				<wadl:resource
+					href="../../../wadl/orchestration-api.wadl#config_id">
+					<wadl:method href="software_config_show"/>
+					<wadl:method href="software_config_delete"/>
+				</wadl:resource>
+				<wadl:resource
+					href="../../../wadl/orchestration-api.wadl#software_deployments">
+					<wadl:method href="software_deployment_index"/>
+					<wadl:method href="software_deployment_create"/>
+				</wadl:resource>
+				<wadl:resource
+					href="../../../wadl/orchestration-api.wadl#server_id">
+					<wadl:method href="software_deployment_metadata"/>
+				</wadl:resource>
+				<wadl:resource
+					href="../../../wadl/orchestration-api.wadl#deployment_id">
+					<wadl:method href="software_deployment_show"/>
+					<wadl:method href="software_deployment_update"/>
+					<wadl:method href="software_deployment_delete"/>
+				</wadl:resource>
+			</wadl:resources>
+		</section>        
 
     </chapter>
     <chapter xml:id="using-heat-client-d1e019" security="writeronly">
@@ -2431,12 +2476,12 @@ set HEAT_URL=https://ord.orchestration.api.rackspacecloud.com/v1/${OS_TENANT_ID}
                     written in a user-readable language, that
                     describes how a set of resources should be
                     assembled and what software should be installed in
-                    order to produce a working deployment. The
+                    order to produce a working stack. The
                     template specifies what resources should be used,
                     what attributes can be set, and other parameters
                     that are critical to the successful, repeatable
                     automation of a specific application
-                    deployment.</para>
+                    stack.</para>
             </glossdef>
         </glossentry>
         <glossentry xml:id="resource-d1e019">
