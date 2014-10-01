@@ -352,12 +352,17 @@
                             instantiate. This value is ignored if the
                             template is supplied inline.</para></wadl:doc>
                 </param>
-                <param name="template" style="plain" required="true" type="object" path="$.template"><!-- required? type? path? -->
+                <param name="template" style="plain" required="true" type="string" path="$.template"><!-- required? type? path? -->
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN"><para>A JSON template to
-                            instantiate. This value takes precedence
-                            over the template URL if both are
-                            supplied.</para></wadl:doc>
+                        xml:lang="EN">
+                        <para>The <code>template</code> parameter is a string. The contents of the string is the template 
+                            itself as either JSON or YAML. So while the template format matters to Heat, the data structure for this 
+                            parameter is a string, for example:
+                            <code>{ ... template: "heat_template_version: 2013-05-23\nresources (...)" }</code>. This parameter takes precedence over the
+                            <code>template_URL</code> parameter if both are
+                            supplied.</para>
+                        <para>For a description of template syntax, refer to the <citetitle>Orchestration Templates Developer Guide</citetitle>.</para>
+                        </wadl:doc>
                 </param>
                 <param name="environment" style="plain" required="true" type="string" path="$.environment"><!-- required? type? path? -->
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -368,9 +373,22 @@
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>A map of file names to file
                         contents. It can also be used to pass provider
-                        template contents.</para></wadl:doc>
+                        template contents.</para>
+                        <para>The <code>files</code> parameter maps logical file names to file contents. These are used by the <code>get_file</code> 
+                            intrinsic function as well as the provider template functionality. When you want to use a provider template, for example, 
+                            Heat will actually add an entry to the <code>files</code> map using the URL of the provider template as the "name" and 
+                            the contents of that file as the value. Additionally, some template authors will encode their user-data in a local file. 
+                            The Heat client will examine the template for the <code>get_file</code> intrinsic function and add an entry to the 
+                            <code>files</code> map with the "path" to the file as the name and the file contents as the value. 
+                            So, a simple example might look like the following:</para>
+                        
+                        <para><code>"template": "(...) resources:\n my_server:\n type: OS::Nova::Server\n properties:\n user_data:
+                            { get_file: myfile }</code></para>
+                        
+                        <para><code>"files":
+                            { "myfile": "#!/bin/bash\necho 'Hello world' > /root/testfile.txt" }</code></para></wadl:doc>
                 </param>
-                <param name="parameters" style="plain" required="false" type="string" path="$.parameters">
+                <param name="parameters" style="plain" required="false" type="object" path="$.parameters">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>User-defined parameter
                             names to pass to the
@@ -428,14 +446,16 @@
                             supplied inline.</para>
                     </wadl:doc>
                 </param>
-                <param name="template" style="plain" required="true" type="object" path="$.template"><!-- required? type? path? -->
+                <param name="template" style="plain" required="true" type="string" path="$.template"><!-- required? type? path? -->
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN">
-                        <para>This is a string. It can be either the json
-                            or yaml representation of the template, but the
-                            actual value is a string. This
-                            value takes precedence over the template
-                            URL if both are supplied.</para>
+                        <para>The <code>template</code> parameter is a string. The contents of the string is the template 
+                            itself as either JSON or YAML. So while the template format matters to Heat, the data structure for this 
+                            parameter is a string, for example:
+                            <code>{ ... template: "heat_template_version: 2013-05-23\nresources (...)" }</code>. This parameter takes precedence over the
+                            <code>template_URL</code> parameter if both are
+                            supplied.</para>
+                        <para>For a description of template syntax, refer to the <citetitle>Orchestration Templates Developer Guide</citetitle>.</para>
                     </wadl:doc>
                 </param>
                 <param name="environment" style="plain" required="true" type="string" path="$.environment"><!-- required? type? path? -->
@@ -449,7 +469,20 @@
                         xml:lang="EN">
                         <para>A map of file names to file contents.
                         It can also be used to pass provider
-                        template contents.</para></wadl:doc>
+                        template contents.</para>
+                        <para>The <code>files</code> parameter maps logical file names to file contents. These are used by the <code>get_file</code> 
+                            intrinsic function as well as the provider template functionality. When you want to use a provider template, for example, 
+                            Heat will actually add an entry to the <code>files</code> map using the URL of the provider template as the "name" and 
+                            the contents of that file as the value. Additionally, some template authors will encode their user-data in a local file. 
+                            The Heat client will examine the template for the <code>get_file</code> intrinsic function and add an entry to the 
+                            <code>files</code> map with the "path" to the file as the name and the file contents as the value. 
+                            So, a simple example might look like the following:</para>
+                        
+                        <para><code>"template": "(...) resources:\n my_server:\n type: OS::Nova::Server\n properties:\n user_data:
+                            { get_file: myfile }</code></para>
+                        
+                        <para><code>"files":
+                            { "myfile": "#!/bin/bash\necho 'Hello world' > /root/testfile.txt" }</code></para></wadl:doc>
                 </param>
                 <param name="param_name-n" style="plain" required="false" type="string" path="$.parameters">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
