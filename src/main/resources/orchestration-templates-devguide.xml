@@ -50,7 +50,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-09-25</pubdate>
+        <pubdate>2014-10-07</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -65,6 +65,17 @@
         
         
         <revhistory>
+            <revision>
+                <date>2014-10-07</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated doc for initial General
+                                Availability (GA) release.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-09-25</date>
                 <revdescription>
@@ -951,6 +962,9 @@ outputs:
                                    <code>X-Auth-Token</code> and
                                    <code>tenant_id</code>):</para>
                                 <programlisting>curl -i -X GET -H 'X-Auth-Token: xxxxxx' -H 'Content-Type: application/json' -H 'Accept: application/json'  https://dfw.orchestration.rackspacecloud.com/v1/&lt;tenant_id>/resource_types</programlisting>
+                                <para>To find the properties for a
+                                   resource type, use the Show
+                                   resource data API operation.</para>
                             </note>
                         </listitem>
                     </varlistentry>

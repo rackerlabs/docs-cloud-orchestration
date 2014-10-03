@@ -50,13 +50,24 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-08-01</pubdate>
+        <pubdate>2014-10-07</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2014-10-07</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated doc for initial General
+                                Availability (GA) release.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-08-01</date>
                 <revdescription>
@@ -448,7 +459,9 @@ Type "help", "copyright", "credits" or "license" for more information.
                                    run the command below to install
                                    python2.7 (on Ubuntu Linux):</para>
                                    <programlisting>sudo apt-get install python2.7-dev</programlisting>
-                                   <note>
+                                   <note><title>Notes</title>
+                                   <itemizedlist>
+                                   <listitem>
                                    <para>On Windows and Mac download
                                    the python 2.7 installation file
                                    from <link
@@ -458,6 +471,16 @@ Type "help", "copyright", "credits" or "license" for more information.
                                    the latest release available, as
                                    listed in a note near the top of
                                    this web page.</para>
+                                   </listitem>
+                                   <listitem>
+                                   <para>On Ubuntu, if the command
+                                   above is not recognized, you may
+                                   need to first run <code>apt-get
+                                   update</code> before you run any of
+                                   the <code>apt-get install</code>
+                                   commands.</para>
+                                   </listitem>
+                                   </itemizedlist>
                                    </note>
                                    </step>
                                 </procedure>
@@ -513,6 +536,14 @@ Type "help", "copyright", "credits" or "license" for more information.
                                    <listitem>
                                    <para>Ubuntu
                                    <programlisting language="bash" role="gutter: false"><prompt>$</prompt> apt get install python-pip </programlisting></para>
+                                   <note>
+                                   <para>On Ubuntu, if the command
+                                   above is not recognized, you may
+                                   need to first run <code>apt-get
+                                   update</code> before you run any of
+                                   the <code>apt-get install</code>
+                                   commands.</para>
+                                   </note>
                                    </listitem>
                                    <listitem>
                                    <para>Debian
@@ -1586,6 +1617,25 @@ outputs:
                 combination of memory capacity and priority for CPU
                 time). It has CentOS 6.5 installed, and is called
                 Single Server Stack. </para>
+            <note>
+                <para>You can find the information for resource types
+                    either by looking it up, or programatically by
+                    using the API:</para>
+                <para>You can look up the names for the supported
+                    attributes for resources here: <link
+                        xlink:href="http://docs.openstack.org/developer/heat/template_guide/index.html"
+                        >http://docs.openstack.org/developer/heat/template_guide/index.html</link>.</para>
+                <para>To find the various types of supported template
+                    resources, use the List resource types API
+                    operation (&GET; <emphasis role="bold"
+                        >/resource_types</emphasis>). The cURL command
+                    for this operation is (make sure to use the
+                    correct values for your <code>X-Auth-Token</code>
+                    and <code>tenant_id</code>):</para>
+                <programlisting>curl -i -X GET -H 'X-Auth-Token: xxxxxx' -H 'Content-Type: application/json' -H 'Accept: application/json'  https://dfw.orchestration.rackspacecloud.com/v1/&lt;tenant_id>/resource_types</programlisting>
+                <para>To find the properties for a resource type, use
+                    the Show resource data API operation.</para>
+            </note>
             <para>This stack also has an <code>outputs</code> section.
                 Outputs are used to provide important information to
                 users, such as the IP address for the Cloud Server in
@@ -1602,10 +1652,6 @@ outputs:
                 can find out more about intrinsic functions at <link
                     xlink:href="http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content/Defining_Template_dle245.html#intrinsic_functions_d1e725"
                     >http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content/Defining_Template_dle245.html#intrinsic_functions_d1e725</link>. </para>
-            <para>You can look up the names for the supported
-                attributes for resources here: <link
-                    xlink:href="http://docs.openstack.org/developer/heat/template_guide/index.html"
-                    >http://docs.openstack.org/developer/heat/template_guide/index.html</link>.</para>
             <para>Choose one of the following methods:<itemizedlist>
                     <listitem>
                         <para><xref
@@ -2609,7 +2655,7 @@ Via: 1.0 Repose (Repose/2.13.0)
             <example>
                 <title>servers-with-lb-add.template with Load Balancer
                     added Example</title>
-                <programlisting>
+                <programlisting language="bash">
 heat_template_version: 2013-05-23
 
 description: |   

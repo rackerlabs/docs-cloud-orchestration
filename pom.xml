@@ -98,8 +98,43 @@
                         </configuration>
                     </execution>
                     
-                    <!-- MA: added this to generate public release notes -->
-                    
+                    <!-- MA: added this to generate internal and external release notes -->
+                    <execution>
+                        <id>orchestration-releasenotes-internal</id>
+                        <goals>
+                            <goal>generate-webhelp</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            
+                            <highlightSource>false</highlightSource>
+                            <includes>orchestration-releasenotes.xml</includes>
+                            <enableDisqus>intranet</enableDisqus>
+                            <feedbackEmail>mike.asthalter@rackspace.com</feedbackEmail>
+                            <enableGoogleAnalytics>1</enableGoogleAnalytics>
+                            <chapterAutolabel>0</chapterAutolabel>
+                            <security>internal</security>
+                            <canonicalUrlBase>http://docs-internal.rackspace.com/orchestration/api/v1.0/orchestration-releasenotes/content</canonicalUrlBase>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>orchestration-releasenotes</id>
+                        <goals>
+                            <goal>generate-webhelp</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            
+                            <highlightSource>false</highlightSource>
+                            <includes>orchestration-releasenotes.xml</includes>
+                            <enableDisqus>1</enableDisqus>
+                            <feedbackEmail>mike.asthalter@rackspace.com</feedbackEmail>
+                            <enableGoogleAnalytics>1</enableGoogleAnalytics>
+                            <chapterAutolabel>0</chapterAutolabel>
+                            <security>external</security>
+                            <canonicalUrlBase>http://docs.rackspace.com/orchestration/api/v1.0/orchestration-releasenotes/content</canonicalUrlBase>
+                        </configuration>
+                    </execution>
                 </executions>
                 <configuration>
                     <!-- Global config for all docs -->

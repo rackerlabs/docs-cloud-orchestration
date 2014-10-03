@@ -51,7 +51,7 @@
         </copyright>
         <releaseinfo>API v1</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-08-01</pubdate>
+        <pubdate>2014-10-07</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -67,6 +67,17 @@
         
         
         <revhistory>
+            <revision>
+                <date>2014-10-07</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated doc for initial General
+                                Availability (GA) release.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-08-01</date>
                 <revdescription>
@@ -277,8 +288,7 @@
                     <para>ReSTful web services</para>
                 </listitem>
                 <listitem>
-                    <para>JSON and/or YAML data serialization
-                        formats</para>
+                    <para>JSON data serialization format</para>
                 </listitem>
             </itemizedlist>
         </section>
@@ -304,8 +314,11 @@
             <para>For information about Rackspace services, refer to
                 <link xlink:href="http://docs.rackspace.com"
                     >http://docs.rackspace.com</link>.</para>
-            <para> Issues and bug reports can be directed to your
+            <para>Issues and bug reports can be directed to your
                 support team via ticket, chat, email, or phone.</para>
+            <para>Please give us your feedback at <link
+                    xlink:href="http://feedback.rackspace.com"
+                    >Product Feedback Forum</link>.</para>
             <remark>Reviewer: is the previous sentence OK for product
                 launch? Ask Keith Bray to ok this.</remark>
         </section>
@@ -808,10 +821,9 @@
                 for &Deployment; summarized in the table below. <tip>
                     <para>To help you decide which regionalized
                         endpoint to use, read about special
-                        considerations for choosing a data center at
-                            <link
-                                xlink:href="http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions"
-                                >http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions</link>.</para>
+                        considerations for choosing a region at <link
+                            xlink:href="http://www.rackspace.com/knowledge_center/article/about-regions"
+                            >http://www.rackspace.com/knowledge_center/article/about-regions</link>.</para>
                 </tip></para>
             <?rax-fo keep-with-next?>
             <para>
@@ -904,15 +916,14 @@
         <?hard-pagebreak?>
         <section xml:id="Request_Response_Types-d1e903">
             <title>Request/Response Types</title>
-            <para> The &Deployment; API supports both the JSON and
-                YAML data serialization formats. The request format is
-                specified using the <code>Content-Type</code> header
-                and is <emphasis>required</emphasis> for calls that
-                have a request body. The response format can be
-                specified in requests either by using the
-                    <code>Accept</code> header or by adding a
-                    <code>.yaml</code> or <code>.json</code> extension
-                to the request URI. Note that it is possible for a
+            <para> The &Deployment; API supports JSON data
+                serialization format. The request format is specified
+                using the <code>Content-Type</code> header and is
+                    <emphasis>required</emphasis> for calls that have
+                a request body. The response format can be specified
+                in requests either by using the <code>Accept</code>
+                header or by adding a  <code>.json</code> extension to
+                the request URI. Note that it is possible for a
                 response to be serialized using a format different
                 from the request. If no response format is specified,
                 JSON is the default. If conflicting formats are
@@ -936,12 +947,6 @@
                         <td>application/json</td>
                         <td>.json</td>
                         <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>YAML</td>
-                        <td>application/yaml</td>
-                        <td>.yaml</td>
-                        <td>No</td>
                     </tr>
                 </tbody>
             </table>
@@ -1220,7 +1225,7 @@
                         adopted.</para>
                 </listitem>
                 <listitem>
-                    <para>CHECK &ndash; The stack/resoruce health is
+                    <para>CHECK &ndash; The stack/resource health is
                         checked.</para>
                 </listitem>
                 <listitem security="writeronly">
@@ -1299,13 +1304,13 @@
                         <listitem>
                             <para>
                                 <link
-                                   xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/PUT_addUserRole_v2.0_users__userId__roles_OS-KSADM__roleId__.html"
+                                    xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/PUT_addUserRole__v2.0_users__userId__roles_OS-KSADM__roleid__Role_Calls.html"
                                    >Assign roles to account
                                    users</link></para>
                         </listitem>
                         <listitem>
                             <para><link
-                                   xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/DELETE_deleteUserRole_v2.0_users__userId__roles_OS-KSADM__roleId__.html"
+                                xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/DELETE_deleteUserRole__v2.0_users__userId__roles_OS-KSADM__roleid__Role_Calls.html"
                                    >Delete roles from account
                                    users</link></para>
                         </listitem>

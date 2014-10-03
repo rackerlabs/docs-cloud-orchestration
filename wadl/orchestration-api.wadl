@@ -69,8 +69,11 @@
                             required="true">
                             <wadl:doc
                                 xmlns="http://docbook.org/ns/docbook"
-                                xml:lang="EN"><para>The name of a
-                                   stack.</para></wadl:doc>
+                                xml:lang="EN"><para>The name of the
+                                   stack. The name must satisfy both of the following requirements:
+                                   1) It must start with an alphabetic character.
+                                   2) It must contain only alphanumeric characters or '_', '-', or '.' characters.</para>
+                            </wadl:doc>
                         </param>
                         <method href="#stack_find"/>
                         <resource path="resources" id="resources">
@@ -331,19 +334,13 @@
                     xml:lang="EN">
                     <xsdxt:code href="samples/stack_create.json"/>
                 </wadl:doc>
-            </representation>
-        </request>
-        <response status="201">
-            <representation mediaType="application/json">
-                <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                    xml:lang="EN">
-                    <xsdxt:code href="samples/stack_create_resp.json"
-                    />
-                </wadl:doc>
-                <param name="stack_name" style="plain" required="true">
+                <param name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN">
-                        <para>The name of the stack to create.</para>
+                        <para>The name of the
+                            stack. The name must satisfy both of the following requirements:
+                            1) It must start with an alphabetic character.
+                            2) It must contain only alphanumeric characters or '_', '-', or '.' characters.</para>
                     </wadl:doc>
                 </param>
                 <param name="template_url" style="plain" required="true" path="$.template_url" type="string" >
@@ -357,14 +354,16 @@
                         xml:lang="EN">
                         <para>The <code>template</code> parameter is a string. The contents of the string is the template 
                             itself as either JSON or YAML. So while the template format matters to Heat, the data structure for this 
-                            parameter is a string, for example:
-                            <code>{ ... template: "heat_template_version: 2013-05-23\nresources (...)" }</code>. This parameter takes precedence over the
+                            parameter is a string, for example:</para>
+                        
+                        <para><code>{ ... template: "heat_template_version: 2013-05-23\nresources (...)" }</code>.</para>
+                        <para>This parameter takes precedence over the
                             <code>template_URL</code> parameter if both are
                             supplied.</para>
                         <para>For a description of template syntax, refer to the <citetitle>Orchestration Templates Developer Guide</citetitle>.</para>
-                        </wadl:doc>
+                    </wadl:doc>
                 </param>
-                <param name="environment" style="plain" required="true" type="string" path="$.environment"><!-- required? type? path? -->
+                <param name="environment" style="plain" required="false" type="string" path="$.environment"><!-- required? type? path? -->
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>A JSON environment for the
                             stack.</para></wadl:doc>
@@ -372,8 +371,8 @@
                 <param name="files" style="plain" required="false" type="map" path="$.files"><!-- required? type? path? -->
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>A map of file names to file
-                        contents. It can also be used to pass provider
-                        template contents.</para>
+                            contents. It can also be used to pass provider
+                            template contents.</para>
                         <para>The <code>files</code> parameter maps logical file names to file contents. These are used by the <code>get_file</code> 
                             intrinsic function as well as the provider template functionality. When you want to use a provider template, for example, 
                             Heat will actually add an entry to the <code>files</code> map using the URL of the provider template as the "name" and 
@@ -390,16 +389,21 @@
                 </param>
                 <param name="parameters" style="plain" required="false" type="object" path="$.parameters">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>User-defined parameters
+                            to pass to the
+                            template.</para></wadl:doc>
+                </param>
+                <param name="param_name-n" style="plain" required="false" type="string" path="$.parameters.param_name-n">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>User-defined parameter
                             names to pass to the
-                        template.</para></wadl:doc>
+                            template.</para></wadl:doc>
                 </param>
-                <param name="param_value-n" style="plain"
-                    required="true">
+                <param name="param_value-n" style="plain" required="false" type="string" path="$.parameters.param_value-n">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>User-defined parameter
                             values to pass to the
-                        template.</para></wadl:doc>
+                            template.</para></wadl:doc>
                 </param>
                 <param name="timeout_mins" style="plain" required="true" type="integer" path="$.timeout_mins">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -407,14 +411,25 @@
                             creation in minutes.</para></wadl:doc>
                 </param>
                 <param name="disable_rollback" style="plain"
-                    required="false">
+                    required="false" type="string" path="$.disable_rollback">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN"><para>Controls whether a failure
-                            during stack creation causes deletion of
-                            all previously-created resources in that
-                            stack. The default is True; a failure does
-                            not cause deletions.</para></wadl:doc>
+                        xml:lang="EN"><para>Enables or disables
+                            deletion of all stack resources when a
+                            stack creation fails. Default is True; all
+                            resources are not deleted when stack
+                            creation fails.</para></wadl:doc>
                 </param>
+            </representation>
+        </request>
+        <response status="201">
+            <representation mediaType="application/json">
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code href="samples/stack_create_resp.json"
+                    />
+                </wadl:doc>
+                
+ 
             </representation>
         </response>
         &commonFaults;
@@ -435,7 +450,10 @@
                 <param name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN">
-                        <para>The name of the stack to preview.</para>
+                        <para>The name of the
+                            stack. The name must satisfy both of the following requirements:
+                            1) It must start with an alphabetic character.
+                            2) It must contain only alphanumeric characters or '_', '-', or '.' characters.</para>
                     </wadl:doc>
                 </param>
                 <param name="template_url" style="plain" required="true" path="$.template_url" type="string" >
@@ -451,8 +469,10 @@
                         xml:lang="EN">
                         <para>The <code>template</code> parameter is a string. The contents of the string is the template 
                             itself as either JSON or YAML. So while the template format matters to Heat, the data structure for this 
-                            parameter is a string, for example:
-                            <code>{ ... template: "heat_template_version: 2013-05-23\nresources (...)" }</code>. This parameter takes precedence over the
+                            parameter is a string, for example:</para>
+                        
+                        <para><code>{ ... template: "heat_template_version: 2013-05-23\nresources (...)" }</code>.</para>
+                        <para>This parameter takes precedence over the
                             <code>template_URL</code> parameter if both are
                             supplied.</para>
                         <para>For a description of template syntax, refer to the <citetitle>Orchestration Templates Developer Guide</citetitle>.</para>
@@ -464,12 +484,11 @@
                         <para>A JSON environment for the stack.</para>
                     </wadl:doc>
                 </param>
-                <param name="files" style="plain" required="true" type="string" path="$.files"><!-- required? type? path? -->
+                <param name="files" style="plain" required="false" type="map" path="$.files"><!-- required? type? path? -->
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">
-                        <para>A map of file names to file contents.
-                        It can also be used to pass provider
-                        template contents.</para>
+                        xml:lang="EN"><para>A map of file names to file
+                            contents. It can also be used to pass provider
+                            template contents.</para>
                         <para>The <code>files</code> parameter maps logical file names to file contents. These are used by the <code>get_file</code> 
                             intrinsic function as well as the provider template functionality. When you want to use a provider template, for example, 
                             Heat will actually add an entry to the <code>files</code> map using the URL of the provider template as the "name" and 
@@ -484,29 +503,26 @@
                         <para><code>"files":
                             { "myfile": "#!/bin/bash\necho 'Hello world' > /root/testfile.txt" }</code></para></wadl:doc>
                 </param>
-                <param name="param_name-n" style="plain" required="false" type="string" path="$.parameters">
+                <param name="parameters" style="plain" required="false" type="object" path="$.parameters">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">
-                        <para>User-defined parameter names to pass to
-                            the template.</para>
-                    </wadl:doc>
+                        xml:lang="EN"><para>User-defined parameters to pass to the template.</para></wadl:doc>
+                </param> 
+                <param name="param_name-n" style="plain" required="false" type="string" path="$.parameters.param_name-n">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>User-defined parameter
+                            names to pass to the
+                            template.</para></wadl:doc>
                 </param>
-                <param name="param_value-n" style="plain" required="false" type="string" path="$.parameters.param_name-n">
+                <param name="param_value-n" style="plain" required="false" type="string" path="$.parameters.param_value-n">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">
-                        <para>User-defined parameter values to pass to
-                            the template.</para>
-                    </wadl:doc>
+                        xml:lang="EN"><para>User-defined parameter
+                            values to pass to the
+                            template.</para></wadl:doc>
                 </param>
-                <param name="timeout_mins" style="plain"
-                    required="true">
+                <param name="timeout_mins" style="plain" required="false"  type="integer" path="$.timeout_mins">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN">
-                        <para>The timeout for stack creation in
-                            minutes. During a stack preview, this
-                            value is only used as part of stack
-                            validation.</para>
-                    </wadl:doc>
+                        xml:lang="EN"><para>The timeout for stack
+                            creation in minutes.</para></wadl:doc>
                 </param>
                 <param name="disable_rollback" style="plain"
                     required="false">
@@ -552,7 +568,10 @@
                 <param name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN">
-                        <para>A name for the new stack.</para>
+                        <para>The name of the
+                            stack. The name must satisfy both of the following requirements:
+                            1) It must start with an alphabetic character.
+                            2) It must contain only alphanumeric characters or '_', '-', or '.' characters.</para>
                     </wadl:doc>
                 </param>
                 <param name="template_url" style="plain" required="true" path="$.template_url" type="string">
@@ -562,23 +581,43 @@
                             template is supplied
                         inline.</para></wadl:doc>
                 </param>
-                <param name="template" style="plain" required="true"  type="object" path="$.template">
+                <param name="template" style="plain" required="true" type="string" path="$.template"><!-- required? type? path? -->
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN"><para>A JSON template to
-                            instantiate. This value takes precedence
-                            over the template URL if both are
-                            supplied.</para></wadl:doc>
+                        xml:lang="EN">
+                        <para>The <code>template</code> parameter is a string. The contents of the string is the template 
+                            itself as either JSON or YAML. So while the template format matters to Heat, the data structure for this 
+                            parameter is a string, for example:</para>
+                        
+                        <para><code>{ ... template: "heat_template_version: 2013-05-23\nresources (...)" }</code>.</para>
+                        <para>This parameter takes precedence over the
+                            <code>template_URL</code> parameter if both are
+                            supplied.</para>
+                        <para>For a description of template syntax, refer to the <citetitle>Orchestration Templates Developer Guide</citetitle>.</para>
+                    </wadl:doc>
                 </param>
                 <param name="environment" style="plain" required="true"  type="string" path="$.environment">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>A JSON environment for the
                             stack.</para></wadl:doc>
                 </param>
-                <param name="files" style="plain" required="true" type="string" path="$.files">
+                <param name="files" style="plain" required="false" type="map" path="$.files"><!-- required? type? path? -->
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>A map of file names to file
-                        contents. It can also be used to pass provider
-                        template contents.</para></wadl:doc>
+                            contents. It can also be used to pass provider
+                            template contents.</para>
+                        <para>The <code>files</code> parameter maps logical file names to file contents. These are used by the <code>get_file</code> 
+                            intrinsic function as well as the provider template functionality. When you want to use a provider template, for example, 
+                            Heat will actually add an entry to the <code>files</code> map using the URL of the provider template as the "name" and 
+                            the contents of that file as the value. Additionally, some template authors will encode their user-data in a local file. 
+                            The Heat client will examine the template for the <code>get_file</code> intrinsic function and add an entry to the 
+                            <code>files</code> map with the "path" to the file as the name and the file contents as the value. 
+                            So, a simple example might look like the following:</para>
+                        
+                        <para><code>"template": "(...) resources:\n my_server:\n type: OS::Nova::Server\n properties:\n user_data:
+                            { get_file: myfile }</code></para>
+                        
+                        <para><code>"files":
+                            { "myfile": "#!/bin/bash\necho 'Hello world' > /root/testfile.txt" }</code></para></wadl:doc>
                 </param>
                 <param name="param_name-n" style="plain" required="true" type="string" path="$.param_name-n">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -754,32 +793,59 @@
                             template is supplied
                         inline.</para></wadl:doc>
                 </param>
-                <param name="template" style="plain" required="true" type="object" path="$.template"><!-- required? type? path? -->
+                <param name="template" style="plain" required="true" type="string" path="$.template"><!-- required? type? path? -->
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
-                        xml:lang="EN"><para>This is a string. It can be 
-                        either the json or yaml representation of the 
-                        template, but the actual value is a string.</para></wadl:doc>
+                        xml:lang="EN">
+                        <para>The <code>template</code> parameter is a string. The contents of the string is the template 
+                            itself as either JSON or YAML. So while the template format matters to Heat, the data structure for this 
+                            parameter is a string, for example:</para>
+                        
+                        <para><code>{ ... template: "heat_template_version: 2013-05-23\nresources (...)" }</code>.</para>
+                        <para>This parameter takes precedence over the
+                            <code>template_URL</code> parameter if both are
+                            supplied.</para>
+                        <para>For a description of template syntax, refer to the <citetitle>Orchestration Templates Developer Guide</citetitle>.</para>
+                    </wadl:doc>
                 </param>
                 <param name="environment" style="plain" required="true" type="string" path="$.environment"><!-- required? type? path? -->
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>A JSON environment for the
                             stack.</para></wadl:doc>
                 </param>
-                <param name="files" style="plain" required="true" type="string" path="$.files"><!-- required? type? path? -->
+                <param name="files" style="plain" required="false" type="map" path="$.files"><!-- required? type? path? -->
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>A map of file names to file
-                        contents. It can also be used to pass provider
-                        template contents.</para></wadl:doc>
+                            contents. It can also be used to pass provider
+                            template contents.</para>
+                        <para>The <code>files</code> parameter maps logical file names to file contents. These are used by the <code>get_file</code> 
+                            intrinsic function as well as the provider template functionality. When you want to use a provider template, for example, 
+                            Heat will actually add an entry to the <code>files</code> map using the URL of the provider template as the "name" and 
+                            the contents of that file as the value. Additionally, some template authors will encode their user-data in a local file. 
+                            The Heat client will examine the template for the <code>get_file</code> intrinsic function and add an entry to the 
+                            <code>files</code> map with the "path" to the file as the name and the file contents as the value. 
+                            So, a simple example might look like the following:</para>
+                        
+                        <para><code>"template": "(...) resources:\n my_server:\n type: OS::Nova::Server\n properties:\n user_data:
+                            { get_file: myfile }</code></para>
+                        
+                        <para><code>"files":
+                            { "myfile": "#!/bin/bash\necho 'Hello world' > /root/testfile.txt" }</code></para></wadl:doc>
                 </param>
-                <param name="parameters" style="plain" required="false" type="string" path="$.parameters">
+                <param name="parameters" style="plain" required="false" type="object" path="$.parameters">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>User-defined parameters to pass to the template.</para></wadl:doc>
                 </param>    
                 <param name="param_name-n" style="plain" required="false" type="string" path="$.parameters.param_name-n">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>User-defined parameter
-                            values to pass to the
+                            names to pass to the
                         template.</para></wadl:doc>
+                </param>
+                <param name="param_value-n" style="plain" required="false" type="string" path="$.parameters.param_value-n">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>User-defined parameter
+                            values to pass to the
+                            template.</para></wadl:doc>
                 </param>
                 <param name="timeout_mins" style="plain" required="true" type="integer" path="$.timeout_mins">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
