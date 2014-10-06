@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book [
+        <!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash  "&#x2013;">
+        <!ENTITY mdash  "&#x2014;">
+        <!ENTITY hellip "&#x2026;">
+        
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+        
+        <!-- changing authentication endpoints; define entities for US & UK rather than maintaining in text -->
+        <!ENTITY ENDPOINT-US "https://identity.api.rackspacecloud.com/v1.1/">
+        <!ENTITY ENDPOINT-UK "https://lon.identity.api.rackspacecloud.com/v1.1/">
+        <!ENTITY ENDPOINT-US-20 "https://identity.api.rackspacecloud.com/v2.0/">
+        <!ENTITY ENDPOINT-UK-20 "https://lon.identity.api.rackspacecloud.com/v2.0/">
+        
+        <!ENTITY CHECK  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="img/Check_mark_23x20_02.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
+              
+        <!ENTITY ARROW  '<inlinemediaobject xmlns="http://docbook.org/ns/docbook">
+                 <imageobject>
+                  <imagedata fileref="img/Arrow_east.svg"
+                             format="SVG" scale="60"/>
+                </imageobject>
+              </inlinemediaobject>'>
+]>
+
+<book xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xml:id="cdb-releasenotes"
+    version="5.0">
+	
+	<?rax title.font.size="35px" subtitle.font.size="20px"?>
+	<title>Rackspace Cloud Orchestration Release Notes</title>
+	<titleabbrev>Rackspace Cloud Orchestration Rel Notes</titleabbrev>
+    <info>
+        <author>
+            <personname>
+                <firstname/>
+                <surname/>
+            </personname>
+            <affiliation>
+                <orgname>Rackspace Cloud</orgname>
+            </affiliation>
+        </author>
+        <copyright>
+			<year>2014</year>
+			<holder>Rackspace US, Inc.</holder>
+		</copyright>
+        <releaseinfo>API v1.0</releaseinfo>
+    	<productname>Rackspace Cloud Orchestration</productname>
+	<pubdate>2014-10-07</pubdate>
+        <legalnotice role="rs-api">
+            <annotation>
+                <remark>Copyright details are filled in by the template.</remark>
+            </annotation>
+	</legalnotice>
+        <abstract>
+        	<para>This document is intended for software developers
+				interested in using the Rackspace orchestration and
+				application architecture management service
+				Application Programming Interface
+					(<abbrev>API</abbrev>). </para>
+        </abstract>
+    	<revhistory>
+			<revision>
+				<date>2014-10-07</date>
+				<revdescription>
+					<para>Initial General Availability (GA) release
+						for Rackspace Cloud Orchestration.</para>
+				</revdescription>
+			</revision>
+    	</revhistory>
+    <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
+      <raxm:displayname>Release Notes</raxm:displayname>
+    	<raxm:product version="v1">orchestration</raxm:product>
+      <raxm:priority>50</raxm:priority>
+    </raxm:metadata> 
+    </info>
+	<chapter xml:id="doc_change_history">
+		<title>Document Change History</title>
+		<para>This version of the Release Notes replaces and obsoletes all
+			previous versions. The most recent changes are described
+			in the table below:</para>
+		<?rax revhistory?>
+	</chapter>
+	<chapter xml:id="corchv1.0.1">
+		<title>v1.0.1, October 7, 2014</title>
+		<itemizedlist spacing="compact">
+			<title>What's New</title>
+			<listitem security="internal">
+				<para><link security="internal"
+					xlink:href="https://jira.rax.io/browse/DSINFRA-453"
+					>DSINFRA-453: </link>Updated guest agent for all
+					instances.</para>
+			</listitem>
+			<listitem>
+				<para><link security="internal"
+						xlink:href="https://jira.rax.io/browse/DSINFRA-397"
+						>DSINFRA-397: </link>Updated open file
+						(<code>ulimit</code>) options.</para>
+			</listitem>
+		</itemizedlist>
+		<itemizedlist spacing="compact">
+			<title>Bug Fixes</title>
+			<listitem>
+				<para><link security="internal"
+						xlink:href="https://jira.rax.io/browse/DSDEV-71"
+						>DSDEV-71: </link>Fixed bug for Monitoring
+					MySQL check.</para>
+			</listitem>
+		</itemizedlist>
+		<itemizedlist spacing="compact">
+			<title>Resources</title>
+			<listitem>
+				<para> Get started using the Cloud Orchestration API to create
+					stacks in the <emphasis role="italic">Getting
+						Started Guide</emphasis> at: <link
+						xlink:href="http://docs.rackspace.com"
+						xmlns:svg="http://www.w3.org/2000/svg"
+						xmlns:m="http://www.w3.org/1998/Math/MathML"
+						xmlns:html="http://www.w3.org/1999/xhtml"
+						>http://docs.rackspace.com</link>.</para>
+			</listitem>
+			<listitem>
+				<para> Get reference information and examples in the <emphasis
+						role="italic">Cloud Orchestration Developer
+						Guide</emphasis> at: <link
+						xlink:href="http://docs.rackspace.com"
+						xmlns:svg="http://www.w3.org/2000/svg"
+						xmlns:m="http://www.w3.org/1998/Math/MathML"
+						xmlns:html="http://www.w3.org/1999/xhtml"
+						>http://docs.rackspace.com</link>.</para>
+			</listitem>
+			<listitem>
+				<para> Support for Cloud Orchestration is available for US, UK,
+					HKG, and SYD customers 24x7x365 via phone, chat,
+					or you may also <link
+						xlink:href="https://manage.rackspacecloud.com/Tickets/YourTickets.do"
+						xmlns:svg="http://www.w3.org/2000/svg"
+						xmlns:m="http://www.w3.org/1998/Math/MathML"
+						xmlns:html="http://www.w3.org/1999/xhtml">File
+						a Ticket</link>.</para>
+			</listitem>
+			<listitem>
+				<para> Please visit our <link
+						xlink:href="http://feedback.rackspace.com"
+						>Product Feedback Forum</link> and let us know
+					what you think about Cloud Orchestration! </para>
+			</listitem>
+		</itemizedlist>
+	</chapter>
+	
+
+</book>
