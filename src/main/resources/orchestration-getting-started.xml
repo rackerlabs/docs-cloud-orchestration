@@ -1444,8 +1444,8 @@ set OS_PASSWORD=&lt;password></computeroutput></screen>
                 <para>To help you decide which regionalized endpoint
                     to use, read about special considerations for
                     choosing a data center at <link
-                        xlink:href="http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions"
-                        >http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions</link>.</para>
+                        xlink:href="http://www.rackspace.com/knowledge_center/article/about-regions"
+                        >http://www.rackspace.com/knowledge_center/article/about-regions</link>.</para>
             </tip>
             <para>
                 <table rules="all">
@@ -2600,8 +2600,8 @@ resources:
                                    <listitem>
                                    <para><emphasis role="bold"
                                    >auth_key</emphasis> &mdash; the
-                                   password you use to log in to the
-                                   Control Panel</para>
+                                   API key as specified in the Control
+                                   Panel</para>
                                    </listitem>
                                 </itemizedlist></para>
                         </example>
@@ -2918,8 +2918,8 @@ outputs:
                                 <listitem>
                                    <para><emphasis role="bold"
                                    >auth_key</emphasis> &mdash; the
-                                   password you use to log in to the
-                                   Control Panel</para>
+                                   API key as specified in the Control
+                                   Panel</para>
                                 </listitem>
                                 <listitem>
                                    <para><emphasis role="bold"
