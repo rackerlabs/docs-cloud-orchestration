@@ -174,7 +174,7 @@
             deployed using a simple template language, as described in
             this guide. &Checkmate; is based on the OpenStack open
             source project named Heat. Rackspace &Checkmate; currently
-            supports only the HOT (Heat Orchestration Template) syntax
+            supports the HOT (Heat Orchestration Template) syntax
             specification of Heat. </para>
         <itemizedlist>
             <title>How &Checkmate; Works</title>
