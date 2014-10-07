@@ -93,58 +93,72 @@
 			in the table below:</para>
 		<?rax revhistory?>
 	</chapter>
-	<chapter xml:id="corchv1.0.1">
-		<title>v1.0.1, October 7, 2014</title>
+	<chapter xml:id="corch_GA_Release">
+		<title>GA Release, October 7, 2014</title>
 		<itemizedlist spacing="compact">
 			<title>What's New</title>
-			<listitem security="internal">
-				<para><link security="internal"
-					xlink:href="https://jira.rax.io/browse/DSINFRA-453"
-					>DSINFRA-453: </link>Updated guest agent for all
-					instances.</para>
+			<listitem>
+				<para>Added early support of SDK for Cloud
+					Orchestration.</para>
 			</listitem>
 			<listitem>
-				<para><link security="internal"
-						xlink:href="https://jira.rax.io/browse/DSINFRA-397"
-						>DSINFRA-397: </link>Updated open file
-						(<code>ulimit</code>) options.</para>
+				<para>Dropped the term Cloud Deployments and unified it under the
+					Cloud Orchestration product.</para>
 			</listitem>
 		</itemizedlist>
 		<itemizedlist spacing="compact">
-			<title>Bug Fixes</title>
+			<title>Product History</title>
 			<listitem>
-				<para><link security="internal"
-						xlink:href="https://jira.rax.io/browse/DSDEV-71"
-						>DSDEV-71: </link>Fixed bug for Monitoring
-					MySQL check.</para>
+				<para>September 2014 – Launched ability to submit custom
+					orchestration templates via the Rackspace Control
+					Panel UI.</para>
+			</listitem>
+			<listitem>
+				<para>August 2014 – Added new and improved UI interface to Control
+					Panel. Transitioned Cloud Deployments (now called
+					Rackspace templates) to use OpenStack Heat as
+					backend engine.</para>
+			</listitem>
+			<listitem>
+				<para>April 2014 – Enabled capability for customers to submit CFN
+					(Amazon CloudFormation) templates. Currently
+					supports AWS EC2 Instance, AWS Elastic Load
+					Balancing.</para>
+			</listitem>
+			<listitem>
+				<para>March 2014 – Launched Cloud Orchestration by providing
+					API/CLI access to OpenStack Heat service for use
+					with Rackspace Public Cloud. </para>
 			</listitem>
 		</itemizedlist>
 		<itemizedlist spacing="compact">
 			<title>Resources</title>
 			<listitem>
-				<para> Get started using the Cloud Orchestration API to create
-					stacks in the <emphasis role="italic">Getting
-						Started Guide</emphasis> at: <link
-						xlink:href="http://docs.rackspace.com"
+				<para> Get started using the Cloud Orchestration API
+					to create databases in the <emphasis role="italic"
+						>Cloud Orchestration Getting Started
+						Guide</emphasis> at: <link
+						xlink:href="http://docs.rackspace.com/api/"
 						xmlns:svg="http://www.w3.org/2000/svg"
 						xmlns:m="http://www.w3.org/1998/Math/MathML"
 						xmlns:html="http://www.w3.org/1999/xhtml"
-						>http://docs.rackspace.com</link>.</para>
+						>http://docs.rackspace.com/api/</link>.</para>
 			</listitem>
 			<listitem>
-				<para> Get reference information and examples in the <emphasis
-						role="italic">Cloud Orchestration Developer
-						Guide</emphasis> at: <link
-						xlink:href="http://docs.rackspace.com"
+				<para> Get reference information and examples in
+						the <emphasis role="italic">Cloud
+						Orchestration Developer Guide</emphasis> at:
+						<link
+						xlink:href="http://docs.rackspace.com/api/"
 						xmlns:svg="http://www.w3.org/2000/svg"
 						xmlns:m="http://www.w3.org/1998/Math/MathML"
 						xmlns:html="http://www.w3.org/1999/xhtml"
-						>http://docs.rackspace.com</link>.</para>
+						>http://docs.rackspace.com/api/</link>.</para>
 			</listitem>
 			<listitem>
-				<para> Support for Cloud Orchestration is available for US, UK,
-					HKG, and SYD customers 24x7x365 via phone, chat,
-					or you may also <link
+				<para> Support for Cloud Orchestration is available
+					for US, UK, HKG, and SYD customers 24x7x365 via
+					phone, chat, or you may also <link
 						xlink:href="https://manage.rackspacecloud.com/Tickets/YourTickets.do"
 						xmlns:svg="http://www.w3.org/2000/svg"
 						xmlns:m="http://www.w3.org/1998/Math/MathML"

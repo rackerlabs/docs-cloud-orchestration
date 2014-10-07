@@ -1443,7 +1443,7 @@ set OS_PASSWORD=&lt;password></computeroutput></screen>
             <tip>
                 <para>To help you decide which regionalized endpoint
                     to use, read about special considerations for
-                    choosing a data center at <link
+                    choosing a region at <link
                         xlink:href="http://www.rackspace.com/knowledge_center/article/about-regions"
                         >http://www.rackspace.com/knowledge_center/article/about-regions</link>.</para>
             </tip>
