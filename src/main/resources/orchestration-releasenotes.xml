@@ -75,8 +75,8 @@
 			<revision>
 				<date>2014-10-07</date>
 				<revdescription>
-					<para>Initial General Availability (GA) release
-						for Rackspace Cloud Orchestration.</para>
+					<para>Initial Unlimited Availability (UA) release for Rackspace
+						Cloud Orchestration.</para>
 				</revdescription>
 			</revision>
     	</revhistory>
@@ -93,8 +93,8 @@
 			in the table below:</para>
 		<?rax revhistory?>
 	</chapter>
-	<chapter xml:id="corch_GA_Release">
-		<title>GA Release, October 7, 2014</title>
+	<chapter xml:id="corch_UA_Release">
+		<title>UA Release, October 7, 2014</title>
 		<itemizedlist spacing="compact">
 			<title>What's New</title>
 			<listitem>
