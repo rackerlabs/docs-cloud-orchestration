@@ -5,6 +5,7 @@
         "description": "Sample template description.",
         "template_description": "Sample template description.",
         "timeout_mins": 60,
+        "parent": null,
         "disable_rollback": true,
         "capabilities": [],
         "notification_topics": [],
