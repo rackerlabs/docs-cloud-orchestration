@@ -983,7 +983,10 @@
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Show resource schema">
             <para role="shortdesc">Shows the interface schema for a
-                specified resource type.</para>
+                specified resource type. This schema describes the
+                properties that can be set on the resource, their types, constraints,
+                descriptions, and default values. Additionally, the resource
+                attributes and their descriptions are provided.</para>
         </wadl:doc>
         <response status="200">
             <representation mediaType="application/json" >
@@ -999,7 +1002,13 @@
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Show resource template">
             <para role="shortdesc">Shows the template representation
-                for a specified resource type.</para>
+                for a specified resource type. The returned template
+                contains a single resource of the specified type. Each
+                resource property is mapped to a template parameter and
+                each resource attribute is mapped to a template output.
+                These templates can be used as a starting place for
+                created customized template-based resources or as examples
+                of using the particular resource in another template.</para>
         </wadl:doc>
         <response status="200">
             <representation mediaType="application/json" >
