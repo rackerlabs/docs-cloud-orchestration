@@ -1,7 +1,7 @@
 {
     "attributes": {
         "an_attribute": {
-            "description": "An attribute description ."
+            "description": "A runtime value of the resource"
         }
     },
     "properties": {
@@ -9,7 +9,14 @@
             "update_allowed": false,
             "required": true,
             "type": "string",
-            "description": "A resource description."
+            "description": "A resource description.",
+            "constraints": [{
+            	"length": {
+            		"min": 1,
+            		"max": 255
+            	},
+            	"description": "Must be between 1 and 255 characters"
+            }]
         }
     },
     "resource_type": "OS::Heat::AResourceName"
