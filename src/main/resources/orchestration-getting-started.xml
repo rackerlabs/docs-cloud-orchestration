@@ -50,13 +50,25 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-10-07</pubdate>
+        <pubdate>2014-10-28</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2014-10-28</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated doc to add OS_REGION_NAME
+                                environment variable and remove
+                                HEAT_URL for heat client.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-10-07</date>
                 <revdescription>
@@ -676,7 +688,7 @@ Type "help", "copyright", "credits" or "license" for more information.
                             <screen><computeroutput><?db-font-size 65%?>export OS_AUTH_URL=https://identity.api.rackspacecloud.com/v2.0/
 export OS_USERNAME=&lt;username>
 export OS_TENANT_ID=&lt;tenant_id>
-export HEAT_URL=<link xlink:href="https://ord.orchestration.api.rackspacecloud.com/v1/">https://ord.orchestration.api.rackspacecloud.com/v1/</link>${OS_TENANT_ID}  
+export OS_REGION_NAME=&lt;your_region_name>
 export OS_PASSWORD=&lt;password>
 </computeroutput></screen>                            
                         </example>
@@ -687,7 +699,7 @@ export OS_PASSWORD=&lt;password>
                             <screen><computeroutput><?db-font-size 65%?>export OS_AUTH_URL=https://lon.identity.api.rackspacecloud.com/v2.0/
 export OS_USERNAME=&lt;username>
 export OS_TENANT_ID=&lt;tenant_id>
-export HEAT_URL=<link xlink:href="https://ord.orchestration.api.rackspacecloud.com/v1/">https://lon.orchestration.api.rackspacecloud.com/v1/</link>${OS_TENANT_ID}
+export OS_REGION_NAME=&lt;your_region_name>
 export OS_PASSWORD=&lt;password>
 </computeroutput></screen>
                         </example></para>
@@ -704,7 +716,7 @@ export OS_PASSWORD=&lt;password>
                                    <screen><computeroutput>set OS_AUTH_URL=https://identity.api.rackspacecloud.com/v2.0/ 
 set OS_USERNAME=&lt;username>
 set OS_TENANT_ID=&lt;tenant_id>
-set HEAT_URL=https://ord.orchestration.api.rackspacecloud.com/v1/${OS_TENANT_ID}
+set OS_REGION_NAME=&lt;your_region_name>
 set OS_PASSWORD=&lt;password></computeroutput></screen>
                                    </para>
                                 </listitem>
@@ -736,10 +748,9 @@ set OS_PASSWORD=&lt;password></computeroutput></screen>
                             <code>password</code>,
                             <code>tenant_id</code> to provide your
                         information as appropriate. Please also set
-                        the HEAT_URL endpoint to the appropriate
+                        the OS_REGION_NAME endpoint to the appropriate
                         regional endpoint where you want to deploy
-                        resources, if it is different that ORD. Refer
-                        to <xref
+                        resources, for example DFW. Refer to <xref
                             linkend="Service_Access_Endpoints-d1e753"
                         /> for details. Remember to source the file
                         containing the environment variables after
@@ -781,10 +792,10 @@ set OS_PASSWORD=&lt;password></computeroutput></screen>
                                    (account number).</td>
                                 </tr>
                                 <tr>
-                                   <td>HEAT_URL</td>
-                                   <td>The service endpoint where you
-                                   want to deploy the &Deployment;
-                                   resources.</td>
+                                   <td>OS_REGION_NAME</td>
+                                   <td>The region (for example DFW)
+                                   where you want to deploy the
+                                   &Deployment; resources.</td>
                                 </tr>
                                 <tr>
                                    <td>OS_PASSWORD</td>
@@ -1437,9 +1448,9 @@ set OS_PASSWORD=&lt;password></computeroutput></screen>
             <para>If you are using heat client, the endpoints to use
                 for your Cloud Orchestration API calls are set
                 automatically by specifying a region using the
-                HEAT_URL environment variable, so skip this section
-                and go to <xref linkend="Create_Simple_Stack_CS"
-                /></para>
+                OS_REGION_NAME environment variable, so skip this
+                section and go to <xref
+                    linkend="Create_Simple_Stack_CS"/>.</para>
             <tip>
                 <para>To help you decide which regionalized endpoint
                     to use, read about special considerations for
