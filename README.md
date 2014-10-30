@@ -11,6 +11,7 @@ Source files are for the following documents:
 
     o Cloud Orchestration Getting Started Guide
     o Cloud Orchestration Developer Guide
+    o Cloud Orchestration Templates Developer Guide
     o Cloud Orchestration Release Notes
 
 You should create your own branch to make changes to this project and send a Pull Request to have your changes
