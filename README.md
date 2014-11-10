@@ -3,10 +3,11 @@
 
 ## Resources
 
-This github repository contains the source files for the following Rackspace Cloud Load Balancers API documentation:
+This github repository contains the source files for the following Rackspace Cloud Orchestration API documentation:
 
 * [Cloud Orchestration Getting Started Guide](http://docs.rackspace.com/orchestration/api/v1/orchestration-getting-started/content/)
 * [Cloud Orchestration Developer Guide](http://docs.rackspace.com/orchestration/api/v1/orchestration-devguide/content/)
+* [Cloud Orchestration Templates Developer Guide](http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content/)
 * [Cloud Orchestration Release Notes](http://docs.rackspace.com/orchestration/api/v1/orchestration-releasenotes/content/)
 
 ## Contributing
@@ -27,7 +28,7 @@ The output appears in PDF and HTML form in the following locations. The items in
 | --- | --- |
 | [Getting Started Guide](http://docs.rackspace.com/orchestration/api/v1/orchestration-getting-started/content/) | target/docbkx/webhelp/orchestration-getting-started-external |
 | [Developer Guide](http://docs.rackspace.com/orchestration/api/v1/orchestration-devguide/content/) | target/docbkx/webhelp/orchestration-devguide-external |
-| [Templates Developer Guide](http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content/) | target/docbkx/webhelp/orchestration--templates-devguide-external |
+| [Templates Developer Guide](http://docs.rackspace.com/orchestration/api/v1/orchestration-templates-devguide/content/) | target/docbkx/webhelp/orchestration-templates-devguide-external |
 | [Release Notes](http://docs.rackspace.com/orchestration/api/v1/orchestration-releasenotes/content/) | target/docbkx/webhelp/orchestration-releasenotes-external |
 | Release Notes (Internal) | target/docbkx/webhelp/orchestration-releasenotes-internal |
 
