@@ -1,13 +1,13 @@
 
-# Rackspace Cloud Load Balancers API documentation
+# Rackspace Cloud Orchestration API documentation
 
 ## Resources
 
 This github repository contains the source files for the following Rackspace Cloud Load Balancers API documentation:
 
-* [Cloud Load Orchestration Getting Started Guide](http://http://docs.rackspace.com/orchestration/api/v1/orchestration-getting-started/)
-* [Cloud Load Orchestration Developer Guide](http://docs.rackspace.com/orchestration/api/v1.0/orchestration-devguide/)
-* [Cloud Load Orchestration Release Notes](http://docs.rackspace.com/orchestration/api/v1.0/orchestration-releasenotes/)
+* [Cloud Orchestration Getting Started Guide](http://docs.rackspace.com/orchestration/api/v1/orchestration-getting-started/content/)
+* [Cloud Orchestration Developer Guide](http://docs.rackspace.com/orchestration/api/v1.0/orchestration-devguide/content/)
+* [Cloud Orchestration Release Notes](http://docs.rackspace.com/orchestration/api/v1.0/orchestration-releasenotes/content/)
 
 ## Contributing
 
@@ -25,10 +25,10 @@ The output appears in PDF and HTML form in the following locations. The items in
 
 | Name | Build Location |
 | --- | --- |
-| [Getting Started Guide](http://docs.rackspace.com/orchestration/api/v1.0/orchestration-getting-started/) | target/docbkx/webhelp/orchestration-getting-started-external |
-| [Developer Guide](http://docs.rackspace.com/orchestration/api/v1.0/orchestration-devguide/) | target/docbkx/webhelp/orchestration-devguide-external |
-| [Templates Developer Guide](http://docs.rackspace.com/orchestration/api/v1.0/orchestration-templates-devguide/) | target/docbkx/webhelp/orchestration--templates-devguide-external |
-| [Release Notes](http://docs.rackspace.com/orchestration/api/v1.0/orchestration-releasenotes/) | target/docbkx/webhelp/orchestration-releasenotes-external |
+| [Getting Started Guide](http://docs.rackspace.com/orchestration/api/v1.0/orchestration-getting-started/content/) | target/docbkx/webhelp/orchestration-getting-started-external |
+| [Developer Guide](http://docs.rackspace.com/orchestration/api/v1.0/orchestration-devguide/content/) | target/docbkx/webhelp/orchestration-devguide-external |
+| [Templates Developer Guide](http://docs.rackspace.com/orchestration/api/v1.0/orchestration-templates-devguide/content/) | target/docbkx/webhelp/orchestration--templates-devguide-external |
+| [Release Notes](http://docs.rackspace.com/orchestration/api/v1.0/orchestration-releasenotes/content/) | target/docbkx/webhelp/orchestration-releasenotes-external |
 | Release Notes (Internal) | target/docbkx/webhelp/orchestration-releasenotes-internal |
 
 #### Editors
