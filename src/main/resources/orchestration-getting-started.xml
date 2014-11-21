@@ -50,13 +50,27 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-10-28</pubdate>
+        <pubdate>2014-11-21</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2014-11-21</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated cURL examples for <xref
+                                   linkend="Create_Stack_W_RGroup_CURL"
+                                /> and <xref
+                                   linkend="Update_Stack_W_LB_Curl"
+                                />.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-10-28</date>
                 <revdescription>
@@ -2572,7 +2586,7 @@ resources:
                             <?dbfo keep-together="always"?>
                             <title>cURL Create Stack Request:
                                 JSON</title>
-                            <programlisting language="bash"><command>curl -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -H "X-Auth-Token: $token" -H 'X-Auth-User: auth_user' -H  'X-Auth-Key: auth_key' -d</command> \
+                            <programlisting language="bash"><command>curl -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -H "X-Auth-Token: $token" -d</command> \
 '{
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
@@ -2597,24 +2611,9 @@ resources:
                                 Stack call shown in Example 10: Create
                                 Stack with cURL in Step 6 "Create
                                 Simple Stack for a Cloud Server".
-                                Please explain. </remark>
-                            <para>Remember to replace the names in the
-                                example above with their actual
-                                respective values:<itemizedlist
-                                   spacing="compact">
-                                   <listitem>
-                                   <para><emphasis role="bold"
-                                   >auth_user</emphasis> &mdash; the
-                                   user name you use to log in to the
-                                   Control Panel</para>
-                                   </listitem>
-                                   <listitem>
-                                   <para><emphasis role="bold"
-                                   >auth_key</emphasis> &mdash; the
-                                   API key as specified in the Control
-                                   Panel</para>
-                                   </listitem>
-                                </itemizedlist></para>
+                                Please explain. Note: this bug has
+                                been fixed as of 11-21-2014 and the
+                                example adjusted accordingly.</remark>
                         </example>
                         <example security="writeronly">
                             <?dbfo keep-together="always"?>
@@ -2636,11 +2635,11 @@ Server: nginx/1.2.1
 Date: Fri, 31 Jan 2014 17:09:37 GMT
 Content-Type: application/json
 Content-Length: 192
-Location: https://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Servers-With-LB-Stack/a87fc789-0ad3-4952-801f-70ef03b3fdac
+Location: https://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Servers-With-LB-Stack/e7b67698-3929-43af-8e59-9652d00b7250
 Connection: keep-alive
 Via: 1.0 Repose (Repose/2.13.0)
 
-{"stack": {"id": "a87fc789-0ad3-4952-801f-70ef03b3fdac", "links": [{"href": "http://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Servers-With-LB-Stack/a87fc789-0ad3-4952-801f-70ef03b3fdac", "rel": "self"}]}}</programlisting>
+{"stack": {"id": "e7b67698-3929-43af-8e59-9652d00b7250", "links": [{"href": "http://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Servers-With-LB-Stack/e7b67698-3929-43af-8e59-9652d00b7250", "rel": "self"}]}}</programlisting>
                         </example>
                         <para>You can see that the stack
                                 <code>Servers-With-LB-Stack</code> was
@@ -2901,13 +2900,11 @@ outputs:
                     <step>
                         <para>Update the stack by executing the
                             request below.</para>
-                        <para>This operation does not require a
-                            request body.</para>
                         <example>
                             <?dbfo keep-together="always"?>
                             <title>cURL Update Stack with Load
                                 Balancer Request: JSON</title>
-                            <programlisting language="bash"><command>curl</command> <option>-i -X PUT -H  'Accept: application/json' -H  'Content-Type: application/json' -H  "X-Auth-Token: $token" -H 'X-Auth-User: auth_user' -H  'X-Auth-Key: auth_key' -d</option> \
+                            <programlisting language="bash"><command>curl</command> <option>-i -X PUT -H  'Accept: application/json' -H  'Content-Type: application/json' -H  "X-Auth-Token: $token" -d</option> \
 '{
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
@@ -2920,18 +2917,6 @@ outputs:
                         <para>Remember to replace the names in the
                             example above with their actual respective
                                 values:<itemizedlist spacing="compact">
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >auth_user</emphasis> &mdash; the
-                                   user name you use to log in to the
-                                   Control Panel</para>
-                                </listitem>
-                                <listitem>
-                                   <para><emphasis role="bold"
-                                   >auth_key</emphasis> &mdash; the
-                                   API key as specified in the Control
-                                   Panel</para>
-                                </listitem>
                                 <listitem>
                                    <para><emphasis role="bold"
                                    >Servers-With-LB-Stack</emphasis>
@@ -2955,7 +2940,9 @@ outputs:
                         <example>
                             <title>Update Stack with Load Balancer
                                 Response: JSON</title>
-                            <programlisting language="json">HTTP/1.1 202 Accepted
+                            <programlisting language="json">HTTP/1.1 100 Continue
+
+HTTP/1.1 202 Accepted
 Server: nginx/1.2.1
 Date: Fri, 31 Jan 2014 22:06:57 GMT
 Content-Type: text/plain;charset=UTF-8
