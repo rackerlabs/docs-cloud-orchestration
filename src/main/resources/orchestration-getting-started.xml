@@ -50,13 +50,26 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-11-21</pubdate>
+        <pubdate>2014-11-24</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2014-11-24</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated environment variables for
+                                running cURL commands. See <xref
+                                   linkend="Export_CURL_ENV_VARS"/>
+                                for details.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-11-21</date>
                 <revdescription>
@@ -363,12 +376,12 @@
                 isolated network:</para>
             
             <example xml:id="JSON_Example">
-                <title>cURL Command Example: JSON Request </title><programlisting language="bash" role="gutter: false"><?db-font-size 60%?><prompt>$</prompt> curl https://dfw.servers.api.rackspacecloud.com/v2/$account/servers \
+                <title>cURL Command Example: JSON Request </title><programlisting language="bash" role="gutter: false"><?db-font-size 60%?><prompt>$</prompt> curl https://dfw.servers.api.rackspacecloud.com/v2/$OS_TENANT_ID/servers \
        -X POST \
-       -H "X-Auth-Project-Id: $account" \
+       -H "X-Auth-Project-Id: $OS_TENANT_ID" \
        -H "Content-Type: application/json" \
        -H "Accept: application/json" \
-       -H "X-Auth-Token: $token" \
+       -H "X-Auth-Token: $OS_AUTH_TOKEN" \
        -d '{"server": {"name": "my_server_with_network", "imageRef": "d42f821e-c2d1-4796-9f07-af5ed7912d0e", "flavorRef": "2", "max_count": 1, "min_count": 1, "networks": [{"uuid": "538a112a-34d1-47ff-bf1e-c40639e886e2"}, {"uuid": "00000000-0000-0000-0000-000000000000"}, {"uuid": "11111111-1111-1111-1111-111111111111"}]}}' \
       | python -m json.tool</programlisting></example>
             <note>
@@ -934,6 +947,9 @@ set OS_PASSWORD=&lt;password></computeroutput></screen>
                     </itemizedlist>
                 </step>
             </procedure>
+            <para>If you are using only the heat client commands, and
+                aren't using cURL commands, skip to <xref
+                    linkend="Create_Simple_Stack_CS"/>.</para>
         </section>
         <section xml:id="DB_Sending_API_Requests">
             <title>Step 2. Send Requests to the API using cURL,
@@ -1539,15 +1555,15 @@ set OS_PASSWORD=&lt;password></computeroutput></screen>
                     <parameter>1234</parameter>, with your actual
                 account number returned as part of the authentication
                 response. You will set an environment variable
-                    (<code>account</code>) to specify your account
-                number for the Cloud Orchestration API calls in <xref
-                    linkend="Export_CURL_ENV_VARS"/>. Refer to <xref
-                    linkend="Generating_Auth_Token"/> for the account
-                number.</para>
+                    (<code>OS_TENANT_ID</code>) to specify your
+                account number for the Cloud Orchestration API calls
+                in <xref linkend="Export_CURL_ENV_VARS"/>. Refer to
+                    <xref linkend="Generating_Auth_Token"/> for the
+                account number.</para>
             <para>When making a Cloud Orchestration API call, place
                 the endpoint at the beginning of the request URL, for
                 example:
-                    (<code>https://ord.orchestration.api.rackspacecloud.com/v1/$account/</code>),
+                    (<code>https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/</code>),
                 as you can see in the cURL Create Stack Request
                 example in <xref linkend="Create_Simple_Stack_CS_CURL"
                 />.</para>
@@ -1567,18 +1583,18 @@ set OS_PASSWORD=&lt;password></computeroutput></screen>
                 <title>To export environment variables:</title>
                 <step>
                     <para>Export your tenant ID to the
-                            <literal>account</literal> environment
-                        variable:</para>
-                    <screen><computeroutput>$ export account="&lt;tenantId&gt;"</computeroutput></screen>
+                            <literal>OS_TENANT_ID</literal>
+                        environment variable:</para>
+                    <screen><computeroutput>$ export OS_TENANT_ID="&lt;tenantId&gt;"</computeroutput></screen>
                     <para>Where <parameter>tenantId</parameter> is the
                         value in the <literal>tenantId</literal> field
                         in the authentication response. </para>
                 </step>
                 <step>
                     <para>Export your authentication token to the
-                            <literal>token</literal> environment
-                        variable:
-                        <screen><computeroutput>$ export token="&lt;id&gt;"</computeroutput></screen>Where
+                            <literal>OS_AUTH_TOKEN</literal>
+                        environment variable:
+                        <screen><computeroutput>$ export OS_AUTH_TOKEN="&lt;id&gt;"</computeroutput></screen>Where
                             <parameter>id</parameter> is the
                         authentication token value in the
                             <literal>id</literal> field in the
@@ -1765,7 +1781,7 @@ outputs:
                         <example>
                             <title>cURL Create Stack Request:
                                 JSON</title>
-                            <programlisting language="bash">curl -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json'  -H  "X-Auth-Token: $token" -d \
+                            <programlisting language="bash">curl -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json'  -H  "X-Auth-Token: $OS_AUTH_TOKEN" -d \
 '{
    "stack_name": "Single-Server-Stack", 
    "disable_rollback": true, 
@@ -1773,7 +1789,7 @@ outputs:
    "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1 GB Performance\n      image: CentOS 6.5\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, accessIPv4] }      \n\n\n", 
    "timeout_mins": 60
 }' \
-https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlisting>
+https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/stacks</programlisting>
                         </example>
                         <remark>Reviewer:  Example above defines a
                             template object, which is generated by
@@ -2060,9 +2076,9 @@ content-type: application/json
                             <title>cURL List Stacks Request:
                                 JSON</title>
                             <programlisting language="bash"><command>curl</command> <option>-s</option> \
-<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "X-Auth-Token: $OS_AUTH_TOKEN"</option> \
 <option>-H "Content-Type: application/json"</option> \
-<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks</uri> | python -m json.tool</programlisting>
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$OS_TENANT_ID<uri>/stacks</uri> | python -m json.tool</programlisting>
                         </example>
                     </step>
                     <step>
@@ -2218,9 +2234,9 @@ content-type: application/json
                             <title>cURL Show Stack Details Request:
                                 JSON</title>
                             <programlisting language="bash"><command>curl</command> <option>-s</option> \
-<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "X-Auth-Token: $OS_AUTH_TOKEN"</option> \
 <option>-H "Content-Type: application/json"</option> \
-<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks/</uri><emphasis role="bold">Single-Server-Stack</emphasis>/<emphasis role="bold">stack_id</emphasis> | python -m json.tool</programlisting>
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$OS_TENANT_ID<uri>/stacks/</uri><emphasis role="bold">Single-Server-Stack</emphasis>/<emphasis role="bold">stack_id</emphasis> | python -m json.tool</programlisting>
                         </example>
                         <para>Remember to replace the names in the
                             examples above with their actual
@@ -2385,9 +2401,9 @@ content-type: application/json
                             <title>cURL Delete Stack Request:
                                 JSON</title>
                             <programlisting language="bash"><command>curl</command> <option> -i -X DELETE</option> \
-<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "X-Auth-Token: $OS_AUTH_TOKEN"</option> \
 <option>-H "Content-Type: application/json"</option> \
-<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks/</uri><emphasis role="bold">Single-Server-Stack</emphasis>/<emphasis role="bold">stack_id</emphasis></programlisting>
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$OS_TENANT_ID<uri>/stacks/</uri><emphasis role="bold">Single-Server-Stack</emphasis>/<emphasis role="bold">stack_id</emphasis></programlisting>
                         </example>
                         <para>Remember to replace the names in the
                             example above with their actual respective
@@ -2586,7 +2602,7 @@ resources:
                             <?dbfo keep-together="always"?>
                             <title>cURL Create Stack Request:
                                 JSON</title>
-                            <programlisting language="bash"><command>curl -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -H "X-Auth-Token: $token" -d</command> \
+                            <programlisting language="bash"><command>curl -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -H "X-Auth-Token: $OS_AUTH_TOKEN" -d</command> \
 '{
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
@@ -2594,7 +2610,7 @@ resources:
   "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n\n", 
   "timeout_mins": 60
 }' \
-<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks</uri></programlisting>
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$OS_TENANT_ID<uri>/stacks</uri></programlisting>
                             <remark>Reviewer: As of 1-31-2014 I am
                                 getting Bad Request if the credential
                                 following credentials are not added
@@ -2904,7 +2920,7 @@ outputs:
                             <?dbfo keep-together="always"?>
                             <title>cURL Update Stack with Load
                                 Balancer Request: JSON</title>
-                            <programlisting language="bash"><command>curl</command> <option>-i -X PUT -H  'Accept: application/json' -H  'Content-Type: application/json' -H  "X-Auth-Token: $token" -d</option> \
+                            <programlisting language="bash"><command>curl</command> <option>-i -X PUT -H  'Accept: application/json' -H  'Content-Type: application/json' -H  "X-Auth-Token: $OS_AUTH_TOKEN" -d</option> \
 '{
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
@@ -2912,7 +2928,7 @@ outputs:
   "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers\n  and a Cloud Load Balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute Load Balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, PublicIp]}  \n\n", 
   "timeout_mins": 60
 }' \
-<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks/</uri><emphasis role="bold">Servers-With-LB-Stack/stack_id</emphasis></programlisting>
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$OS_TENANT_ID<uri>/stacks/</uri><emphasis role="bold">Servers-With-LB-Stack/stack_id</emphasis></programlisting>
                         </example>
                         <para>Remember to replace the names in the
                             example above with their actual respective
@@ -2963,9 +2979,9 @@ The request is accepted for processing.
                             <title>cURL Show Stack Details Request:
                                 JSON</title>
                             <programlisting language="bash"><command>curl</command> <option>-s</option> \
-<option>-H "X-Auth-Token: $token"</option> \
+<option>-H "X-Auth-Token: $OS_AUTH_TOKEN"</option> \
 <option>-H "Content-Type: application/json"</option> \
-<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$account<uri>/stacks</uri>/Servers-With-LB-Stack/<emphasis role="bold">stack_id</emphasis> | python -m json.tool</programlisting>
+<uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$OS_TENANT_ID<uri>/stacks</uri>/Servers-With-LB-Stack/<emphasis role="bold">stack_id</emphasis> | python -m json.tool</programlisting>
                         </example>
                     </step>
                 </procedure>
