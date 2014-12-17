@@ -7,7 +7,7 @@ content-type: application/json; charset=UTF-8
   "status": "COMPLETE",
   "name": "trove",
   "template": {
-    "heat-template-version": "2013-05-23",
+    "heat-template-version": "2014-10-16",
     "resources": {
       "MySqlCloudDatabaseServer": {
         "type": "OS::Trove::Instance",

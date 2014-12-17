@@ -50,13 +50,26 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-11-24</pubdate>
+        <pubdate>2014-12-17</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2014-12-17</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated templates to have latest
+                                template version:</para>
+                            <para><code>heat_template_version:
+                                   2014-10-16</code></para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-11-24</date>
                 <revdescription>
@@ -1617,7 +1630,7 @@ set OS_PASSWORD=&lt;password></computeroutput></screen>
                 <title><filename>single_server.template</filename>
                     Example HOT Template File</title>
                 <programlisting language="bash">
-heat_template_version: 2013-05-23
+heat_template_version: 2014-10-16
 
 resources:
   compute_instance:  
@@ -1750,7 +1763,7 @@ outputs:
   "disable_rollback": true,
   "parameters": {},
   "environment": {},
-  "template": "heat_template_version: 2013-05-23
+  "template": "heat_template_version: 2014-10-16
   resources:
     compute_instance:
       type: "OS::Nova::Server"  
@@ -1786,7 +1799,7 @@ outputs:
    "stack_name": "Single-Server-Stack", 
    "disable_rollback": true, 
    "parameters": {}, 
-   "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1 GB Performance\n      image: CentOS 6.5\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, accessIPv4] }      \n\n\n", 
+   "template": "heat_template_version: 2014-10-16\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1 GB Performance\n      image: CentOS 6.5\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, accessIPv4] }      \n\n\n", 
    "timeout_mins": 60
 }' \
 https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/stacks</programlisting>
@@ -1919,7 +1932,7 @@ https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/stacks</progra
                         <example security="writeronly">
                             <title>cURL Create Stack Request:
                                 JSON</title>
-                            <programlisting language="bash">curl -i -X POST -H 'X-Auth-User: mikeasthalter' -H 'X-Auth-Token: f067dca8068c477a9f98c851994d8659' -H 'X-Region-Name: DFW' -H 'X-Auth-Key: pinkH201' -H 'Accept: application/json' -H 'User-Agent: python-heatclient' -H 'Content-Type: application/json' -d '{"stack_name": "Single-Server-Stack", "disable_rollback": true, "parameters": {}, "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }      \n\n\n", "timeout_mins": 60}' https://ord.orchestration.api.rackspacecloud.com/v1/647683/stacks</programlisting>
+                            <programlisting language="bash">curl -i -X POST -H 'X-Auth-User: mikeasthalter' -H 'X-Auth-Token: f067dca8068c477a9f98c851994d8659' -H 'X-Region-Name: DFW' -H 'X-Auth-Key: pinkH201' -H 'Accept: application/json' -H 'User-Agent: python-heatclient' -H 'Content-Type: application/json' -d '{"stack_name": "Single-Server-Stack", "disable_rollback": true, "parameters": {}, "template": "heat_template_version: 2014-10-16\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }      \n\n\n", "timeout_mins": 60}' https://ord.orchestration.api.rackspacecloud.com/v1/647683/stacks</programlisting>
                         </example>
                         <remark security="writeronly">Reviewer: Example above works. It is
                             produced by --debug output from heat
@@ -1934,7 +1947,7 @@ https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/stacks</progra
    "stack_name": "Single-Server-Stack", 
    "disable_rollback": true, 
    "parameters": {}, 
-   "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }      \n\n\n", 
+   "template": "heat_template_version: 2014-10-16\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }      \n\n\n", 
    "timeout_mins": 60
 }' \
 https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlisting>
@@ -1950,7 +1963,7 @@ https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlist
    "stack_name": "Single-Server-Stack", 
    "disable_rollback": true, 
    "parameters": {}, 
-   "template": "heat_template_version: 2013-05-23\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n   \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }     \n\n\n", 
+   "template": "heat_template_version: 2014-10-16\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1GB Standard Instance\n      image: CentOS 6.4\n      name: Single Server Stack\n   \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, PublicIp] }     \n\n\n", 
    "timeout_mins": 60
 }' \
 https://ord.orchestration.api.rackspacecloud.com/v1/$account/stacks</programlisting>
@@ -2469,7 +2482,7 @@ Via: 1.0 Repose (Repose/2.13.0)
                 <title><filename>servers-with-lb.template</filename>
                     Example</title>
                 <programlisting language="bash">
-heat_template_version: 2013-05-23
+heat_template_version: 2014-10-16
 
 description: |   
   Heat Orchestration Template that spins up a
@@ -2607,7 +2620,7 @@ resources:
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
   "parameters": {}, 
-  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n\n", 
+  "template": "heat_template_version: 2014-10-16\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n\n", 
   "timeout_mins": 60
 }' \
 <uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$OS_TENANT_ID<uri>/stacks</uri></programlisting>
@@ -2635,7 +2648,7 @@ resources:
                             <?dbfo keep-together="always"?>
                             <title>cURL Create Stack Request:
                                 JSON</title>
-                            <programlisting language="bash">curl -i -X POST -H 'X-Auth-User: mikeasthalter' -H 'X-Auth-Token: 6dee509fec7b450dac339ab0646d069c' -H 'X-Region-Name: DFW' -H 'X-Auth-Key: pinkH201' -H 'Accept: application/json' -H 'User-Agent: python-heatclient' -H 'Content-Type: application/json' -d '{"stack_name": "Servers-With-LB-Stack", "disable_rollback": true, "parameters": {}, "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1GB Standard Instance\n          image: CentOS 6.4\n          name: LB-Compute Web Nodes  \n\n\n", "timeout_mins": 60}' https://ord.orchestration.api.rackspacecloud.com/v1/647683/stacks</programlisting>
+                            <programlisting language="bash">curl -i -X POST -H 'X-Auth-User: mikeasthalter' -H 'X-Auth-Token: 6dee509fec7b450dac339ab0646d069c' -H 'X-Region-Name: DFW' -H 'X-Auth-Key: pinkH201' -H 'Accept: application/json' -H 'User-Agent: python-heatclient' -H 'Content-Type: application/json' -d '{"stack_name": "Servers-With-LB-Stack", "disable_rollback": true, "parameters": {}, "template": "heat_template_version: 2014-10-16\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1GB Standard Instance\n          image: CentOS 6.4\n          name: LB-Compute Web Nodes  \n\n\n", "timeout_mins": 60}' https://ord.orchestration.api.rackspacecloud.com/v1/647683/stacks</programlisting>
                         </example>
                         <remark security="writeronly">Reviewer: There
                             is a working example above from the
@@ -2682,7 +2695,7 @@ Via: 1.0 Repose (Repose/2.13.0)
                 <title>servers-with-lb-add.template with Load Balancer
                     added Example</title>
                 <programlisting language="txt">
-heat_template_version: 2013-05-23
+heat_template_version: 2014-10-16
 
 description: |   
   Heat Orchestration Template that spins up a
@@ -2925,7 +2938,7 @@ outputs:
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
   "parameters": {}, 
-  "template": "heat_template_version: 2013-05-23\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers\n  and a Cloud Load Balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute Load Balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, PublicIp]}  \n\n", 
+  "template": "heat_template_version: 2014-10-16\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers\n  and a Cloud Load Balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute Load Balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, PublicIp]}  \n\n", 
   "timeout_mins": 60
 }' \
 <uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$OS_TENANT_ID<uri>/stacks/</uri><emphasis role="bold">Servers-With-LB-Stack/stack_id</emphasis></programlisting>

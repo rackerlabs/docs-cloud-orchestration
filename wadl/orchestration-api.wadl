@@ -356,7 +356,7 @@
                             itself as either JSON or YAML. So while the template format matters to Heat, the data structure for this 
                             parameter is a string, for example:</para>
                         
-                        <para><code>{ ... template: "heat_template_version: 2013-05-23\nresources (...)" }</code>.</para>
+                        <para><code>{ ... template: "heat_template_version: 2014-10-16\nresources (...)" }</code>.</para>
                         <para>This parameter takes precedence over the
                             <code>template_URL</code> parameter if both are
                             supplied.</para>
@@ -471,7 +471,7 @@
                             itself as either JSON or YAML. So while the template format matters to Heat, the data structure for this 
                             parameter is a string, for example:</para>
                         
-                        <para><code>{ ... template: "heat_template_version: 2013-05-23\nresources (...)" }</code>.</para>
+                        <para><code>{ ... template: "heat_template_version: 2014-10-16\nresources (...)" }</code>.</para>
                         <para>This parameter takes precedence over the
                             <code>template_URL</code> parameter if both are
                             supplied.</para>
@@ -594,7 +594,7 @@
                             itself as either JSON or YAML. So while the template format matters to Heat, the data structure for this 
                             parameter is a string, for example:</para>
                         
-                        <para><code>{ ... template: "heat_template_version: 2013-05-23\nresources (...)" }</code>.</para>
+                        <para><code>{ ... template: "heat_template_version: 2014-10-16\nresources (...)" }</code>.</para>
                         <para>This parameter takes precedence over the
                             <code>template_URL</code> parameter if both are
                             supplied.</para>
@@ -806,7 +806,7 @@
                             itself as either JSON or YAML. So while the template format matters to Heat, the data structure for this 
                             parameter is a string, for example:</para>
                         
-                        <para><code>{ ... template: "heat_template_version: 2013-05-23\nresources (...)" }</code>.</para>
+                        <para><code>{ ... template: "heat_template_version: 2014-10-16\nresources (...)" }</code>.</para>
                         <para>This parameter takes precedence over the
                             <code>template_URL</code> parameter if both are
                             supplied.</para>

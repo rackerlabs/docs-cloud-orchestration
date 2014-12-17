@@ -51,7 +51,7 @@
         </copyright>
         <releaseinfo>API v1</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-10-28</pubdate>
+        <pubdate>2014-12-17</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -67,6 +67,19 @@
         
         
         <revhistory>
+            <revision>
+                <date>2014-12-17</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated templates to have latest
+                                template version:</para>
+                            <para><code>heat_template_version:
+                                   2014-10-16</code></para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-10-28</date>
                 <revdescription>
