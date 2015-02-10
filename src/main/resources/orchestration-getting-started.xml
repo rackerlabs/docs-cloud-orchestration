@@ -46,17 +46,37 @@
             <year>2012</year>
             <year>2013</year>
             <year>2014</year>
+            <year>2015</year>
             <holder>Rackspace US, Inc.</holder>
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2014-12-17</pubdate>
+        <pubdate>2015-02-10</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2015-02-10</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated image names as
+                                needed.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Removed London endpoint, since we
+                                now have one global endpoint for the
+                                Rackspace Authentication Service. See
+                                   <xref
+                                   linkend="Generating_Auth_Token"
+                                />.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2014-12-17</date>
                 <revdescription>
@@ -736,7 +756,7 @@ export OS_PASSWORD=&lt;password>
                         <example>
                             <title>UK Data Center Example</title>
                             <?dbfo keep-together="always"?>
-                            <screen><computeroutput><?db-font-size 65%?>export OS_AUTH_URL=https://lon.identity.api.rackspacecloud.com/v2.0/
+                            <screen><computeroutput><?db-font-size 65%?>export OS_AUTH_URL=https://identity.api.rackspacecloud.com/v2.0/
 export OS_USERNAME=&lt;username>
 export OS_TENANT_ID=&lt;tenant_id>
 export OS_REGION_NAME=&lt;your_region_name>
@@ -1331,18 +1351,14 @@ set OS_PASSWORD=&lt;password></computeroutput></screen>
                             username.</para>
                     </listitem>
                 </itemizedlist></para>
-            <para> You can use either of the following endpoints to
-                access the Authentication Service, regardless of US or
-                UK identities: </para>
+            <para> Use the following endpoint to access the
+                Authentication Service, regardless of US or UK
+                identities: </para>
             <itemizedlist spacing="compact">
                 <listitem>
                     <para><link xlink:href="&ENDPOINT-US-20;"
                             >&ENDPOINT-US-20;</link>
                     </para>
-                </listitem>
-                <listitem>
-                    <para><link xlink:href="&ENDPOINT-UK-20;"
-                            >&ENDPOINT-UK-20;</link></para>
                 </listitem>
             </itemizedlist>
             <para> Your account may be based in either the US or the
@@ -1402,11 +1418,6 @@ set OS_PASSWORD=&lt;password></computeroutput></screen>
 <option>-H 'Content-Type: application/json'</option> \
 <uri>'https://identity.api.rackspacecloud.com/v2.0/tokens'</uri> | python -m json.tool</screen>
             </example>
-            <note>
-                <para>For UK-based accounts, you may decide to use
-                        <code>'https://lon.identity.api.rackspacecloud.com/v2.0/tokens'</code>
-                    instead.</para>
-            </note>
             <example>
                 <title>Authenticate Response: XML</title>
                 <programlisting language="xml"><xi:include href="samples/db-auth-20.xml" parse="text"><xi:fallback>Missing code sample! <?rax fail?></xi:fallback></xi:include></programlisting>
@@ -1637,7 +1648,7 @@ resources:
     type: "OS::Nova::Server"
     properties:
       flavor: 1 GB Performance
-      image: CentOS 6.5
+      image: CentOS 6 (PV)
       name: Single Server Stack
       
 outputs:
@@ -1799,7 +1810,7 @@ outputs:
    "stack_name": "Single-Server-Stack", 
    "disable_rollback": true, 
    "parameters": {}, 
-   "template": "heat_template_version: 2014-10-16\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1 GB Performance\n      image: CentOS 6.5\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, accessIPv4] }      \n\n\n", 
+   "template": "heat_template_version: 2014-10-16\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1 GB Performance\n      image: CentOS 6 (PV)\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, accessIPv4] }      \n\n\n", 
    "timeout_mins": 60
 }' \
 https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/stacks</programlisting>
@@ -2497,7 +2508,7 @@ resources:
         type: OS::Nova::Server
         properties:
           flavor: 1 GB Performance
-          image: CentOS 6.5
+          image: CentOS 6 (PV)
           name: LB-Compute Web Nodes    
                 </programlisting>
             </example>
@@ -2525,7 +2536,7 @@ resources:
                     <para><code>1 GB Performance</code> flavor</para>
                 </listitem>
                 <listitem>
-                    <para><code>CentOS 6.5</code> image</para>
+                    <para><code>CentOS 6 (PV)</code> image</para>
                 </listitem>
                 <listitem>
                     <para>the name <code>LB-Compute Web
@@ -2620,7 +2631,7 @@ resources:
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
   "parameters": {}, 
-  "template": "heat_template_version: 2014-10-16\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n\n", 
+  "template": "heat_template_version: 2014-10-16\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6 (PV)\n          name: LB-Compute Web Nodes  \n\n\n", 
   "timeout_mins": 60
 }' \
 <uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$OS_TENANT_ID<uri>/stacks</uri></programlisting>
@@ -2711,7 +2722,7 @@ resources:
         type: OS::Nova::Server
         properties:
           flavor: 1 GB Performance
-          image: CentOS 6.5
+          image: CentOS 6 (PV)
           name: LB-Compute Web Nodes   
 
      
@@ -2938,7 +2949,7 @@ outputs:
   "stack_name": "Servers-With-LB-Stack", 
   "disable_rollback": true, 
   "parameters": {}, 
-  "template": "heat_template_version: 2014-10-16\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers\n  and a Cloud Load Balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6.5\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute Load Balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, PublicIp]}  \n\n", 
+  "template": "heat_template_version: 2014-10-16\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 Rackspace Cloud Servers\n  and a Cloud Load Balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB Performance\n          image: CentOS 6 (PV)\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute Load Balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, PublicIp]}  \n\n", 
   "timeout_mins": 60
 }' \
 <uri>https://ord.orchestration.api.rackspacecloud.com/v1/</uri>$OS_TENANT_ID<uri>/stacks/</uri><emphasis role="bold">Servers-With-LB-Stack/stack_id</emphasis></programlisting>

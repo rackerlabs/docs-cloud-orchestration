@@ -44,7 +44,7 @@
                 "type": "string"
             },
             "image": {
-                "default": "Ubuntu 12.04 LTS (Precise Pangolin)",
+                "default": "Ubuntu 12.04 LTS (Precise Pangolin) (PV)",
                 "type": "string"
             },
             "flavor": {
