@@ -73,7 +73,7 @@
                                    v1</code> flavor.</para>
                         </listitem>
                         <listitem>
-                            <para>Adding information about creating a
+                            <para>Added information about creating a
                                 SERVICENET load balancer in <xref
                                    linkend="Update_Stack_W_LB"
                                 />.</para>
