@@ -51,7 +51,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2015-02-10</pubdate>
+        <pubdate>2015-02-16</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -66,6 +66,21 @@
         
         
         <revhistory>
+            <revision>
+                <date>2015-02-16</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Replaced the deprecated <code>1 GB
+                                   Performance</code> (and the 2/4/8
+                                GB Performance flavors), with the
+                                corresponding <code>1 GB General
+                                   Purpose v1</code> (and the 2/4/8 GB
+                                General Purpose v1) flavors.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2015-02-10</date>
                 <revdescription>
@@ -884,9 +899,9 @@ outputs:
     description: Instance type for compute instances
     constraints:
       allowed_values:
-        - 1 GB Performance
-        - 2 GB Performance
-        - 4 GB Performance</screen></para>
+        - 1 GB General Purpose v1
+        - 2 GB General Purpose v1
+        - 4 GB General Purpose v1</screen></para>
                         </listitem>
                     </varlistentry>
                     <varlistentry>
@@ -1013,7 +1028,7 @@ outputs:
   my_instance:
     type: OS::Nova::Server
     properties:
-      flavor: 1 GB Performance
+      flavor: 1 GB General Purpose v1
       image: CentOS 6 (PV)</screen></para>
                         </listitem>
                     </varlistentry>
@@ -1418,7 +1433,7 @@ resources:
     properties:
       key_name: my_key
       image: CentOS 6 (PV)
-      flavor: 1 GB Performance</screen>
+      flavor: 1 GB General Purpose v1</screen>
             <para>Each HOT template has to include the <emphasis
                     role="italic">heat_template_version</emphasis> key
                 with value '2014-10-16' (the current version of HOT).
@@ -1497,13 +1512,13 @@ resources:
                 not provide the respective parameter during
                 deployment. For example, the following definition for
                 the <code>instance_type</code> parameter would select
-                the <code>1 GB Performance</code> flavor by default
-                unless specified otherwise by the user:</para>
+                the <code>1 GB General Purpose v1</code> flavor by
+                default unless specified otherwise by the user:</para>
             <screen>parameters:
   instance_type:
     type: string
     description: Type of instance (flavor) to be used
-    default: 1 GB Performance</screen>
+    default: 1 GB General Purpose v1</screen>
             <para>Another option that can be specified for a parameter
                 is to hide its value when users request information
                 about a stack deployed from a template. This is
@@ -1530,7 +1545,7 @@ parameters:
   instance_type:
     type: string
     description: Type of instance (flavor) to be used
-    <emphasis role="bold">default: 1 GB Performance</emphasis>
+    <emphasis role="bold">default: 1 GB General Purpose v1</emphasis>
   <emphasis role="bold">database_password:
     type: string
     description: Password to be used for database
@@ -1564,10 +1579,10 @@ resources:
   instance_type:
     type: string
     description: Type of instance (flavor) to be used
-    default: 1 GB Performance 
+    default: 1 GB General Purpose v1 
     constraints:
-      - allowed_values: [ 1 GB Performance, 2 GB Performance, 4 GB Performance ]
-        description: Value must be one of 1 GB Performance, 2 GB Performance, or 4 GB Performance. </screen>
+      - allowed_values: [ 1 GB General Purpose v1, 2 GB General Purpose v1, 4 GB General Purpose v1 ]
+        description: Value must be one of 1 GB General Purpose v1, 2 GB General Purpose v1, or 4 GB General Purpose v1. </screen>
                 <para>The <code
                         >constraints</code> section allows for
                     defining a list of constraints that must all be
@@ -1603,10 +1618,10 @@ parameters:
   instance_type:
     type: string
     description: Type of instance (flavor) to be used
-    default: 1 GB Performance
+    default: 1 GB General Purpose v1
     <emphasis role="bold">constraints:
-      - allowed_values: [ 1 GB Performance, 2 GB Performance, 4 GB Performance ]
-        description: Value must be one of 1 GB Performance, 2 GB Performance, or 4 GB Performance. </emphasis>
+      - allowed_values: [ 1 GB General Purpose v1, 2 GB General Purpose v1, 4 GB General Purpose v1 ]
+        description: Value must be one of 1 GB General Purpose v1, 2 GB General Purpose v1, or 4 GB General Purpose v1. </emphasis>
   database_password:
     type: string
     description: Password to be used for database
@@ -1685,10 +1700,10 @@ parameters:
   instance_type:
     type: string
     description: Type of instance (flavor) to be used
-    default: 1 GB Performance
+    default: 1 GB General Purpose v1
     constraints:
-      - allowed_values: [ 1 GB Performance, 2 GB Performance, 4 GB Performance ]
-        description: Value must be one of 1 GB Performance, 2 GB Performance, or 4 GB Performance.
+      - allowed_values: [ 1 GB General Purpose v1, 2 GB General Purpose v1, 4 GB General Purpose v1 ]
+        description: Value must be one of 1 GB General Purpose v1, 2 GB General Purpose v1, or 4 GB General Purpose v1.
   database_password:
     type: string
     description: Password to be used for database
@@ -1744,7 +1759,7 @@ resources:
                         that are defined in the
                         template:<screen>parameters:
   key_name: heat_key
-  instance_type: 2 GB Performance
+  instance_type: 2 GB General Purpose v1
   image_id: CentOS 6 (PV)</screen></para>
                 </listitem>
             </itemizedlist>

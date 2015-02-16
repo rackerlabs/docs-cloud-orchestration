@@ -48,7 +48,7 @@
                 "type": "string"
             },
             "flavor": {
-                "default": "1 GB Performance",
+                "default": "1 GB General Purpose v1",
                 "type": "string"
             }
         }

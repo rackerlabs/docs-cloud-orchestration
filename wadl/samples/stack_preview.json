@@ -20,7 +20,7 @@
             "db_pass": "******",
             "db_root_pass": "******",
             "db_user_name": "******",
-            "flavor": "1 GB Performance",
+            "flavor": "1 GB General Purpose v1",
             "key_name": "heat_key",
             "image": "Fedora 19 (Schrodinger's Cat) (PVHVM)"
         },
