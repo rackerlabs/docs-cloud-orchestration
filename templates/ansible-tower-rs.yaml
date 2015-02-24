@@ -1,0 +1,174 @@
+heat_template_version: 2013-05-23
+
+description: |
+  A template that deploys Ansible Tower onto a single Linux server.
+
+parameter_groups:
+
+- label: Server Settings
+  parameters:
+  - flavor
+  - image
+
+- label: rax-dev-params
+  # These are parameters that will not be displayed in the portal. The purpose
+  # of these parameters are for users who are developing or testing newer or
+  # different setups. If any of these parameters are changed, there is a good
+  # chance this stack will fail to properly deploy.
+  parameters:
+  - ansible_tower_tarball
+  - server_name
+
+parameters:
+
+  flavor:
+    label: Server Size
+    description: |
+      Rackspace Cloud Server flavor to use. The size is based on the amount of
+      RAM for the provisioned server.
+    type: string
+    default: 1 GB General Purpose v1
+    constraints:
+      - allowed_values:
+        - 1 GB General Purpose v1
+        - 2 GB General Purpose v1
+        - 4 GB General Purpose v1
+        - 8 GB General Purpose v1
+        - 15 GB I/O v1
+        - 30 GB I/O v1
+        - 1GB Standard Instance
+        - 2GB Standard Instance
+        - 4GB Standard Instance
+        - 8GB Standard Instance
+        - 15GB Standard Instance
+        - 30GB Standard Instance
+        description: must be a valid Rackspace Cloud Server flavor.
+
+  image:
+    label: Operating System
+    description: |
+      Server image used for all servers that are created as a part of this
+      deployment
+    type: string
+    default: Ubuntu 14.04 LTS (Trusty Tahr) (PV)
+    constraints:
+    - allowed_values:
+      - Ubuntu 12.04 LTS (Precise Pangolin) (PVHVM)
+      - Ubuntu 14.04 LTS (Trusty Tahr) (PV)
+      description: Must be a supported operating system.
+
+  server_name:
+    label: Server Hostname
+    description: The instance name
+    type: string
+    default: ansible-tower
+
+  ansible_tower_tarball:
+    label: Ansible Tarball
+    description: Location of the Ansible Tower installer
+    type: string
+    default: |
+      http://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz
+
+resources:
+
+  ssh_key:
+    type: "OS::Nova::KeyPair"
+    properties:
+      name: { get_param: "OS::stack_id" }
+      save_private_key: true
+
+  # Random password generation
+  ansible_admin_pass:
+    type: "OS::Heat::RandomString"
+    properties:
+      length: 16
+      sequence: lettersdigits
+
+  postgres_admin_pass:
+    type: "OS::Heat::RandomString"
+    properties:
+      length: 16
+      sequence: lettersdigits
+
+  redis_admin_pass:
+    type: "OS::Heat::RandomString"
+    properties:
+      length: 16
+      sequence: lettersdigits
+
+  munin_admin_pass:
+    type: "OS::Heat::RandomString"
+    properties:
+      length: 16
+      sequence: lettersdigits
+
+  ansible_tower:
+    type: "Rackspace::Cloud::Server"
+    properties:
+      key_name: { get_resource: ssh_key }
+      flavor: { get_param: flavor }
+      image: { get_param: image }
+      name: { get_param: server_name }
+      metadata:
+        rax-heat: { get_param: "OS::stack_id" }
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash -v
+            set -e
+            # Install dependencies
+            apt-get install python-dev python-yaml python-paramiko python-jinja2 python-pip -y
+            pip install ansible
+            # Pull and extract the installer
+            wget -ct0 %ansible_tower_tarball%
+            tar xzf ansible-tower-setup-latest.tar.gz
+            cd ansible-tower*
+            # Write out options file
+            echo "admin_password: %ansible_admin_pass%
+            database: internal
+            munin_password: %munin_admin_pass%
+            pg_password: %postgres_admin_pass%
+            primary_machine: localhost
+            redis_password: %redis_admin_pass%" > tower_setup_conf.yml
+            # Write out the inventory file
+            echo "[primary]
+            localhost
+
+            [all:children]
+            primary" > inventory
+            # Copy everything to working directory and install
+            ./setup.sh
+            ufw allow 443
+          params:
+            "%ansible_tower_tarball%": { get_param: ansible_tower_tarball }
+            "%ansible_admin_pass%": { get_attr: [ansible_admin_pass, value] }
+            "%postgres_admin_pass%": { get_attr: [postgres_admin_pass, value] }
+            "%redis_admin_pass%": { get_attr: [redis_admin_pass, value] }
+            "%munin_admin_pass%": { get_attr: [munin_admin_pass, value] }
+            "%server_name%": { get_param: server_name }
+
+outputs:
+  private_key:
+    description: SSH Private Key
+    value: { get_attr: [ssh_key, private_key] }
+
+  ansible_url:
+    value:
+      str_replace:
+        template: "https://%server_ip%"
+        params:
+          "%server_ip%": { get_attr: [ ansible_tower, accessIPv4 ] }
+    description: Tower URL
+
+  server_ip:
+    value: { get_attr: [ ansible_tower, accessIPv4 ] }
+    description: Server IP
+
+  ansible_username:
+    value: admin
+    description: Admin Username
+
+  ansible_password:
+    value: { get_attr: [ansible_admin_pass, value] }
+    description: Admin Password
