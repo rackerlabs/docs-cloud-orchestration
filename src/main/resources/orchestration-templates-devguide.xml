@@ -51,7 +51,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2015-02-16</pubdate>
+        <pubdate>2015-02-24</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -66,6 +66,19 @@
         
         
         <revhistory>
+            <revision>
+                <date>2015-02-24</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Added description for an
+                                intermediate level template in <xref
+                                   linkend="Intermediate_Template_Example-d1e254"
+                                />.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2015-02-16</date>
                 <revdescription>
@@ -1249,6 +1262,20 @@ resources:
                             </listitem>
                         </varlistentry>
                     </variablelist>
+                    <para>An example of using the
+                            <code>get_attr</code> function is shown
+                        below to set <code>value</code> to the
+                            <code>accessIPv4</code> address of the
+                            <code>my_instance</code>
+                        resource:<screen language="bash">resources:
+  my_instance:
+    type: OS::Nova::Server
+    # ...
+
+outputs:
+  instance_ip:
+    description: IP address of the deployed compute instance
+    value: { get_attr: [my_instance, accessIPv4] } </screen></para>
                 </section>
                 <section xml:id="get_resource_intrinsic_function">
                     <title>get_resource</title>
@@ -1278,15 +1305,17 @@ resources:
                     </variablelist>
                     <para>An example of using the
                             <code>get_attr</code> function is shown
-                        below:<screen language="bash">resources:
-  my_instance:
-    type: OS::Nova::Server
-    # ...
+                        below to set the handle <code>property</code>
+                        to the value of the
+                            <code>wait_condition_handle</code>
+                        resource:<screen language="bash">  wait_condition:
+    type: "OS::Heat::SwiftSignal"
+    properties:
+      handle: { get_resource: wait_condition_handle }
+      timeout: 1800
 
-outputs:
-  instance_ip:
-    description: IP address of the deployed compute instance
-    value: { get_attr: [my_instance, accessIPv4] } </screen></para>
+  wait_condition_handle:
+    type: "OS::Heat::SwiftSignalHandle"</screen></para>
                 </section>
                 <section xml:id="str_replace_intrinsic_function">
                     <title>str_replace</title>
@@ -1455,11 +1484,11 @@ resources:
                     <code>flavor</code> parameters.</para>
             <para>Note that all those elements &ndash; a key-pair with
                 the given name, the image, and the flavor &ndash; must
-                exist in the Rackspace environment where the template
-                is used. Typically a template is made more easily
-                reusable, however, by defining a set of <emphasis
-                    role="italic">input parameters</emphasis> rather
-                than hard-coding such values.</para>
+                exist in the environment where the template is used.
+                Typically a template is made more easily reusable,
+                however, by defining a set of <emphasis role="italic"
+                    >input parameters</emphasis> rather than
+                hard-coding such values.</para>
         </section>
         <section xml:id="Template_Input_Parameters-d1e143">
             <title>Template Input Parameters</title>
@@ -1728,6 +1757,1059 @@ resources:
   instance_ip:
     description: The IP address of the deployed instance
     value: { get_attr: [my_instance, accessIPv4] } </emphasis> </screen>
+        </section>
+    </chapter>
+    <chapter xml:id="Intermediate_Template_Example-d1e254">
+        <title>An Intermediate Template Example</title>
+        <para>This chapter describes how to write a more complex,
+            intermediate level HOT (Heat Orchestration Template)
+            template. This template deploys the free version of
+            Ansible Tower onto a single Linux server.</para>
+        <para>The entire intermediate template is shown below.</para>
+        <para>Reviewer:  Can the file ansible-tower.yaml template be
+            used as a standalone template for creating a stack, or
+            does it have dependencies on any other files in the repo,
+                (<link
+                xlink:href="https://github.com/rackspace-orchestration-templates/ansible-tower"
+                >https://github.com/rackspace-orchestration-templates/ansible-tower</link>),
+            and if so, which ones?</para>
+        
+        <example>
+            <title>Intermediate Level Template that deploys Ansible
+                Tower</title>
+                <programlisting language="json"><xi:include href="../../../templates/ansible-tower-os.yaml" parse="text"/>
+                    </programlisting>
+        </example>
+        <section xml:id="Intermediate_Template_Version_Description">
+            <title>Intermediate Template &mdash; Version and
+                Description</title>
+            <para>Each HOT template must include the
+                    <code>heat_template_version</code> key with value
+                    <code>2014-10-16</code> (the current version of
+                HOT is recommended). A detailed specification of HOT
+                can be found in <xref
+                    linkend="Intro_to_Templates-d1e633"/>. </para>
+            <para>While the <code>description</code> is optional, it
+                is good practice to include some useful text that
+                describes what users can do with the template.</para>
+            <screen>heat_template_version: 2014-10-16
+
+description: |
+   A template that deploys Ansible Tower onto a single Linux server.
+               
+</screen>
+            <para>The vertical bar (|) that begins the description
+                shown in the previous example enables you to place the
+                description on the following line.</para>
+            <para> In case you want to provide a longer description
+                that does not fit on a single line, you can provide
+                multi-line text in YAML by using the greater than
+                character (>), for
+                example:<screen>description: >
+    This is how you can provide a longer description
+    of your template that goes over several lines.  </screen></para>
+            <para>This installation deploys the free version of
+                Ansible Tower, and is limited to 10 machines.</para>
+            <para>Reviewer: what is the difference between using the
+                vertical bar (|) character verses the greater than (>)
+                character for the description? Is the difference
+                described correctly above?</para> 
+        </section>
+        <section xml:id="Intermediate_Template_Parameter_Groups">
+            <title>Intermediate Template &mdash; Parameter Groups</title>
+            <para>The template then defines two parameter
+                groups:</para>
+            <screen>parameter_groups:
+
+- label: Server Settings
+  parameters:
+  - flavor
+  - image
+
+- label: rax-dev-params
+  # These are parameters that will not be displayed in the portal. The purpose
+  # of these parameters is for users who are developing or testing newer or
+  # different setups. If any of these parameters are changed, there is a good
+  # chance this stack will fail to properly deploy.
+  parameters:
+  - ansible_tower_tarball
+  - server_name</screen>
+            <para>The optional <code>parameter_groups</code> section
+                allows for specifying how the input parameters should
+                be grouped and the order in which to provide the
+                parameters. </para>
+            <para>The first parameter group has the label <code>Server
+                    Settings</code>, which will be displayed in the
+                GUI (such as Reach), if the template is used in a
+                portal or command line interface. Two parameters are
+                defined in the <code>Server Settings group</code>:
+                    <code>flavor</code> and <code>image</code>. Flavor
+                specifies the combination of cpu time and memory
+                allocated for the server and image specifies the
+                operating system for the server. </para>
+            <para>The second parameter group has the label
+                    <code>rax-dev-params</code>. This label will not
+                be displayed in the portal.</para>
+            <para>Reviewer: what determines that the
+                    <code>rax-dev-params</code> group is not displayed
+                in the portal?</para>
+            <para>The second parameter group defines two parameters.
+                The parameter <code>ansible_tower_tarball</code> is
+                used to store the URL for the Ansible install tar
+                file. The second parameter <code>server_name</code> is
+                the name of the server where you install
+                Ansible.</para>
+            <para>The parameters listed in these two groups are defined
+                in the <code>parameters</code> section, which is
+                described next.</para>
+        </section>
+        <section xml:id="Intermediate_Template_Parameters">
+            <title>Intermediate Template &mdash; Parameters</title>
+            <para>The template then defines parameters. </para>
+            <screen>parameters:
+
+  flavor:
+    label: Server Size
+    description: |
+      Nova Cloud Server flavor to use. The size is based on the amount of
+      RAM for the provisioned server.
+    type: string
+    default: 1 GB General Purpose v1
+    constraints:
+      - allowed_values:
+        - 1 GB General Purpose v1
+        - 2 GB General Purpose v1
+        - 4 GB General Purpose v1
+        - 8 GB General Purpose v1
+        - 15 GB I/O v1
+        - 30 GB I/O v1
+        - 1GB Standard Instance
+        - 2GB Standard Instance
+        - 4GB Standard Instance
+        - 8GB Standard Instance
+        - 15GB Standard Instance
+        - 30GB Standard Instance
+        description: must be a valid Rackspace Cloud Server flavor.
+
+  image:
+    label: Operating System
+    description: |
+      Server image used for all servers that are created as a part of this
+      deployment
+    type: string
+    default: Ubuntu 14.04 LTS (Trusty Tahr) (PV)
+    constraints:
+    - allowed_values:
+      - Ubuntu 12.04 LTS (Precise Pangolin) (PVHVM)
+      - Ubuntu 14.04 LTS (Trusty Tahr) (PV)
+      description: Must be a supported operating system.
+
+  server_name:
+    label: Server Hostname
+    description: The instance name
+    type: string
+    default: ansible-tower
+
+  ansible_tower_tarball:
+    label: Ansible Tarball
+    description: Location of the Ansible Tower installer
+    type: string
+    default: |
+      http://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz</screen>
+            <itemizedlist>
+                <listitem>
+                    <para><code>flavor</code></para>
+                    <para>A flavor is a hardware configuration for a
+                        server. Each flavor is a unique combination of
+                        disk space and memory capacity. The flavor
+                            <code>label</code> is <code>Server
+                            Size</code> and a description is provided.
+                        The <code>type</code> of a flavor is
+                            <code>string</code>. A
+                            <code>default</code> is provided (<code>1
+                            GB General Purpose v1</code>) so the
+                        template can be run without a GUI, in which
+                        case, the default is used.</para>
+                    <para>The <code>constraints</code> section lists
+                        the valid <code>allowed values</code> for
+                        flavors, from which the GUI user can choose. A
+                            <code>description</code> is provided for
+                        the <code>allowed values</code>.</para>
+                </listitem>
+                <listitem>
+                    <para><code>image</code></para>
+                    <para>The image is the Operating System image to
+                        install on the server. The image
+                            <code>label</code> is <code>Operating
+                            System</code> and a
+                            <code>description</code> is provided. The
+                            <code>type</code> of an image is
+                            <code>string</code>. A
+                            <code>default</code> is provided
+                            (<code>Ubuntu 14.04 LTS (Trusty Tahr)
+                            (PV)</code>) so the template can be run
+                        without a GUI, in which case, the default is
+                        used.</para>
+                    <para>The <code>constraints</code> section lists
+                        the valid <code>allowed values</code> for
+                        images, from which the GUI user can choose. A
+                            <code>description</code> is provided for
+                        the <code>allowed values</code>.</para>
+                </listitem>
+                <listitem>
+                    <para><code>server_name</code></para>
+                    <para>The server_name is the hostname of the
+                        server. The <code>label</code> is <code>Server
+                            Hostname</code> and a
+                            <code>description</code> is provided. The
+                            <code>type</code> of the parameter is
+                            <code>string</code>. A
+                            <code>default</code> is provided
+                            (<code>ansible-tower</code>) so the
+                        template can be run without a GUI, in which
+                        case, the default is used.</para>
+                </listitem>
+                <listitem>
+                    <para><code>ansible_tower_tarball</code></para>
+                    <para>The ansible_tower_tarball specifies the URL
+                        for the Ansible Tower installer. The
+                            <code>label</code> is <code>Ansible
+                            Tarball</code> and a
+                            <code>description</code> is provided. The
+                            <code>type</code> of the parameter is
+                            <code>string</code>. A
+                            <code>default</code> is provided
+                            (<code>ansible-tower</code>) so the
+                        template can be run without a GUI, in which
+                        case, the default is used.</para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section xml:id="Intermediate_Template_Resources">
+            <title>Intermediate Template &mdash; Resources</title>
+            <para>The <emphasis role="italic">resources</emphasis>
+                section is required and must contain at least one
+                resource definition.</para>
+            <screen>resources:
+
+  wait_condition:
+    type: "OS::Heat::SwiftSignal"
+    properties:
+      handle: { get_resource: wait_condition_handle }
+      timeout: 1800
+
+  wait_condition_handle:
+    type: "OS::Heat::SwiftSignalHandle"
+
+  ssh_key:
+    type: "OS::Nova::KeyPair"
+    properties:
+      name: { get_param: "OS::stack_id" }
+      save_private_key: true
+
+  # Random password generation
+  ansible_admin_pass:
+    type: "OS::Heat::RandomString"
+    properties:
+      length: 16
+      sequence: lettersdigits
+
+  postgres_admin_pass:
+    type: "OS::Heat::RandomString"
+    properties:
+      length: 16
+      sequence: lettersdigits
+
+  redis_admin_pass:
+    type: "OS::Heat::RandomString"
+    properties:
+      length: 16
+      sequence: lettersdigits
+
+  munin_admin_pass:
+    type: "OS::Heat::RandomString"
+    properties:
+      length: 16
+      sequence: lettersdigits
+
+.
+.
+.</screen>
+            <note>
+                <para>The ansible_tower resource is described in <xref
+                        linkend="ansible_tower_Resource"/>.</para>
+            </note>
+            <para>The template defines the following resources.</para>
+            <itemizedlist>
+                <listitem>
+                    <para><code>wait_condition</code></para>
+                    <para>This resource signals completion and
+                        optionally uploads data for an event. The
+                            <code>type</code> of the resource is
+                            <code>OS::Heat::SwiftSignal</code>. </para>
+                    <para>This resource has the following
+                        properties.</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para><code>handle</code></para>
+                            <para>The value of the <code>handle</code>
+                                is set by calling the
+                                   <code>get_resource</code> function
+                                on the
+                                   <code>wait_condition_handle</code>
+                                resource.</para>
+                        </listitem>
+                        <listitem>
+                            <para><code>timeout</code></para>
+                            <para>The <code>timeout</code> is set to
+                                   <code>1800</code> and represents
+                                the maximum number of seconds to wait
+                                for the resource to signal completion.
+                                Once the timeout is reached, creation
+                                of the signal resource will
+                                fail.</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+                <listitem>
+                    <para><code>wait_condition_handle</code></para>
+                    <para>This resource specifies where to upload data
+                        for an event. The <code>type</code> of the
+                        resource is
+                            <code>OS::Heat::SwiftSignalHandle</code>.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para><code>ssh_key</code></para>
+                    <para>This resource enables you to create Nova key
+                        pairs. The <code>type</code> of the resource
+                        is <code>OS::Nova::KeyPair</code>. The
+                        resource has two properties.</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para><code>name</code></para>
+                            <para>This property is initialized by
+                                calling the function
+                                   <code>get_param</code> to get the
+                                value of the parameter
+                                   <code>OS::stack_id</code>.</para>
+                        </listitem>
+                        <listitem>
+                            <para><code>save_private_key</code></para>
+                            <para>This property is set to
+                                   <code>true</code> to have the
+                                system remember a generated private
+                                key.</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+                <listitem>
+                    <para><code>ansible_admin_pass</code></para>
+                    <para>This property stores the Ansible
+                        Administrator password.</para>
+                    <para> The <code>type</code> of the resource is
+                            <code>OS::Heat::RandomString</code>. The
+                        resource has two properties.</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para><code>length</code></para>
+                            <para>This property specifies the length
+                                of the string (16).</para>
+                        </listitem>
+                        <listitem>
+                            <para><code>sequence</code></para>
+                            <para>This property specifies the sequence
+                                of characters allowed in the strings
+                                (in this case, both letters and
+                                digits).</para>
+                            <para>The following resources share the
+                                same <code>length</code> and
+                                   <code>sequence</code>
+                                properties.</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+                <listitem>
+                    <para><code>postgres_admin_pass</code></para>
+                    <para>The PostgreSQL Administrator password.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para><code>redis_admin_pass</code></para>
+                    <para>The Redis Administrator password.</para>
+                </listitem>
+                <listitem>
+                    <para><code>munin_admin_pass</code></para>
+                    <para>The Munin Administrator password.</para>
+                    <para>The password used by Tower superusers to
+                        access the Munin-based monitoring of your
+                        Tower server.</para>
+                    <para>The previous Admin passwords are used
+                        internally to Ansible Tower and not needed by
+                        the Administrator at runtime. Therefore, they
+                        are normally autogenerated as a random value
+                            (<code>OS::Heat::RandomString</code>).</para>
+                </listitem>
+            </itemizedlist>
+            <section xml:id="ansible_tower_Resource">
+                <title><code>ansible_tower</code> Resource</title>
+                <para>Since the <code>ansible_tower</code> resource
+                    does much of the work for this template, it is
+                    described in this separate section.</para>
+                <screen>
+.
+.
+.
+
+  ansible_tower:
+    type: "OS::Nova::Server"
+    properties:
+      config_drive: "true"     # required for wait_condition
+      user_data_format: RAW    # required for wait_condition
+      key_name: { get_resource: ssh_key }
+      flavor: { get_param: flavor }
+      image: { get_param: image }
+      name: { get_param: server_name }
+      metadata:
+        rax-heat: { get_param: "OS::stack_id" }
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash -v
+            set -e
+            # Install dependencies
+            apt-get update
+            apt-get install python-dev python-yaml python-paramiko python-jinja2 python-pip -y
+            pip install ansible
+            # Pull and extract the installer
+            wget -ct0 %ansible_tower_tarball%
+            tar xzf ansible-tower-setup-latest.tar.gz
+            cd ansible-tower*
+            # Write out options file
+            echo "admin_password: %ansible_admin_pass%
+            database: internal
+            munin_password: %munin_admin_pass%
+            pg_password: %postgres_admin_pass%
+            primary_machine: localhost
+            redis_password: %redis_admin_pass%" > tower_setup_conf.yml
+            # Write out the inventory file
+            echo "[primary]
+            localhost
+
+            [all:children]
+            primary" > inventory
+            # Copy everything to working directory and install
+            ./setup.sh
+            ufw allow 443
+            wc_notify --data-binary '{"status": "SUCCESS"}' 
+             
+          params:
+            "%ansible_tower_tarball%": { get_param: ansible_tower_tarball }
+            "%ansible_admin_pass%": { get_attr: [ansible_admin_pass, value] }
+            "%postgres_admin_pass%": { get_attr: [postgres_admin_pass, value] }
+            "%redis_admin_pass%": { get_attr: [redis_admin_pass, value] }
+            "%munin_admin_pass%": { get_attr: [munin_admin_pass, value] }
+            "%server_name%": { get_param: server_name }
+            wc_notify: { get_attr: ['wait_condition_handle', 'curl_cli'] }</screen>
+                <para>The resource type is
+                        <code>OS::Nova::Server</code>, which provides
+                    a Nova Cloud Server for installing Ansible Tower. </para>
+                <para>The properties for the resource are as
+                    follows:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para><code>config_drive</code></para>
+                        <para>When set to <code>True</code>, this
+                            property enables the configuration drive
+                            on the server.</para>
+                        <para>This setting enables OpenStack to write
+                            metadata to a special configuration drive
+                            that attaches to the instance when it
+                            boots. The instance can mount this drive
+                            and read files from it to get information
+                            that is normally available through the
+                            metadata service. </para>
+                    </listitem>
+                    <listitem>
+                        <para><code>user_data_format</code></para>
+                        <para>This property specifies how the
+                                <code>user_data</code> should be
+                            formatted for the server. Setting the
+                            property to <code>RAW</code> passes the
+                                <code>user_data</code> to Nova
+                            unmodified.</para>
+                    </listitem>
+                    <listitem>
+                        <para><code>key_name</code></para>
+                        <para>This property specifies the name of the
+                            keypair to inject into the server.</para>
+                        <para>The value is set by calling the
+                                <code>get_resource</code> function on
+                            the <code>ssh_key</code> resource. </para>
+                    </listitem>
+                    <listitem>
+                        <para><code>flavor</code></para>
+                        <para>This property represents a hardware
+                            configuration for a server. Each flavor is
+                            a unique combination of disk space and
+                            memory capacity.</para>
+                        <para>The value is set by calling the
+                                <code>get_param</code> function on the
+                                <code>flavor</code> parameter. </para>
+                    </listitem>
+                    <listitem>
+                        <para><code>image</code></para>
+                        <para>This property represents the Operating
+                            System image to install on the
+                            server.</para>
+                        <para>The value is set by calling the
+                                <code>get_param</code> function on the
+                                <code>image</code> parameter. </para>
+                    </listitem>
+                    <listitem>
+                        <para><code>name</code></para>
+                        <para>This property represents the hostname of
+                            the server.</para>
+                        <para>The value is set by calling the
+                                <code>get_param</code> function on the
+                                <code>server_name</code> parameter.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para><code>metadata</code></para>
+                        <para>This property sets arbitrary key/value
+                            metadata to store for this server.</para>
+                        <para>The value for the <code>rax-heat</code>
+                            metadata key is set by calling the
+                                <code>get_param</code> function on the
+                                <code>OS::stack_id</code> parameter to
+                            store the stack ID in the metadata.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para><code>user_data</code></para>
+                        <para>This property sets a user data script to
+                            be executed by cloud-init. This property
+                            enables a user to configure the new server
+                            as desired by providing this script to be
+                            run by cloud-init when the server is being
+                            initialized.</para>
+                        <para>Reviewer: is there other information
+                            that needs to be presented here for
+                            user_data or cloud-init? Examples, tips,
+                            whatever?</para>
+                        <para>The <code>str_replace</code> function
+                            enables dynamically constructing strings
+                            by providing a template string with
+                            placeholders and a list of mappings
+                            (specified by <code>params</code>) to
+                            assign values to those placeholders at
+                            runtime. This is used to dynamically
+                            configure the user data script. For more
+                            information about the
+                                <code>str_replace</code> function, see
+                                <xref
+                                linkend="str_replace_intrinsic_function"
+                            />.</para>
+                        <para>The script performs the
+                            following:</para>
+                        <itemizedlist>
+                            <listitem>
+                                <para><code>#!/bin/bash
+                                   -v</code></para>
+                                <para>This comment causes the script
+                                   to be executed by the bash shell
+                                   with the verbose flag set.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>set -e</code></para>
+                                <para>This shell command causes the
+                                   script to exit immediately if a
+                                   command exits with a non-zero
+                                   status.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code># Install
+                                   dependencies</code></para>
+                                <para>Comment that package
+                                   dependencies will be installed (in
+                                   the next line).</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>apt-get
+                                   update</code></para>
+                                <para>Downloads the package lists from
+                                   the repositories and "updates" the
+                                   lists with information on the
+                                   newest versions of packages and
+                                   their dependencies.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>apt-get install python-dev
+                                   python-yaml python-paramiko
+                                   pythonjinja2 python-pip
+                                   -y</code></para>
+                                <para>Installs the package
+                                   dependencies for Ansible
+                                   Tower.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>pip install
+                                   ansible</code></para>
+                                <para>Use pip to install
+                                   Ansible.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code># Pull and extract the
+                                   installer</code></para>
+                                <para>Comment that the Ansible
+                                   installer will be downloaded and
+                                   extracted (in the next
+                                   lines).</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>wget -ct0
+                                   %ansible_tower_tarball%</code></para>
+                                <para>Downloads the Ansible installer
+                                   (whose location is specified by the
+                                   parm
+                                   <code>%ansible_tower_tarball%</code>).</para>
+                                <para>Reviewer: please explain the "%"
+                                   notation and why is must be used
+                                   here for the params?</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>tar xzf
+                                   ansible-tower-setup-latest.tar.gz</code></para>
+                                <para>Extract the Ansible
+                                   installer.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>cd
+                                   ansible-tower*</code></para>
+                                <para>Change directory to the
+                                   <code>ansible-tower*</code>
+                                   directory.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code># Write out options
+                                   file</code></para>
+                                <para>Comment to write out the options
+                                   file (in the next lines).</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>echo "admin_password:
+                                   %ansible_admin_pass%</code></para>
+                                <para>Begin writing out the values for
+                                   the options file, starting with the
+                                   ansible_admin_pass (Ansible
+                                   Administrator Password), set to the
+                                   value of the
+                                   <code>%ansible_admin_pass%</code>
+                                   param.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>database:
+                                   internal</code></para>
+                                <para>Set the <code>database</code>
+                                   option to be
+                                   <code>internal</code>.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>munin_password:
+                                   %munin_admin_pass%</code></para>
+                                <para>Set the
+                                   <code>munin_password</code> option
+                                   to the value of the
+                                   <code>%munin_admin_pass%</code>
+                                   param.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>pg_password:
+                                   %postgres_admin_pass%</code></para>
+                                <para>Set the <code>pg_password</code>
+                                   option to the value of the
+                                   <code>%postgres_admin_pass%</code>
+                                   param.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>primary_machine:
+                                   localhost</code></para>
+                                <para>Set the
+                                   <code>primary_machine</code> option
+                                   to the value
+                                   <code>localhost</code>.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>redis_password:
+                                   %redis_admin_pass%" >
+                                   tower_setup_conf.yml</code></para>
+                                <para>Set the
+                                   <code>redis_password</code> option
+                                   to the value of the
+                                   <code>%redis_admin_pass%</code>
+                                   resource, and write the options to
+                                   the
+                                   <code>tower_setup_conf.yml</code>
+                                   configuration file.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code># Write out the inventory
+                                   file</code></para>
+                                <para>Comment to write out the
+                                   inventory file (starting in the
+                                   next lines).</para>
+                                <para>Reviewer: can you please explain
+                                   to me each of the lines that
+                                   represent the contents of the
+                                   inventory file. This section does
+                                   not make sense to me.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>echo
+                                   "[primary]</code></para>
+                                <para>Begin writing out the contents
+                                   of the inventory file, starting
+                                   with <code>[primary]</code>.</para>
+                                <para>Reviewer: can you please explain
+                                   to me each of the lines that
+                                   represent the contents of the
+                                   inventory file. This does not make
+                                   sense to me.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>localhost</code></para>
+                                <para>Reviewer: can you please explain
+                                   to me each of the lines that
+                                   represent the contents of the
+                                   inventory file. This does not make
+                                   sense to me.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>[all:children]</code></para>
+                                <para>Reviewer: can you please explain
+                                   to me each of the lines that
+                                   represent the contents of the
+                                   inventory file. This does not make
+                                   sense to me.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>primary" >
+                                   inventory</code></para>
+                                <para>Write out the contents of the
+                                   inventory file.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code># Copy everything to
+                                   working directory and
+                                   install</code></para>
+                                <para>Comment to copy and install in
+                                   the next line</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>./setup.sh</code></para>
+                                <para>Execute the setup script to copy
+                                   and install Ansible Tower.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>ufw allow
+                                   443</code></para>
+                                <para>Tells the firewall to allow port
+                                   443 (since we have SSL enabled for
+                                   our clients' security).</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>wc_notify --data-binary
+                                   '{"status": "SUCCESS"}'
+                                   </code></para>
+                                <para>Signals success by adding
+                                   <code>--data-binary '{"status":
+                                   "SUCCESS"}'</code>.</para>
+                                <para>If the script reaches this line
+                                   without exiting, the script
+                                   succeeded without exiting, so it
+                                   now signals success. Notice that
+                                   <code>wc_notify</code> is a
+                                   <code>param</code> that is replaced
+                                   in the script (see the
+                                   <code>params</code> section below)
+                                   by calling the
+                                   <code>get_attr</code> function on
+                                   the
+                                   <code>wait_condition_handle</code>
+                                   resource, specifying the
+                                   <code>curl_cli</code> attribute.
+                                   The <code>curl_cli</code> attribute
+                                   provides the curl CLI command
+                                   prefix, which is then used for
+                                   signalling handle completion using
+                                   the <code>–data-binary ‘{“status”:
+                                   “SUCCESS”}’</code> option.
+                                   Otherwise, the script did not
+                                   execute this line because it exited
+                                   and was not successful. The
+                                   signalling by
+                                   <code>server_data</code> in the
+                                   <code>outputs</code> section
+                                   provides information about the
+                                   errors that occurred.</para>
+                                <para>Reviewer: it appears that the
+                                   way the Swift Signaling works is if
+                                   we get to this point in the script
+                                   without exiting, we know the script
+                                   succeeded, so we signal success.
+                                   Otherwise, the script was not
+                                   successful, and the signalling by
+                                   server_data in the outputs provides
+                                   information about the errors that
+                                   occurred. Is this correct? Is there
+                                   any other information we need to
+                                   provide here about the Swift
+                                   Signalling?</para>
+                            </listitem>
+                        </itemizedlist>
+                        <para>The <code>params</code> section
+                            specifies the values for each of the
+                            replacement mappings in the
+                                <code>template</code> section for
+                                <code>str_replace</code>:</para>
+                        <itemizedlist>
+                            <listitem>
+                                <para><code>"%ansible_tower_tarball%":
+                                   { get_param: ansible_tower_tarball
+                                   }</code></para>
+                                <para>Sets the value for the
+                                   <code>%ansible_tower_tarball%</code>
+                                   placeholder to the value returned
+                                   from calling the function
+                                   <code>get_parm</code> on the
+                                   <code>ansible_tower_tarball</code>
+                                   parameter.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>"%ansible_admin_pass%": {
+                                   get_attr: [ansible_admin_pass,
+                                   value] }</code></para>
+                                <para>Sets the value for the
+                                   <code>%ansible_admin_pass%</code>
+                                   placeholder to the value returned
+                                   from calling the function
+                                   <code>get_attr</code> to get the
+                                   <code>value</code> of the
+                                   <code>ansible_admin_pass</code>
+                                   attribute.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>"%postgres_admin_pass%": {
+                                   get_attr: [postgres_admin_pass,
+                                   value] }</code></para>
+                                <para>Sets the value for the
+                                   <code>%postgres_admin_pass%</code>
+                                   placeholder to the value returned
+                                   from calling the function
+                                   <code>get_attr</code> to get the
+                                   <code>value</code> of the
+                                   <code>postgres_admin_pass</code>
+                                   attribute.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>"%redis_admin_pass%": {
+                                   get_attr: [redis_admin_pass, value]
+                                   }</code></para>
+                                <para>Sets the value for the
+                                   <code>%redis_admin_pass%</code>
+                                   placeholder to the value returned
+                                   from calling the function
+                                   <code>get_attr</code> to get the
+                                   <code>value</code> of the
+                                   <code>redis_admin_pass</code>
+                                   attribute.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>"%munin_admin_pass%": {
+                                   get_attr: [munin_admin_pass, value]
+                                   }</code></para>
+                                <para>Sets the value for the
+                                   <code>%munin_admin_pass%</code>
+                                   placeholder to the value returned
+                                   from calling the function
+                                   <code>get_attr</code> to get the
+                                   <code>value</code> of the
+                                   <code>munin_admin_pass</code>
+                                   attribute.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>"%server_name%": {
+                                   get_param: server_name
+                                   }</code></para>
+                                <para>Sets the value for the
+                                   <code>%server_name%</code>
+                                   placeholder to the value returned
+                                   from calling the function
+                                   <code>get_parm</code> on the
+                                   <code>server_name</code>
+                                   parameter.</para>
+                            </listitem>
+                            <listitem>
+                                <para><code>wc_notify: { get_attr:
+                                   ['wait_condition_handle',
+                                   'curl_cli'] } </code></para>
+                                <para>Sets the value for the
+                                   <code>wc_notify</code> placeholder
+                                   to the value returned from calling
+                                   the function <code>get_attr</code>
+                                   function for the resource
+                                   <code>wait_condition_handle</code>,
+                                   specifying the
+                                   <code>curl_cli</code> attribute.
+                                   This attribute provides the curl
+                                   CLI command prefix, which can be
+                                   used for signalling the wait
+                                   condition handle completion or
+                                   failure. </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </itemizedlist>
+            </section>
+        </section>
+        <section xml:id="ansible_tower_Outputs">
+            <title>Intermediate Template &mdash; Outputs</title>
+            <para>The template then defines <code>outputs</code>.
+                These <code>outputs</code> are used to provide
+                important information for template users.</para>
+            <screen>outputs:
+  private_key:
+    description: SSH Private Key
+    value: { get_attr: [ssh_key, private_key] }
+
+  ansible_url:
+    value:
+      str_replace:
+        template: "https://%server_ip%"
+        params:
+          "%server_ip%": { get_attr: [ ansible_tower, accessIPv4 ] }
+    description: Tower URL
+
+  server_ip:
+    value: { get_attr: [ ansible_tower, accessIPv4 ] }
+    description: Server IP
+
+  ansible_username:
+    value: admin
+    description: Admin Username
+
+  ansible_password:
+    value: { get_attr: [ansible_admin_pass, value] }
+    description: Admin Password
+    
+  server_data:
+    value: { get_attr: [ wait_condition, data ] }
+    description: Data from wait condition to report script status </screen>
+            <itemizedlist>
+                <listitem>
+                    <para><code>private_key</code></para>
+                    <para>The  <code>private_key</code> description
+                        notes that the value is the saved SSH private
+                        key, used to provide access to the server. The
+                            <code>value</code> of the private key is
+                        returned from calling the function
+                            <code>get_attr</code> on the
+                            <code>ssh_key</code> resource, specifying
+                        the <code>private_key</code> attribute.</para>
+                </listitem>
+                <listitem>
+                    <para><code>ansible_url</code></para>
+                    <para>The  <code>ansible_url</code> description
+                        notes that the value is the Tower URL, used
+                        for accessing the Ansible Tower application.
+                        The <code>value</code> of the
+                            <code>ansible_url</code> is returned from
+                        calling the <code>str_replace</code> function
+                        to enable dynamically constructing strings by
+                        providing a template string with placeholders
+                        and a list of mappings (specified by
+                            <code>params</code>) to assign values to
+                        those placeholders at runtime. In this case
+                            <code>str_replace</code> builds the Tower
+                        URL in the <code>parms</code> section by
+                        calling the function <code>get_attr</code> on
+                        the <code>ansible_tower</code> resource,
+                        specifying the <code>accessIPv4</code>
+                        attribute.  The IPv4 address is then saved as
+                        the <code>%server_ip%</code> param. Then this
+                        param is substituted into the URL string
+                            (<code>https://%server_ip%</code>),
+                        providing the value for
+                            <code>%server_ip%</code>.</para>
+                </listitem>
+                <listitem>
+                    <para><code>server_ip</code></para>
+                    <para>The <code>server_ip</code> description notes
+                        that the value is the server IP address. The
+                            <code>value</code> of the
+                            <code>server_ip</code> is returned from
+                        calling the function <code>get_attr</code> on
+                        the <code>ansible_tower</code> resource,
+                        specifying the <code>accessIPv4</code>
+                        attribute.</para>
+                </listitem>
+                <listitem>
+                    <para><code>ansible_username</code></para>
+                    <para>The <code>ansible_username</code>
+                        description notes that the value is the Admin
+                        Username. The <code>value</code> of the
+                            <code>ansible_username</code> is
+                        hard-coded as <code>admin</code>.</para>
+                </listitem>
+                <listitem>
+                    <para><code>ansible_password</code></para>
+                    <para>The <code>ansible_password</code>
+                        description notes that the value is the Admin
+                        Password for Ansible. The <code>value</code>
+                        of the private key is returned from calling
+                        the function <code>get_attr</code> on the
+                            <code>ansible_admin_pass</code> resource,
+                        specifying the <code>value</code>
+                        attribute.</para>
+                </listitem>
+                <listitem>
+                    <para><code>server_data</code></para>
+                    <para>The <code>server_data</code> description
+                        notes that the value is the data from wait
+                        condition to report script status. This
+                        information shows the user the results of
+                        running the <code>user_data</code> script to
+                        install Ansible. Any errors that occurred
+                        during the Ansible installation are shown
+                        here. The <code>value</code> of the
+                            <code>server_data</code> is returned from
+                        calling the function <code>get_attr</code> on
+                        the <code>wait_condition</code> resource,
+                        specifying the <code>data</code>
+                        attribute.</para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section xml:id="ansible_tower_Using_Stack">
+            <title>Intermediate Template &mdash; Getting Started with
+                Ansible Tower</title>
+            <para>This section provides information about using the
+                stack you can create using the intermediate template.
+                For an example of creating a stack, refer to <link
+                    xlink:href="http://docs.rackspace.com/orchestration/api/v1/orchestration-getting-started/content/Create_Simple_Stack_CS.html"
+                    >http://docs.rackspace.com/orchestration/api/v1/orchestration-getting-started/content/Create_Simple_Stack_CS.html</link>.</para>
+            <para>If you are new to Ansible Tower, check out the User
+                Guide at <link
+                    xlink:href="http://www.ansible.com/tower"
+                    >http://www.ansible.com/tower</link>.</para>
+            <para>This installation of Ansible Tower is limited to 10
+                machines. If you require support for more than 10
+                machines, you will need to upgrade your installation.
+                Pricing details for additional server support can be
+                found at <link
+                    xlink:href="http://www.ansible.com/pricing#tower"
+                    >http://www.ansible.com/pricing#tower</link>.</para>
         </section>
     </chapter>
     <chapter xml:id="Environment-d1e429">
