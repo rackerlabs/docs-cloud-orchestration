@@ -1766,19 +1766,19 @@ resources:
             template. This template deploys the free version of
             Ansible Tower onto a single Linux server.</para>
         <para>The entire intermediate template is shown below.</para>
-        <para>Reviewer:  Can the file ansible-tower.yaml template be
-            used as a standalone template for creating a stack, or
-            does it have dependencies on any other files in the repo,
-                (<link
+        <para>This template can be used as a standalone template for
+            creating a stack. The file is named ansible-tower.yaml
+            template and can be found in the repo directory at <link
                 xlink:href="https://github.com/rackspace-orchestration-templates/ansible-tower"
-                >https://github.com/rackspace-orchestration-templates/ansible-tower</link>),
-            and if so, which ones?</para>
+                >https://github.com/rackspace-orchestration-templates/ansible-tower</link>.
+            You will also find other files in the repo directory that
+            are used to support the template in the Reach
+            framework.</para>
         
         <example>
             <title>Intermediate Level Template that deploys Ansible
                 Tower</title>
-                <programlisting language="json"><xi:include href="../../../templates/ansible-tower-os.yaml" parse="text"/>
-                    </programlisting>
+                <programlisting language="json"><xi:include href="../../../templates/ansible-tower-os.yaml" parse="text"/></programlisting>
         </example>
         <section xml:id="Intermediate_Template_Version_Description">
             <title>Intermediate Template &mdash; Version and
@@ -1799,21 +1799,20 @@ description: |
                
 </screen>
             <para>The vertical bar (|) that begins the description
-                shown in the previous example enables you to place the
-                description on the following line.</para>
-            <para> In case you want to provide a longer description
-                that does not fit on a single line, you can provide
-                multi-line text in YAML by using the greater than
+                shown in the previous example enables you to use
+                multi-line text in the description. The vertical bar
+                (|) syntax preserves the newlines that are entered in
+                the description text.</para>
+            <para>As an alternative, you can provide multi-line text
+                in YAML for the description by using the greater than
                 character (>), for
                 example:<screen>description: >
     This is how you can provide a longer description
     of your template that goes over several lines.  </screen></para>
+            <para>The greater than character (>) syntax turns newlines
+                in the description text into spaces.</para>
             <para>This installation deploys the free version of
-                Ansible Tower, and is limited to 10 machines.</para>
-            <para>Reviewer: what is the difference between using the
-                vertical bar (|) character verses the greater than (>)
-                character for the description? Is the difference
-                described correctly above?</para> 
+                Ansible Tower, and is limited to 10 machines.</para> 
         </section>
         <section xml:id="Intermediate_Template_Parameter_Groups">
             <title>Intermediate Template &mdash; Parameter Groups</title>
@@ -1848,11 +1847,10 @@ description: |
                 allocated for the server and image specifies the
                 operating system for the server. </para>
             <para>The second parameter group has the label
-                    <code>rax-dev-params</code>. This label will not
-                be displayed in the portal.</para>
-            <para>Reviewer: what determines that the
-                    <code>rax-dev-params</code> group is not displayed
-                in the portal?</para>
+                    <code>rax-dev-params</code>. This label is used
+                for parameters that are controlled by Reach. None of
+                these parameters will be displayed in the
+                portal.</para>
             <para>The second parameter group defines two parameters.
                 The parameter <code>ansible_tower_tarball</code> is
                 used to store the URL for the Ansible install tar
@@ -2288,16 +2286,16 @@ description: |
                     </listitem>
                     <listitem>
                         <para><code>user_data</code></para>
-                        <para>This property sets a user data script to
-                            be executed by cloud-init. This property
-                            enables a user to configure the new server
-                            as desired by providing this script to be
-                            run by cloud-init when the server is being
-                            initialized.</para>
-                        <para>Reviewer: is there other information
-                            that needs to be presented here for
-                            user_data or cloud-init? Examples, tips,
-                            whatever?</para>
+                        <para>This property sets a user data bash
+                            script to be executed by cloud-init. This
+                            property enables a user to configure the
+                            new server as desired by providing this
+                            script to be run by cloud-init when the
+                            server is being initialized. For
+                            information and examples for using
+                            cloud-init, see <link
+                                xlink:href="http://cloudinit.readthedocs.org/en/latest/topics/capabilities.html"
+                                >http://cloudinit.readthedocs.org/en/latest/topics/capabilities.html</link>.</para>
                         <para>The <code>str_replace</code> function
                             enables dynamically constructing strings
                             by providing a template string with
@@ -2374,9 +2372,21 @@ description: |
                                    (whose location is specified by the
                                    parm
                                    <code>%ansible_tower_tarball%</code>).</para>
-                                <para>Reviewer: please explain the "%"
-                                   notation and why is must be used
-                                   here for the params?</para>
+                                <para>The
+                                   <emphasis>%variable%</emphasis>
+                                   notation is used here because of
+                                   the string replace function
+                                   explained earlier. Variables are
+                                   wrapped with <code>%%</code> to
+                                   have a higher probability that the
+                                   variable name being replaced
+                                   doesn't accidentally appear
+                                   in other places. For example, if a
+                                   variable were named "test" instead
+                                   of "%test%", the word "test" would
+                                   be acted on in the string replace
+                                   if it appeared anywhere in the
+                                   script.</para>
                             </listitem>
                             <listitem>
                                 <para><code>tar xzf
@@ -2457,47 +2467,35 @@ description: |
                                 <para><code># Write out the inventory
                                    file</code></para>
                                 <para>Comment to write out the
-                                   inventory file (starting in the
-                                   next lines).</para>
-                                <para>Reviewer: can you please explain
-                                   to me each of the lines that
-                                   represent the contents of the
-                                   inventory file. This section does
-                                   not make sense to me.</para>
-                            </listitem>
-                            <listitem>
-                                <para><code>echo
-                                   "[primary]</code></para>
-                                <para>Begin writing out the contents
-                                   of the inventory file, starting
-                                   with <code>[primary]</code>.</para>
-                                <para>Reviewer: can you please explain
-                                   to me each of the lines that
-                                   represent the contents of the
-                                   inventory file. This does not make
-                                   sense to me.</para>
-                            </listitem>
-                            <listitem>
-                                <para><code>localhost</code></para>
-                                <para>Reviewer: can you please explain
-                                   to me each of the lines that
-                                   represent the contents of the
-                                   inventory file. This does not make
-                                   sense to me.</para>
-                            </listitem>
-                            <listitem>
-                                <para><code>[all:children]</code></para>
-                                <para>Reviewer: can you please explain
-                                   to me each of the lines that
-                                   represent the contents of the
-                                   inventory file. This does not make
-                                   sense to me.</para>
-                            </listitem>
-                            <listitem>
-                                <para><code>primary" >
-                                   inventory</code></para>
-                                <para>Write out the contents of the
                                    inventory file.</para>
+                                <para>This is an inventory file
+                                   required by the Ansible Tower
+                                   installer. The Ansible Tower
+                                   installer runs a series of Ansible
+                                   playbooks, and the inventory file
+                                   determines the host where those
+                                   scripts run. The template writes
+                                   out this file manually using the
+                                   multi-line <code>echo</code>
+                                   command, as follows:</para>
+                                <itemizedlist>
+                                   <listitem>
+                                   <para><code>echo
+                                   "[primary]</code></para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><code>localhost</code></para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><code>[all:children]</code></para>
+                                   </listitem>
+                                   <listitem>
+                                   <para><code>primary" >
+                                   inventory</code></para>
+                                   <para>This completes writing out
+                                   the inventory file.</para>
+                                   </listitem>
+                                </itemizedlist>
                             </listitem>
                             <listitem>
                                 <para><code># Copy everything to
@@ -2547,25 +2545,13 @@ description: |
                                    “SUCCESS”}’</code> option.
                                    Otherwise, the script did not
                                    execute this line because it exited
-                                   and was not successful. The
+                                   and was not successful. <phrase security="writeronly">The
                                    signalling by
                                    <code>server_data</code> in the
                                    <code>outputs</code> section
                                    provides information about the
-                                   errors that occurred.</para>
-                                <para>Reviewer: it appears that the
-                                   way the Swift Signaling works is if
-                                   we get to this point in the script
-                                   without exiting, we know the script
-                                   succeeded, so we signal success.
-                                   Otherwise, the script was not
-                                   successful, and the signalling by
-                                   server_data in the outputs provides
-                                   information about the errors that
-                                   occurred. Is this correct? Is there
-                                   any other information we need to
-                                   provide here about the Swift
-                                   Signalling?</para>
+                                   errors that
+                                   occurred.</phrase></para>
                             </listitem>
                         </itemizedlist>
                         <para>The <code>params</code> section
@@ -2703,9 +2689,9 @@ description: |
     value: { get_attr: [ansible_admin_pass, value] }
     description: Admin Password
     
-  server_data:
+<phrase security="writeronly">  server_data:
     value: { get_attr: [ wait_condition, data ] }
-    description: Data from wait condition to report script status </screen>
+    description: Data from wait condition to report script status </phrase> </screen>
             <itemizedlist>
                 <listitem>
                     <para><code>private_key</code></para>
@@ -2773,7 +2759,7 @@ description: |
                         specifying the <code>value</code>
                         attribute.</para>
                 </listitem>
-                <listitem>
+                <listitem security="writeronly">
                     <para><code>server_data</code></para>
                     <para>The <code>server_data</code> description
                         notes that the value is the data from wait

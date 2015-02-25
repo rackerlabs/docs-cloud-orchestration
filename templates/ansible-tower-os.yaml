@@ -187,7 +187,4 @@ outputs:
   ansible_password:
     value: { get_attr: [ansible_admin_pass, value] }
     description: Admin Password
-    
-  server_data:
-    value: { get_attr: [ wait_condition, data ] }
-    description: Data from wait condition to report script status 
+     
