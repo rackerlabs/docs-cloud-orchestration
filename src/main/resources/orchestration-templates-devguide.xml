@@ -51,7 +51,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2015-02-24</pubdate>
+        <pubdate>2015-02-27</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -67,7 +67,7 @@
         
         <revhistory>
             <revision>
-                <date>2015-02-24</date>
+                <date>2015-02-27</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
                         <listitem>
@@ -230,7 +230,7 @@
             supports the HOT (Heat Orchestration Template) syntax
             specification of Heat. </para>
         <itemizedlist>
-            <title>How &Checkmate; Works</title>
+            <title>How &Checkmate; works</title>
             <listitem>
                 <para>A &Checkmate; template describes the
                     infrastructure for a cloud application in a YAML
@@ -307,7 +307,7 @@
         <para security="writeronly">Issues and bug reports can be directed to your support team via ticket, chat, email,
             or phone.</para>
         <section xml:id="Intended_Audience-d1e122">
-            <title>Intended Audience</title>
+            <title>Intended audience</title>
             <para> This guide is intended to assist support teams,
                 DevOps Engineers, and software developers who want to
                 develop templates for use on the &Checkmate; Service.
@@ -341,14 +341,14 @@
         </section>
         <?hard-pagebreak?>
         <section xml:id="Document_Change_History-d1e166">
-            <title>Document Change History</title>
+            <title>Document change history</title>
             <para>This version of the Developer Guide replaces and
             obsoletes all previous versions.  The most recent changes
             are described in the table below:</para>
         <?rax revhistory?>
         </section>
         <section xml:id="Additional_Resources-d1e532">
-            <title>Additional Resources</title>
+            <title>Additional resources</title>
             <para>You can download the most current versions of
                 templates from <link
                     xlink:href="https://github.com/rackspace-orchestration-templates"
@@ -398,9 +398,9 @@
         </section>
     </chapter>
     <chapter xml:id="Intro_to_Templates-d1e633">
-        <title>Introduction to Templates</title>
+        <title>Introduction to templates</title>
         <section xml:id="What_is_Template-d1e633">
-            <title>What is a Template?</title>
+            <title>What is a template?</title>
             <para>A &Checkmate; template is a portable file that
                 describes how to configure a set of resources and
                 install the appropriate applications. It describes the
@@ -431,7 +431,7 @@
                     so, we need to document it here.</remark></para>
         </section>
         <section xml:id="Defining_Template_dle245">
-            <title>Defining a Template</title>
+            <title>Defining a template</title>
             <para>Templates are composed of 6 possible sections, some
                 of which are optional as noted. Templates are defined
                 in YAML and follow the structure outlined
@@ -543,7 +543,7 @@ outputs:
                 can be arranged in any order, except as described in
                 the following sections. Each section name must be
                 followed immediately by a colon.</para>
-            <note> <title>Rules for Template Formatting</title>
+            <note> <title>Rules for template formatting</title>
                 <para>
                     <itemizedlist>
                         <listitem>
@@ -570,7 +570,7 @@ outputs:
                 </para>
             </note>
             <section xml:id="template_version_dle154">
-                <title>Template Version</title>
+                <title>Template version</title>
                 <para>The <code>heat_template_version</code> with
                     value <code>2014-10-16</code> indicates that the
                     YAML document is a &Checkmate; template of the
@@ -597,7 +597,7 @@ outputs:
                     lines.</para>
             </section>
             <section xml:id="parameter_groups_d1e436">
-                <title>Parameter Groups</title>
+                <title>Parameter groups</title>
                 <para>The <code>parameter_groups</code> section allows
                     for specifying how the input parameters should be
                     grouped and the order in which to provide the
@@ -775,7 +775,7 @@ outputs:
     description: Port number to be configured for the web server </screen>
             </section>
             <section xml:id="parameter_constraints_d1e264">
-                <title>Parameter Constraints</title>
+                <title>Parameter constraints</title>
                 <para>The <code>constraints</code> block of a
                     parameter definition allows for defining
                     additional validation constraints that apply to
@@ -1094,7 +1094,7 @@ outputs:
                     </varlistentry>
                 </variablelist>
                 <section xml:id="resource_dependencies_d1e385">
-                    <title>Resource Dependencies</title>
+                    <title>Resource dependencies</title>
                     <para>Using the <code>depends_on</code> attribute
                         within a resource section, it is possible to
                         define a dependency between a resource and one
@@ -1193,7 +1193,7 @@ outputs:
                     sentence.</remark>
             </section>
             <section xml:id="intrinsic_functions_d1e725">
-                <title>Intrinsic Functions</title>
+                <title>Intrinsic functions</title>
                 <para>&Checkmate; provides a set of intrinsic
                     functions that can be used inside &Checkmate;
                     templates to perform specific tasks, such as
@@ -1437,7 +1437,7 @@ resources:
         </section>
     </chapter>
     <chapter xml:id="Simple_Template_Example-d1e637">
-        <title>Simple Template Example</title>
+        <title>Simple template example</title>
         <para>This chapter gives an introduction on how to write HOT
             (Heat Orchestration Template) templates, starting from
             very basic steps and then going into more and more detail
@@ -1445,7 +1445,7 @@ resources:
             be found in <xref linkend="Intro_to_Templates-d1e633"
             />.</para>
         <section xml:id="Basic_Template_Example-d1e637">
-            <title>A Most Basic Template</title>
+            <title>A most basic template</title>
             <para>The most basic template possible may contain only a
                 single resource definition using only predefined
                 properties (along with the mandatory Heat template
@@ -1491,7 +1491,7 @@ resources:
                 hard-coding such values.</para>
         </section>
         <section xml:id="Template_Input_Parameters-d1e143">
-            <title>Template Input Parameters</title>
+            <title>Template input parameters</title>
             <para>Input parameters defined in the <emphasis
                     role="italic">parameters</emphasis> section of an
                 &Checkmate; template  allow users to customize a
@@ -1588,7 +1588,7 @@ resources:
       image: { get_param: image_id }
       flavor: { get_param: instance_type } </screen>
             <section xml:id="Restricting_User_Input-d1e387">
-                <title>Restricting User Input</title>
+                <title>Restricting user input</title>
                 <para>In some cases you might want to restrict the
                     values of input parameters that users can supply.
                     For example, you might know that the software
@@ -1679,7 +1679,7 @@ resources:
             </section>
         </section>
         <section xml:id="Providing_Template_Output-d1e423">
-            <title>Providing Template Output</title>
+            <title>Providing template output</title>
             <para>In addition to template customization through input
                 parameters, you will typically want to provide outputs
                 to users, which can be done in the
@@ -1760,7 +1760,7 @@ resources:
         </section>
     </chapter>
     <chapter xml:id="Intermediate_Template_Example-d1e254">
-        <title>An Intermediate Template Example</title>
+        <title>Intermediate template example</title>
         <para>This chapter describes how to write a more complex,
             intermediate level HOT (Heat Orchestration Template)
             template. This template deploys the free version of
@@ -1776,13 +1776,13 @@ resources:
             framework.</para>
         
         <example>
-            <title>Intermediate Level Template that deploys Ansible
+            <title>Intermediate level template that deploys Ansible
                 Tower</title>
                 <programlisting language="json"><xi:include href="../../../templates/ansible-tower-os.yaml" parse="text"/></programlisting>
         </example>
         <section xml:id="Intermediate_Template_Version_Description">
-            <title>Intermediate Template &mdash; Version and
-                Description</title>
+            <title>Intermediate template &mdash; version and
+                description</title>
             <para>Each HOT template must include the
                     <code>heat_template_version</code> key with value
                     <code>2014-10-16</code> (the current version of
@@ -1815,7 +1815,8 @@ description: |
                 Ansible Tower, and is limited to 10 machines.</para> 
         </section>
         <section xml:id="Intermediate_Template_Parameter_Groups">
-            <title>Intermediate Template &mdash; Parameter Groups</title>
+            <title>Intermediate template &mdash; parameter
+                groups</title>
             <para>The template then defines two parameter
                 groups:</para>
             <screen>parameter_groups:
@@ -1862,7 +1863,7 @@ description: |
                 described next.</para>
         </section>
         <section xml:id="Intermediate_Template_Parameters">
-            <title>Intermediate Template &mdash; Parameters</title>
+            <title>Intermediate template &mdash; parameters</title>
             <para>The template then defines parameters. </para>
             <screen>parameters:
 
@@ -1984,7 +1985,7 @@ description: |
             </itemizedlist>
         </section>
         <section xml:id="Intermediate_Template_Resources">
-            <title>Intermediate Template &mdash; Resources</title>
+            <title>Intermediate template &mdash; resources</title>
             <para>The <emphasis role="italic">resources</emphasis>
                 section is required and must contain at least one
                 resource definition.</para>
@@ -2150,7 +2151,7 @@ description: |
                 </listitem>
             </itemizedlist>
             <section xml:id="ansible_tower_Resource">
-                <title><code>ansible_tower</code> Resource</title>
+                <title><code>ansible_tower</code> resource</title>
                 <para>Since the <code>ansible_tower</code> resource
                     does much of the work for this template, it is
                     described in this separate section.</para>
@@ -2520,13 +2521,20 @@ description: |
                                 <para><code>wc_notify --data-binary
                                    '{"status": "SUCCESS"}'
                                    </code></para>
-                                <para>Signals success by adding
-                                   <code>--data-binary '{"status":
+                                <para>Signals success by adding the
+                                   option <code>--data-binary
+                                   '{"status":
                                    "SUCCESS"}'</code>.</para>
-                                <para>If the script reaches this line
+                                <para>This success message tells the
+                                   Swift Signal handler resource to
+                                   complete successfully, allowing the
+                                   stack to successfully complete and
+                                   the <code>stack_status</code> field
+                                   to show
+                                   <code>CREATE_COMPLETE</code>.</para>
+                                <para>If the script reached this line
                                    without exiting, the script
-                                   succeeded without exiting, so it
-                                   now signals success. Notice that
+                                   succeeded. Notice that
                                    <code>wc_notify</code> is a
                                    <code>param</code> that is replaced
                                    in the script (see the
@@ -2545,7 +2553,8 @@ description: |
                                    “SUCCESS”}’</code> option.
                                    Otherwise, the script did not
                                    execute this line because it exited
-                                   and was not successful. <phrase security="writeronly">The
+                                   and was not successful. <phrase
+                                   security="writeronly">The
                                    signalling by
                                    <code>server_data</code> in the
                                    <code>outputs</code> section
@@ -2660,7 +2669,7 @@ description: |
             </section>
         </section>
         <section xml:id="ansible_tower_Outputs">
-            <title>Intermediate Template &mdash; Outputs</title>
+            <title>Intermediate template &mdash; outputs</title>
             <para>The template then defines <code>outputs</code>.
                 These <code>outputs</code> are used to provide
                 important information for template users.</para>
@@ -2778,7 +2787,7 @@ description: |
             </itemizedlist>
         </section>
         <section xml:id="ansible_tower_Using_Stack">
-            <title>Intermediate Template &mdash; Getting Started with
+            <title>Intermediate template &mdash; getting started with
                 Ansible Tower</title>
             <para>This section provides information about using the
                 stack you can create using the intermediate template.
@@ -2813,11 +2822,11 @@ description: |
             following example:</para>
         <screen>  heat stack-create -e my_env.yaml -P "some_parm=bla" -f my_tmpl.yaml </screen>
         <section xml:id="Environment_Usage_Examples-d1e429">
-            <title>Usage Examples</title>
+            <title>Usage examples</title>
             <para>Various uses for the environment are shown
                 below:</para>
             <itemizedlist>
-                <title>Pass Parameters into &Checkmate;</title>
+                <title>Pass parameters into &Checkmate;</title>
                 <listitem>
                     <para>The following example passes three
                         parameters <code>key_name</code>,
@@ -2840,8 +2849,8 @@ description: |
                     templates.</para>
             </note>
             <itemizedlist>
-                <title> Override a Resource Type with a Custom
-                    TemplateResource</title>
+                <title> Override a resource type with a custom
+                    template resource</title>
                 <listitem>
                     <screen> resource_registry:
   "OS::Nova::Server": file:///home/mine/my_instance_with_better_defaults.yaml 
@@ -2855,7 +2864,7 @@ description: |
                 </listitem>
             </itemizedlist>
             <itemizedlist>
-                <title>Always Map Resource Type X to Y</title>
+                <title>Always map resource type x to y</title>
                 <listitem>
                     <screen> resource_registry:
   "OS::Networking::FloatingIP": "OS::Nova::FloatingIP" </screen>
@@ -2867,8 +2876,8 @@ description: |
                 </listitem>
             </itemizedlist>
             <itemizedlist>
-                <title>Use Default Resources Except One For a
-                    Particular Resource in the Template</title>
+                <title>Use default resources except one for a
+                    particular resource in the template</title>
                 <listitem>
                     <screen> resource_registry:
   resources:
