@@ -51,7 +51,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2015-02-27</pubdate>
+        <pubdate>2015-03-05</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -66,6 +66,17 @@
         
         
         <revhistory>
+            <revision>
+                <date>2015-03-05</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Updated references to Rackspace
+                                Cloud Control Panel.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2015-02-27</date>
                 <revdescription>
@@ -293,8 +304,8 @@
                 </mediaobject>
             </informalfigure>
         </para>
-        <para>We welcome feedback, comments, and bug reports at our
-            community forum: <link
+        <para>We welcome feedback and comments at our community forum:
+                <link
                 xlink:href="https://community.rackspace.com/products/f/25/t/3476"
                 >https://community.rackspace.com/products/f/25/t/3476</link>.</para>
         <remark>Reviewer: please let me know when it is OK to add the
@@ -304,7 +315,7 @@
         <remark>Reviewer: please let me know when the product feedback
             link is available for Orchestration and  the correct link
             to use.</remark>
-        <para security="writeronly">Issues and bug reports can be directed to your support team via ticket, chat, email,
+        <para>Issues and bug reports can be directed to your support team via ticket, chat, email,
             or phone.</para>
         <section xml:id="Intended_Audience-d1e122">
             <title>Intended audience</title>
@@ -1772,8 +1783,8 @@ resources:
                 xlink:href="https://github.com/rackspace-orchestration-templates/ansible-tower"
                 >https://github.com/rackspace-orchestration-templates/ansible-tower</link>.
             You will also find other files in the repo directory that
-            are used to support the template in the Reach
-            framework.</para>
+            are used to support the template in the Rackspace Cloud
+            Control Panel framework.</para>
         
         <example>
             <title>Intermediate level template that deploys Ansible
@@ -1840,18 +1851,19 @@ description: |
                 parameters. </para>
             <para>The first parameter group has the label <code>Server
                     Settings</code>, which will be displayed in the
-                GUI (such as Reach), if the template is used in a
-                portal or command line interface. Two parameters are
-                defined in the <code>Server Settings group</code>:
+                GUI (such as the Rackspace Cloud Control Panel), if
+                the template is used in a portal or command line
+                interface. Two parameters are defined in the
+                    <code>Server Settings group</code>:
                     <code>flavor</code> and <code>image</code>. Flavor
                 specifies the combination of cpu time and memory
                 allocated for the server and image specifies the
                 operating system for the server. </para>
             <para>The second parameter group has the label
                     <code>rax-dev-params</code>. This label is used
-                for parameters that are controlled by Reach. None of
-                these parameters will be displayed in the
-                portal.</para>
+                for parameters that are controlled by the Cloud
+                Control Panel. None of these parameters will be
+                displayed in the Cloud Control Panel.</para>
             <para>The second parameter group defines two parameters.
                 The parameter <code>ansible_tower_tarball</code> is
                 used to store the URL for the Ansible install tar
@@ -2514,8 +2526,8 @@ description: |
                                 <para><code>ufw allow
                                    443</code></para>
                                 <para>Tells the firewall to allow port
-                                   443 (since we have SSL enabled for
-                                   our clients' security).</para>
+                                   443 (since SSL is enabled for our
+                                   clients' security).</para>
                             </listitem>
                             <listitem>
                                 <para><code>wc_notify --data-binary
