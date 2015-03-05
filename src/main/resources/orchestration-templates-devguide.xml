@@ -1784,7 +1784,10 @@ resources:
                 >https://github.com/rackspace-orchestration-templates/ansible-tower</link>.
             You will also find other files in the repo directory that
             are used to support the template in the Rackspace Cloud
-            Control Panel framework.</para>
+            Control Panel framework. (Navigate to
+                https://mycloud.rackspace.com/cloud/&lt;<emphasis>account_Id</emphasis>>/servers#stacks/create,
+            where <emphasis>account_Id</emphasis> is your Rackspace
+            Cloud Account number.)</para>
         
         <example>
             <title>Intermediate level template that deploys Ansible
