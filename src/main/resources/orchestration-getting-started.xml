@@ -280,14 +280,14 @@
       <raxm:priority>10</raxm:priority>
     </raxm:metadata> 
     </info>
-    <chapter xml:id="DB_Doc_Change_History">
+    <chapter xml:id="Orch_Doc_Change_History">
         <title>Document change history</title>
         <para>This version of the guide replaces and obsoletes all
             previous versions. The most recent changes are described
             in the following table:</para>
         <?rax revhistory?>
     </chapter>
-    <chapter xml:id="DB_Overview">
+    <chapter xml:id="Orch_Overview">
         <title>Overview</title>
         <para>Follow the steps described in this guide to use the
             Rackspace Cloud Orchestration API to create and access
