@@ -1211,6 +1211,10 @@ outputs:
                     getting the value of a resource attribute at
                     runtime. A definition of all intrinsic functions
                     available in &Checkmate; is given below.</para>
+                <para security="writeronly">You can find documentation
+                    for intrinsic functions at <link
+                        xlink:href="http://docs.rs-heat.com/raxdox/index.html"
+                        >http://docs.rs-heat.com/raxdox/index.html</link>.</para>
                 <section xml:id="get_param_intrinsic_function">
                     <title>get_param</title>
                     <para>The <code>get_param</code> function allows
