@@ -617,13 +617,9 @@ Type "help", "copyright", "credits" or "license" for more information.
                                    >Python Package Index</link>. Also,
                                    it lets you update the package
                                    later.</para>
-                                <para> If <command>pip</command> is
-                                   not installed, install it through
-                                   the package manager for your
-                                   system.</para>
-                                <para>Install <command>pip</command>
-                                   through the package manager for
-                                   your system:<itemizedlist>
+                                <para>If <command>pip</command> is not
+                                   installed, install it through the
+                                   package manager for your system:<itemizedlist>
                                    <listitem>
                                    <para>Mac OS X
                                    <programlisting language="bash" role="gutter: false"><prompt>$</prompt> sudo easy_install pip</programlisting></para>
@@ -768,7 +764,7 @@ Type "help", "copyright", "credits" or "license" for more information.
                             <?dbfo keep-together="always"?>
                             <screen><?db-font-size 65%?>export OS_AUTH_URL=https://identity.api.rackspacecloud.com/v2.0/
 export OS_USERNAME=<emphasis>yourUserName</emphasis>
-export OS_TENANT_ID=<emphasis>yourTenantId</emphasis>>
+export OS_TENANT_ID=<emphasis>yourTenantId</emphasis>
 export OS_REGION_NAME=<emphasis>yourRegionName</emphasis>
 export OS_PASSWORD=<emphasis>yourPassword</emphasis>
 </screen>
@@ -822,7 +818,7 @@ set OS_PASSWORD=<emphasis>yourPassword</emphasis></screen>
                         information as appropriate. Also set the
                         OS_REGION_NAME endpoint to the appropriate
                         regional endpoint where you want to deploy
-                        resources, for example DFW. For details see to
+                        resources, for example DFW. For details see
                             <xref
                             linkend="Service_Access_Endpoints-d1e753"
                         />. Remember to source the file containing the
@@ -906,7 +902,7 @@ set OS_PASSWORD=<emphasis>yourPassword</emphasis></screen>
                             <code>.bash_profile</code> file, run the
                         following command:</para>
                     <programlisting language="bash" role="gutter: false"><prompt>$</prompt> source ~/.bash_profile </programlisting>
-                    <para>if you set your environment variables in the
+                    <para>If you set your environment variables in the
                             <code>.bashrc</code> file, run the
                         following command:</para>
                     <programlisting language="bash" role="gutter: false"><prompt>$</prompt> source ~/.bashrc </programlisting>
@@ -1383,7 +1379,7 @@ set OS_PASSWORD=<emphasis>yourPassword</emphasis></screen>
                     </listitem>
                 </itemizedlist></para>
             <para>Use the following endpoint to access the Cloud
-                Identity Service, regardless of US or UK identities: </para>
+                Identity Service: </para>
             <itemizedlist spacing="compact">
                 <listitem>
                     <para><link xlink:href="&ENDPOINT-US-20;"
@@ -1608,7 +1604,7 @@ set OS_PASSWORD=<emphasis>yourPassword</emphasis></screen>
             <para>When calling a Cloud Orchestration API operation,
                 place the endpoint at the beginning of the request
                 URL, for example:
-                    (<code>https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/</code>),
+                    <code>https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/</code>,
                 as shown in the cURL Create Stack Request example in
                     <xref linkend="Create_Simple_Stack_CS_CURL"
                 />.</para>
@@ -1706,7 +1702,7 @@ outputs:
             <note>
                 <para>You can find the information for resource types
                     either by looking it up or by using the
-                    API:</para>
+                    API.</para>
                 <para>You can look up the names for the supported
                     attributes for resources here: <link
                         xlink:href="http://docs.openstack.org/developer/heat/template_guide/index.html"
