@@ -51,7 +51,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2015-03-05</pubdate>
+        <pubdate>2015-04-06</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -66,6 +66,19 @@
         
         
         <revhistory>
+            <revision>
+                <date>2015-04-06</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Added references to list of
+                                supported resources (<link
+                                   xlink:href="http://orchestration.rackspace.com/raxdox/index.html"
+                                   >http://orchestration.rackspace.com/raxdox/index.html</link>).</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2015-03-05</date>
                 <revdescription>
@@ -364,6 +377,10 @@
                 templates from <link
                     xlink:href="https://github.com/rackspace-orchestration-templates"
                     >https://github.com/rackspace-orchestration-templates</link>.</para>
+            <para>You can find information about resources to use in
+                your templates at <link
+                    xlink:href="http://orchestration.rackspace.com/raxdox/index.html"
+                    >http://orchestration.rackspace.com/raxdox/index.html</link>. </para>
             <para>For information about Rackspace Cloud products,
                 refer to <link
                     xlink:href="http://www.rackspace.com/cloud/"
@@ -1015,8 +1032,12 @@ outputs:
                                    <code>OS::Nova::Server</code>.</para>
                             <note>
                                 <para>To find the various types of
-                                   supported template resources, use
-                                   the List resource types API
+                                   supported template resources, you
+                                   can either look up the information
+                                   at <link
+                                   xlink:href="http://orchestration.rackspace.com/raxdox/index.html"
+                                   >http://orchestration.rackspace.com/raxdox/index.html</link>,
+                                   or use the List resource types API
                                    operation (&GET; <emphasis
                                    role="bold"
                                    >/resource_types</emphasis>). The

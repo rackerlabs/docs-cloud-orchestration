@@ -56,7 +56,7 @@
                             <!-- this document that will be published as clb-devguide-latest.pdf at http://docs.rackspacecloud.com/api/ -->
                             <includes>orchestration-devguide.xml</includes>
                             <canonicalUrlBase>http://docs.rackspace.com/orchestration/api/v1/orchestration-devguide/content</canonicalUrlBase>  
-                            <trimWadlUriCount>2</trimWadlUriCount>
+                            <trimWadlUriCount>1</trimWadlUriCount>
                         </configuration>
                     </execution>
                     
