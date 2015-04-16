@@ -51,13 +51,26 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2015-04-06</pubdate>
+        <pubdate>2015-04-16</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2015-04-16</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Added CLI <code>output-</code>
+                                commands in <xref
+                                   linkend="heat_summary_outputs"
+                                />.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2015-04-06</date>
                 <revdescription>
@@ -3726,6 +3739,62 @@ The request is accepted for processing.
                 </varlistentry>
             </variablelist>
             <?hard-pagebreak?>
+        </section>
+        <section xml:id="heat_summary_outputs">
+            <title>Outputs</title>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Show available
+                            outputs</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat output-list &lt;NAME or ID&gt;</programlisting>
+                        <para> Where <parameter>NAME</parameter> is
+                            the name of the stack, or
+                                <parameter>ID</parameter> is the ID of
+                            the stack to list. </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <variablelist wordsize="10%">
+                <varlistentry>
+                    <term><emphasis role="bold">Show a specific stack
+                            output</emphasis></term>
+                    <listitem>
+                        <programlisting language="bash" role="gutter: false"><prompt>$</prompt> heat output-show [-a] [-F &lt;FORMAT>] &lt;NAME or ID> [&lt;OUTPUT NAME>]</programlisting>
+                        <itemizedlist>
+                            <title>Positional arguments</title>
+                            <listitem>
+                                <para>
+                                   <parameter>&lt;NAME or
+                                   ID></parameter>. NAME is the name
+                                   of the stack, or ID is the ID of
+                                   the stack to query.</para>
+                            </listitem>
+                        </itemizedlist>
+                        <itemizedlist>
+                            <title>Optional arguments</title>
+                            <listitem>
+                                <para>
+                                   <option>-a</option>. Displays
+                                   all stack outputs. </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                   <option>-F
+                                   &lt;FORMAT&gt;</option>. The
+                                   template output format: yaml or
+                                   json. </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                   <parameter>&lt;OUTPUT
+                                   NAME></parameter>. The name of the
+                                   output to display.</para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
         </section>
         <section xml:id="heat_summary_templates">
             <title>Templates</title>
