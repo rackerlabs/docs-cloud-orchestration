@@ -24,6 +24,7 @@
         <!ENTITY MUST   '<emphasis xmlns="http://docbook.org/ns/docbook" role="strong">MUST</emphasis>'>
         <!ENTITY MUST_NOT   '<emphasis xmlns="http://docbook.org/ns/docbook" role="strong">MUST NOT</emphasis>'>
         <!ENTITY Deployment "Cloud Orchestration">
+        <!ENTITY Checkmate "Cloud Orchestration">
 ]>
 
 <book version="5.0"
@@ -51,13 +52,25 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2015-04-16</pubdate>
+        <pubdate>2015-05-21</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2015-05-21</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Added introductory information in
+                                   <xref linkend="Orch_Overview"
+                                />.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2015-04-16</date>
                 <revdescription>
@@ -317,51 +330,75 @@
         <para>Follow the steps described in this guide to use the
             Rackspace Cloud Orchestration API to create and access
             your stacks.</para>
-        
         <para>The simple exercises in this guide help you get started
-            with the API by showing you how to access the API through
-            either heat client commands or cURL commands. </para>
-        <para>For each exercise in this guide, you choose one of the
-            following methods to call API operations: <itemizedlist>
-                <listitem>
-                    <para><emphasis role="bold">heat client
-                            commands</emphasis>. The heat client
-                        provides easy command line access to the Cloud
-                        Orchestration API operations. We recommend
-                        that you use the heat client to run simple
-                        commands that call API operations. You can
-                        specify the <code>--debug</code> parameter on
-                        any heat command to show the underlying cURL
-                        request for the API operation. This is a good
-                        way to become familiar with the API requests.
-                        For details see <xref linkend="heatclient"
-                        />.</para>
-                </listitem>
-                <listitem>
-                    <para><emphasis role="bold"><link
-                                xlink:href="http://curl.haxx.se/"
-                                >cURL</link> commands</emphasis>. If
-                        you are familiar with or want to learn cURL
-                        commands, choose this method. With cURL, you
-                        send HTTP requests with embedded API
-                        operations from the command line. The cURL
-                        examples in this guide include request bodies
-                        in JSON format. For details see <xref
-                            linkend="curl"/>.</para>
-                </listitem>
-            </itemizedlist>If you like, you can use cURL in one
-            example and then use heat client commands in the next
-            example. If you choose to use a cURL command for any
-            example, you must export the environment variables
-            required to run the cURL examples. For details see <xref
-                linkend="Export_CURL_ENV_VARS"/>. </para>
-        
-        <para>To use the API, it helps to be familiar with HTTP 1.1,
-            RESTful web services, the Rackspace Cloud Servers service,
-            and JSON data serialization format.</para>
-        
-        
-       
+            with Orchestration by showing you how to access the API
+            through either heat client commands or cURL commands. </para>
+        <note>
+            <para>If you are interested about learning how to get
+                started with Orchestration using the Cloud Control
+                Panel instead, refer to the following article: <link
+                    xlink:href="http://www.rackspace.com/knowledge_center/article/quick-set-up-with-rackspace-cloud-orchestration"
+                    >http://www.rackspace.com/knowledge_center/article/quick-set-up-with-rackspace-cloud-orchestration</link>.</para>
+        </note>
+        <section xml:id="What_Is_Template">
+            <title>What is a template and how is it used?</title>
+            <para>You will learn the basics about templates in this
+                guide. A template is a basic building block for
+                Orchestration. A &Checkmate; template is a portable
+                file, written in a user-readable language, that
+                describes how a set of resources should be assembled
+                and what software should be installed in order to
+                produce a working deployment. </para>
+            <para>Based on a template, Heat orchestration engine
+                creates an instantiated set of resources, called a
+                stack, to run the application framework or component
+                specified in the template. A stack is a running
+                instance of a template. The result of creating a stack
+                is a deployment of the application framework or
+                component.</para>
+        </section>
+        <section xml:id="Choose_A_Method">
+            <title>Choose a method for calling the API
+                operations</title>
+            <para>For each exercise in this guide, you choose one of
+                the following methods to call API operations: <itemizedlist>
+                    <listitem>
+                        <para><emphasis role="bold">heat client
+                                commands</emphasis>. The heat client
+                            provides easy command line access to the
+                            Cloud Orchestration API operations. We
+                            recommend that you use the heat client to
+                            run simple commands that call API
+                            operations. You can specify the
+                                <code>--debug</code> parameter on any
+                            heat command to show the underlying cURL
+                            request for the API operation. This is a
+                            good way to become familiar with the API
+                            requests. For details see <xref
+                                linkend="heatclient"/>.</para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis role="bold"><link
+                                   xlink:href="http://curl.haxx.se/"
+                                   >cURL</link> commands</emphasis>.
+                            If you are familiar with or want to learn
+                            cURL commands, choose this method. With
+                            cURL, you send HTTP requests with embedded
+                            API operations from the command line. The
+                            cURL examples in this guide include
+                            request bodies in JSON format. For details
+                            see <xref linkend="curl"/>.</para>
+                    </listitem>
+                </itemizedlist>If you like, you can use cURL in one
+                example and then use heat client commands in the next
+                example. If you choose to use a cURL command for any
+                example, you must export the environment variables
+                required to run the cURL examples. For details see
+                    <xref linkend="Export_CURL_ENV_VARS"/>. </para>
+            <para>To use the API, it helps to be familiar with HTTP
+                1.1, RESTful web services, the Rackspace Cloud Servers
+                service, and JSON data serialization format.</para>
+        </section>
         <section xml:id="Additional_Info-dle5378">
             <title>Additional sources of information</title>
             <para>For details about using the Cloud Orchestration API,
@@ -381,8 +418,8 @@
                     >http://orchestration.rackspace.com/raxdox/index.html</link>. </para>
             <para>You can send issues and bug reports to your support
                 team via ticket, chat, email, or phone.</para>
-            <para security="writeronly">For more details about Rackspace Cloud
-                Orchestration, refer to <link
+            <para security="writeronly">For more details about
+                Rackspace Cloud Orchestration, refer to <link
                     xlink:href="http://www.rackspace.com/cloud/orchestration/"
                     >http://www.rackspace.com/cloud/orchestration/</link>.
                 This site also offers links to Rackspace's official
@@ -397,7 +434,6 @@
             <remark>Hiding text above for the Product Feedback Forum
                 until we are able to get the correct link.</remark>
         </section>
-        
         <section xml:id="Prerequisites_Examples">
             <title>Prerequisites for running examples</title>
             <para>To run the examples in this guide, you must have the
@@ -412,11 +448,7 @@
                     </listitem>
                 </itemizedlist></para>
         </section>
-        
-        <section xmlns="http://docbook.org/ns/docbook"
-            xmlns:xi="http://www.w3.org/2001/XInclude"
-            xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
-            xml:id="heatclient">
+        <section version="5.0" xml:id="heatclient">
             <title>How the heat client commands work</title>
             <para>The heat client is an open-source Python client that
                 you can use to run simple commands to call API
@@ -434,16 +466,13 @@
                 <para>You can specify the <code>--debug</code>
                     parameter on any heat command to show the
                     underlying API request for the command. This is a
-                    good way to become familiar with the API requests. </para>
+                    good way to become familiar with the API requests.
+                </para>
             </note>
             <para>Rackspace does not maintain the heat client, which
                 is considered to be software in development. </para>
         </section>
-        
-        <section xmlns="http://docbook.org/ns/docbook"
-            xmlns:xi="http://www.w3.org/2001/XInclude"
-            xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
-            xml:id="curl">
+        <section version="5.0" xml:id="curl">
             <title>How cURL commands work</title>
             <para>cURL is a command-line tool that you can use to
                 interact with <glossterm>REST</glossterm> interfaces.
@@ -455,34 +484,33 @@
                 information about cURL, see <link
                     xlink:href="http://curl.haxx.se/"
                     >http://curl.haxx.se/</link>. </para>
-            
-            <para>To run the cURL request examples shown in this guide, copy
-                each example from the HTML version of this guide directly to
-                the command line or a script.</para>
-            
+            <para>To run the cURL request examples shown in this
+                guide, copy each example from the HTML version of this
+                guide directly to the command line or a script.</para>
             <para>The following command is an example cURL command for
                 a JSON request that provisions a server with an
                 isolated network.</para>
-            
             <example xml:id="JSON_Example">
-                <title>cURL command example: JSON request </title><programlisting language="bash" role="gutter: false"><?db-font-size 60%?><prompt>$</prompt> curl https://dfw.servers.api.rackspacecloud.com/v2/$OS_TENANT_ID/servers \
+                <title>cURL command example: JSON request </title>
+                <programlisting language="bash" role="gutter: false"><?db-font-size 60%?><prompt>$</prompt> curl https://dfw.servers.api.rackspacecloud.com/v2/$OS_TENANT_ID/servers \
        -X POST \
        -H "X-Auth-Project-Id: $OS_TENANT_ID" \
        -H "Content-Type: application/json" \
        -H "Accept: application/json" \
        -H "X-Auth-Token: $OS_AUTH_TOKEN" \
        -d '{"server": {"name": "my_server_with_network", "imageRef": "d42f821e-c2d1-4796-9f07-af5ed7912d0e", "flavorRef": "2", "max_count": 1, "min_count": 1, "networks": [{"uuid": "538a112a-34d1-47ff-bf1e-c40639e886e2"}, {"uuid": "00000000-0000-0000-0000-000000000000"}, {"uuid": "11111111-1111-1111-1111-111111111111"}]}}' \
-      | python -m json.tool</programlisting></example>
+      | python -m json.tool</programlisting>
+            </example>
             <note>
-                <para>The carriage returns in the cURL request examples are
-                    escaped with a backslash (<literal>\</literal>) character.
-                    The escape character allows continuation of the command
-                    across multiple lines. However, do not include the escape
-                    character in the JSON or XML request body within the cURL
-                    command.</para>
+                <para>The carriage returns in the cURL request
+                    examples are escaped with a backslash
+                        (<literal>\</literal>) character. The escape
+                    character allows continuation of the command
+                    across multiple lines. However, do not include the
+                    escape character in the JSON or XML request body
+                    within the cURL command.</para>
             </note>
             <?hard-pagebreak?>
-            
         </section>
         <section xml:id="Pricing_SLA-d1e1362">
             <title>Pricing and service level</title>
@@ -490,9 +518,9 @@
                 Although you will not be billed for using
                 &Deployment;, you are billed for the stack resources
                 you create when using &Deployment;.</para>
-            <para security="writeronly">&Deployment; is part of the Rackspace Cloud and your
-                use through the API will be billed as per the pricing
-                schedule at <link
+            <para security="writeronly">&Deployment; is part of the
+                Rackspace Cloud and your use through the API will be
+                billed as per the pricing schedule at <link
                     xlink:href="http://www.rackspace.com/cloud/orchestration/pricing/"
                     >http://www.rackspace.com/cloud/orchestration/pricing/</link>.</para>
             <remark>Reviewer: Please verify that the pricing
@@ -501,8 +529,8 @@
             <para>&Deployment; is a Non-Standard Rackspace Service.
                 Applicable SLAs for the underlying infrastructure
                 apply for successfully launched cloud products.</para>
-            <para security="writeronly">The Service Level Agreement (SLA) for &Deployment;
-                is available at <link
+            <para security="writeronly">The Service Level Agreement
+                (SLA) for &Deployment; is available at <link
                     xlink:href="http://www.rackspace.com/information/legal/cloud/sla#cloud_orchestration"
                     >http://www.rackspace.com/information/legal/cloud/sla#cloud_orchestration</link>.</para>
             <remark>Reviewer: Please verify that the link shown above
