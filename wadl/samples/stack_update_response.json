@@ -1,0 +1,8 @@
+HTTP/1.1 202 Accepted
+date: Tue, 19 May 2015 20:46:37 GMT
+content-length: 58
+content-type: text/plain; charset=UTF-8
+
+202 Accepted
+
+The request is accepted for processing.

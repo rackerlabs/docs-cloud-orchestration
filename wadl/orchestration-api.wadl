@@ -729,9 +729,11 @@
                 clients the default behavior is to change the method
                 to &GET; when you receive a 302 because this behavior
                 is ubiquitous in web browsers.</para>
+            <note><para>The normal response code for this operation is 302 and not 200 as shown below.</para></note>
+            <para><emphasis role="bold">Normal response codes:</emphasis> 302</para>
         </wadl:doc>
-        <response status="302">
-            <representation mediaType="application/json">
+        <response status="200">
+            <representation mediaType="application/json" >
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
                     <para xmlns="http://docbook.org/ns/docbook">Returns 302 response with a re-direction URL.</para>
@@ -860,7 +862,16 @@
                 </param>
             </representation>
         </request>
-        <response status="202"/>
+        
+        <response status="202">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <para xmlns="http://docbook.org/ns/docbook">Updates the specified stack.</para>
+                    <xsdxt:code href="samples/stack_update_response.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
             
         &commonFaults;
         &notFound;
@@ -1021,14 +1032,25 @@
         &commonFaults;
         &notFound;
     </method>
+    
     <method name="GET" id="stack_resources_find">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Find stack resources">
             <para role="shortdesc">Finds the canonical URL for the
                 resource list of a specified stack.</para>
+            <note><para>The normal response code for this operation is 302 and not 200 as shown below.</para></note>
+            <para><emphasis role="bold">Normal response codes:</emphasis> 302</para>
         </wadl:doc>
-        <response status="302"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <xsdxt:code href="samples/resource_find_resp.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
     </method>
+    
     <method name="GET" id="resource_list">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="List resources">
@@ -1076,14 +1098,24 @@
         &commonFaults;
         &notFound;
     </method>
+    
     <method name="GET" id="resource_metadata">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Show resource metadata">
             <para role="shortdesc">Shows metadata for a specified
                 resource.</para>
         </wadl:doc>
-        <response status="200"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <para xmlns="http://docbook.org/ns/docbook">Returns a json response with the specified resource metadata.</para>
+                    <xsdxt:code href="samples/resource_show_metadata_resp.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
     </method>
+    
     <method name="POST" id="resource_signal">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Send a signal to a resource">
@@ -1096,14 +1128,27 @@
         </wadl:doc>
         <response status="200"/>
     </method>
+    
     <method name="GET" id="stack_events_find">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="Find stack events">
             <para role="shortdesc">Finds the canonical URL for the
                 event list of a specified stack.</para>
+        
+            <note><para>The normal response code for this operation is 302 and not 200 as shown below.</para></note>
+            <para><emphasis role="bold">Normal response codes:</emphasis> 302</para>
         </wadl:doc>
-        <response status="302"/>
+        <response status="200">
+            <representation mediaType="application/json" >
+                <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                    xml:lang="EN">
+                    <para xmlns="http://docbook.org/ns/docbook">Returns a json response with the specified stack events.</para>
+                    <xsdxt:code href="samples/stack_events_find_resp.json"/>
+                </wadl:doc> 
+            </representation>
+        </response>
     </method>
+    
     <method name="GET" id="stack_event_list">
         <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
             title="List stack events">
