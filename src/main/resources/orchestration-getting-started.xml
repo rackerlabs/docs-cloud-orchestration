@@ -52,13 +52,24 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2015-05-21</pubdate>
+        <pubdate>2015-05-27</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
             </annotation>
         </legalnotice>
         <revhistory>
+            <revision>
+                <date>2015-05-27</date>
+                <revdescription>
+                    <itemizedlist spacing="compact">
+                        <listitem>
+                            <para>Added reference to SDKs in <xref
+                                   linkend="Orch_Overview"/>.</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
             <revision>
                 <date>2015-05-21</date>
                 <revdescription>
@@ -333,12 +344,24 @@
         <para>The simple exercises in this guide help you get started
             with Orchestration by showing you how to access the API
             through either heat client commands or cURL commands. </para>
-        <note>
-            <para>If you are interested about learning how to get
-                started with Orchestration using the Cloud Control
-                Panel instead, refer to the following article: <link
-                    xlink:href="http://www.rackspace.com/knowledge_center/article/quick-set-up-with-rackspace-cloud-orchestration"
-                    >http://www.rackspace.com/knowledge_center/article/quick-set-up-with-rackspace-cloud-orchestration</link>.</para>
+        <note><title>Notes</title>
+            <itemizedlist>
+                <listitem><para>If you are interested in learning how to get started with
+                        Orchestration using the <emphasis role="bold"
+                            >Cloud Control Panel</emphasis> instead of
+                        the API, refer to the following article: <link
+                            xlink:href="http://www.rackspace.com/knowledge_center/article/quick-set-up-with-rackspace-cloud-orchestration"
+                            >http://www.rackspace.com/knowledge_center/article/quick-set-up-with-rackspace-cloud-orchestration</link>.</para></listitem>
+                <listitem>
+                    <para>If you are interested in learning how to get
+                        started with Orchestration using one of our
+                            <emphasis role="bold">SDKs</emphasis>,
+                        refer to the following: <link
+                            xlink:href="https://developer.rackspace.com/sdks/"
+                            >https://developer.rackspace.com/sdks/</link>.</para>
+                </listitem>
+            </itemizedlist>
+            
         </note>
         <section xml:id="What_Is_Template">
             <title>What is a template and how is it used?</title>
