@@ -570,6 +570,8 @@
                 <wadl:doc xmlns="http://docbook.org/ns/docbook"
                     xml:lang="EN">
                     <xsdxt:code href="samples/stack_adopt.json"/>
+                    <para>Note that near the beginning of the example, <code>parameters</code> is an empty dictionary (<code>"parameters": {}</code>), because there were no explicit parameters passed to the original stack when it was created.
+                        That is, all the parameters defined in the template have default values, and no explicit parameters were provided during the Stack create call.</para>
                 </wadl:doc>
                 <param name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -624,19 +626,25 @@
                         
                         <para><code>"files":
                             { "myfile": "#!/bin/bash\necho 'Hello world' > /root/testfile.txt" }</code></para></wadl:doc>
+                </param> 
+                <param name="parameters" style="plain" required="false" type="object" path="$.parameters">
+                    <wadl:doc xmlns="http://docbook.org/ns/docbook"
+                        xml:lang="EN"><para>User-defined parameters
+                            to pass to the
+                            template.</para></wadl:doc>
                 </param>
-                <param name="param_name-n" style="plain" required="true" type="string" path="$.param_name-n">
+                <param name="param_name-n" style="plain" required="false" type="string" path="$.parameters.param_name-n">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>User-defined parameter
                             names to pass to the
-                        template.</para></wadl:doc>
+                            template.</para></wadl:doc>
                 </param>
-                <param name="param_value-n" style="plain" required="true" type="string" path="$.param_value-n">
+                <param name="param_value-n" style="plain" required="false" type="string" path="$.parameters.param_value-n">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>User-defined parameter
                             values to pass to the
-                        template.</para></wadl:doc>
-                </param>
+                            template.</para></wadl:doc>
+                </param> 
                 <param name="timeout_mins" style="plain" required="true"  type="integer" path="$.timeout_mins">
                     <wadl:doc xmlns="http://docbook.org/ns/docbook"
                         xml:lang="EN"><para>The timeout for stack
