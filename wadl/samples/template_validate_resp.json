@@ -1,34 +1,41 @@
 {
-    "Description": "A template implementation of a resource that provides a single MongoDB server instance\n",
+    "Description": "A template that provides a single server instance.",
     "Parameters": {
-        "flavor": {
-            "Default": "1GB Standard Instance",
-            "Description": "Rackspace Cloud Server flavor",
-            "Type": "String",
+        "server-size": {
+            "default": "1GB Standard Instance",
+            "description": "Server size",
+            "type": "String",
             "constraints": [
                 {
                     "allowed_values": [
                         "512MB Standard Instance",
                         "1GB Standard Instance",
-                        "2GB Standard Instance",
                         "4GB Standard Instance",
-                        "8GB Standard Instance",
-                        "15GB Standard Instance",
-                        "30GB Standard Instance"
+                        "8GB Standard Instance"
                     ],
-                    "description": "must be a valid Rackspace Cloud Server flavor."
+                    "description": "Must be a valid server size."
                 }
             ]
         },
         "key_name": {
-            "Description": "Nova keypair name for ssh access to the server",
-            "Required": true,
-            "Type": "String"
+            "description": "Keypair name for SSH access to the server",
+            "required": true,
+            "type": "String"
         },
         "server_name": {
-            "Default": "MongoDB_One",
-            "Description": "the instance name",
-            "Type": "String"
+            "default": "My server",
+            "description": "My server",
+            "type": "String"
         }
-    }
+    },
+    "ParameterGroups": [
+        {
+            "label": "Parameter groups",
+            "description": "My parameter groups",
+            "parameters": [
+                "param_name-1",
+                "param_name-2"
+            ]
+        }
+    ]
 }
