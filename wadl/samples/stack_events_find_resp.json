@@ -1,9 +1,0 @@
-HTTP/1.1 302 Found
-Location: http://xx.xx.xx.xx/v1/897686/stacks/teststack/9xxxx8-bxx0-4xx9-bxxc-axxxxx1/events
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 19 May 2015 20:42:07 GMT
-Content-Length: 171
-
-302 Found
-
-The resource was found at http://xx.xx.xx.xx/v1/xxxxx/stacks/teststack/9xxxx8-bxx0-4xx9-bxx-axxxxxxd1/events; you should be redirected automatically.
