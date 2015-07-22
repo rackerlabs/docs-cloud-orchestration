@@ -1,9 +1,27 @@
-HTTP/1.1 302 Found
-Location: http://xx.xx.xx.xx/v1/xxxxx/stacks/teststack/90xxxd8-bxx0-4exx-bcxx-acexxxxd1
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 19 May 2015 20:20:07 GMT
-Content-Length: 164
-
-302 Found
-
-The resource was found at http://xx.xx.xx.xx/v1/xxxxx/stacks/teststack/90xxxxx8-xxx60-4xx9-bxxc-acxxxxxd1; you should be redirected automatically.
+{
+    "stack": {
+        "capabilities": [],
+        "creation_time": "2014-06-04T20:36:12Z",
+        "description": "sample stack",
+        "disable_rollback": true,
+        "id": "5333af0c-cc26-47ee-ac3d-8784cefafbd7",
+        "links": [
+            {
+                "href": "http://192.168.123.200:8004/v1/eb1c63a4f77141548385f113a28f0f52/stacks/simple_stack/5333af0c-cc26-47ee-ac3d-8784cefafbd7",
+                "rel": "self"
+            }
+        ],
+        "notification_topics": [],
+        "outputs": [],
+        "parameters": {
+            "OS::stack_id": "5333af0c-cc26-47ee-ac3d-8784cefafbd7",
+            "OS::stack_name": "simple_stack"
+        },
+        "stack_name": "simple_stack",
+        "stack_status": "CREATE_COMPLETE",
+        "stack_status_reason": "Stack CREATE completed successfully",
+        "template_description": "sample stack",
+        "timeout_mins": null,
+        "updated_time": null
+    }
+}

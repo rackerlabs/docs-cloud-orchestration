@@ -1,60 +1,51 @@
-HTTP/1.1 200 OK
-date: Fri, 07 Mar 2014 16:01:47 GMT
-content-length: 873
-content-type: application/json; charset=UTF-8
-
 {
-  "status": "COMPLETE",
-  "name": "trove",
-  "template": {
-    "heat-template-version": "2014-10-16",
+    "action": "CREATE",
+    "id": "46c927bb-671a-43db-a29c-16a2610865ca",
+    "name": "trove",
     "resources": {
-      "MySqlCloudDatabaseServer": {
-        "type": "OS::Trove::Instance",
-        "properties": {
-          "flavor": "1GB Instance",
-          "databases": [
-            {
-              "name": "testdbonetwo"
-            }
-          ],
-          "users": [
-            {
-              "password": "testpass123",
-              "name": "testuser",
-              "databases": [
-                "testdbonetwo"
-              ]
-            }
-          ],
-          "name": "test-trove-db",
-          "size": 30
+        "mysql_server": {
+            "action": "CREATE",
+            "metadata": {},
+            "name": "mysql_server",
+            "resource_data": {},
+            "resource_id": "74c5be7e-3e62-41e7-b455-93d1c32d56e3",
+            "status": "COMPLETE",
+            "type": "OS::Trove::Instance"
         }
-      }
     },
-    "description": "MYSQL server cloud database instance running on Rackspace cloud",
-    "parameters": {
-      "instance_name": {
-        "type": "String",
-        "description": "The database instance name"
-      }
+    "status": "COMPLETE",
+    "template": {
+        "heat-template-version": "2013-05-23",
+        "description": "MySQL server instance",
+        "parameters": {
+            "instance_name": {
+                "description": "The database instance name",
+                "type": "string"
+            }
+        },
+        "resources": {
+            "mysql_server": {
+                "properties": {
+                    "databases": [
+                        {
+                            "name": "testdbonetwo"
+                        }
+                    ],
+                    "flavor": "1 GB General Purpose v1",
+                    "name": "test-trove-db",
+                    "size": 30,
+                    "users": [
+                        {
+                            "databases": [
+                                "testdbonetwo"
+                            ],
+                            "name": "testuser",
+                            "password": "testpass123"
+                        }
+                    ]
+                },
+                "type": "OS::Trove::Instance"
+            }
+        }
     }
-  },
-  "action": "CREATE",
-  "id": "46c927bb-671a-43db-a29c-16a2610865ca",
-  "resources": {
-    "MySqlCloudDatabaseServer": {
-      "status": "COMPLETE",
-      "name": "MySqlCloudDatabaseServer",
-      "resource_data": {
-        
-      },
-      "resource_id": "74c5be7e-3e62-41e7-b455-93d1c32d56e3",
-      "action": "CREATE",
-      "type": "OS::Trove::Instance",
-      "metadata": {
-        
-      }
-    }
-  }
 }
