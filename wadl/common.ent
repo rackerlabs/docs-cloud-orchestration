@@ -62,7 +62,7 @@
 </wadl:doc>
 </param> '>
 <!ENTITY parametersParameter '
-   <param xmlns="http://wadl.dev.java.net/2009/02" name="parameters" style="plain" required="false" type="object" path="$.parameters>
+   <param xmlns="http://wadl.dev.java.net/2009/02" name="parameters" style="plain" required="false" type="object" path="$.parameters">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -108,10 +108,10 @@
       adds an entry to the <code>files</code> map by using:
    </para>
    <itemizedlist>
-   <li>The URL
-      of the provider template as the name.</li>
-   <li>The contents of that file as
-      the value.</li>
+   <listitem><para>The URL
+      of the provider template as the name.</para></listitem>
+   <listitem><para>The contents of that file as
+      the value.</para></listitem>
    </itemizedlist>
    <para>
       Additionally, some template authors encode their user data in a local
@@ -233,7 +233,7 @@
 </wadl:doc>
 </param>'>
 <!ENTITY tagsParameter '
-<param xmlns="http://wadl.dev.java.net/2009/02" name="tags" style="plain" required="false">
+<param xmlns="http://wadl.dev.java.net/2009/02" name="tags" style="plain" required="false" type="string" path="$.tags">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">

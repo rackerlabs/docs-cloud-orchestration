@@ -34,6 +34,15 @@ General API Information
    stack-status
    role-based-access-control
 
+API Operations
+--------------
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   api-operations/*
+
 Glossary
 --------
 

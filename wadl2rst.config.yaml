@@ -1,0 +1,3 @@
+wadl/orchestration-api.wadl:
+    title: Rackspace Cloud Orchestration Developer Guide 
+    output_directory: rst/devguide/api-operations

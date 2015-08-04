@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rackspace Developer Center</title>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type='text/css'>
+
+  <!-- drc styles: -->
+  <link rel="stylesheet" href="https://c2a32ff18d23c8f567f0-e44b0df73868b5d567b1e58e01681d15.ssl.cf5.rackcdn.com/main-ebdad849435665c9fe9a22d338a57bf6.css">
+
+  <!-- local styles: -->
+  <link rel="stylesheet" href="../_static/localsphinx.css">
+
+  <link href="/atom.xml" rel="alternate" title="Rackspace Developer Portal" type="application/atom+xml">
+ <!-- Start Visual Website Optimizer Asynchronous Code -->
+<script type='text/javascript'>
+var _vwo_code=(function(){
+var account_id=45237,
+settings_tolerance=2000,
+library_tolerance=2500,
+use_existing_jquery=false,
+// DO NOT EDIT BELOW THIS LINE
+f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+</script>
+<!-- End Visual Website Optimizer Asynchronous Code -->
+</head>
+<div id="header" class="navbar navbar-fixed-top navbar-inverse navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-btn">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand new-landing-sprite rs-developer-logo" href="/"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-btn">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/sdks/">SDKs</a></li>
+                <li><a href="/databases/">Databases</a></li>
+                <li><a href="/docs/">API Docs</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Community <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://community.rackspace.com/developers/default">Developer Forum</a></li>
+                        <li><a href="/community/">Outreach &amp; Events</a></li>
+                        <li><a href="https://github.com/rackerlabs/developer.rackspace.com">This site on github</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Help <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <!--<li><a href="#">Developer-to-Developer Support</a></li>-->
+                        <li><a href="http://www.rackspace.com/knowledge_center/">Knowledge Center</a></li>
+                        <li><a href="http://status.rackspace.com">System Health Status</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://my.rackspace.com/portal/auth/login">MyRackspace Portal</a></li>
+                        <li><a href="https://mycloud.rackspace.com">Cloud Control Panel</a></li>
+                        <li><a href="https://manage.rackspacecloud.com/pages/Login.jsp">Cloud Sites Control Panel</a>
+                        </li>
+                        <li><a href="https://apps.rackspace.com">Rackspace Webmail Login</a></li>
+                        <li><a href="https://cp.rackspace.com">Email Admin Login</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/signup" class="btn btn-default" id="btn-get-started">Sign up for $50/month credit</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="title-header">
+  <div class="inner">
+    <span class="headline">Rackspace Developer Center</span>
+  </div>
+</div>
+<div class="container body-container">
+  <div class="row">
+    <div class="col-md-9 col-md-push-3 docs-content bodycontent">
+      <div class="document">
+  <div class="documentwrapper">
+      <div class="body" role="main">
+
+  <div class="section" id="adopt-stack-rackspace-cloud-orchestration-developer-guide">
+<h1>Adopt Stack -  Rackspace Cloud Orchestration Developer Guide<a class="headerlink" href="#adopt-stack-rackspace-cloud-orchestration-developer-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="adopt-stack">
+<h2>Adopt Stack<a class="headerlink" href="#adopt-stack" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="post-adopt-stack-v1-tenant-id-stacks.html#request">Request</a>
+<a class="reference external" href="post-adopt-stack-v1-tenant-id-stacks.html#response">Response</a></p>
+<div class="code highlight-python"><div class="highlight"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant_id</span><span class="p">}</span><span class="o">/</span><span class="n">stacks</span>
+</pre></div>
+</div>
+<p>Creates a stack from existing resources.</p>
+<p>This table shows the possible response codes for this operation:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Response Code</th>
+<th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>201</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="request">
+<h3>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h3>
+<p>This table shows the URI parameters for the request:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>{tenant_id}</td>
+<td>&nbsp;</td>
+<td>The ID of the tenant. A
+tenant is also known as
+an account or project.</td>
+</tr>
+</tbody>
+</table>
+<p>This table shows the body parameters for the request:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>stack_name</td>
+<td>string <em>(Required)</em></td>
+<td>A name for the new stack. The value
+must be unique within a project. The
+name must start with an ASCII letter
+and can contain ASCII letters,
+digits, underscores, periods, and
+hyphens. Specifically, the name must
+match the <code class="docutils literal"><span class="pre">^[a-zA-Z][a-zA-Z0-9_.-</span>
+<span class="pre">]*$</span></code> regular expression. When you
+delete or abandon a stack, its name
+might not be available for reuse for
+an unspecified period of time.</td>
+</tr>
+<tr class="row-odd"><td>template_url</td>
+<td>string <em>(Required)</em></td>
+<td>A URI to the location containing the
+stack template on which to perform
+the specified operation. See the
+description of the <code class="docutils literal"><span class="pre">template</span></code>
+parameter for information about the
+expected template content located at
+the URI. This parameter is only
+required when you omit the
+<code class="docutils literal"><span class="pre">template</span></code> parameter. If you
+specify both parameters, this
+parameter is ignored.</td>
+</tr>
+<tr class="row-even"><td>template</td>
+<td>string <em>(Required)</em></td>
+<td>The stack template on which to
+perform the specified operation. This
+parameter is always provided as a
+<code class="docutils literal"><span class="pre">string</span></code> in the JSON request body.
+The content of the string is a JSON-
+or YAML-formatted Orchestration
+template. For example: &#8220;template&#8221;: {
+&#8220;heat_template_version&#8221;: &#8220;2013-05-
+23&#8221;, ...}This parameter is required
+only when you omit the
+<code class="docutils literal"><span class="pre">template_url</span></code> parameter. If you
+specify both parameters, this value
+overrides the <code class="docutils literal"><span class="pre">template_url</span></code>
+parameter value.</td>
+</tr>
+<tr class="row-odd"><td>environment</td>
+<td>string <em>(Required)</em></td>
+<td>A JSON environment for the stack.</td>
+</tr>
+<tr class="row-even"><td>files</td>
+<td>map <em>(Required)</em></td>
+<td>Supplies the contents of files
+referenced in the template or the
+environment. Stack templates and
+resource templates can explicitly
+reference files by using the
+<code class="docutils literal"><span class="pre">get_file</span></code> intrinsic function. In
+addition, the <code class="docutils literal"><span class="pre">environment</span></code>
+parameter can contain implicit
+references to files. The value is a
+JSON object, where each key is a
+relative or absolute URI which serves
+as the name of a file, and the
+associated value provides the
+contents of the file. The following
+code shows the general structure of
+this parameter. { ... &#8220;files&#8221;: {
+&#8220;fileA.yaml&#8221;: &#8220;Contents of the file&#8221;,
+&#8220;<a class="reference external" href="file:///usr/fileB.template">file:///usr/fileB.template</a>&#8221;:
+&#8220;Contents of the file&#8221;,
+&#8220;<a class="reference external" href="http://example.com/fileC.template">http://example.com/fileC.template</a>&#8221;:
+&#8220;Contents of the file&#8221; }...
+}Additionally, some template authors
+encode their user data in a local
+file. The Orchestration client
+examines the template for the
+<code class="docutils literal"><span class="pre">get_file</span></code> intrinsic function and
+adds an entry to the <code class="docutils literal"><span class="pre">files</span></code> map
+with the path to the file as the name
+and the file contents as the value.
+So, a simple example looks like this:
+{ &#8220;files&#8221;: { &#8220;myfile&#8221;:
+&#8220;#!/bin/bashnecho &#8220;Hello world&#8221; &gt;
+/root/testfile.txt&#8221; }, ...,
+&#8220;stack_name&#8221;: &#8220;teststack&#8221;,
+&#8220;template&#8221;: { ..., &#8220;resources&#8221;: {
+&#8220;my_server&#8221;: { &#8220;type&#8221;:
+&#8220;OS::Nova::Server&#8221;, &#8220;properties&#8221;: {
+..., &#8220;user_data&#8221;: { &#8220;get_file&#8221;:
+&#8220;myfile&#8221; } } } } }, &#8220;timeout_mins&#8221;:
+60}Do not use this parameter to
+provide the content of the template
+located at the address specified by
+<code class="docutils literal"><span class="pre">template_url</span></code>. Instead, use the
+<code class="docutils literal"><span class="pre">template</span></code> parameter to supply the
+template content as part of the
+request.</td>
+</tr>
+<tr class="row-odd"><td>parameters</td>
+<td>object <em>(Required)</em></td>
+<td>Supplies arguments for parameters
+defined in the stack template. The
+value is a JSON object, where each
+key is the name of a parameter
+defined in the template and the
+associated value is the argument to
+use for that parameter when
+instantiating the template. The
+following code shows the general
+structure of this parameter. In the
+example, <code class="docutils literal"><span class="pre">a</span></code> and <code class="docutils literal"><span class="pre">b</span></code> would be the
+names of two parameters defined in
+the template. { ... &#8220;parameters&#8221;: {
+&#8220;a&#8221;: &#8220;Value&#8221;, &#8220;b&#8221;: &#8220;3&#8221; }... }While
+the service accepts JSON numbers for
+parameters with the type <code class="docutils literal"><span class="pre">number</span></code>
+and JSON objects for parameters with
+the type <code class="docutils literal"><span class="pre">json</span></code>, all parameter
+values are converted to their string
+representation for storage in the
+created Stack. Clients are encouraged
+to send all parameter values using
+their string representation for
+consistency between requests and
+responses from the Orchestration
+service. A value must be provided for
+each template parameter which does
+not specify a default value. However,
+this parameter is not allowed to
+contain JSON properties with names
+that do not match a parameter defined
+in the template. The <code class="docutils literal"><span class="pre">files</span></code>
+parameter maps logical file names to
+file contents. Both the <code class="docutils literal"><span class="pre">get_file</span></code>
+intrinsic function and provider
+template functionality use this
+mapping. When you want to use a
+provider template, for example, the
+Orchestration service adds an entry
+to the <code class="docutils literal"><span class="pre">files</span></code> map by using: * The
+URL of the provider template as the
+name. * The contents of that file as
+the value. Additionally, some
+template authors encode their user
+data in a local file. The
+Orchestration client examines the
+template for the <code class="docutils literal"><span class="pre">get_file</span></code>
+intrinsic function and adds an entry
+to the <code class="docutils literal"><span class="pre">files</span></code> map with the path to
+the file as the name and the file
+contents as the value. So, a simple
+example looks like this: { &#8220;files&#8221;: {
+&#8220;myfile&#8221;: &#8220;#!/bin/bashnecho &#8220;Hello
+world&#8221; &gt; /root/testfile.txt&#8221; }, ...,
+&#8220;stack_name&#8221;: &#8220;teststack&#8221;,
+&#8220;template&#8221;: { ..., &#8220;resources&#8221;: {
+&#8220;my_server&#8221;: { &#8220;type&#8221;:
+&#8220;OS::Nova::Server&#8221;, &#8220;properties&#8221;: {
+..., &#8220;user_data&#8221;: { &#8220;get_file&#8221;:
+&#8220;myfile&#8221; } } } } }, &#8220;timeout_mins&#8221;:
+60}</td>
+</tr>
+<tr class="row-even"><td>param_name-n</td>
+<td>string <em>(Required)</em></td>
+<td>User-defined parameter names to pass
+to the template.</td>
+</tr>
+<tr class="row-odd"><td>param_value-n</td>
+<td>string <em>(Required)</em></td>
+<td>User-defined parameter values to pass
+to the template.</td>
+</tr>
+<tr class="row-even"><td>timeout_mins</td>
+<td><em>(Required)</em></td>
+<td>The timeout for stack creation in
+minutes.</td>
+</tr>
+<tr class="row-odd"><td>adopt_stack_data</td>
+<td>string <em>(Required)</em></td>
+<td>Existing resources data to adopt a
+stack. Data returned by abandon stack
+could be provided as
+<code class="docutils literal"><span class="pre">adopt_stack_data</span></code>.</td>
+</tr>
+<tr class="row-even"><td>disable_rollback</td>
+<td>string <em>(Required)</em></td>
+<td>Enables or disables deletion of all
+stack resources when stack creation
+fails. Set to <code class="docutils literal"><span class="pre">True</span></code> to keep all
+resources when stack creation fails.
+Set to <code class="docutils literal"><span class="pre">False</span></code> to delete all
+resources when stack creation fails.
+Default is <code class="docutils literal"><span class="pre">True</span></code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example Adopt Stack: JSON request</strong></p>
+<div class="code highlight-python"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&quot;adopt_stack_data&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;action&quot;</span><span class="p">:</span> <span class="s">&quot;CREATE&quot;</span><span class="p">,</span>
+        <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;bxxxxx4-0xx2-4xx1-axx6-exxxxxxxc&quot;</span><span class="p">,</span>
+        <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;teststack&quot;</span><span class="p">,</span>
+        <span class="s">&quot;resources&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">&quot;MyServer&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;action&quot;</span><span class="p">:</span> <span class="s">&quot;CREATE&quot;</span><span class="p">,</span>
+                <span class="s">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;MyServer&quot;</span><span class="p">,</span>
+                <span class="s">&quot;resource_data&quot;</span><span class="p">:</span> <span class="p">{},</span>
+                <span class="s">&quot;resource_id&quot;</span><span class="p">:</span> <span class="s">&quot;cxxxx3-dxx3-4xx-bxx2-3xxxxxxxxa&quot;</span><span class="p">,</span>
+                <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;COMPLETE&quot;</span><span class="p">,</span>
+                <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;OS::Trove::Instance&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;COMPLETE&quot;</span><span class="p">,</span>
+        <span class="s">&quot;template&quot;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="s">&quot;stack_name&quot;</span><span class="p">:</span> <span class="s">&quot;{stack_name}&quot;</span><span class="p">,</span>
+    <span class="s">&quot;template_url&quot;</span><span class="p">:</span> <span class="s">&quot;{template_url}&quot;</span><span class="p">,</span>
+    <span class="s">&quot;timeout_mins&quot;</span><span class="p">:</span> <span class="s">&quot;{timeout_mins}&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="response">
+<h3>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h3>
+<p><strong>Example Adopt Stack: JSON response</strong></p>
+<div class="code highlight-python"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&quot;action&quot;</span><span class="p">:</span> <span class="s">&quot;CREATE&quot;</span><span class="p">,</span>
+    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;46c927bb-671a-43db-a29c-16a2610865ca&quot;</span><span class="p">,</span>
+    <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;trove&quot;</span><span class="p">,</span>
+    <span class="s">&quot;resources&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;mysql_server&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">&quot;action&quot;</span><span class="p">:</span> <span class="s">&quot;CREATE&quot;</span><span class="p">,</span>
+            <span class="s">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;mysql_server&quot;</span><span class="p">,</span>
+            <span class="s">&quot;resource_data&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s">&quot;resource_id&quot;</span><span class="p">:</span> <span class="s">&quot;74c5be7e-3e62-41e7-b455-93d1c32d56e3&quot;</span><span class="p">,</span>
+            <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;COMPLETE&quot;</span><span class="p">,</span>
+            <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;OS::Trove::Instance&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;COMPLETE&quot;</span><span class="p">,</span>
+    <span class="s">&quot;template&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;heat-template-version&quot;</span><span class="p">:</span> <span class="s">&quot;2013-05-23&quot;</span><span class="p">,</span>
+        <span class="s">&quot;description&quot;</span><span class="p">:</span> <span class="s">&quot;MySQL server instance&quot;</span><span class="p">,</span>
+        <span class="s">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">&quot;instance_name&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;description&quot;</span><span class="p">:</span> <span class="s">&quot;The database instance name&quot;</span><span class="p">,</span>
+                <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;string&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">&quot;resources&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">&quot;mysql_server&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s">&quot;databases&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                            <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;testdbonetwo&quot;</span>
+                        <span class="p">}</span>
+                    <span class="p">],</span>
+                    <span class="s">&quot;flavor&quot;</span><span class="p">:</span> <span class="s">&quot;1 GB General Purpose v1&quot;</span><span class="p">,</span>
+                    <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;test-trove-db&quot;</span><span class="p">,</span>
+                    <span class="s">&quot;size&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+                    <span class="s">&quot;users&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                            <span class="s">&quot;databases&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                <span class="s">&quot;testdbonetwo&quot;</span>
+                            <span class="p">],</span>
+                            <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;testuser&quot;</span><span class="p">,</span>
+                            <span class="s">&quot;password&quot;</span><span class="p">:</span> <span class="s">&quot;testpass123&quot;</span>
+                        <span class="p">}</span>
+                    <span class="p">]</span>
+                <span class="p">},</span>
+                <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;OS::Trove::Instance&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+
+  <div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+
+
+      </div>
+<div class="clearer"></div>
+</div>
+    </div>
+    <div class="col-md-3 col-md-pull-9 sidebar">
+<ul>
+  <li><a href="/" class="back">&laquo; Developer Home</a></li>
+</ul>
+<ul>
+  
+|
+
+  <li><span class="sidebarheader">Contents</span></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">Concepts</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general-api-information.html">General API information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authenticate-through-the-rackspace-cloud-identity-service.html">Authenticate through the Rackspace Cloud Identity Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contract-version.html">Contract version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../request-response-types.html">Request &amp; response types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../date-time-format.html">Date/Time format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pagination.html">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faults.html">Faults</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stack-status.html">Stack status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../role-based-access-control.html">Role Based Access Control</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+
+      <div class="callout">
+  <span class="sidebarheader">Need Help?</span>
+
+  <p>
+    E-mail <a href="mailto:sdk-support@rackspace.com">sdk-support@rackspace.com</a>,<br>
+    tweet <a href="https://twitter.com/rackspace">@rackspace</a>,
+    chat with us in #rackspace on Freenode,
+    or post in <a href="https://community.rackspace.com/developers/default">our developer forum</a>.
+  </p>
+</div>
+
+<div class="callout">
+  <span class="sidebarheader">Found a bug? Caught a typo?</span>
+  <p>File a <a href="https://github.com/rackerlabs/developer.rackspace.com/issues/new">bug report</a> or submit a <a target="blank" href="https://github.com/rackerlabs/developer.rackspace.com">pull request</a> on our developer site Github repo.</p>
+</div>
+
+<div class="callout">
+  <span class="sidebarheader">Want To Stay Up To Date?</span>
+  <p>Subscribe to our developer blog <a href="/atom.xml">RSS</a> feed.</p>
+</div>
+    </div>
+  </div>
+</div>
+<div class="basement">
+    <div class="container">
+        <img src="https://c2a32ff18d23c8f567f0-e44b0df73868b5d567b1e58e01681d15.ssl.cf5.rackcdn.com/rackerpowered-logo-79838459d447e1e48dd93c76549bdf74.png" alt="Racker Powered">
+        <ul>
+            <li>©2015 Rackspace, US Inc.</li>
+            <li><a href="http://www.rackspace.com/about/">About Rackspace</a></li>
+            <li><a href="http://ir.rackspace.com/">Investors</a></li>
+            <li><a href="http://www.rackertalent.com">Careers</a></li>
+            <li><a href="http://www.rackspace.com/information/legal/privacystatement">Privacy Statement</a></li>
+            <li><a href="http://www.rackspace.com/information/legal/websiteterms">Website Terms</a></li>
+            <li><a href="http://www.rackspace.com/information/legal/copyrights_trademarks">Trademarks</a></li>
+        </ul>
+    </div>
+</div>
+<script src="https://c2a32ff18d23c8f567f0-e44b0df73868b5d567b1e58e01681d15.ssl.cf5.rackcdn.com/app-b899e84f641d7962050ed3d62a3d53a7.js"></script>
+
+  <!-- analytics -->
+<script type="text/javascript">
+   var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-35639070-1']);
+    _gaq.push(['_setDomainName', 'rackspace.com']);
+    _gaq.push(['_trackPageview']);
+
+   (function () {
+       var ga = document.createElement('script');
+       ga.type = 'text/javascript';
+       ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+   })();
+ </script>
+
+ <!-- Tealium -->
+ <script type="text/javascript" src="https://tags.tiqcdn.com/utag/rackspace/developer/prod/utag.js"></script>
+
+ <!-- Google Code for Rackspace Blog Page Visitors (Global Tag) -->
+<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+<script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 1040066332;
+    var google_conversion_label = "wFI2CI7LnQQQnM747wM";
+    var google_custom_params = window.google_tag_params;
+    var google_remarketing_only = true;
+    /* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+    <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1040066332/?value=0&amp;label=wFI2CI7LnQQQnM747wM&amp;guid=ON&amp;script=0"/>
+    </div>
+</noscript>
+</body>
+</html>
