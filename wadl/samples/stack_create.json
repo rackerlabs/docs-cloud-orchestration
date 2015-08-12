@@ -2,7 +2,7 @@
     "files": {},
     "disable_rollback": true,
     "parameters": {
-        "flavor": "m1.heat"
+        "flavor": "2 GB General Purpose v1"
     },
     "stack_name": "teststack",
     "template": {
@@ -10,7 +10,7 @@
         "description": "Simple template to test heat commands",
         "parameters": {
             "flavor": {
-                "default": "m1.tiny",
+                "default": "1 GB General Purpose v1",
                 "type": "string"
             }
         },
@@ -22,7 +22,7 @@
                     "flavor": {
                         "get_param": "flavor"
                     },
-                    "image": "40be8d1a-3eb9-40de-8abd-43237517384f",
+                    "image": "Ubuntu 12.04 LTS (Precise Pangolin) (PV)",
                     "user_data": "#!/bin/bash -xv\necho \"hello world\" &gt; /root/hello-world.txt\n"
                 }
             }

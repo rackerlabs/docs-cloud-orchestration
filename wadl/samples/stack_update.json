@@ -4,7 +4,7 @@
         "description": "Create a simple stack",
         "parameters": {
             "flavor": {
-                "default": "m1.tiny",
+                "default": "1 GB General Purpose v1",
                 "type": "string"
             }
         },
@@ -16,13 +16,13 @@
                     "flavor": {
                         "get_param": "flavor"
                     },
-                    "image": "40be8d1a-3eb9-40de-8abd-43237517384f",
+                    "image": "Ubuntu 12.04 LTS (Precise Pangolin) (PV)",
                     "user_data": "#!/bin/bash -xv\necho \"hello world\" > /root/hello-world.txt\n"
                 }
             }
         }
     },
     "parameters": {
-        "flavor": "m1.small"
+        "flavor": "2 GB General Purpose v1"
     }
 }
