@@ -106,7 +106,6 @@
       provider template functionality use this mapping. When you want to
       use a provider template, for example, the Orchestration service
       adds an entry to the <code>files</code> map by using:
-   
    <itemizedlist>
    <listitem><para>The URL
       of the provider template as the name.</para></listitem>
@@ -234,7 +233,7 @@
 </wadl:doc>
 </param>'>
 <!ENTITY tagsParameter '
-<param xmlns="http://wadl.dev.java.net/2009/02" name="tags" style="plain" required="false" type="string" path="$.tags">
+<param xmlns="http://wadl.dev.java.net/2009/02" name="tags" style="plain" required="false">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -281,3 +280,37 @@
    </para>
 </wadl:doc>
 </param> '>
+<!ENTITY commonFaults '
+<response status="400" xmlns="http://wadl.dev.java.net/2009/02">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   title="Bad Request"
+   xml:lang="EN" />
+</response>
+<response status="401" xmlns="http://wadl.dev.java.net/2009/02">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   title="Unauthorized"
+   xml:lang="EN" />
+</response> '>
+<!ENTITY notFound '
+<response status="404" xmlns="http://wadl.dev.java.net/2009/02">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   title="Not Found"
+   xml:lang="EN" />
+</response> '>
+<!ENTITY conflict '
+<response status="409" xmlns="http://wadl.dev.java.net/2009/02">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   title="Conflict"
+   xml:lang="EN" />
+</response> '>
+<!ENTITY intServerErr '
+<response status="500" xmlns="http://wadl.dev.java.net/2009/02">
+<wadl:doc xmlns="http://docbook.org/ns/docbook"
+   xmlns:wadl="http://wadl.dev.java.net/2009/02"
+   title="Internal Server Error"
+   xml:lang="EN" />
+</response> '>
