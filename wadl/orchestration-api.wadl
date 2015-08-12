@@ -138,10 +138,10 @@
                               <method href="#resource_event_list"
                                  />
                            </resource>
-                           <resource path="metadata"
-                              id="metadata">
-                              <method href="#resource_metadata"/>
-                           </resource>
+                           <!-- <resource path="metadata" -->
+                           <!--    id="metadata"> -->
+                           <!--    <method href="#resource_metadata"/> -->
+                           <!-- </resource> -->
                            <resource path="signal"
                               id="signal">
                               <method href="#resource_signal"/>
