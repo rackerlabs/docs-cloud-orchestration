@@ -17,8 +17,8 @@
             "OS::stack_id": "None",
             "OS::stack_name": "teststack",
             "admin_user": "cloud-user",
-            "flavor": "m1.small",
-            "image": "F20-cfg",
+            "flavor": "1 GB General Purpose v1",
+            "image": "Ubuntu 12.04 LTS (Precise Pangolin) (PV)",
             "key_name": "heat_key",
             "server_name": "MyServer"
         },
@@ -110,9 +110,9 @@
                     "block_device_mapping": null,
                     "config_drive": null,
                     "diskConfig": null,
-                    "flavor": "m1.small",
+                    "flavor": "1 GB General Purpose v1",
                     "flavor_update_policy": "RESIZE",
-                    "image": "F20-cfg",
+                    "image": "Ubuntu 12.04 LTS (Precise Pangolin) (PV)",
                     "image_update_policy": "REPLACE",
                     "key_name": "heat_key",
                     "metadata": {
