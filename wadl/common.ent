@@ -1,5 +1,5 @@
 <!ENTITY filesParameter '
-<param xmlns="http://wadl.dev.java.net/2009/02" name="files" style="plain" required="false">
+<param xmlns="http://wadl.dev.java.net/2009/02" name="files" style="plain" required="false" type="map" path="$.files">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -62,7 +62,7 @@
 </wadl:doc>
 </param> '>
 <!ENTITY parametersParameter '
-   <param xmlns="http://wadl.dev.java.net/2009/02" name="parameters" style="plain" required="false">
+   <param xmlns="http://wadl.dev.java.net/2009/02" name="parameters" style="plain" required="false" type="object" path="$.parameters">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -167,7 +167,7 @@
 </wadl:doc>
 </param> '>
 <!ENTITY templateUrlParameter '
-<param xmlns="http://wadl.dev.java.net/2009/02" name="template_url" style="plain" required="false">
+<param xmlns="http://wadl.dev.java.net/2009/02" name="template_url" style="plain" required="false" path="$.template_url" type="string">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -188,7 +188,7 @@
 </wadl:doc>
 </param>'>
 <!ENTITY templateParameter '
-<param xmlns="http://wadl.dev.java.net/2009/02" name="template" style="plain" required="false">
+<param xmlns="http://wadl.dev.java.net/2009/02" name="template" style="plain" required="false" type="string" path="$.template">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -212,7 +212,7 @@
 </param>'>
 <!ENTITY environmentParameter '
    <param xmlns="http://wadl.dev.java.net/2009/02" name="environment"
-   style="plain" required="true">
+   style="plain" required="true" type="string" path="$.environment">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -223,7 +223,7 @@
 </param>'>
 <!ENTITY environmentParameterOptional '
    <param xmlns="http://wadl.dev.java.net/2009/02" name="environment" style="plain"
-   required="false">
+   required="false" type="string" path="$.environment">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
@@ -245,7 +245,7 @@
 </wadl:doc>
 </param> '>
 <!ENTITY paramNameNParameter '
-<param xmlns="http://wadl.dev.java.net/2009/02" name="param_name-n" style="plain" required="true">
+<param xmlns="http://wadl.dev.java.net/2009/02" name="param_name-n" style="plain" required="true" type="string" path="$.parameters.param_name-n">
 <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
    <para>
@@ -254,7 +254,7 @@
 </wadl:doc>
 </param> '>
 <!ENTITY paramNameNParameterOptional '
-<param xmlns="http://wadl.dev.java.net/2009/02" name="param_name-n" style="plain" required="false">
+<param xmlns="http://wadl.dev.java.net/2009/02" name="param_name-n" style="plain" required="false" type="string" path="$.parameters.param_name-n">
 <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
    <para>
@@ -263,7 +263,7 @@
 </wadl:doc>
 </param> '>
 <!ENTITY paramValueNParameter '
-<param xmlns="http://wadl.dev.java.net/2009/02" name="param_value-n" style="plain" required="true">
+<param xmlns="http://wadl.dev.java.net/2009/02" name="param_value-n" style="plain" required="true" type="string" path="$.parameters.param_value-n">
 <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
    <para>
@@ -272,7 +272,7 @@
 </wadl:doc>
 </param> '>
 <!ENTITY paramValueNParameterOptional '
-<param xmlns="http://wadl.dev.java.net/2009/02" name="param_value-n" style="plain" required="false">
+<param xmlns="http://wadl.dev.java.net/2009/02" name="param_value-n" style="plain" required="false" type="string" path="$.parameters.param_value-n">
 <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
    xml:lang="EN">
    <para>
