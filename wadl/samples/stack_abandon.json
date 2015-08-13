@@ -44,11 +44,11 @@
                 "type": "string"
             },
             "image": {
-                "default": "Ubuntu 12.04 LTS (Precise Pangolin) (PV)",
+                "default": "fedora-amd64",
                 "type": "string"
             },
             "flavor": {
-                "default": "1 GB General Purpose v1",
+                "default": "m1.small",
                 "type": "string"
             }
         }

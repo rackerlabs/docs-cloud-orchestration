@@ -4,7 +4,7 @@
 <!DOCTYPE application[
    <!ENTITY % common  SYSTEM "common.ent">
    %common;
-   <!ENTITY % common_project  SYSTEM "common_project.ent">
+   <!ENTITY % common_project  SYSTEM "../../../common_project.ent">
    %common_project;
    ]>
 <application xmlns="http://wadl.dev.java.net/2009/02"
@@ -38,7 +38,7 @@
                </resource>
                <resource path="{stack_name}" id="stack_name">
                   <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="template"
-                     required="true" path="$.stack_name" type="string">
+                     required="true">
                   <wadl:doc
                      xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                      xml:lang="EN">
@@ -138,10 +138,10 @@
                               <method href="#resource_event_list"
                                  />
                            </resource>
-                           <!-- <resource path="metadata" -->
-                           <!--    id="metadata"> -->
-                           <!--    <method href="#resource_metadata"/> -->
-                           <!-- </resource> -->
+                           <resource path="metadata"
+                              id="metadata">
+                              <method href="#resource_metadata"/>
+                           </resource>
                            <resource path="signal"
                               id="signal">
                               <method href="#resource_signal"/>
@@ -489,7 +489,7 @@
                xml:lang="EN">
                <xsdxt:code href="samples/stack_create.json"/>
             </wadl:doc>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -513,8 +513,6 @@
             &filesParameter;
             &parametersParameter;
             &tagsParameter;
-            &paramNameNParameterOptional;
-            &paramValueNParameterOptional;
          </representation>
       </request>
       <response status="201">
@@ -524,7 +522,7 @@
                <xsdxt:code href="samples/stack_create_resp.json"
                   />
             </wadl:doc>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -533,7 +531,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="template_url" style="plain"
-               required="true" path="$.template_url" type="string">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -541,7 +539,7 @@
                </para>
             </wadl:doc>
             </param>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="template" style="plain" required="true" type="string" path="$.template">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="template" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -550,7 +548,7 @@
             </wadl:doc>
             </param>
             &environmentParameterOptional;
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="files" style="plain" required="false" type="string" path="$.files">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="files" style="plain" required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -563,7 +561,7 @@
             &paramNameNParameterOptional;
             &paramValueNParameterOptional;
             <param xmlns="http://wadl.dev.java.net/2009/02" name="timeout_mins" style="plain"
-               required="false" type="integer" path="$.timeout_mins">
+               required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -631,7 +629,7 @@
                xml:lang="EN">
                <xsdxt:code href="samples/stack_create.json"/>
             </wadl:doc>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -682,7 +680,7 @@
                </para>
             </wadl:doc>
             </param>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -804,7 +802,7 @@
                xml:lang="EN">
                <xsdxt:code href="samples/stack_adopt.json"/>
             </wadl:doc>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -841,7 +839,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="adopt_stack_data" style="plain"
-               required="true" type="string" path="$.adopt_stack_data">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -852,7 +850,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="disable_rollback" style="plain"
-               required="false" type="string" path="$.disable_rollback">
+               required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
