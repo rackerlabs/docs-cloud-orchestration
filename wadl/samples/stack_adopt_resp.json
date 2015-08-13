@@ -31,7 +31,7 @@
                             "name": "testdbonetwo"
                         }
                     ],
-                    "flavor": "1 GB General Purpose v1",
+                    "flavor": "m1.medium",
                     "name": "test-trove-db",
                     "size": 30,
                     "users": [

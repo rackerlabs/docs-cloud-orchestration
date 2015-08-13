@@ -4,7 +4,7 @@
 <!DOCTYPE application[
    <!ENTITY % common  SYSTEM "common.ent">
    %common;
-   <!ENTITY % common_project  SYSTEM "common_project.ent">
+   <!ENTITY % common_project  SYSTEM "../../../common_project.ent">
    %common_project;
    ]>
 <application xmlns="http://wadl.dev.java.net/2009/02"
@@ -38,7 +38,7 @@
                </resource>
                <resource path="{stack_name}" id="stack_name">
                   <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="template"
-                     required="true" path="$.stack_name" type="string">
+                     required="true">
                   <wadl:doc
                      xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                      xml:lang="EN">
@@ -176,7 +176,7 @@
                <method href="#template_validate"/>
             </resource>
             <resource id="list_template_versions" path="template_versions">
-               <method href="#list_template_versions"/>
+               <method href="#template_version_list"/>
             </resource>
             <resource id="resource_types" path="resource_types">
                <method href="#resource_type_list"/>
@@ -194,6 +194,17 @@
                   <method href="#resource_type_get"/>
                   <resource id="resource_template"
                      path="template">
+                     <param xmlns="http://wadl.dev.java.net/2009/02"
+                           name="template_type" style="query" required="false">
+                     <wadl:doc
+                        xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
+                        xml:lang="EN">
+                        <para>
+                           The resource template type. Default type is
+                           <code>cfn</code>. The <code>hot</code> template type is supported.
+                        </para>
+                     </wadl:doc>
+                     </param>
                      <method href="#resource_type_template"/>
                   </resource>
                </resource>
@@ -462,6 +473,8 @@
             </wadl:doc>
          </representation>
       </response>
+      &commonFaults;
+      &intServerErr;
    </method>
    <method name="POST" id="stack_create">
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -476,7 +489,7 @@
                xml:lang="EN">
                <xsdxt:code href="samples/stack_create.json"/>
             </wadl:doc>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -509,7 +522,7 @@
                <xsdxt:code href="samples/stack_create_resp.json"
                   />
             </wadl:doc>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -518,7 +531,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="template_url" style="plain"
-               required="true" path="$.template_url" type="string">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -526,7 +539,7 @@
                </para>
             </wadl:doc>
             </param>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="template" style="plain" required="true" type="string" path="$.template">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="template" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -535,7 +548,7 @@
             </wadl:doc>
             </param>
             &environmentParameterOptional;
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="files" style="plain" required="false" type="string" path="$.files">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="files" style="plain" required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -548,7 +561,7 @@
             &paramNameNParameterOptional;
             &paramValueNParameterOptional;
             <param xmlns="http://wadl.dev.java.net/2009/02" name="timeout_mins" style="plain"
-               required="false" type="integer" path="$.timeout_mins">
+               required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -557,7 +570,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="disable_rollback" style="plain"
-               required="false" type="string" path="$.disable_rollback">
+               required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -571,7 +584,7 @@
                </para>
             </wadl:doc>
             </param>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_id" style="plain" required="true" type="string" path="$.stack_id">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_id" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -580,7 +593,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="links" style="plain"
-               required="true" type="string" path="$.links">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -588,7 +601,7 @@
                </para>
             </wadl:doc>
             </param>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="rel" style="plain" required="true" type="string" path="$.rel">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="rel" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -599,6 +612,9 @@
             </param>
          </representation>
       </response>
+      &commonFaults;
+      &conflict;
+      &intServerErr;
    </method>
    <method name="POST" id="stack_preview">
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN" xmlns:wadl="http://wadl.dev.java.net/2009/02"
@@ -613,7 +629,7 @@
                xml:lang="EN">
                <xsdxt:code href="samples/stack_create.json"/>
             </wadl:doc>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook" xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
                <para>
@@ -647,7 +663,7 @@
                xml:lang="EN">
                <xsdxt:code href="samples/stack_preview.json"/>
             </wadl:doc>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="parent" style="plain" required="true" path="$.parent" type="string">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="parent" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -656,7 +672,7 @@
                </para>
             </wadl:doc>
             </param>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="id" style="plain" required="true" path="$.id" type="string">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="id" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -664,7 +680,7 @@
                </para>
             </wadl:doc>
             </param>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -673,7 +689,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="description" style="plain"
-               required="true" path="$.description" type="string">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -690,7 +706,7 @@
                </para>
             </wadl:doc>
             </param>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="timeout_mins" style="plain" required="true" path="$.timeout_mins" type="integer">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="timeout_mins" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -699,7 +715,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="disable_rollback" style="plain"
-               required="true" path="$.disable_rollback" type="string">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                 <para>
@@ -711,7 +727,7 @@
                </para>
             </wadl:doc>
             </param>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="capabilities" style="plain" required="true" path="$.capabilities" type="string">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="capabilities" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -720,7 +736,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="notification_topics" style="plain"
-               required="true" path="$.notification_topics" type="string">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -729,7 +745,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="updated_time" style="plain"
-               required="true" path="$.updated_time" type="string">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -740,7 +756,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_owner" style="plain"
-               required="true" path="$.stack_owner" type="string">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -749,7 +765,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="parameters" style="plain"
-               required="true" path="$.parameters" type="string">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -758,7 +774,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="resources" style="plain"
-               required="true" path="$.resources" type="string">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -768,6 +784,9 @@
             </param>
          </representation>
       </response>
+      &commonFaults;
+      &conflict;
+      &intServerErr;
    </method>
    <method name="POST" id="stack_adopt">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -783,7 +802,7 @@
                xml:lang="EN">
                <xsdxt:code href="samples/stack_adopt.json"/>
             </wadl:doc>
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true" path="$.stack_name" type="string">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="stack_name" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -810,7 +829,7 @@
             &paramNameNParameter;
             &paramValueNParameter;
             <param xmlns="http://wadl.dev.java.net/2009/02" name="timeout_mins" style="plain"
-               required="true" type="string" path="$.timeout_mins">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -820,7 +839,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="adopt_stack_data" style="plain"
-               required="true" type="string" path="$.adopt_stack_data">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -831,7 +850,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02" name="disable_rollback" style="plain"
-               required="false" type="string" path="$.disable_rollback">
+               required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -854,6 +873,9 @@
             </wadl:doc>
          </representation>
       </response>
+      &commonFaults;
+      &conflict;
+      &intServerErr;
    </method>
    <method name="POST" id="stack_action_suspend">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -979,7 +1001,7 @@
             receive a 302 because this behavior is ubiquitous in web browsers.
          </para>
       </wadl:doc>
-      <response status="202 302">
+      <response status="302">
          <representation mediaType="application/json">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
@@ -987,6 +1009,9 @@
             </wadl:doc>
          </representation>
       </response>
+      &commonFaults;
+      &notFound;
+      &intServerErr;
    </method>
    <method name="GET" id="stack_show">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -1004,6 +1029,9 @@
             </wadl:doc>
          </representation>
       </response>
+      &commonFaults;
+      &notFound;
+      &intServerErr;
    </method>
    <method name="GET" id="stack_template">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -1021,6 +1049,9 @@
           </wadl:doc>
         </representation>
       </response>
+      &commonFaults;
+      &notFound;
+      &intServerErr;
    </method>
    <method name="PUT" id="stack_update">
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -1038,7 +1069,7 @@
             </wadl:doc>
             &templateUrlParameter;
             &templateParameter;
-            &environmentParameter;
+            &environmentParameterOptional;
             &filesParameter;
             &tagsParameter;
             <param xmlns="http://wadl.dev.java.net/2009/02" name="parameters" style="plain" required="false">
@@ -1082,10 +1113,8 @@
                </para>
             </wadl:doc>
             </param>
-            &paramNameNParameter;
-            &paramValueNParameter;
             <param xmlns="http://wadl.dev.java.net/2009/02" name="timeout_mins" style="plain"
-               required="true" type="string" path="$.timeout_mins" >
+               required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -1097,6 +1126,9 @@
          </representation>
       </request>
       <response status="202"/>
+      &commonFaults;
+      &notFound;
+      &intServerErr;
    </method>
    <method name="DELETE" id="stack_delete">
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -1106,6 +1138,9 @@
          </para>
       </wadl:doc>
       <response status="204"/>
+      &commonFaults;
+      &notFound;
+      &intServerErr;
    </method>
    <method name="DELETE" id="stack_abandon">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -1124,6 +1159,9 @@
             </wadl:doc>
          </representation>
       </response>
+      &commonFaults;
+      &notFound;
+      &intServerErr;
    </method>
    <method name="POST" id="stack_snapshot">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -1243,7 +1281,7 @@
                <xsdxt:code href="samples/template_validate_resp.json"/>
             </wadl:doc>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-             name="Description" style="plain" required="true" type="String" path="$.Description">
+             name="Description" style="plain" required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -1254,7 +1292,7 @@
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
              name="Parameters" style="plain" type="object"
-             required="true" path="$.Parameters">
+               required="true">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -1266,7 +1304,7 @@
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
              name="ParameterGroups" style="plain" type="list"
-             required="false" path="$.ParameterGroups">
+               required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -1287,6 +1325,9 @@
             Lists all available template versions.
          </para>
       </wadl:doc>
+      &commonFaults;
+      &notFound;
+      &intServerErr;
    </method>
    <method name="GET" id="resource_type_list">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -1303,6 +1344,7 @@
            </wadl:doc>
          </representation>
       </response>
+      &commonFaults;
    </method>
    <method name="GET" id="resource_type_get">
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -1324,6 +1366,7 @@
             </wadl:doc>
          </representation>
       </response>
+      &commonFaults;
    </method>
    <method name="GET" id="resource_type_template">
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -1341,6 +1384,12 @@
             customized, template-based resources or as examples of using the
             particular resource in another template.
          </para>
+         <para>
+            Use the <code>template_type</code> query parameter to specify the
+            resource template type. Default type is <code>cfn</code>. The
+            <code>hot</code> template type is supported. For example:
+         </para>
+         <programlisting>/v1/{tenant_id}/resource_types/{type_name}/template?template_type=cfn</programlisting>
       </wadl:doc>
       <response status="200">
         <representation mediaType="application/json" >
@@ -1349,6 +1398,8 @@
           </wadl:doc>
         </representation>
       </response>
+      &commonFaults;
+      &notFound;
    </method>
    <method name="GET" id="stack_resources_find">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -1418,6 +1469,8 @@
           </wadl:doc>
         </representation>
       </response>
+      &commonFaults;
+      &notFound;
    </method>
    <method name="GET" id="resource_show">
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
@@ -1433,6 +1486,25 @@
             <xsdxt:code href="samples/resource_show_resp.json"/>
           </wadl:doc>
         </representation>
+      </response>
+      &commonFaults;
+      &notFound;
+   </method>
+   <method name="GET" id="resource_metadata">
+      <wadl:doc xmlns="http://docbook.org/ns/docbook"
+         xmlns:wadl="http://wadl.dev.java.net/2009/02" xml:lang="EN"
+         title="Show resource metadata">
+         <para role="shortdesc">
+            Shows metadata for a specified resource.
+         </para>
+      </wadl:doc>
+      <response status="200">
+         <representation mediaType="application/json">
+            <wadl:doc xmlns="http://docbook.org/ns/docbook"
+               xml:lang="EN">
+               <xsdxt:code href="samples/resource_metadata_resp.json"/>
+            </wadl:doc>
+         </representation>
       </response>
    </method>
    <method name="POST" id="resource_signal">
@@ -1474,7 +1546,7 @@
       <request>
          <representation mediaType="application/json">
             <param xmlns="http://wadl.dev.java.net/2009/02"
-             name="resource_action" style="query" required="false" type="String">
+             name="resource_action" style="query" required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -1489,7 +1561,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-               name="resource_status" style="query" required="false" type="String">
+             name="resource_status" style="query" required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -1503,7 +1575,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-               name="resource_name" style="query" required="false" type="String">
+             name="resource_name" style="query" required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -1514,7 +1586,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-               name="resource_type" style="query" required="false" type="String">
+             name="resource_type" style="query" required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -1541,6 +1613,9 @@
             </wadl:doc>
          </representation>
       </response>
+      &commonFaults;
+      &notFound;
+      &intServerErr;
    </method>
    <method name="GET" id="resource_event_list">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -1553,7 +1628,7 @@
       <request>
          <representation mediaType="application/json">
             <param xmlns="http://wadl.dev.java.net/2009/02"
-               name="resource_action" style="query" required="false" type="String">
+             name="resource_action" style="query" required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -1568,7 +1643,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-               name="resource_status" style="query" required="false" type="String">
+             name="resource_status" style="query" required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -1582,7 +1657,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-               name="resource_name" style="query" required="false" type="String">
+             name="resource_name" style="query" required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
@@ -1593,7 +1668,7 @@
             </wadl:doc>
             </param>
             <param xmlns="http://wadl.dev.java.net/2009/02"
-               name="resource_type" style="query" required="false" type="String">
+             name="resource_type" style="query" required="false">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -1620,6 +1695,8 @@
             </wadl:doc>
          </representation>
       </response>
+      &commonFaults;
+      &notFound;
    </method>
    <method name="GET" id="event_show">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -1628,16 +1705,10 @@
          <para role="shortdesc">
             Shows details for a specified event.
          </para>
-         
+         <xsdxt:code href="samples/event_show_resp.json"/>
       </wadl:doc>
       <response status="200">
-         <representation mediaType="application/json">
-            <wadl:doc xmlns="http://docbook.org/ns/docbook"
-               xmlns:wadl="http://wadl.dev.java.net/2009/02"
-               xml:lang="EN">
-               <xsdxt:code href="samples/event_show_resp.json"/>
-            </wadl:doc>
-         </representation>
+         <representation mediaType="application/json"/>
       </response>
    </method>
    <method name="GET" id="build_info_show">
@@ -1746,6 +1817,8 @@
             </wadl:doc>
          </representation>
       </response>
+      &commonFaults;
+      &notFound;
    </method>
    <method name="GET" id="software_config_show">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -1763,6 +1836,8 @@
             </wadl:doc>
          </representation>
       </response>
+      &commonFaults;
+      &notFound;
    </method>
    <method name="DELETE" id="software_config_delete">
       <wadl:doc xmlns="http://docbook.org/ns/docbook"
@@ -1790,6 +1865,9 @@
             </wadl:doc>
          </representation>
       </response>
+      &commonFaults;
+      &notFound;
+      &intServerErr;
    </method>
    <method name="GET" id="software_deployment_metadata">
       <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="EN"
