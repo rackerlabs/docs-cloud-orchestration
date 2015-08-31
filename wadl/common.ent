@@ -285,32 +285,45 @@
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    title="Bad Request"
-   xml:lang="EN" />
+   xml:lang="EN">
+      The request could not be understood by the server due to malformed
+      syntax.
+</wadl:doc>
 </response>
 <response status="401" xmlns="http://wadl.dev.java.net/2009/02">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    title="Unauthorized"
-   xml:lang="EN" />
+   xml:lang="EN">
+      The request requires user authentication.
+</wadl:doc>
 </response> '>
 <!ENTITY notFound '
 <response status="404" xmlns="http://wadl.dev.java.net/2009/02">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    title="Not Found"
-   xml:lang="EN" />
+   xml:lang="EN">
+     The server has not found anything matching the Request-URI.
+</wadl:doc>
 </response> '>
 <!ENTITY conflict '
 <response status="409" xmlns="http://wadl.dev.java.net/2009/02">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    title="Conflict"
-   xml:lang="EN" />
+   xml:lang="EN">
+      The request could not be completed due to a conflict with the current
+      state of the resource.
+</wadl:doc>
 </response> '>
 <!ENTITY intServerErr '
 <response status="500" xmlns="http://wadl.dev.java.net/2009/02">
 <wadl:doc xmlns="http://docbook.org/ns/docbook"
    xmlns:wadl="http://wadl.dev.java.net/2009/02"
    title="Internal Server Error"
-   xml:lang="EN" />
+   xml:lang="EN">
+      The server encountered an unexpected condition which prevented it from
+      fulfilling the request.
+</wadl:doc>
 </response> '>
