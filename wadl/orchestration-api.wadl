@@ -825,13 +825,11 @@
             </param>
             &templateUrlParameter;
             &templateParameter;
-            &environmentParameter;
+            &environmentParameterOptional;
             &filesParameter;
             &parametersParameter;
-            &paramNameNParameter;
-            &paramValueNParameter;
             <param xmlns="http://wadl.dev.java.net/2009/02" name="timeout_mins" style="plain"
-               required="true" type="string" path="$.timeout_mins">
+               required="false" type="string" path="$.timeout_mins">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xmlns:wadl="http://wadl.dev.java.net/2009/02"
                xml:lang="EN">
@@ -1074,7 +1072,7 @@
             &environmentParameterOptional;
             &filesParameter;
             &tagsParameter;
-            <param xmlns="http://wadl.dev.java.net/2009/02" name="parameters" style="plain" required="false">
+            <param xmlns="http://wadl.dev.java.net/2009/02" name="parameters" style="plain" required="false" type="object" path="$.parameters">
             <wadl:doc xmlns="http://docbook.org/ns/docbook"
                xml:lang="EN">
                <para>
