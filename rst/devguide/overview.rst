@@ -50,10 +50,6 @@ customers. Interactions with Rackspace Cloud Orchestration occur
 programmatically via the Rackspace Cloud Orchestration API as described
 in the *Cloud Orchestration Developer Guide*.
 
-.. todo:: The following figure shows an overview of Cloud Orchestration Infrastructure:
-
-.. todo:: a diagram is available here: https://one.rackspace.com/display/heat/Architecture+Diagram. Investigate turning it into a svg format later for use in this guide.
-
 Intended audience
 ~~~~~~~~~~~~~~~~~
 
@@ -74,62 +70,6 @@ familiar with:
 *  JSON data serialization format
 
 
-Document change history
-~~~~~~~~~~~~~~~~~~~~~~~
-
-This version of the Developer Guide replaces and obsolesces all previous versions. The most recent changes are described in the table below:
 
 
-June 18, 2015
---------------
 
-Updated parameters URI parameter for Adopt stack operation and added information
-about how it is used in the example. See http://docs.rackspace.com/orchestration/api/v1/orchestration-devguide/content/POST_stack_adopt__v1__tenant_id__stacks_Stack_Operations.html.
-
-
-May 21, 2015
------------------
-
-Added missing API examples as needed.
-
-
-April 6, 2015
-----------------
-
-Added reference to list of supported resources (http://orchestration.rackspace.com/raxdox/index.html).
-
-Additional resources
-~~~~~~~~~~~~~~~~~~~~
-
-You can find information for developing templates in the *Rackspace
-Cloud Orchestration Template Developer Guide* at
-http://docs.rackspace.com.
-
-You can download the most current versions of templates at
-https://github.com/rackspace-heat-templates.
-
-You can find information about resources to use in your templates at
-http://orchestration.rackspace.com/raxdox/index.html.
-
-For information about Rackspace services, refer to
-http://docs.rackspace.com.
-
-Issues and bug reports can be directed to your support team via ticket,
-chat, email, or phone.
-
-Please give us your feedback at `Product Feedback
-Forum <http://feedback.rackspace.com>`_.
-
-Pricing and Service Level
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Cloud Orchestration is part of the Rackspace Cloud and although you will
-not be billed for using Cloud Orchestration, you will be billed for the
-stack resources you create using Cloud Orchestration.
-
-Cloud Orchestration is a Non-Standard Rackspace Service. Applicable SLAs
-for the underlying infrastructure apply for successfully launched cloud
-products.
-
-The Service Level Agreement (SLA) for Cloud Orchestration is available
-at http://www.rackspace.com/information/legal/cloud/sla#cloud_orchestration.

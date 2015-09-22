@@ -1,0 +1,17 @@
+.. _build-info: 
+
+Build info
+~~~~~~~~~~~~~~~~~
+
+.. contents::
+   :depth: 1
+   :local: 
+
+This section describes the operations that are supported for build info.
+
+
+.. include:: methods/get-show-build-information-v1-tenant-id-build-info.rst
+
+
+
+
