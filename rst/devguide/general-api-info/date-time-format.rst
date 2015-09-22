@@ -26,29 +26,26 @@ May 19th, 2011 at 8:07:08 AM, GMT-5 would have the following format:
 
 **Explanation of Date/Time Format Codes** 
 
-yyyy
-  Four digit year
++------+-----------------------------------------------------------+
+| yyyy | Four digit year                                           |
++------+-----------------------------------------------------------+
+| MM   | Two digit month                                           |
++------+-----------------------------------------------------------+
+| DD   | Two digit day                                             |
++------+-----------------------------------------------------------+
+| T    | Separator for date/time                                   |
++------+-----------------------------------------------------------+
+| HH   | Two digit hour (00-23)                                    |
++------+-----------------------------------------------------------+
+| mm   | Two digit minute                                          |
++------+-----------------------------------------------------------+
+| ss   | Two digit second                                          |
++------+-----------------------------------------------------------+
+| Z    | RFC 8601 timezone (offset from GMT). If Z is not replaced |
+|      | with the offset from GMT, it indicates a 00:00 offset.    |
++------+-----------------------------------------------------------+
 
-MM
-  Two digit month
 
-dd
-  Two digit day of month
-
-T
-  Separator for date/time
-
-HH
-  Two digit hour of day (00-23)
-
-mm
-  Two digit minutes of hour
-
-ss
-  Two digit seconds of the minute
-
-Z
-  RFC-822 timezone
 
 
 

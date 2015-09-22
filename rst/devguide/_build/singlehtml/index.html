@@ -101,6 +101,22 @@ Rackspace Cloud customers. Interactions with Rackspace Cloud Orchestration occur
 programmatically via the Rackspace Cloud Orchestration API as described in this
 Cloud Orchestration Developer Guide.</p>
 <div class="toctree-wrapper compound">
+<span id="document-overview/intended-audience"></span><div class="section" id="intended-audience">
+<span id="id1"></span><h3>Intended audience<a class="headerlink" href="#intended-audience" title="Permalink to this headline">¶</a></h3>
+<p>This Reference is intended to assist support teams, DevOps Engineers,
+and software developers who want to manage cloud applications with
+non-trivial architectures that leverage multiple Rackspace services.</p>
+<p>To use the information provided here, you should first have a general
+understanding of the Cloud Orchestration service. You should also be
+familiar with:</p>
+<ul class="simple">
+<li>Other Rackspace services applicable to your cloud application
+architecture (Cloud Servers, Cloud Load Balancers, Cloud Databases,
+and so forth)</li>
+<li>ReSTful web services</li>
+<li>JSON data serialization format</li>
+</ul>
+</div>
 <span id="document-overview/doc-change-history"></span><div class="section" id="document-change-history">
 <span id="doc-change-history"></span><h3>Document change history<a class="headerlink" href="#document-change-history" title="Permalink to this headline">¶</a></h3>
 <p>This version of the Developer Guide replaces and obsolesces all previous versions. The most recent changes are described in the table below:</p>
@@ -229,40 +245,13 @@ authentication response.</p>
 <em>Cloud Identity Client Developer Guide API v2.0</em>.</p>
 <div class="section" id="rackspace-cloud-identity-service-endpoints">
 <h4>Rackspace Cloud Identity Service Endpoints<a class="headerlink" href="#rackspace-cloud-identity-service-endpoints" title="Permalink to this headline">¶</a></h4>
-<div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">Multiple Rackspace Cloud Identity Service endpoints exist. You
-may use any endpoint, regardless of where your account was created.</p>
-</div>
-<p>When you authenticate, use one of the following endpoints:</p>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">To help you decide which regionalized endpoint to use, read about
-special considerations for choosing a data center at
-<a class="reference external" href="http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions">http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions</a>.</p>
-</div>
-<p><strong>Table:&nbsp;Rackspace Cloud Identity Service Endpoints</strong></p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="26%" />
-<col width="74%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">National location</th>
-<th class="head">Rackspace Cloud Identity Service endpoint</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>US</td>
-<td><a class="reference external" href="https://identity.api.rackspacecloud.com/v2.0">https://identity.api.rackspacecloud.com/v2.0</a></td>
-</tr>
-<tr class="row-odd"><td>UK</td>
-<td><a class="reference external" href="https://lon.identity.api.rackspacecloud.com/v2.0">https://lon.identity.api.rackspacecloud.com/v2.0</a></td>
-</tr>
-</tbody>
-</table>
-<p>For information about support for legacy identity endpoints, search for
-alternate authentication endpoints here on this site.</p>
+<p>The Rackspace Cloud Authentication Service serves as the entry point to all Rackspace
+Cloud APIs and is itself a ReSTful web service.</p>
+<p>Use the following endpoint to access the Authentication Service, regardless of US or UK
+identities:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://identity.api.rackspacecloud.com/v2.0">https://identity.api.rackspacecloud.com/v2.0</a></li>
+</ul>
 </div>
 <div class="section" id="authentication-request">
 <h4>Authentication Request<a class="headerlink" href="#authentication-request" title="Permalink to this headline">¶</a></h4>
@@ -285,8 +274,8 @@ on the Rackspace site.</p>
 </div>
 <p>To find your API key, perform the following steps:</p>
 <ol class="arabic simple">
-<li>Log in to the Cloud Control Panel
-(` &lt;<a class="reference external" href="http://mycloud.rackspace.com">http://mycloud.rackspace.com</a>&gt;`__<a class="reference external" href="http://mycloud.rackspace.com">http://mycloud.rackspace.com</a>).</li>
+<li>Log in to the Cloud Control Panel at
+<a class="reference external" href="http://mycloud.rackspace.com">http://mycloud.rackspace.com</a>.</li>
 <li>On the upper-right side of the top navigation pane, click your
 username.</li>
 <li>From the menu, select Account Settings.</li>
@@ -453,17 +442,11 @@ service, use the <code class="docutils literal"><span class="pre">publicURL</spa
 <p>The service might show multiple endpoints to enable regional
 choice.&nbsp;Select the appropriate endpoint for the region that you want
 to interact with by examining the <code class="docutils literal"><span class="pre">region</span></code> field.</p>
-</li>
-</ul>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p>To help you decide which regionalized endpoint to use, read about
-special considerations for choosing a data center at
-<a class="reference external" href="http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions">http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions</a>.</p>
-<p class="last">If you use the authentication token to access this service, you can
+<p>If you use the authentication token to access this service, you can
 view and perform Cloud Networks or next generation Cloud Servers API
 operations against your next generation Cloud Servers.</p>
-</div>
+</li>
+</ul>
 <p><strong>Expiration date and time for authentication token</strong>. Appears in the
 <code class="docutils literal"><span class="pre">expires</span></code> field in the <code class="docutils literal"><span class="pre">token</span></code> element.</p>
 <p>After this date and time, the token is no longer valid.</p>
@@ -488,6 +471,54 @@ $ curl -s https://dfw.servers.api.rackspacecloud.com/v2/$account/images/detail \
 </pre></div>
 </div>
 </div>
+</div>
+<span id="document-general-api-info/service-access-endpoints"></span><div class="section" id="service-access-endpoints">
+<span id="id1"></span><h3>Service Access/Endpoints<a class="headerlink" href="#service-access-endpoints" title="Permalink to this headline">¶</a></h3>
+<p>The Orchestration service is a regionalized service.</p>
+<p>Use one of the following service access/endpoint to access the Rackspace Cloud Orchestration service:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Region</th>
+<th class="head">Endpoint</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Chicago (ORD)</td>
+<td><a class="reference external" href="https://ord.orchestration.api.rackspacecloud.com/v1/1234/">https://ord.orchestration.api.rackspacecloud.com/v1/1234/</a></td>
+</tr>
+<tr class="row-odd"><td>Dallas/Ft. Worth (DFW)</td>
+<td><a class="reference external" href="https://dfw.orchestration.api.rackspacecloud.com/v1/1234/">https://dfw.orchestration.api.rackspacecloud.com/v1/1234/</a></td>
+</tr>
+<tr class="row-even"><td>Northern Virginia (IAD)</td>
+<td><a class="reference external" href="https://iad.orchestration.api.rackspacecloud.com/v1/1234/">https://iad.orchestration.api.rackspacecloud.com/v1/1234/</a></td>
+</tr>
+<tr class="row-odd"><td>London (LON)</td>
+<td><a class="reference external" href="https://lon.orchestration.api.rackspacecloud.com/v1/1234/">https://lon.orchestration.api.rackspacecloud.com/v1/1234/</a></td>
+</tr>
+<tr class="row-even"><td>Sydney (SYD)</td>
+<td><a class="reference external" href="https://syd.orchestration.api.rackspacecloud.com/v1/1234/">https://syd.orchestration.api.rackspacecloud.com/v1/1234/</a></td>
+</tr>
+<tr class="row-odd"><td>Hong Kong (HKG)</td>
+<td><a class="reference external" href="https://hkg.orchestration.api.rackspacecloud.com/v1/1234/">https://hkg.orchestration.api.rackspacecloud.com/v1/1234/</a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The service catalog returned in the auth response specifies the correct
+service access endpoint for your account to use for accessing Orchestration. Use
+the service name (cloudOrchestration) to locate the correct endpoint in the
+service catalog. For an example of the service catalog, see the
+authentication response examples.</p>
+</div>
+<p>Replace the sample account ID number, <code class="docutils literal"><span class="pre">1234</span></code>, with your Rackspace Cloud account number.</p>
+<p>You can find the account number after the final &#8216;/&#8217; in the
+<code class="docutils literal"><span class="pre">publicURL</span></code> field found in the Service catalog returned in the authentication response. For an
+example of the service catalog, see the authentication response example.</p>
 </div>
 <span id="document-general-api-info/contract-version"></span><div class="section" id="contract-version">
 <h3>Contract version<a class="headerlink" href="#contract-version" title="Permalink to this headline">¶</a></h3>
@@ -556,24 +587,39 @@ DATETIME.</p>
 </pre></div>
 </div>
 <p><strong>Explanation of Date/Time Format Codes</strong></p>
-<dl class="docutils">
-<dt>yyyy</dt>
-<dd>Four digit year</dd>
-<dt>MM</dt>
-<dd>Two digit month</dd>
-<dt>dd</dt>
-<dd>Two digit day of month</dd>
-<dt>T</dt>
-<dd>Separator for date/time</dd>
-<dt>HH</dt>
-<dd>Two digit hour of day (00-23)</dd>
-<dt>mm</dt>
-<dd>Two digit minutes of hour</dd>
-<dt>ss</dt>
-<dd>Two digit seconds of the minute</dd>
-<dt>Z</dt>
-<dd>RFC-822 timezone</dd>
-</dl>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>yyyy</td>
+<td>Four digit year</td>
+</tr>
+<tr class="row-even"><td>MM</td>
+<td>Two digit month</td>
+</tr>
+<tr class="row-odd"><td>DD</td>
+<td>Two digit day</td>
+</tr>
+<tr class="row-even"><td>T</td>
+<td>Separator for date/time</td>
+</tr>
+<tr class="row-odd"><td>HH</td>
+<td>Two digit hour (00-23)</td>
+</tr>
+<tr class="row-even"><td>mm</td>
+<td>Two digit minute</td>
+</tr>
+<tr class="row-odd"><td>ss</td>
+<td>Two digit second</td>
+</tr>
+<tr class="row-even"><td>Z</td>
+<td>RFC 8601 timezone (offset from GMT). If Z is not replaced
+with the offset from GMT, it indicates a 00:00 offset.</td>
+</tr>
+</tbody>
+</table>
 </div>
 <span id="document-general-api-info/pagination"></span><div class="section" id="pagination">
 <h3>Pagination<a class="headerlink" href="#pagination" title="Permalink to this headline">¶</a></h3>
@@ -721,8 +767,8 @@ following states:</p>
 <p>See the Cloud Identity Client Developer Guide for information about how to perform the following tasks:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_addUser_v2.0_users_User_Calls.html">Create account users</a></li>
-<li><a class="reference external" href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/PUT_addUserRole_v2.0_users__userId__roles_OS-KSADM__roleId__Role_Calls.html">Assign roles to account users</a></li>
-<li><a class="reference external" href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/DELETE_deleteUserRole_v2.0_users__userId__roles_OS-KSADM__roleId__Role_Calls.html">Delete roles from account users</a></li>
+<li><a class="reference external" href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/PUT_addUserRole__v2.0_users__userId__roles_OS-KSADM__roleid__Role_Calls.html">Assign roles to account users</a></li>
+<li><a class="reference external" href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/DELETE_deleteUserRole__v2.0_users__userId__roles_OS-KSADM__roleid__Role_Calls.html">Delete roles from account users</a></li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -805,8 +851,11 @@ account.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>201</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Created</td>
+<td>The request has been
+fulfilled and resulted in
+a new resource being
+created.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -1223,8 +1272,11 @@ parent, reference is
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>201</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Created</td>
+<td>The request has been
+fulfilled and resulted in
+a new resource being
+created.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -1593,8 +1645,8 @@ Default is <code class="docutils literal"><span class="pre">True</span></code>.<
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -1901,28 +1953,37 @@ is <code class="docutils literal"><span class="pre">False</span></code>.</td>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>202 302</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>202</td>
+<td>Accepted</td>
+<td>The request has been
+accepted for processing,
+but the processing has
+not been completed.</td>
 </tr>
-<tr class="row-odd"><td>400</td>
+<tr class="row-odd"><td>302</td>
+<td>Found</td>
+<td>The requested resource
+resides temporarily under
+a different URI.</td>
+</tr>
+<tr class="row-even"><td>400</td>
 <td>Bad Request</td>
 <td>The request could not be
 understood by the server
 due to malformed syntax.</td>
 </tr>
-<tr class="row-even"><td>401</td>
+<tr class="row-odd"><td>401</td>
 <td>Unauthorized</td>
 <td>The request requires
 user authentication.</td>
 </tr>
-<tr class="row-odd"><td>404</td>
+<tr class="row-even"><td>404</td>
 <td>Not Found</td>
 <td>The server has not found
 anything matching the
 Request-URI.</td>
 </tr>
-<tr class="row-even"><td>500</td>
+<tr class="row-odd"><td>500</td>
 <td>Internal Server Error</td>
 <td>The server encountered
 an unexpected condition
@@ -2016,8 +2077,8 @@ an account or project.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -2135,8 +2196,11 @@ an account or project.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>202</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Accepted</td>
+<td>The request has been
+accepted for processing,
+but the processing has
+not been completed.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -2403,8 +2467,13 @@ minutes.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>204</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>No Content</td>
+<td>The server has fulfilled
+the request but does not
+need to return an entity-
+body, and might want to
+return updated meta-
+information.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -2492,8 +2561,8 @@ an account or project.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -3046,8 +3115,8 @@ defined for the stack.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -3224,8 +3293,10 @@ account.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>302</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Found</td>
+<td>The requested resource
+resides temporarily under
+a different URI.</td>
 </tr>
 </tbody>
 </table>
@@ -3286,8 +3357,8 @@ an account or project.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -3426,8 +3497,8 @@ resources.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -3543,8 +3614,8 @@ in the stack.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -3674,8 +3745,8 @@ an account or project.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -3784,8 +3855,8 @@ type.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -3935,8 +4006,10 @@ supported.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>302</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Found</td>
+<td>The requested resource
+resides temporarily under
+a different URI.</td>
 </tr>
 </tbody>
 </table>
@@ -3996,8 +4069,8 @@ an account or project.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -4244,8 +4317,8 @@ or <code class="docutils literal"><span class="pre">desc</span></code> (descendi
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -4490,8 +4563,8 @@ or <code class="docutils literal"><span class="pre">desc</span></code> (descendi
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 </tbody>
 </table>
@@ -4611,8 +4684,8 @@ in the stack.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 <tr class="row-odd"><td>400</td>
 <td>Bad Request</td>
@@ -4731,8 +4804,8 @@ an account or project.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 </tbody>
 </table>
@@ -4946,8 +5019,8 @@ parameter names.</td>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>200</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Success</td>
+<td>Request succeeded.</td>
 </tr>
 </tbody>
 </table>
@@ -5032,6 +5105,7 @@ application framework or component.</dd>
   <h3><a href="index.html#document-index">Table Of Contents</a></h3>
   <ul>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-overview/index">About the API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-overview/intended-audience">Intended audience</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-overview/doc-change-history">Document change history</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-overview/additional-resources">Additional resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-overview/pricing-service-level">Pricing and Service Level</a></li>
@@ -5046,6 +5120,7 @@ application framework or component.</dd>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-general-api-info/index">General API information</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-general-api-info/authenticate-through-the-rackspace-cloud-identity-service">Authenticate through the Rackspace Cloud Identity Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-general-api-info/service-access-endpoints">Service Access/Endpoints</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-general-api-info/contract-version">Contract version</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-general-api-info/request-response-types">Request &amp; response types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-general-api-info/date-time-format">Date/Time format</a></li>

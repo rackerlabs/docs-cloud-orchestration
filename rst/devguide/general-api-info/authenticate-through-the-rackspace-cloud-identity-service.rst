@@ -33,27 +33,13 @@ For detailed information about the Identity Service v2.0, see the
 Rackspace Cloud Identity Service Endpoints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. important:: Multiple Rackspace Cloud Identity Service endpoints exist. You
-   may use any endpoint, regardless of where your account was created.
+The Rackspace Cloud Authentication Service serves as the entry point to all Rackspace
+Cloud APIs and is itself a ReSTful web service.
 
-When you authenticate, use one of the following endpoints:
+Use the following endpoint to access the Authentication Service, regardless of US or UK
+identities:
 
-.. tip:: To help you decide which regionalized endpoint to use, read about
-   special considerations for choosing a data center at
-   http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions.
-
-**Table: Rackspace Cloud Identity Service Endpoints**
-
-+--------------------+--------------------------------------------------------+
-| National location  | Rackspace Cloud Identity Service endpoint              |
-+====================+========================================================+
-| US                 | https://identity.api.rackspacecloud.com/v2.0           |
-+--------------------+--------------------------------------------------------+
-| UK                 | https://lon.identity.api.rackspacecloud.com/v2.0       |
-+--------------------+--------------------------------------------------------+
-
-For information about support for legacy identity endpoints, search for
-alternate authentication endpoints here on this site.
+- https://identity.api.rackspacecloud.com/v2.0  
 
 Authentication Request
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -78,8 +64,8 @@ Rackspace Cloud Control Panel.
 
 To find your API key, perform the following steps:
 
-#. Log in to the Cloud Control Panel
-   (` <http://mycloud.rackspace.com>`__\ http://mycloud.rackspace.com).
+#. Log in to the Cloud Control Panel at
+   http://mycloud.rackspace.com.
 
 #. On the upper-right side of the top navigation pane, click your
    username.
@@ -275,10 +261,6 @@ Locate the correct service name in the service catalog, as follows:
    The service might show multiple endpoints to enable regional
    choice. Select the appropriate endpoint for the region that you want
    to interact with by examining the ``region`` field.
-
-.. tip:: To help you decide which regionalized endpoint to use, read about
-   special considerations for choosing a data center at
-   http://ord.admin.kc.rakr.net/knowledge_center/article/about-regions.
 
    If you use the authentication token to access this service, you can
    view and perform Cloud Networks or next generation Cloud Servers API

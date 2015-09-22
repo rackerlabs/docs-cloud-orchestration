@@ -20,7 +20,12 @@ This table shows the possible response codes for this operation:
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
 +==========================+=========================+=========================+
-|204                       |                         |                         |
+|204                       |No Content               |The server has fulfilled |
+|                          |                         |the request but does not |
+|                          |                         |need to return an entity-|
+|                          |                         |body, and might want to  |
+|                          |                         |return updated meta-     |
+|                          |                         |information.             |
 +--------------------------+-------------------------+-------------------------+
 |400                       |Bad Request              |The request could not be |
 |                          |                         |understood by the server |

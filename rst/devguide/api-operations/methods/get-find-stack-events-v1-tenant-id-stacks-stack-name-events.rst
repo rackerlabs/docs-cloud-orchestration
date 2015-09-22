@@ -20,7 +20,9 @@ This table shows the possible response codes for this operation:
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
 +==========================+=========================+=========================+
-|302                       |                         |                         |
+|302                       |Found                    |The requested resource   |
+|                          |                         |resides temporarily under|
+|                          |                         |a different URI.         |
 +--------------------------+-------------------------+-------------------------+
 
 

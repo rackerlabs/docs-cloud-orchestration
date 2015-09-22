@@ -12,6 +12,7 @@ Cloud Orchestration Developer Guide.
 .. toctree:: :hidden:
    :maxdepth: 3
    
+   intended-audience
    doc-change-history
    additional-resources
    pricing-service-level

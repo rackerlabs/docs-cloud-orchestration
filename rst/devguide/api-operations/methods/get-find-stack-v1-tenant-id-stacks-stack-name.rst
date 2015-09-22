@@ -22,7 +22,14 @@ This table shows the possible response codes for this operation:
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
 +==========================+=========================+=========================+
-|202 302                   |                         |                         |
+|202                       |Accepted                 |The request has been     |
+|                          |                         |accepted for processing, |
+|                          |                         |but the processing has   |
+|                          |                         |not been completed.      |
++--------------------------+-------------------------+-------------------------+
+|302                       |Found                    |The requested resource   |
+|                          |                         |resides temporarily under|
+|                          |                         |a different URI.         |
 +--------------------------+-------------------------+-------------------------+
 |400                       |Bad Request              |The request could not be |
 |                          |                         |understood by the server |

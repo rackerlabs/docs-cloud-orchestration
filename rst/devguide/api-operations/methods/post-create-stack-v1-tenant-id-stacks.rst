@@ -20,7 +20,10 @@ This table shows the possible response codes for this operation:
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
 +==========================+=========================+=========================+
-|201                       |                         |                         |
+|201                       |Created                  |The request has been     |
+|                          |                         |fulfilled and resulted in|
+|                          |                         |a new resource being     |
+|                          |                         |created.                 |
 +--------------------------+-------------------------+-------------------------+
 |400                       |Bad Request              |The request could not be |
 |                          |                         |understood by the server |

@@ -16,6 +16,7 @@ The Rackspace Cloud Orchestration API is implemented using a ReSTful web service
    :maxdepth: 3
    
    authenticate-through-the-rackspace-cloud-identity-service
+   service-access-endpoints
    contract-version
    request-response-types
    date-time-format
