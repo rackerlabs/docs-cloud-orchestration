@@ -1,6 +1,9 @@
 
 # Rackspace Cloud Orchestration API documentation
 
+[![Build Status](https://travis-ci.org/rackerlabs/docs-cloud-orchestration.svg?branch=master)](https://travis-ci.org/rackerlabs/docs-cloud-orchestration)
+
+
 ## Resources
 
 This github repository contains the source files for the following Rackspace Cloud Orchestration API documentation:
