@@ -3,9 +3,6 @@
 Stack resources
 ~~~~~~~~~~~~~~~~~
 
-.. contents::
-   :depth: 1
-   :local: 
 
 Use the stack resources to view and manage resource for a stack for a Rackspace Cloud 
 account.

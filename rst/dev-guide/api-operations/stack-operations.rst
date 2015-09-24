@@ -3,9 +3,6 @@
 Stack operations
 ~~~~~~~~~~~~~~~~~
 
-.. contents::
-   :depth: 1
-   :local: 
 
 Use the stack operations to view and manage stacks for a Rackspace Cloud 
 account.

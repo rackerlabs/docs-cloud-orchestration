@@ -4,7 +4,7 @@
 Document change history
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-This version of the Developer Guide replaces and obsolesces all previous versions. The most recent changes are described in the table below:
+This version of the Developer Guide replaces and obsolesces all previous versions. The most recent changes are described below:
 
 .. _corch-dg-dochistory-18062015:
 
@@ -12,7 +12,7 @@ June 18, 2015
 --------------
 
 Updated parameters URI parameter for Adopt stack operation and added information
-about how it is used in the example. See http://docs.rackspace.com/orchestration/api/v1/orchestration-devguide/content/POST_stack_adopt__v1__tenant_id__stacks_Stack_Operations.html.
+about how it is used in the example. See :ref:`post-adopt-stack-v1-tenant-id-stacks`.
 
 .. _corch-dg-dochistory-dochistory-21052015:
 
