@@ -4,6 +4,8 @@
 Rackspace Cloud Orchestration API, version 1.0
 =========================================================
 
+*Last updated:* |today|
+
 Learn how to use the Cloud Orchestration service by using the ReST API. 
 
 - See the :ref:`Developer Guide <developer-guide>` for details about using the API.
