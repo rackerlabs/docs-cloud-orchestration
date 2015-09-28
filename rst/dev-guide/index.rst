@@ -68,6 +68,6 @@ in the *Cloud Orchestration Developer Guide*.
    general-api-info/index
    api-reference
    api-operations/index
-   glossary
+   
    
    
