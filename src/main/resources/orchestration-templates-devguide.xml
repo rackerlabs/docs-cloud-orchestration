@@ -51,7 +51,7 @@
         </copyright>
         <releaseinfo>API v1.0</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2015-06-01</pubdate>
+        <pubdate>2015-04-06</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -66,7 +66,7 @@
         
         
         <revhistory>
-            <revision>
+            <revision security="writeronly">
                 <date>2015-06-01</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
@@ -2859,7 +2859,7 @@ description: |
                     >http://www.ansible.com/pricing#tower</link>.</para>
         </section>
     </chapter>
-    <chapter xml:id="Usage-Scenarios-d1e275">
+    <chapter xml:id="Usage-Scenarios-d1e275" security="writeronly">
         <title>Usage Scenarios</title>
         <para>This section provides example templates for using
             &Checkmate; with other products, such as Auto
