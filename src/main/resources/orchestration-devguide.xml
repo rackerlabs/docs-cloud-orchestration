@@ -52,7 +52,7 @@
         </copyright>
         <releaseinfo>API v1</releaseinfo>
         <productname>Rackspace Cloud Orchestration</productname>
-        <pubdate>2015-07-24</pubdate>
+        <pubdate>2015-06-18</pubdate>
         <legalnotice role="rs-api">
             <annotation>
                 <remark>Copyright details are filled in by the template.</remark>
@@ -68,7 +68,7 @@
         
         
         <revhistory>
-            <revision>
+            <revision security="writeronly">
                 <date>2015-07-24</date>
                 <revdescription>
                     <itemizedlist spacing="compact">
@@ -1470,13 +1470,13 @@
                         </listitem>
                         <listitem>
                             <para>
-                                <link xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/PUT_addUserRole__v2.0_users__userId__roles__roleid__Role_Calls.html">Assign roles to account
+                                <link xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/PUT_addUserRole__v2.0_users__userId__roles_OS-KSADM__roleid__Role_Calls.html">Assign roles to account
                                     users</link>
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <link xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/DELETE_deleteUserRole__v2.0_users__userId__roles__roleid__Role_Calls.html">Delete roles from account
+                                <link xlink:href="http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/DELETE_deleteUserRole__v2.0_users__userId__roles_OS-KSADM__roleid__Role_Calls.html">Delete roles from account
                                     users</link>
                             </para>
                         </listitem>
