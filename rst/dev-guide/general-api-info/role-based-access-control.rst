@@ -9,13 +9,14 @@ Assigning Roles to Account Users
 
 The account owner (identity:user-admin) can create account users on the account and then assign roles to those users. The roles grant the account users specific permissions for accessing the capabilities of the Cloud Orchestration service. Each account has only one account owner, and that role is assigned by default to any Rackspace Cloud account when the account is created.
 
-See the Cloud Identity Client Developer Guide for information about how to perform the following tasks:
+See the *Cloud Identity Client Developer Guide* for information about how to perform the following tasks:
 
--  `Create account users <http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_addUser_v2.0_users_User_Calls.html>`__
+-  :rax-devdocs:`Add user <cloud-identity/v2/developer-guide/#add-user>` 
 
--  `Assign roles to account users <http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/PUT_addUserRole__v2.0_users__userId__roles_OS-KSADM__roleid__Role_Calls.html>`__
+-  :rax-devdocs:`Add role to user <cloud-identity/v2/developer-guide/#add-role-to-user>`
 
--  `Delete global role from user <http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/DELETE_deleteUserRole__v2.0_users__userId__roles_OS-KSADM__roleid__Role_Calls.html>`__
+-  :rax-devdocs:`Delete global role from user <cloud-identity/v2/developer-guide/#delete-global-role-from-user>`
+
 
 .. note::
 

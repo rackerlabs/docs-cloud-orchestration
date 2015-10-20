@@ -128,7 +128,7 @@
                             <feedbackEmail>mike.asthalter@rackspace.com</feedbackEmail>
                             <enableGoogleAnalytics>1</enableGoogleAnalytics>
                             <chapterAutolabel>0</chapterAutolabel>
-                            <security>external</security>
+                            <security>reviewer</security>
                             <canonicalUrlBase>http://docs.rackspace.com/orchestration/api/v1.0/orchestration-releasenotes/content</canonicalUrlBase>
                         </configuration>
                     </execution>
