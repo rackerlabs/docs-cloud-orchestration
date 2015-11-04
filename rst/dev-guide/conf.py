@@ -82,7 +82,7 @@ language = None
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
-today = 'October 20, 2015'
+today = 'November 4, 2015'
 # Else, today_fmt is used as the format for a strftime call.
 #today_fmt = '%B %d, %Y'
 
@@ -143,6 +143,11 @@ extlinks = {
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
+rst_epilog = """
+.. |apiservice| replace:: Rackspace Cloud Orchestration API
+.. |no changes| replace:: None for this release.
+.. |contract version| replace:: 1.0
+"""
 
 # -- Options for HTML output ----------------------------------------------
 
@@ -193,7 +198,7 @@ html_short_title = 'Cloud Orchestration Developer Guide'
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
-html_last_updated_fmt = 'October 20, 2015'
+html_last_updated_fmt = 'November 4, 2015'
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.

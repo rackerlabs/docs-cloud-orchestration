@@ -1,7 +1,7 @@
 .. _index:
 
 =========================================================
-Rackspace Cloud Orchestration API, version 1.0
+Rackspace Cloud Orchestration API |contract version|
 =========================================================
 
 *Last updated:* |today|
@@ -10,6 +10,7 @@ Learn how to use the Cloud Orchestration service by using the ReST API.
 
 - See the :ref:`Developer Guide <developer-guide>` for details about using the API.
 - See the :ref:`API reference <api-reference>`, for details about API resources, operations, requests and responses.
+- For service release notes, see the :ref:`Release Notes <release-notes>`.
 
 Rackspace Cloud Orchestration is the name of the Rackspace
 orchestration, and application architecture management service.  Cloud
@@ -68,6 +69,8 @@ in the *Cloud Orchestration Developer Guide*.
    general-api-info/index
    api-reference
    api-operations/index
+   release-notes
+   
    
    
    
