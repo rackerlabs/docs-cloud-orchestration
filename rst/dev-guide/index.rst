@@ -63,6 +63,8 @@ in the *Cloud Orchestration Developer Guide*.
 .. toctree:: :hidden:
    :maxdepth: 2
 
+   Cloud Orchestration 1.0
+   API Status <http://www.rackspacestatus.com/>
    About the API <overview/index>
    developer-guide
    concepts
