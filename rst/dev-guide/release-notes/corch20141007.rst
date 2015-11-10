@@ -1,30 +1,31 @@
 .. version-v2.11.0-release-notes:
 
-October 7, 2014
----------------------------
+API 1.0 release, October 7, 2014
+---------------------------------------
 
 What's new
 ~~~~~~~~~~~~
 
-This UA release for Cloud Orchestration contains the following changes:
+This Unlimited Availability (UA) release of Cloud Orchestration contains the following changes:
 
-- Added early support of SDK for Cloud Orchestration.
+- Early support of the SDK for Cloud Orchestration.
  
-- Dropped the term Cloud Deployments and unified it under the Cloud Orchestration product.
+- The term *Cloud Deployments* has been dropped, and what was known as Cloud Deployments
+  has been unified under the Cloud Orchestration product.
 
 This product has the following history:
 
-- September 2014 – Launched ability to submit custom orchestration templates via the 
-  Rackspace Control Panel UI.
+- September 2014: Launched the ability to submit custom orchestration templates via the 
+  Rackspace Cloud Control Panel.
 
-- August 2014 – Added new and improved UI interface to Control Panel. Transitioned Cloud 
-  Deployments (now called Rackspace templates) to use OpenStack Heat as backend engine.
+- August 2014: Added a new and improved interface to the Cloud Control Panel, and transitioned Cloud 
+  Deployments (now called Rackspace templates) to use OpenStack Heat as the back-end engine.
 
-- April 2014 – Enabled capability for customers to submit CFN (Amazon CloudFormation) 
-  templates. Currently supports AWS EC2 Instance, AWS Elastic Load Balancing.
+- April 2014: Enabled the capability for customers to submit AWS CloudFormation 
+  templates. Currently AWS EC2 Instance and AWS Elastic Load Balancing are supported.
 
-- March 2014 – Launched Cloud Orchestration by providing API/CLI access to OpenStack Heat 
-  service for use with Rackspace Public Cloud. 
+- March 2014: Launched Cloud Orchestration by providing API and CLI access to the OpenStack Heat 
+  service for use with the Rackspace Public Cloud. 
 
 
 Resolved issues
