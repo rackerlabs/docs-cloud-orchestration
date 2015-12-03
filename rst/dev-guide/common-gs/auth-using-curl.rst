@@ -39,6 +39,10 @@ In the following example, the ellipsis (...)  represents other service endpoints
 are not shown. The values shown in this and other examples vary because the information
 returned is specific to your account.
 
+.. note:: 
+     For a detailed description of the information included in the authentication response, see 
+     :rax-devdocs:`Annotated authentication request and response<cloud-identity/v2/developer-guide/#document-authentication-info/sample-auth-req-response>`
+
 **Example: Authentication response**
 
 .. include:: ../common-gs/samples/auth-resp-json.rst

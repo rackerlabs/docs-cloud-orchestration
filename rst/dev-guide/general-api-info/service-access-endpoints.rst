@@ -36,7 +36,7 @@ Use one of the following service access/endpoint to access the Rackspace Cloud O
     service access endpoint for your account to use for accessing Orchestration. Use
     the service name (cloudOrchestration) to locate the correct endpoint in the
     service catalog. For an example of the service catalog, see the
-    authentication response examples.
+    :ref:`authentication response example<review-auth-resp>`.
 
 Replace the sample account ID number, ``1234``, with your Rackspace Cloud account number.
 
