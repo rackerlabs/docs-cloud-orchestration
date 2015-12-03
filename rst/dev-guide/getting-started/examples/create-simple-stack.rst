@@ -39,7 +39,7 @@ It has CentOS 6 installed, and is called Single Server Stack.
      up or by using the API.
 
    * You can look up the names for the supported attributes in the 
-     Supported resources reference`_.
+     Supported resources reference`_ .
 
    * To find the various types of supported template resources, use the
      list resource types API operation (GET /resoure_types). The cURL
@@ -59,7 +59,7 @@ Its value is set by calling the intrinsic function `get_attr`, and
 passing it the name of the cloud server resource (`compute_instance`) and
 the attribute whose value is needed (`accessIPv4`). You will see shortly how
 this public IP address is displayed to the user. You can find out more
-about intrinsic functions in the `Supported resources reference`_. 
+about intrinsic functions in the `Supported resources reference`_ . 
 
 
 .. _Supported resources reference: http://orchestration.rackspace.com/raxdox/index.html
