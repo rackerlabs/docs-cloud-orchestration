@@ -214,8 +214,8 @@ respective values:
 
   * **Server-With-LB-Stack** - The name of the stack, if you changed it
 
-  * **stack_id** - The ID of the stack, as returned in your create
-    stack response (see :ref:`create-stack`).
+  * **stack_id** - The ID of the stack, as returned in your 
+    :ref:`create stack<post-create-stack-v1-tenant-id-stacks>`.
 
 
 **cURL update stack with load balancer: JSON request**
