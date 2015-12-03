@@ -38,8 +38,8 @@ It has CentOS 6 installed, and is called Single Server Stack.
    * You can find the information for resources types either by looking it
      up or by using the API.
 
-   * You can look up the names for the supported attributes for resources at
-     `http://orchestration.rackspace.com/raxdox/index.html`__.
+   * You can look up the names for the supported attributes in the 
+     Supported resources reference`_.
 
    * To find the various types of supported template resources, use the
      list resource types API operation (GET /resoure_types). The cURL
@@ -59,8 +59,10 @@ Its value is set by calling the intrinsic function `get_attr`, and
 passing it the name of the cloud server resource (`compute_instance`) and
 the attribute whose value is needed (`accessIPv4`). You will see shortly how
 this public IP address is displayed to the user. You can find out more
-about intrinsic functions at
-`http://orchestration.rackspace.com/raxdox/functions.html`__.
+about intrinsic functions in the `Supported resources reference`_. 
+
+
+.. _Supported resources reference: http://orchestration.rackspace.com/raxdox/index.html
 
 Following are two methods to create the stack:
 
