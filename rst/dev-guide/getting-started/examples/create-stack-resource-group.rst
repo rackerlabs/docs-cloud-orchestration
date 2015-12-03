@@ -63,7 +63,7 @@ Following are two methods to create a stack by using a resource group:
 .. _create-stack-rg-heat:
 
 Create a stack by using a resource group with the heat client
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue the following command, which includes the name of the template
 file that you just created:
@@ -93,7 +93,7 @@ to confirm that your stack is now created:
 .. _create-stack-rg-curl:
 
 Create a stack by using a resource group with cURL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue the following command:
 

@@ -1,11 +1,19 @@
 .. _using-cloud-orchestration:
 
-Using templates to manage stacks
+Using Cloud Orchestration
 --------------------------------
 You can use the examples in the following sections to create
-and manage stacks by using Cloud Orchestration API operations. Before running the examples,
-review the :ref:`Cloud Orchestration concepts <concepts>` to understand the
-API workflow, templates, and use cases.
+and manage stacks by using Cloud Orchestration API operations. 
+
+You will perform the following tasks:
+
+* Create a stack to deploy a Cloud Server
+* List your stacks
+* List the stack details for the Cloud Server stack
+* Delete a stack
+* Create a stack using a resource group
+* Update your stack by adding a Load Balancer to manage traffic
+
 
 .. note::
      These examples use the ``$AUTH_URL``, ``$USERNAME``, ``$TENANT_ID``,

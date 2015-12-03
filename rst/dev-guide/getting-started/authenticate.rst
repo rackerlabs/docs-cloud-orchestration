@@ -25,8 +25,6 @@ expires, you can send another authentication request to get a new one.
 
      - :rax-devdocs:`Manage tokens and token expiration<cloud-identity/v2/developer-guide/#manage-authentication-tokens>`
 
-.. note::
-   If you are using the heat client, the authentication token is generated
-   for you automatically.
 
+.. include:: ../common-gs/auth-using-heat.rst
 .. include:: ../common-gs/auth-using-curl.rst

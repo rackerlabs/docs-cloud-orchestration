@@ -9,7 +9,7 @@ Following are two methods to list stacks:
 .. _list-stacks-heat:
 
 List stacks by using the heat client
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue the following command:
 
@@ -38,7 +38,7 @@ In this case, you have just the `Single-Server-Stack` and its
 .. _list-stacks-curl:
 
 List stacks by using cURL
-~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Execute the cURL request for list stacks:
 

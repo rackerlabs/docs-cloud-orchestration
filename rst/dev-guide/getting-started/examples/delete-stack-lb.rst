@@ -9,7 +9,5 @@ new `Servers-With-LB-Stack` that you are deleting.
 
 This concludes the Getting Started exercises.
 
-For a summary of the heat client commands, see :ref:`heat-commands`.
-
 For more tutorials on using Cloud Orchestration, see the
 `Heat Tutorial <https://github.com/rackerlabs/heat-tutorial>`__.

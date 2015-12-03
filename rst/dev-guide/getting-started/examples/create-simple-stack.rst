@@ -28,10 +28,6 @@ it as **single_server.template**:
    * If you enter in the template example text manually, remember
      to use a two-space indent (not Tab) for each subsection of the template.
 
-   * If you copy the example rather than entering the text manually, select
-     the example from the HTML version of this guide by clicking the **Select
-     Text** icon to the right of the example and copying the text. Then
-     paste the text into your text editor.
 
 This template has a resources section that creates a single cloud server
 with a 1 GB General Purpose v1 flavor size (which identifies a
@@ -56,7 +52,7 @@ It has CentOS 6 installed, and is called Single Server Stack.
           -H 'Content-Type: application/json' \
           -H 'Accept: application/json'  https://dfw.orchestration.rackspacecloud.com/v1/<tenant_id>/resource_types
 
-This template also has an outputs section. Outputs are used to provide
+This template also has an ``outputs`` section. Outputs are used to provide
 important information to users, such as the IP address for the
 server in this example. The output in this example is named `public_ip`.
 Its value is set by calling the intrinsic function `get_attr`, and
@@ -71,7 +67,7 @@ Following are two methods to create the stack:
 .. _create-stack-heat:
 
 Create a stack with the heat client
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue the following command, which includes the name of the template
 file that you just created:
@@ -93,7 +89,7 @@ For example:
 .. _create-stack-curl:
 
 Create a stack by using cURL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the create stack API operation (`/stacks`) in the cURL request, as
 shown in the following example:

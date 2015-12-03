@@ -150,6 +150,10 @@ To reference the value in an API request, prefix the variable name with a $, for
 
 
    Replace *publicURL* with the publicURL value listed in the service catalog.
+   
+.. note::
+
+   This guide uses the v1 DFW endpoint for the publicURL value.
 
 
 

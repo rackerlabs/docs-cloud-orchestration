@@ -9,7 +9,7 @@ Following are two methods to show stack details:
 .. _show-stack-heat:
 
 Show stack details by using the heat client
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Show the details for your stack `Single-Server-Stack` by issuing the
 following command:
@@ -20,34 +20,40 @@ following command:
 
 The command returns the details for the stack:
 
-+----------------------+----------------------------------------------------------------------------------------------------------------------------+
-| capabilities         | []                                                                                                                         |
-| creation_time        | 2014-01-24T20:12:47Z                                                                                                       |
-| description          | No description                                                                                                             |
-| disable_rollback     | True                                                                                                                       |
-| id                   | 3bd2c230-b02a-45d8-9f16-88c9a9f64d2d                                                                                       |
-| links                | http://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d    |
-| notification_topics  | []                                                                                                                         |
-|                      |                                                                                                                            |
-| outputs              | [                                                                                                                          |
-|                      |   {                                                                                                                        |
-|                      |     "output_value": "23.253.88.131",                                                                                       |
-|                      |     "description": "public IP address of the deployed compute instance",                                                   |
-|                      |     "output_key": "public_ip"                                                                                              |
-|                      |   }                                                                                                                        |
-|                      | ]                                                                                                                          |
-|                      |                                                                                                                            |
-| parameters           | {                                                                                                                          |
-|                      |   "OS::stack_name": "Single-Server-Stack",                                                                                 |
-|                      |   "OS::stack_id": "3bd2c230-b02a-45d8-9f16-88c9a9f64d2d"                                                                   |
-|                      | }                                                                                                                          |
-| stack_name           | Single-Server-Stack                                                                                                        |
-| stack_status         | CREATE_COMPLETE                                                                                                            |
-| stack_status_reason  | Stack CREATE completed successfully                                                                                        |
-| template_description | No description                                                                                                             |
-| timeout_mins         | 60                                                                                                                         |
-| updated_time         | None                                                                                                                       |
-+----------------------+----------------------------------------------------------------------------------------------------------------------------+
+
+.. code::
+
+   +----------------------+----------------------------------------------------------------------------------------------------------------------------+
+   | capabilities         | []                                                                                                                         |
+   | creation_time        | 2014-01-24T20:12:47Z                                                                                                       |
+   | description          | No description                                                                                                             |
+   | disable_rollback     | True                                                                                                                       |
+   | id                   | 3bd2c230-b02a-45d8-9f16-88c9a9f64d2d                                                                                       |
+   | links                | http://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d    |
+   | notification_topics  | []                                                                                                                         |
+   |                      |                                                                                                                            |
+   | outputs              | [                                                                                                                          |
+   |                      |   {                                                                                                                        |
+   |                      |     "output_value": "23.253.88.131",                                                                                       |
+   |                      |     "description": "public IP address of the deployed compute instance",                                                   |
+   |                      |     "output_key": "public_ip"                                                                                              |
+   |                      |   }                                                                                                                        |
+   |                      | ]                                                                                                                          |
+   |                      |                                                                                                                            |
+   | parameters           | {                                                                                                                          |
+   |                      |   "OS::stack_name": "Single-Server-Stack",                                                                                 |
+   |                      |   "OS::stack_id": "3bd2c230-b02a-45d8-9f16-88c9a9f64d2d"                                                                   |
+   |                      | }                                                                                                                          |
+   |                      |                                                                                                                            |
+   | stack_name           | Single-Server-Stack                                                                                                        |
+   | stack_status         | CREATE_COMPLETE                                                                                                            |
+   | stack_status_reason  | Stack CREATE completed successfully                                                                                        |
+   | template_description | No description                                                                                                             |
+   | timeout_mins         | 60                                                                                                                         |
+   | updated_time         | None                                                                                                                       |
+   +----------------------+----------------------------------------------------------------------------------------------------------------------------+
+
+
 
 Notice this is where you can see the information created by the output
 parameter that you created in the following section of your template
@@ -62,12 +68,12 @@ file in :ref:`create-simple-stack`.
           description: public IP address of the deployed compute instance
           value: { get_attr: [compute_instance, accessIPv4] }
 
-Locate the `outputs` property in the table of information returned
-by the `stack-show` heat client command and look at the `output value` for
-the `output_key public_ip`. The `output_value` in the preceding
-example is `23.253.88.56`. That value is the public IP address for
-the server that was created by the stack `Single-Server-Stack`. If
-the output parameter `public_ip` had not been provided in the
+Locate the ``outputs`` property in the table of information returned
+by the ``stack-show`` heat client command and look at the ``output value`` for
+the ``output_key public_ip``. The ``output_value`` in the preceding
+example is ``23.253.88.131``. That value is the public IP address for
+the server that was created by the stack ``Single-Server-Stack``. If
+the output parameter ``public_ip`` had not been provided in the
 template, there would be no easy way to access the new server
 (other than by using the Cloud Control Panel). Using output
 parameters provides a method for returning important
@@ -76,7 +82,7 @@ information to API users.
 .. _show-stack-curl:
 
 Show stack details by using cURL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Show stack details by executing the following request. This operation does
 not require a request body.
@@ -154,11 +160,11 @@ you created in the `outputs` section of your template file in
           description: public IP address of the deployed compute instance
           value: { get_attr: [compute_instance, accessIPv4] }
 
-Locate the `outputs` property in the response information and look at
-the `output` value for the `output_key public_ip`. The `output_value` in
-the preceding example is `23.253.88.56`. That value is the public
+Locate the ``outputs`` property in the response information and look at
+the output value for the ``output_key public_ip``. The ``output_value`` in
+the preceding example is ``23.253.88.131``. That value is the public
 IP address for the server that was created by the
-stack `Single-Server-Stack`. If the output parameter `public_ip` had
+stack `Single-Server-Stack`. If the output parameter ``public_ip`` had
 not been provided in the template, there would be no easy way to
 access the new server (other than by using the Cloud Control Panel).
 Using output parameters provides a method for returning

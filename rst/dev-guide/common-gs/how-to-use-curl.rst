@@ -83,6 +83,9 @@ The cURL examples in this guide use the following command-line options.
 +-----------+-----------------------------------------------------------------------+
 | **-s**    | Specifies silent or quiet mode, which makes cURL mute. No progress or |
 |           | error messages are shown.                                             |
+|           |                                                                       |
+|           | If your cURL command is not generating any output, try replacing the  |
+|           | ``-s`` option with ``-i``.                                            |
 +-----------+-----------------------------------------------------------------------+
 | **-T**    | Transfers the specified local file to the remote URL.                 |
 +-----------+-----------------------------------------------------------------------+

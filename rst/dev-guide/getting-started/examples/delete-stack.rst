@@ -9,7 +9,7 @@ Following are two methods to delete a stack:
 .. _delete-stack-heat:
 
 Delete a stack by using the heat client
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Delete your stack `Single-Server-Stack` by issuing the following
 command:
@@ -34,7 +34,7 @@ listed.
 .. _delete-stack-curl:
 
 Delete a stack by using cURL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Delete your `Single-Server-Stack` by executing the following request.
 
