@@ -88,7 +88,7 @@ today = 'November 5, 2015'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build','api-operations/methods*']
+exclude_patterns = ['_build','api-operations/methods*', 'common-gs', 'getting-started/examples*']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
