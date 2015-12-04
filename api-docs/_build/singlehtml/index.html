@@ -237,7 +237,6 @@ included in source code that is stored in public repositories.</p>
 <ul class="simple">
 <li><a class="reference internal" href="#using-curl" id="id2">Using cURL</a></li>
 <li><a class="reference internal" href="#using-the-heat-client" id="id3">Using the heat client</a></li>
-<li><a class="reference internal" href="#set-environment-variables" id="id4">Set environment variables</a></li>
 </ul>
 </div>
 <p>This Getting Started Guide shows how to send requests by using cURL and the
@@ -263,10 +262,10 @@ of this guide directly to the command line or a script.</p>
 the Rackspace Cloud Identity service.</p>
 <p><strong>cURL command example: JSON request</strong></p>
 <div class="code highlight-python" id="auth-curl-request"><div class="highlight"><pre>$ curl https://identity.api.rackspacecloud.com/v2.0/tokens  \
- -X POST \
- -d &#39;{&quot;auth&quot;:{&quot;RAX-KSKEY:apiKeyCredentials&quot;:{&quot;username&quot;:&quot;yourUserName&quot;,&quot;apiKey&quot;:&quot;$apiKey&quot;}}}&#39; \
- -H &quot;Content-type: application/json&quot; \
- | python -m json.tool
+    -X POST \
+    -d &#39;{&quot;auth&quot;:{&quot;RAX-KSKEY:apiKeyCredentials&quot;:{&quot;username&quot;:&quot;yourUserName&quot;,&quot;apiKey&quot;:&quot;$apiKey&quot;}}}&#39; \
+    -H &quot;Content-type: application/json&quot; \
+    | python -m json.tool
 </pre></div>
 </div>
 <p>In this example, <code class="docutils literal"><span class="pre">$apiKey</span></code> is an environment variable that stores your API key value.
@@ -370,7 +369,7 @@ simplejson.tool. For information about simplejson.tool, see
 <span id="request-using-heat-client"></span><h3><a class="toc-backref" href="#id3">Using the heat client</a><a class="headerlink" href="#using-the-heat-client" title="Permalink to this headline">¶</a></h3>
 <p>The heat client is a command-line tool that provides access to all public
 Cloud Orchestration API methods. To send requests using the client, you
-have to install it.</p>
+have to install the client and set environment variables.</p>
 <p><strong>Prerequisites</strong></p>
 <ul class="simple">
 <li>Linux or Mac OS X</li>
@@ -378,8 +377,9 @@ have to install it.</p>
 <li><strong>setuptools</strong> package, installed by default on Mac OS X</li>
 <li><strong>pip</strong> package</li>
 <li>Rackspace Cloud account and access to Rackspace Cloud Orchestration</li>
-<li>Perform the following steps to install the CLI</li>
 </ul>
+<div class="section" id="install-the-heat-client">
+<h4>Install the heat client<a class="headerlink" href="#install-the-heat-client" title="Permalink to this headline">¶</a></h4>
 <p>Install the python-heatclient using pip.</p>
 <div class="code highlight-python"><div class="highlight"><pre>$ sudo pip install python-heatclient
 </pre></div>
@@ -394,7 +394,7 @@ command to upgrade it:</p>
 </div>
 </div>
 <div class="section" id="set-environment-variables">
-<span id="id1"></span><h3><a class="toc-backref" href="#id4">Set environment variables</a><a class="headerlink" href="#set-environment-variables" title="Permalink to this headline">¶</a></h3>
+<span id="id1"></span><h4>Set environment variables<a class="headerlink" href="#set-environment-variables" title="Permalink to this headline">¶</a></h4>
 <p>Edit your <strong>bash.profile</strong> file or <strong>.bashrc</strong> file to add and set environment
 variables that enable the heat client to connect to your Rackspace
 Cloud account. Use nano, or a text editor of your choice, to edit the file.</p>
@@ -456,6 +456,7 @@ to review information about using the client.</p>
 <a class="reference external" href="http://docs.openstack.org/cli-reference/content/heatclient_commands.html">OpenStack heat client command-line reference</a>.</p>
 </div>
 </div>
+</div>
 <span id="document-getting-started/authenticate"></span><div class="section" id="authenticate-to-the-rackspace-cloud">
 <span id="authenticate-to-cloud"></span><h2>Authenticate to the Rackspace Cloud<a class="headerlink" href="#authenticate-to-the-rackspace-cloud" title="Permalink to this headline">¶</a></h2>
 <p>Whether you use cURL, a REST client, or a command line client (CLI) to send requests
@@ -501,10 +502,10 @@ automatically.</p>
 service.  Include your username and <a class="reference internal" href="index.html#get-credentials"><span>API key</span></a>
 as shown in the following example.</p>
 <div class="code highlight-python" id="auth-curl-request"><div class="highlight"><pre>$ curl https://identity.api.rackspacecloud.com/v2.0/tokens  \
- -X POST \
- -d &#39;{&quot;auth&quot;:{&quot;RAX-KSKEY:apiKeyCredentials&quot;:{&quot;username&quot;:&quot;yourUserName&quot;,&quot;apiKey&quot;:&quot;$apiKey&quot;}}}&#39; \
- -H &quot;Content-type: application/json&quot; \
- | python -m json.tool
+    -X POST \
+    -d &#39;{&quot;auth&quot;:{&quot;RAX-KSKEY:apiKeyCredentials&quot;:{&quot;username&quot;:&quot;yourUserName&quot;,&quot;apiKey&quot;:&quot;$apiKey&quot;}}}&#39; \
+    -H &quot;Content-type: application/json&quot; \
+    | python -m json.tool
 </pre></div>
 </div>
 </div>
@@ -523,99 +524,99 @@ returned is specific to your account.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">For a detailed description of the information included in the authentication response, see
-<a class="reference external" href="http://developer.rackspace.com/docs/cloud-identity/v2/developer-guide/#document-authentication-info/sample-auth-req-response">Annotated authentication request and response</a></p>
+<a class="reference external" href="http://developer.rackspace.com/docs/cloud-identity/v2/ developer-guide/#document-authentication-info/sample-auth-req-response">Annotated authentication request and response</a>.</p>
 </div>
 <p><strong>Example: Authentication response</strong></p>
 <div class="code highlight-python" id="auth-response-example"><div class="highlight"><pre>{
-        &quot;access&quot;: {
-                &quot;token&quot;: {
-                        &quot;id&quot;: &quot;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;,
-                        &quot;expires&quot;: &quot;2014-11-24T22:05:39.115Z&quot;,
-                        &quot;tenant&quot;: {
-                                &quot;id&quot;: &quot;110011&quot;,
-                                &quot;name&quot;: &quot;110011&quot;
-                        },
-                        &quot;RAX-AUTH:authenticatedBy&quot;: [
-                                &quot;APIKEY&quot;
-                        ]
-                 },
-                &quot;serviceCatalog&quot;: [
-                        {
-                                &quot;name&quot;: &quot;cloudDatabases&quot;,
-                                &quot;endpoints&quot;: [
-                                        {
-                                        &quot;publicURL&quot;: &quot;https://syd.databases.api.rackspacecloud.com/v1.0/110011&quot;,
-                                        &quot;region&quot;: &quot;SYD&quot;,
-                                        &quot;tenantId&quot;: &quot;110011&quot;
-                                        },
-                                        {
-                                                &quot;publicURL&quot;: &quot;https://dfw.databases.api.rackspacecloud.com/v1.0/110011&quot;,
-                                                &quot;region&quot;: &quot;DFW&quot;,
-                                                &quot;tenantId&quot;: &quot;110011&quot;
-                                        },
-                                        {
-                                                &quot;publicURL&quot;: &quot;https://ord.databases.api.rackspacecloud.com/v1.0/110011&quot;,
-                                                &quot;region&quot;: &quot;ORD&quot;,
-                                                &quot;tenantId&quot;: &quot;110011&quot;
-                                        },
-                                        {
-                                                &quot;publicURL&quot;: &quot;https://iad.databases.api.rackspacecloud.com/v1.0/110011&quot;,
-                                                &quot;region&quot;: &quot;IAD&quot;,
-                                                &quot;tenantId&quot;: &quot;110011&quot;
-                                        },
-                                        {
-                                                &quot;publicURL&quot;: &quot;https://hkg.databases.api.rackspacecloud.com/v1.0/110011&quot;,
-                                                &quot;region&quot;: &quot;HKG&quot;,
-                                                &quot;tenantId&quot;: &quot;110011&quot;
-                                        }
-                                ],
-                                &quot;type&quot;: &quot;rax:database&quot;
-                        },
+ &quot;access&quot;: {
+  &quot;token&quot;: {
+   &quot;id&quot;: &quot;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;,
+   &quot;expires&quot;: &quot;2014-11-24T22:05:39.115Z&quot;,
+   &quot;tenant&quot;: {
+    &quot;id&quot;: &quot;110011&quot;,
+    &quot;name&quot;: &quot;110011&quot;
+   },
+   &quot;RAX-AUTH:authenticatedBy&quot;: [
+    &quot;APIKEY&quot;
+   ]
+   },
+  &quot;serviceCatalog&quot;: [
+   {
+    &quot;name&quot;: &quot;cloudDatabases&quot;,
+    &quot;endpoints&quot;: [
+     {
+     &quot;publicURL&quot;: &quot;https://syd.databases.api.rackspacecloud.com/v1.0/110011&quot;,
+     &quot;region&quot;: &quot;SYD&quot;,
+     &quot;tenantId&quot;: &quot;110011&quot;
+     },
+     {
+      &quot;publicURL&quot;: &quot;https://dfw.databases.api.rackspacecloud.com/v1.0/110011&quot;,
+      &quot;region&quot;: &quot;DFW&quot;,
+      &quot;tenantId&quot;: &quot;110011&quot;
+     },
+     {
+      &quot;publicURL&quot;: &quot;https://ord.databases.api.rackspacecloud.com/v1.0/110011&quot;,
+      &quot;region&quot;: &quot;ORD&quot;,
+      &quot;tenantId&quot;: &quot;110011&quot;
+     },
+     {
+      &quot;publicURL&quot;: &quot;https://iad.databases.api.rackspacecloud.com/v1.0/110011&quot;,
+      &quot;region&quot;: &quot;IAD&quot;,
+      &quot;tenantId&quot;: &quot;110011&quot;
+     },
+     {
+      &quot;publicURL&quot;: &quot;https://hkg.databases.api.rackspacecloud.com/v1.0/110011&quot;,
+      &quot;region&quot;: &quot;HKG&quot;,
+      &quot;tenantId&quot;: &quot;110011&quot;
+     }
+    ],
+    &quot;type&quot;: &quot;rax:database&quot;
+   },
 
-                        ...
+   ...
 
-                        {
-                                &quot;name&quot;: &quot;cloudDNS&quot;,
-                                &quot;endpoints&quot;: [
-                                        {
-                                                &quot;publicURL&quot;: &quot;https://dns.api.rackspacecloud.com/v1.0/110011&quot;,
-                                                &quot;tenantId&quot;: &quot;110011&quot;
-                                        }
-                                ],
-                                &quot;type&quot;: &quot;rax:dns&quot;
-                        },
-                        {
-                                &quot;name&quot;: &quot;rackCDN&quot;,
-                                &quot;endpoints&quot;: [
-                                        {
-                                                &quot;internalURL&quot;: &quot;https://global.cdn.api.rackspacecloud.com/v1.0/110011&quot;,
-                                                &quot;publicURL&quot;: &quot;https://global.cdn.api.rackspacecloud.com/v1.0/110011&quot;,
-                                                &quot;tenantId&quot;: &quot;110011&quot;
-                                        }
-                                ],
+   {
+    &quot;name&quot;: &quot;cloudDNS&quot;,
+    &quot;endpoints&quot;: [
+     {
+      &quot;publicURL&quot;: &quot;https://dns.api.rackspacecloud.com/v1.0/110011&quot;,
+      &quot;tenantId&quot;: &quot;110011&quot;
+     }
+    ],
+    &quot;type&quot;: &quot;rax:dns&quot;
+   },
+   {
+    &quot;name&quot;: &quot;rackCDN&quot;,
+    &quot;endpoints&quot;: [
+     {
+      &quot;internalURL&quot;: &quot;https://global.cdn.api.rackspacecloud.com/v1.0/110011&quot;,
+      &quot;publicURL&quot;: &quot;https://global.cdn.api.rackspacecloud.com/v1.0/110011&quot;,
+      &quot;tenantId&quot;: &quot;110011&quot;
+     }
+    ],
 
-                                &quot;type&quot;: &quot;rax:cdn&quot;
-                        }
-                ],
-                &quot;user&quot;: {
-                        &quot;id&quot;: &quot;123456&quot;,
-                        &quot;roles&quot;: [
-                                {
-                                        &quot;description&quot;: &quot;A Role that allows a user access to keystone Service methods&quot;,
-                                        &quot;id&quot;: &quot;6&quot;,
-                                        &quot;name&quot;: &quot;compute:default&quot;,
-                                        &quot;tenantId&quot;: &quot;110011&quot;
-                                },
-                                {
-                                        &quot;description&quot;: &quot;User Admin Role.&quot;,
-                                        &quot;id&quot;: &quot;3&quot;,
-                                        &quot;name&quot;: &quot;identity:user-admin&quot;
-                                }
-                        ],
-                        &quot;name&quot;: &quot;jsmith&quot;,
-                        &quot;RAX-AUTH:defaultRegion&quot;: &quot;ORD&quot;
-                }
-        }
+    &quot;type&quot;: &quot;rax:cdn&quot;
+   }
+  ],
+  &quot;user&quot;: {
+   &quot;id&quot;: &quot;123456&quot;,
+   &quot;roles&quot;: [
+    {
+     &quot;description&quot;: &quot;A Role that allows a user access to keystone Service methods&quot;,
+     &quot;id&quot;: &quot;6&quot;,
+     &quot;name&quot;: &quot;compute:default&quot;,
+     &quot;tenantId&quot;: &quot;110011&quot;
+    },
+    {
+     &quot;description&quot;: &quot;User Admin Role.&quot;,
+     &quot;id&quot;: &quot;3&quot;,
+     &quot;name&quot;: &quot;identity:user-admin&quot;
+    }
+   ],
+   &quot;name&quot;: &quot;jsmith&quot;,
+   &quot;RAX-AUTH:defaultRegion&quot;: &quot;ORD&quot;
+  }
+ }
 }
 </pre></div>
 </div>
@@ -682,18 +683,18 @@ about using and managing environment variables on different systems, see the
 tenant <code class="docutils literal"><span class="pre">id</span></code> values from the token object.</p>
 <blockquote>
 <div><div class="code highlight-python"><div class="highlight"><pre>{
-          &quot;access&quot;: {
-                  &quot;token&quot;: {
-                          &quot;id&quot;: &quot;AA2345631l1NVdD6D1OCauKA0e9fioquZqVlS-hpbCqQ5Yx1zLOREGf4efBh10CfB5AvjC1yld4ZNJUouE7DA0QB0n5nRbdDsYADA-ORICIqHNqOVS_kYmedqDh75c_PLe123456789101&quot;,
-                          &quot;expires&quot;: &quot;2015-11-18T18:35:45.013Z&quot;,
-                          &quot;tenant&quot;: {
-                                  &quot;id&quot;: &quot;123456&quot;,
-                                  &quot;name&quot;: &quot;123456&quot;
-                          },
-                          &quot;RAX-AUTH:authenticatedBy&quot;: [
-                                  &quot;APIKEY&quot;
-                          ]
+  &quot;access&quot;: {
+  &quot;token&quot;: {
+  &quot;id&quot;: &quot;AA2345631l1NVdD6D1OCauKA0e9fioquZqVlS-hpbCqQ5Yx1zLOREGf4efBh10CfB5AvjC1yld4ZNJUouE7DA0QB0n5nRbdDsYADA-ORICIqHNqOVS_kYmedqDh75c_PLe123456789101&quot;,
+  &quot;expires&quot;: &quot;2015-11-18T18:35:45.013Z&quot;,
+  &quot;tenant&quot;: {
+  &quot;id&quot;: &quot;123456&quot;,
+  &quot;name&quot;: &quot;123456&quot;
   },
+  &quot;RAX-AUTH:authenticatedBy&quot;: [
+  &quot;APIKEY&quot;
+  ]
+},
 </pre></div>
 </div>
 </div></blockquote>
@@ -6397,7 +6398,6 @@ service for use with the Rackspace Public Cloud.</li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-getting-started/send-request-ovw">Send API requests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="index.html#using-curl">Using cURL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#using-the-heat-client">Using the heat client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#set-environment-variables">Set environment variables</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-getting-started/authenticate">Authenticate</a><ul>

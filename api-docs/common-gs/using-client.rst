@@ -5,7 +5,7 @@ Using the heat client
 
 The heat client is a command-line tool that provides access to all public
 Cloud Orchestration API methods. To send requests using the client, you
-have to install it.
+have to install the client and set environment variables.
 
 **Prerequisites**
 
@@ -14,7 +14,10 @@ have to install it.
 - **setuptools** package, installed by default on Mac OS X
 - **pip** package
 - Rackspace Cloud account and access to Rackspace Cloud Orchestration
-- Perform the following steps to install the CLI
+
+
+Install the heat client
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Install the python-heatclient using pip.
 
@@ -34,7 +37,7 @@ Install the python-heatclient using pip.
 .. _set-environment-variables:
 
 Set environment variables
-~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Edit your **bash.profile** file or **.bashrc** file to add and set environment
 variables that enable the heat client to connect to your Rackspace
 Cloud account. Use nano, or a text editor of your choice, to edit the file.
