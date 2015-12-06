@@ -1,5 +1,4 @@
 .. code-block:: json
-   :emphasize-lines: 10, 18, 26, 34
 
           {
                "name": "cloudOrchestration",
