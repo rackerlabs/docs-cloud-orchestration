@@ -1,7 +1,8 @@
 .. _show-stack-details:
 
-Show stack details
-~~~~~~~~~~~~~~~~~~
+Showing stack details
+~~~~~~~~~~~~~~~~~~~~~~~
+
 In this section, you show the details for your stack.
 
 Following are two methods to show stack details:

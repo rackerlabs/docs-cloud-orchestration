@@ -68,7 +68,7 @@ Following are two methods to create the stack:
 
 .. _create-stack-heat:
 
-Create a stack with the heat client
+Creating a stack by using the heat client
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue the following command, which includes the name of the template
@@ -82,6 +82,7 @@ You should get a list of your stacks, including one with a stack_name of
 `Single-Server-Stack` with a stack_status of `CREATE_IN_PROGRESS`.
 For example:
 
+
 +--------------------------------------+---------------------+--------------------+----------------------+
 | id                                   | stack_name          | stack_status       | creation_time        |
 +--------------------------------------+---------------------+--------------------+----------------------+
@@ -90,7 +91,7 @@ For example:
 
 .. _create-stack-curl:
 
-Create a stack by using cURL
+Creating a stack by using cURL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the create stack API operation (`/stacks`) in the cURL request, as

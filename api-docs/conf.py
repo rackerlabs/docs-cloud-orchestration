@@ -147,6 +147,7 @@ rst_epilog = """
 .. |apiservice| replace:: Rackspace Cloud Orchestration API
 .. |no changes| replace:: None for this release.
 .. |contract version| replace:: 1.0
+.. |servicetype| replace:: ``orchestration``
 """
 
 # -- Options for HTML output ----------------------------------------------

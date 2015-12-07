@@ -1,7 +1,8 @@
 .. _delete-stack:
 
-Delete a stack
-~~~~~~~~~~~~~~
+Deleting a stack
+~~~~~~~~~~~~~~~~~~~
+
 Since you are done using the stack, you can delete it.
 
 Following are two methods to delete a stack:

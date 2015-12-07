@@ -1,7 +1,8 @@
 .. _update-stack-lb:
 
-Update a stack with a load balancer
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Updating a stack with a load balancer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 In this section you update your stack by adding a load balancer
 to use with the two servers.
 

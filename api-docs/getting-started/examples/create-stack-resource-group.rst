@@ -1,7 +1,8 @@
 .. _create-stack-resource-group:
 
-Create a stack by using a resource group
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Creating a stack by using a resource group
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Assume that you would like to create a cloud load balancer to use with
 some cloud servers. You begin working on this task by creating a resource
 group to hold the servers. The advantage of this technique is that you
@@ -93,7 +94,7 @@ to confirm that your stack is now created:
 .. _create-stack-rg-curl:
 
 Create a stack by using a resource group with cURL
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue the following command:
 

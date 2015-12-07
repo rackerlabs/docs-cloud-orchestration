@@ -1,6 +1,6 @@
 .. _using-cloud-orchestration:
 
-Using Cloud Orchestration
+Create and manage stacks
 --------------------------------
 You can use the examples in the following sections to create
 and manage stacks by using Cloud Orchestration API operations. 

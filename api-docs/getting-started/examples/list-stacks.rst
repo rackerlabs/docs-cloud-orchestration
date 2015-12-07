@@ -1,7 +1,8 @@
 .. _list-stacks:
 
-List stacks
-~~~~~~~~~~~
+Listing stacks
+~~~~~~~~~~~~~~~~~
+
 Now you can list stacks and confirm that your stack was created.
 
 Following are two methods to list stacks:
