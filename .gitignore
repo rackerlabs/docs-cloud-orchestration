@@ -1,5 +1,8 @@
 target
 doctrees/
-rst/dev-guide/_build
+api-docs/_build/*
+.DS_store
 
+api-docs/_build/singlehtml/index.html
 
+api-docs/_build/singlehtml/index.html

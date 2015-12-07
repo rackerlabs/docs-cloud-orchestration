@@ -8,7 +8,7 @@ Sending API requests to Cloud Orchestration
    :depth: 1
 
 This Getting Started Guide shows how to send requests by using cURL and the
-Lava client command line tools.
+heat client command line tools.
 
 To learn about other ways to use Rackspace Cloud API services, see the following resources:
 
@@ -19,9 +19,8 @@ To learn about other ways to use Rackspace Cloud API services, see the following
    interacting with the API by using an application such as
    `Postman`_  or `RESTClient for Firefox`_.
 
-
-.. include:: ../common-gs/how-to-use-curl.rst
 .. include:: ../common-gs/using-client.rst
+.. include:: ../common-gs/how-to-use-curl.rst
 
 .. _cURL command line tool: http://curl.haxx.se/
 .. _Rackspace SDKs: https://developer.rackspace.com/sdks/
