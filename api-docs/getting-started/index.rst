@@ -10,4 +10,4 @@
    prerequisites <prerequisites-for-using-api>
    Send API requests <send-request-ovw>
    Authenticate <authenticate>
-   Using Cloud Orchestration <using-cloud-orchestration>
+   Create and manage stacks <using-cloud-orchestration>
