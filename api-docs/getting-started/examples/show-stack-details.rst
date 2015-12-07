@@ -24,35 +24,37 @@ The command returns the details for the stack:
 
 .. code::
 
-   +----------------------+----------------------------------------------------------------------------------------------------------------------------+
-   | capabilities         | []                                                                                                                         |
-   | creation_time        | 2014-01-24T20:12:47Z                                                                                                       |
-   | description          | No description                                                                                                             |
-   | disable_rollback     | True                                                                                                                       |
-   | id                   | 3bd2c230-b02a-45d8-9f16-88c9a9f64d2d                                                                                       |
-   | links                | http://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Single-Server-Stack/3bd2c230-b02a-45d8-9f16-88c9a9f64d2d    |
-   | notification_topics  | []                                                                                                                         |
-   |                      |                                                                                                                            |
-   | outputs              | [                                                                                                                          |
-   |                      |   {                                                                                                                        |
-   |                      |     "output_value": "23.253.88.131",                                                                                       |
-   |                      |     "description": "public IP address of the deployed compute instance",                                                   |
-   |                      |     "output_key": "public_ip"                                                                                              |
-   |                      |   }                                                                                                                        |
-   |                      | ]                                                                                                                          |
-   |                      |                                                                                                                            |
-   | parameters           | {                                                                                                                          |
-   |                      |   "OS::stack_name": "Single-Server-Stack",                                                                                 |
-   |                      |   "OS::stack_id": "3bd2c230-b02a-45d8-9f16-88c9a9f64d2d"                                                                   |
-   |                      | }                                                                                                                          |
-   |                      |                                                                                                                            |
-   | stack_name           | Single-Server-Stack                                                                                                        |
-   | stack_status         | CREATE_COMPLETE                                                                                                            |
-   | stack_status_reason  | Stack CREATE completed successfully                                                                                        |
-   | template_description | No description                                                                                                             |
-   | timeout_mins         | 60                                                                                                                         |
-   | updated_time         | None                                                                                                                       |
-   +----------------------+----------------------------------------------------------------------------------------------------------------------------+
+   +----------------------+---------------------------------------------------+
+   | capabilities         | []                                                |
+   | creation_time        | 2014-01-24T20:12:47Z                              |
+   | description          | No description                                    |
+   | disable_rollback     | True                                              |
+   | id                   | 3bd2c230-b02a-45d8-9f16-88c9a9f64d2d              |
+   | links                | http://ord.orchestration.api.rackspacecloud.com/  |
+   |                      | v1/1234/stacks/Single-Server-Stack/3bd...d2d      |
+   | notification_topics  | []                                                |
+   |                      |                                                   |
+   | outputs              | [                                                 |
+   |                      |   {                                               |
+   |                      |     "output_value": "23.253.88.131",              |
+   |                      |     "description": "public IP address of the      |
+   |                      |   deployed compute instance",                     |
+   |                      |     "output_key": "public_ip"                     |
+   |                      |   }                                               |
+   |                      | ]                                                 |
+   |                      |                                                   |
+   | parameters           | {                                                 |
+   |                      |   "OS::stack_name": "Single-Server-Stack",        |
+   |                      |   "OS::stack_id": "3bd2c230-...f64d2d"            |
+   |                      | }                                                 |
+   |                      |                                                   |
+   | stack_name           | Single-Server-Stack                               |
+   | stack_status         | CREATE_COMPLETE                                   |
+   | stack_status_reason  | Stack CREATE completed successfully               |
+   | template_description | No description                                    |
+   | timeout_mins         | 60                                                |
+   | updated_time         | None                                              |
+   +----------------------+---------------------------------------------------+
 
 
 
