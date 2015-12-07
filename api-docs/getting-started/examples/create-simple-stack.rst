@@ -1,7 +1,8 @@
 .. _create-simple-stack:
 
-Create a simple stack for a cloud server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Creating a simple stack for a cloud server
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Assume that you want to create a simple stack that defines a single
 cloud server. Use a text editor such as nano or vi to create the
 following heat orchestration template (HOT) file and then save
@@ -68,7 +69,7 @@ Following are two methods to create the stack:
 
 .. _create-stack-heat:
 
-Creating a stack by using the heat client
+Create a stack by using the heat client
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue the following command, which includes the name of the template
@@ -91,7 +92,7 @@ For example:
 
 .. _create-stack-curl:
 
-Creating a stack by using cURL
+Create a stack by using cURL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the create stack API operation (`/stacks`) in the cURL request, as

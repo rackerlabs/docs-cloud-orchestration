@@ -170,32 +170,30 @@ at <a class="reference external" href="http://www.rackspace.com/information/lega
 <span id="getting-started"></span><h2><strong>Getting Started Guide</strong><a class="headerlink" href="#getting-started-guide" title="Permalink to this headline">¶</a></h2>
 <p>Use this <em>Getting Started Guide</em> to learn how to authenticate, send API requests,
 and complete basic operations by using the Cloud Orchestration API.</p>
-<p>The simple exercises in this guide help you get started with
-Orchestration by showing you how to access the API through either
-heat client commands or cURL commands.</p>
 <p>For more information about Cloud Orchestration concepts and API operations, see the
 <a class="reference internal" href="index.html#developer-guide"><span>Developer Guide</span></a> and the <a class="reference internal" href="index.html#api-reference"><span>API Reference</span></a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<ul class="last simple">
-<li>If you are interested in learning how to get started with Orchestration
-using the Cloud Control Panel instead of the API, refer to
-<a class="reference external" href="http://www.rackspace.com/knowledge_center/article/quick-set-up-with-rackspace-cloud-orchestration">Quick set up with Rackspace Cloud Orchestration</a>.</li>
-<li>If you are interested in learning how to get started with
-Orchestration using one of our SDKs, refer to
-<a class="reference external" href="http://developer.rackspace.com/docs/#sdks">Software development kits &amp; tools</a>.</li>
-</ul>
+<p class="last">You can also use Rackspace Cloud Orchestration from the
+<a class="reference external" href="http://www.rackspace.com/knowledge_center/article/quick-set-up-with-rackspace-cloud-orchestration">Cloud Control panel</a>,
+or by using one of the language-specific
+<a class="reference external" href="http://developer.rackspace.com/docs/#sdks">Software development kits &amp; tools</a>.</p>
 </div>
 </div>
 <span id="document-getting-started/index"></span><div class="toctree-wrapper compound">
 <span id="document-getting-started/prerequisites-for-using-api"></span><div class="section" id="prerequisites">
 <span id="prereqs-for-using-api"></span><h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>To use the getting started examples, make sure you
+have the following information and complete any
+necessary configuration work.</p>
 <ul class="simple">
 <li>Rackspace Cloud account</li>
 <li>Username and password to access the account</li>
 <li>API key to access Rackspace Cloud services</li>
 <li>Account number</li>
 <li><a class="reference internal" href="index.html#send-api-requests"><span>Command line tool or browser client</span></a> to communicate with the API service</li>
+<li>Configure environment variables for <a class="reference internal" href="index.html#configure-environment-variables"><span>cURL</span></a>
+or <a class="reference internal" href="index.html#set-environment-variables"><span>heat client</span></a> command line tools.</li>
 </ul>
 <p>If you don&#8217;t have an account, <a class="reference external" href="https://cart.rackspace.com/cloud/">sign up</a> for one.
 You can find your account number and API key on the Account Settings page in the Cloud Control Panel.</p>
@@ -235,12 +233,12 @@ included in source code that is stored in public repositories.</p>
 <span id="send-api-requests"></span><h2>Sending API requests to Cloud Orchestration<a class="headerlink" href="#sending-api-requests-to-cloud-orchestration" title="Permalink to this headline">¶</a></h2>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#using-curl" id="id2">Using cURL</a></li>
-<li><a class="reference internal" href="#using-the-heat-client" id="id3">Using the heat client</a></li>
+<li><a class="reference internal" href="#using-the-heat-client" id="id2">Using the heat client</a></li>
+<li><a class="reference internal" href="#using-curl" id="id3">Using cURL</a></li>
 </ul>
 </div>
 <p>This Getting Started Guide shows how to send requests by using cURL and the
-Lava client command line tools.</p>
+heat client command line tools.</p>
 <p>To learn about other ways to use Rackspace Cloud API services, see the following resources:</p>
 <ul class="simple">
 <li>If you are developing applications or automation, try using <a class="reference external" href="https://developer.rackspace.com/sdks/">Rackspace SDKs</a>, the
@@ -249,8 +247,99 @@ Lava client command line tools.</p>
 interacting with the API by using an application such as
 <a class="reference external" href="http://www.getpostman.com">Postman</a>  or <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/restclient">RESTClient for Firefox</a>.</li>
 </ul>
+<div class="section" id="using-the-heat-client">
+<span id="request-using-heat-client"></span><h3><a class="toc-backref" href="#id2">Using the heat client</a><a class="headerlink" href="#using-the-heat-client" title="Permalink to this headline">¶</a></h3>
+<p>The heat client is a command-line tool that provides access to all public
+Cloud Orchestration API methods. To send requests using the client, you
+have to install the client and set environment variables.</p>
+<p><strong>Prerequisites</strong></p>
+<ul class="simple">
+<li>Linux or Mac OS X</li>
+<li>Python 2.7 or later</li>
+<li><strong>setuptools</strong> package, installed by default on Mac OS X</li>
+<li><strong>pip</strong> package</li>
+<li>Rackspace Cloud account and access to Rackspace Cloud Orchestration</li>
+</ul>
+<div class="section" id="install-the-heat-client">
+<h4>Install the heat client<a class="headerlink" href="#install-the-heat-client" title="Permalink to this headline">¶</a></h4>
+<p>Install the python-heatclient using pip.</p>
+<div class="code highlight-python"><div class="highlight"><pre>$ sudo pip install python-heatclient
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you previously installed the python-heatclient package, run the following
+command to upgrade it:</p>
+<div class="code last highlight-python"><div class="highlight"><pre>$ sudo pip install --upgrade python-heatclient
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="set-environment-variables">
+<span id="id1"></span><h4>Set environment variables<a class="headerlink" href="#set-environment-variables" title="Permalink to this headline">¶</a></h4>
+<p>Edit your <strong>bash.profile</strong> file or <strong>.bashrc</strong> file to add and set environment
+variables that enable the heat client to connect to your Rackspace
+Cloud account. Use nano, or a text editor of your choice, to edit the file.</p>
+<div class="code highlight-python"><div class="highlight"><pre>$ nano ~/.bash_profile
+</pre></div>
+</div>
+<p>Add the following sets of lines to your bash profile and save the file.
+Information about the environment variables is provided after the examples.</p>
+<div class="code highlight-python"><div class="highlight"><pre>export OS_AUTH_URL=https://identity.api.rackspacecloud.com/v2.0/
+export OS_USERNAME=yourUserName
+export OS_TENANT_ID=yourTenantId
+export OS_REGION_NAME=yourRegionName
+export OS_PASSWORD=yourPassword
+</pre></div>
+</div>
+<p>The following table describes the environment variables:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Environment variable</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>OS_AUTH_URL</td>
+<td>The endpoint for the Rackspace Cloud Identity
+service, which the heat client uses for
+authentication.</td>
+</tr>
+<tr class="row-odd"><td>OS_USERNAME</td>
+<td>Your Rackspace Cloud user name.</td>
+</tr>
+<tr class="row-even"><td>OS_TENANT_ID</td>
+<td>Your Rackspace Cloud tenant ID (account number)</td>
+</tr>
+<tr class="row-odd"><td>OS_REGION_NAME</td>
+<td>The regional endpoint (for example, DFW) where
+you want to deploy the Cloud Orchestration
+resources. For details, see
+<a class="reference internal" href="index.html#service-access-endpoints"><span>Service Access/Endpoints</span></a>.</td>
+</tr>
+<tr class="row-even"><td>OS_PASSWORD</td>
+<td>Your Rackspace Cloud password.</td>
+</tr>
+</tbody>
+</table>
+<p>Be sure to source the file containing the environment variables after
+editing so that the new settings will take effect immediately. For example,
+<cite>source .bash_profile</cite>.</p>
+<p>Run the help command to ensure that the client has installed correctly and
+to review information about using the client.</p>
+<div class="code highlight-python"><div class="highlight"><pre>$ heat help
+</pre></div>
+</div>
+<p>For a complete list of heat commands, see the
+<a class="reference external" href="http://docs.openstack.org/cli-reference/content/heatclient_commands.html">OpenStack heat client command-line reference</a>.</p>
+</div>
+</div>
 <div class="section" id="using-curl">
-<span id="how-curl-commands-work"></span><h3><a class="toc-backref" href="#id2">Using cURL</a><a class="headerlink" href="#using-curl" title="Permalink to this headline">¶</a></h3>
+<span id="how-curl-commands-work"></span><h3><a class="toc-backref" href="#id3">Using cURL</a><a class="headerlink" href="#using-curl" title="Permalink to this headline">¶</a></h3>
 <p>cURL is a command-line tool that you can use to interact with REST interfaces. cURL lets
 you transmit and receive HTTP requests and responses from the command line or a shell
 script, which enables you to work with the API directly. cURL is available for Linux
@@ -365,97 +454,6 @@ simplejson.tool. For information about simplejson.tool, see
 <p class="last">If you do not want to pretty-print JSON output, omit this code.</p>
 </div>
 </div>
-<div class="section" id="using-the-heat-client">
-<span id="request-using-heat-client"></span><h3><a class="toc-backref" href="#id3">Using the heat client</a><a class="headerlink" href="#using-the-heat-client" title="Permalink to this headline">¶</a></h3>
-<p>The heat client is a command-line tool that provides access to all public
-Cloud Orchestration API methods. To send requests using the client, you
-have to install the client and set environment variables.</p>
-<p><strong>Prerequisites</strong></p>
-<ul class="simple">
-<li>Linux or Mac OS X</li>
-<li>Python 2.7 or later</li>
-<li><strong>setuptools</strong> package, installed by default on Mac OS X</li>
-<li><strong>pip</strong> package</li>
-<li>Rackspace Cloud account and access to Rackspace Cloud Orchestration</li>
-</ul>
-<div class="section" id="install-the-heat-client">
-<h4>Install the heat client<a class="headerlink" href="#install-the-heat-client" title="Permalink to this headline">¶</a></h4>
-<p>Install the python-heatclient using pip.</p>
-<div class="code highlight-python"><div class="highlight"><pre>$ sudo pip install python-heatclient
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>If you previously installed the python-heatclient package, run the following
-command to upgrade it:</p>
-<div class="code last highlight-python"><div class="highlight"><pre>$ sudo pip install --upgrade python-heatclient
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="set-environment-variables">
-<span id="id1"></span><h4>Set environment variables<a class="headerlink" href="#set-environment-variables" title="Permalink to this headline">¶</a></h4>
-<p>Edit your <strong>bash.profile</strong> file or <strong>.bashrc</strong> file to add and set environment
-variables that enable the heat client to connect to your Rackspace
-Cloud account. Use nano, or a text editor of your choice, to edit the file.</p>
-<div class="code highlight-python"><div class="highlight"><pre>$ nano ~/.bash_profile
-</pre></div>
-</div>
-<p>Add the following sets of lines to your bash profile and save the file.
-Information about the environment variables is provided after the examples.</p>
-<div class="code highlight-python"><div class="highlight"><pre>export OS_AUTH_URL=https://identity.api.rackspacecloud.com/v2.0/
-export OS_USERNAME=yourUserName
-export OS_TENANT_ID=yourTenantId
-export OS_REGION_NAME=yourRegionName
-export OS_PASSWORD=yourPassword
-</pre></div>
-</div>
-<p>The following table describes the environment variables:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="32%" />
-<col width="68%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Environment variable</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>OS_AUTH_URL</td>
-<td>The endpoint for the Rackspace Cloud Identity
-service, which the heat client uses for
-authentication.</td>
-</tr>
-<tr class="row-odd"><td>OS_USERNAME</td>
-<td>Your Rackspace Cloud user name.</td>
-</tr>
-<tr class="row-even"><td>OS_TENANT_ID</td>
-<td>Your Rackspace Cloud tenant ID (account number)</td>
-</tr>
-<tr class="row-odd"><td>OS_REGION_NAME</td>
-<td>The regional endpoint (for example, DFW) where
-you want to deploy the Cloud Orchestration
-resources. For details, see
-<a class="reference internal" href="index.html#service-access-endpoints"><span>Service Access/Endpoints</span></a>.</td>
-</tr>
-<tr class="row-even"><td>OS_PASSWORD</td>
-<td>Your Rackspace Cloud password.</td>
-</tr>
-</tbody>
-</table>
-<p>Be sure to source the file containing the environment variables after
-editing so that the new settings will take effect immediately. For example,
-<cite>source .bash_profile</cite>.</p>
-<p>Run the help command to ensure that the client has installed correctly and
-to review information about using the client.</p>
-<div class="code highlight-python"><div class="highlight"><pre>$ heat help
-</pre></div>
-</div>
-<p>For a complete list of heat commands, see the
-<a class="reference external" href="http://docs.openstack.org/cli-reference/content/heatclient_commands.html">OpenStack heat client command-line reference</a>.</p>
-</div>
-</div>
 </div>
 <span id="document-getting-started/authenticate"></span><div class="section" id="authenticate-to-the-rackspace-cloud">
 <span id="authenticate-to-cloud"></span><h2>Authenticate to the Rackspace Cloud<a class="headerlink" href="#authenticate-to-the-rackspace-cloud" title="Permalink to this headline">¶</a></h2>
@@ -523,8 +521,9 @@ are not shown. The values shown in this and other examples vary because the info
 returned is specific to your account.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For a detailed description of the information included in the authentication response, see
-<a class="reference external" href="http://developer.rackspace.com/docs/cloud-identity/v2/ developer-guide/#document-authentication-info/sample-auth-req-response">Annotated authentication request and response</a>.</p>
+<p class="last">For information about the authentication response, see the
+<a class="reference external" href="http://developer.rackspace.com/docs/cloud-identity/v2/ developer-guide/#document-authentication-info/sample-auth-req-response">annotated authentication request and response</a> in the
+Rackspace Cloud Identity API documentation.</p>
 </div>
 <p><strong>Example: Authentication response</strong></p>
 <div class="code highlight-python" id="auth-response-example"><div class="highlight"><pre>{
@@ -625,16 +624,12 @@ authentication response. You&#8217;ll need these values to submit requests to th
 <a class="reference internal" href="#configure-environment-variables"><span>Configure environment variables</span></a>.</p>
 <p>If the request failed, review the response message and
 the following error message descriptions to determine next steps.</p>
-<p><code class="docutils literal"><span class="pre">400</span> <span class="pre">Invalid</span> <span class="pre">request</span> <span class="pre">body:</span> <span class="pre">unable</span> <span class="pre">to</span> <span class="pre">parse</span> <span class="pre">Auth</span> <span class="pre">data.</span> <span class="pre">Please</span> <span class="pre">review</span> <span class="pre">XML</span> <span class="pre">or</span> <span class="pre">JSON</span> <span class="pre">formatting</span></code></p>
-<blockquote>
-<div>Review the authentication request for syntax or coding errors.
-If you are using cURL, see the <a class="reference internal" href="index.html#how-curl-commands-work"><span>Using cURL</span></a>.</div></blockquote>
-<p><code class="docutils literal"><span class="pre">401</span> <span class="pre">Unable</span> <span class="pre">to</span> <span class="pre">authenticate</span> <span class="pre">user</span> <span class="pre">with</span> <span class="pre">credentials</span> <span class="pre">provided.</span></code></p>
-<blockquote>
-<div>Verify the authentication credentials submitted in the
-authentication request. If necessary, contact your Rackspace
-Cloud Administrator or Rackspace Support to get valid
-credentials.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">400</span> <span class="pre">Invalid</span> <span class="pre">request</span> <span class="pre">body:</span> <span class="pre">unable</span> <span class="pre">to</span> <span class="pre">parse</span> <span class="pre">Auth</span> <span class="pre">data.</span> <span class="pre">Please</span> <span class="pre">review</span> <span class="pre">XML</span> <span class="pre">or</span> <span class="pre">JSON</span> <span class="pre">formatting</span></code>:
+Review the authentication request for syntax or coding errors. If you are using cURL,
+see the <a class="reference internal" href="index.html#how-curl-commands-work"><span>Using cURL</span></a>.</p>
+<p><code class="docutils literal"><span class="pre">401</span> <span class="pre">Unable</span> <span class="pre">to</span> <span class="pre">authenticate</span> <span class="pre">user</span> <span class="pre">with</span> <span class="pre">credentials</span> <span class="pre">provided:</span></code> Verify the authentication
+credentials submitted in the authentication request. If necessary, contact your Rackspace
+Cloud Administrator or Rackspace Support to get valid credentials.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">For additional information about authentication errors, see the
@@ -719,44 +714,44 @@ in the authentication response.</p>
 <li><p class="first">In the <code class="docutils literal"><span class="pre">service</span> <span class="pre">catalog</span></code> section of the authentication response, copy the <code class="docutils literal"><span class="pre">publicURL</span></code>
 value for the Rackspace Cloud Orchestration API, version, and region that you want to access.</p>
 <p>This example shows the endpoints available for the Rackspace Cloud Orchestration API.</p>
-<div class="highlight-json"><div class="highlight"><pre>       {
-            &quot;name&quot;: &quot;cloudOrchestration&quot;,
-            &quot;endpoints&quot;: [
-                {
-                    &quot;region&quot;: &quot;IAD&quot;,
-                    &quot;tenantId&quot;: &quot;123456&quot;,
-                    &quot;publicURL&quot;: &quot;https://iad.orchestration.api.rackspacecloud.com/v1.0/123456&quot;,
-                    &quot;versionInfo&quot;: &quot;httpis://iad.orchestration.api.rackspacecloud.com/v1.0&quot;,
-                    &quot;versionList&quot;: &quot;https://iad.orchestration.api.rackspacecloud.com/&quot;,
-<span class="hll">                    &quot;versionId&quot;: &quot;1&quot;
-</span>                },
-                {
-                    &quot;region&quot;: &quot;DFW&quot;,
-                    &quot;tenantId&quot;: &quot;123456&quot;,
-                    &quot;publicURL&quot;: &quot;https://dfw.orchestration.api.rackspacecloud.com/v1.0/123456&quot;,
-                    &quot;versionInfo&quot;: &quot;https://dfw.orchestration.api.rackspacecloud.com/v1.0&quot;,
-                    &quot;versionList&quot;: &quot;https://dfw.orchestration.api.rackspacecloud.com/&quot;,
-<span class="hll">                    &quot;versionId&quot;: &quot;1&quot;
-</span>                },
-                {
-                    &quot;region&quot;: &quot;IAD&quot;,
-                    &quot;tenantId&quot;: &quot;123456&quot;,
-                    &quot;publicURL&quot;: &quot;https://iad.orchestration.api.rackspacecloud.com/v2/123456&quot;,
-                    &quot;versionInfo&quot;: &quot;https://iad.orchestration.api.rackspacecloud.com/v2&quot;,
-                    &quot;versionList&quot;: &quot;https://iad.orchestration.api.rackspacecloud.com/&quot;,
-<span class="hll">                    &quot;versionId&quot;: &quot;2&quot;
-</span>                },
-                {
-                    &quot;region&quot;: &quot;DFW&quot;,
-                    &quot;tenantId&quot;: &quot;123456&quot;,
-                    &quot;publicURL&quot;: &quot;https://dfw.orchestration.api.rackspacecloud.com/v2/123456&quot;,
-                    &quot;versionInfo&quot;: &quot;https://dfw.orchestration.api.rackspacecloud.com/v2&quot;,
-                    &quot;versionList&quot;: &quot;https://dfw.orchestration.api.rackspacecloud.com/&quot;,
-<span class="hll">                    &quot;versionId&quot;: &quot;2&quot;
-</span>                }
-            ],
-            &quot;type&quot;: &quot;rax:orchestration&quot;
-        },
+<div class="highlight-json"><div class="highlight"><pre>{
+     &quot;name&quot;: &quot;cloudOrchestration&quot;,
+     &quot;endpoints&quot;: [
+         {
+             &quot;region&quot;: &quot;IAD&quot;,
+             &quot;tenantId&quot;: &quot;123456&quot;,
+             &quot;publicURL&quot;: &quot;https://iad.orchestration.api.rackspacecloud.com/v1.0/123456&quot;,
+             &quot;versionInfo&quot;: &quot;httpis://iad.orchestration.api.rackspacecloud.com/v1.0&quot;,
+             &quot;versionList&quot;: &quot;https://iad.orchestration.api.rackspacecloud.com/&quot;,
+             &quot;versionId&quot;: &quot;1&quot;
+         },
+         {
+             &quot;region&quot;: &quot;DFW&quot;,
+             &quot;tenantId&quot;: &quot;123456&quot;,
+             &quot;publicURL&quot;: &quot;https://dfw.orchestration.api.rackspacecloud.com/v1.0/123456&quot;,
+             &quot;versionInfo&quot;: &quot;https://dfw.orchestration.api.rackspacecloud.com/v1.0&quot;,
+             &quot;versionList&quot;: &quot;https://dfw.orchestration.api.rackspacecloud.com/&quot;,
+             &quot;versionId&quot;: &quot;1&quot;
+         },
+         {
+             &quot;region&quot;: &quot;IAD&quot;,
+             &quot;tenantId&quot;: &quot;123456&quot;,
+             &quot;publicURL&quot;: &quot;https://iad.orchestration.api.rackspacecloud.com/v2/123456&quot;,
+             &quot;versionInfo&quot;: &quot;https://iad.orchestration.api.rackspacecloud.com/v2&quot;,
+             &quot;versionList&quot;: &quot;https://iad.orchestration.api.rackspacecloud.com/&quot;,
+             &quot;versionId&quot;: &quot;2&quot;
+         },
+         {
+             &quot;region&quot;: &quot;DFW&quot;,
+             &quot;tenantId&quot;: &quot;123456&quot;,
+             &quot;publicURL&quot;: &quot;https://dfw.orchestration.api.rackspacecloud.com/v2/123456&quot;,
+             &quot;versionInfo&quot;: &quot;https://dfw.orchestration.api.rackspacecloud.com/v2&quot;,
+             &quot;versionList&quot;: &quot;https://dfw.orchestration.api.rackspacecloud.com/&quot;,
+             &quot;versionId&quot;: &quot;2&quot;
+         }
+     ],
+     &quot;type&quot;: &quot;rax:orchestration&quot;
+ },
 </pre></div>
 </div>
 </li>
@@ -774,8 +769,8 @@ value for the Rackspace Cloud Orchestration API, version, and region that you wa
 </div>
 </div>
 </div>
-<span id="document-getting-started/using-cloud-orchestration"></span><div class="section" id="using-cloud-orchestration">
-<span id="id1"></span><h2>Using Cloud Orchestration<a class="headerlink" href="#using-cloud-orchestration" title="Permalink to this headline">¶</a></h2>
+<span id="document-getting-started/using-cloud-orchestration"></span><div class="section" id="create-and-manage-stacks">
+<span id="using-cloud-orchestration"></span><h2>Create and manage stacks<a class="headerlink" href="#create-and-manage-stacks" title="Permalink to this headline">¶</a></h2>
 <p>You can use the examples in the following sections to create
 and manage stacks by using Cloud Orchestration API operations.</p>
 <p>You will perform the following tasks:</p>
@@ -797,8 +792,8 @@ for accessing the service. Make sure you
 <a class="reference internal" href="index.html#set-environment-variables"><span>configure these variables</span></a> before running the
 code samples.</p>
 </div>
-<div class="section" id="create-a-simple-stack-for-a-cloud-server">
-<span id="create-simple-stack"></span><h3>Create a simple stack for a cloud server<a class="headerlink" href="#create-a-simple-stack-for-a-cloud-server" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="creating-a-simple-stack-for-a-cloud-server">
+<span id="create-simple-stack"></span><h3>Creating a simple stack for a cloud server<a class="headerlink" href="#creating-a-simple-stack-for-a-cloud-server" title="Permalink to this headline">¶</a></h3>
 <p>Assume that you want to create a simple stack that defines a single
 cloud server. Use a text editor such as nano or vi to create the
 following heat orchestration template (HOT) file and then save
@@ -860,8 +855,8 @@ the attribute whose value is needed (<cite>accessIPv4</cite>). You will see shor
 this public IP address is displayed to the user. You can find out more
 about intrinsic functions in the <a class="reference external" href="http://orchestration.rackspace.com/raxdox/index.html">Supported resources reference</a> .</p>
 <p>Following are two methods to create the stack:</p>
-<div class="section" id="create-a-stack-with-the-heat-client">
-<span id="create-stack-heat"></span><h4>Create a stack with the heat client<a class="headerlink" href="#create-a-stack-with-the-heat-client" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="create-a-stack-by-using-the-heat-client">
+<span id="create-stack-heat"></span><h4>Create a stack by using the heat client<a class="headerlink" href="#create-a-stack-by-using-the-heat-client" title="Permalink to this headline">¶</a></h4>
 <p>Issue the following command, which includes the name of the template
 file that you just created:</p>
 <div class="code highlight-python"><div class="highlight"><pre>heat stack-create Single-Server-Stack --template-file single_server.template
@@ -959,8 +954,8 @@ the stack resource. Use this link in cases where the link will be
 followed immediately.</p>
 </div>
 </div>
-<div class="section" id="list-stacks">
-<span id="id2"></span><h3>List stacks<a class="headerlink" href="#list-stacks" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="listing-stacks">
+<span id="list-stacks"></span><h3>Listing stacks<a class="headerlink" href="#listing-stacks" title="Permalink to this headline">¶</a></h3>
 <p>Now you can list stacks and confirm that your stack was created.</p>
 <p>Following are two methods to list stacks:</p>
 <div class="section" id="list-stacks-by-using-the-heat-client">
@@ -1043,8 +1038,8 @@ reissue the command, you should see that the stack has been created.</p>
 </div>
 </div>
 </div>
-<div class="section" id="show-stack-details">
-<span id="id3"></span><h3>Show stack details<a class="headerlink" href="#show-stack-details" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="showing-stack-details">
+<span id="show-stack-details"></span><h3>Showing stack details<a class="headerlink" href="#showing-stack-details" title="Permalink to this headline">¶</a></h3>
 <p>In this section, you show the details for your stack.</p>
 <p>Following are two methods to show stack details:</p>
 <div class="section" id="show-stack-details-by-using-the-heat-client">
@@ -1088,7 +1083,7 @@ following command:</p>
 </div>
 <p>Notice this is where you can see the information created by the output
 parameter that you created in the following section of your template
-file in <a class="reference internal" href="#create-simple-stack"><span>Create a simple stack for a cloud server</span></a>.</p>
+file in <a class="reference internal" href="#create-simple-stack"><span>Creating a simple stack for a cloud server</span></a>.</p>
 <p><strong>Outputs section for template single_server.template</strong></p>
 <div class="code highlight-python"><div class="highlight"><pre>outputs:
   public_ip:
@@ -1169,7 +1164,7 @@ specify it.</li>
 </div>
 <p>The response shows the information created by the output parameter that
 you created in the <cite>outputs</cite> section of your template file in
-<a class="reference internal" href="#create-simple-stack"><span>Create a simple stack for a cloud server</span></a>.</p>
+<a class="reference internal" href="#create-simple-stack"><span>Creating a simple stack for a cloud server</span></a>.</p>
 <p><strong>outputs section for template single_server.template</strong></p>
 <div class="code highlight-python"><div class="highlight"><pre>outputs:
   public_ip:
@@ -1188,8 +1183,8 @@ Using output parameters provides a method for returning
 important information to API users.</p>
 </div>
 </div>
-<div class="section" id="delete-a-stack">
-<span id="delete-stack"></span><h3>Delete a stack<a class="headerlink" href="#delete-a-stack" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="deleting-a-stack">
+<span id="delete-stack"></span><h3>Deleting a stack<a class="headerlink" href="#deleting-a-stack" title="Permalink to this headline">¶</a></h3>
 <p>Since you are done using the stack, you can delete it.</p>
 <p>Following are two methods to delete a stack:</p>
 <div class="section" id="delete-a-stack-by-using-the-heat-client">
@@ -1222,7 +1217,7 @@ command:</p>
 </table>
 <p>The stack_status value shows that the stack is in the process of being
 deleted. After a minute or so, you can execute the list stacks operation
-(<a class="reference internal" href="#list-stacks"><span>List stacks</span></a>) and observe that the <cite>Single-Server`Stack</cite> is not
+(<a class="reference internal" href="#list-stacks"><span>Listing stacks</span></a>) and observe that the <cite>Single-Server`Stack</cite> is not
 listed.</p>
 </div>
 <div class="section" id="delete-a-stack-by-using-curl">
@@ -1258,12 +1253,12 @@ Via: 1.0 Repose (Repose/2.13.0)
 </pre></div>
 </div>
 <p>After a minute or so, you can execute the list stacks operation
-(<a class="reference internal" href="#list-stacks"><span>List stacks</span></a>) and observe that the <cite>Single-Server-Stack</cite> is not
+(<a class="reference internal" href="#list-stacks"><span>Listing stacks</span></a>) and observe that the <cite>Single-Server-Stack</cite> is not
 listed.</p>
 </div>
 </div>
-<div class="section" id="create-a-stack-by-using-a-resource-group">
-<span id="create-stack-resource-group"></span><h3>Create a stack by using a resource group<a class="headerlink" href="#create-a-stack-by-using-a-resource-group" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="creating-a-stack-by-using-a-resource-group">
+<span id="create-stack-resource-group"></span><h3>Creating a stack by using a resource group<a class="headerlink" href="#creating-a-stack-by-using-a-resource-group" title="Permalink to this headline">¶</a></h3>
 <p>Assume that you would like to create a cloud load balancer to use with
 some cloud servers. You begin working on this task by creating a resource
 group to hold the servers. The advantage of this technique is that you
@@ -1348,7 +1343,7 @@ status <cite>CREATE_IN_PROGRESS</cite>:</p>
 </tr>
 </tbody>
 </table>
-<p>After a couple of minutes, you can issue the list stacks (<a class="reference internal" href="#list-stacks"><span>List stacks</span></a>)
+<p>After a couple of minutes, you can issue the list stacks (<a class="reference internal" href="#list-stacks"><span>Listing stacks</span></a>)
 to confirm that your stack is now created:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1402,8 +1397,8 @@ Via: 1.0 Repose (Repose/2.13.0)
 the id <cite>e7b67698-3929-43af-8e59-9652d00b7250</cite>.</p>
 </div>
 </div>
-<div class="section" id="update-a-stack-with-a-load-balancer">
-<span id="update-stack-lb"></span><h3>Update a stack with a load balancer<a class="headerlink" href="#update-a-stack-with-a-load-balancer" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="updating-a-stack-with-a-load-balancer">
+<span id="update-stack-lb"></span><h3>Updating a stack with a load balancer<a class="headerlink" href="#updating-a-stack-with-a-load-balancer" title="Permalink to this headline">¶</a></h3>
 <p>In this section you update your stack by adding a load balancer
 to use with the two servers.</p>
 <blockquote>
@@ -1476,7 +1471,7 @@ the <cite>get_attr</cite> intrinsic function, passing it the name of the
 resource group (<cite>web_nodes</cite>) and the IP address for each
 server resource (<cite>accessIPv4</cite>), as defined in the resource group.
 These back-end nodes are the servers that you created in
-<a class="reference internal" href="#create-stack-resource-group"><span>Create a stack by using a resource group</span></a>. Each node uses port 80, and all
+<a class="reference internal" href="#create-stack-resource-group"><span>Creating a stack by using a resource group</span></a>. Each node uses port 80, and all
 nodes are enabled.</li>
 <li>The load balancer protocol is HTTP and the service is defined on port 80.</li>
 <li>One public IPV4 virtual IP address should be added for the load balancer.</li>
@@ -1697,10 +1692,10 @@ https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/stacks/Servers
 </div>
 </div>
 </div>
-<div class="section" id="delete-a-stack-with-a-load-balancer">
-<span id="delete-stack-lb"></span><h3>Delete a stack with a load balancer<a class="headerlink" href="#delete-a-stack-with-a-load-balancer" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="deleting-a-stack-with-a-load-balancer">
+<span id="delete-stack-lb"></span><h3>Deleting a stack with a load balancer<a class="headerlink" href="#deleting-a-stack-with-a-load-balancer" title="Permalink to this headline">¶</a></h3>
 <p>When you are finished using your stack, delete it by using the commands
-shown in <a class="reference internal" href="#delete-stack"><span>Delete a stack</span></a>. Be sure to adjust the stack name
+shown in <a class="reference internal" href="#delete-stack"><span>Deleting a stack</span></a>. Be sure to adjust the stack name
 (and for cURL, the <cite>stack_id</cite>) as necessary to reflect the
 new <cite>Servers-With-LB-Stack</cite> that you are deleting.</p>
 <p>This concludes the Getting Started exercises.</p>
@@ -1783,8 +1778,8 @@ credentials to the following Rackspace Cloud Identity API service endpoint:</p>
 <p>Use one of the following service access/endpoint to access the Rackspace Cloud Orchestration service:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="30%" />
-<col width="70%" />
+<col width="28%" />
+<col width="72%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Region</th>
@@ -1793,37 +1788,34 @@ credentials to the following Rackspace Cloud Identity API service endpoint:</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Chicago (ORD)</td>
-<td><a class="reference external" href="https://ord.orchestration.api.rackspacecloud.com/v1/1234/">https://ord.orchestration.api.rackspacecloud.com/v1/1234/</a></td>
+<td><a class="reference external" href="https://ord.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/">https://ord.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/</a></td>
 </tr>
 <tr class="row-odd"><td>Dallas/Ft. Worth (DFW)</td>
-<td><a class="reference external" href="https://dfw.orchestration.api.rackspacecloud.com/v1/1234/">https://dfw.orchestration.api.rackspacecloud.com/v1/1234/</a></td>
+<td><a class="reference external" href="https://dfw.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/">https://dfw.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/</a></td>
 </tr>
 <tr class="row-even"><td>Northern Virginia (IAD)</td>
-<td><a class="reference external" href="https://iad.orchestration.api.rackspacecloud.com/v1/1234/">https://iad.orchestration.api.rackspacecloud.com/v1/1234/</a></td>
+<td><a class="reference external" href="https://iad.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/">https://iad.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/</a></td>
 </tr>
 <tr class="row-odd"><td>London (LON)</td>
-<td><a class="reference external" href="https://lon.orchestration.api.rackspacecloud.com/v1/1234/">https://lon.orchestration.api.rackspacecloud.com/v1/1234/</a></td>
+<td><a class="reference external" href="https://lon.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/">https://lon.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/</a></td>
 </tr>
 <tr class="row-even"><td>Sydney (SYD)</td>
-<td><a class="reference external" href="https://syd.orchestration.api.rackspacecloud.com/v1/1234/">https://syd.orchestration.api.rackspacecloud.com/v1/1234/</a></td>
+<td><a class="reference external" href="https://syd.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/">https://syd.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/</a></td>
 </tr>
 <tr class="row-odd"><td>Hong Kong (HKG)</td>
-<td><a class="reference external" href="https://hkg.orchestration.api.rackspacecloud.com/v1/1234/">https://hkg.orchestration.api.rackspacecloud.com/v1/1234/</a></td>
+<td><a class="reference external" href="https://hkg.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/">https://hkg.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/</a></td>
 </tr>
 </tbody>
 </table>
+<p>Replace the <code class="docutils literal"><span class="pre">$TENANT_ID</span></code> with your Rackspace Cloud account number.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The service catalog returned in the auth response specifies the correct
-service access endpoint for your account to use for accessing Orchestration. Use
-the service name (cloudOrchestration) to locate the correct endpoint in the
-service catalog. For an example of the service catalog, see the
-<a class="reference internal" href="index.html#review-auth-resp"><span>authentication response example</span></a>.</p>
+<p class="last">You can find the complete URI to access the Cloud Orchestration API that includes
+your account number in the service catalog returned in the
+<a class="reference internal" href="index.html#review-auth-resp"><span>authentication response</span></a>. Search
+the catalog for the service name, <code class="docutils literal"><span class="pre">cloudOrchestration</span></code>. Then copy the URI from
+the <em>publicURL</em> field included in the service information.</p>
 </div>
-<p>Replace the sample account ID number, <code class="docutils literal"><span class="pre">1234</span></code>, with your Rackspace Cloud account number.</p>
-<p>You can find the account number after the final &#8216;/&#8217; in the
-<code class="docutils literal"><span class="pre">publicURL</span></code> field found in the Service catalog returned in the authentication response. For an
-example of the service catalog, see the authentication response example.</p>
 </div>
 <span id="document-general-api-info/contract-version"></span><div class="section" id="contract-version">
 <h3>Contract version<a class="headerlink" href="#contract-version" title="Permalink to this headline">¶</a></h3>
@@ -6396,8 +6388,8 @@ service for use with the Rackspace Public Cloud.</li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-getting-started/prerequisites-for-using-api">Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#get-your-credentials">Get your credentials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-getting-started/send-request-ovw">Send API requests</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="index.html#using-curl">Using cURL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#using-the-heat-client">Using the heat client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#using-curl">Using cURL</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-getting-started/authenticate">Authenticate</a><ul>
@@ -6405,14 +6397,14 @@ service for use with the Rackspace Public Cloud.</li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#authenticating-by-using-curl">Authenticating by using cURL</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#document-getting-started/using-cloud-orchestration">Using Cloud Orchestration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="index.html#create-a-simple-stack-for-a-cloud-server">Create a simple stack for a cloud server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#list-stacks">List stacks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#show-stack-details">Show stack details</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#delete-a-stack">Delete a stack</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#create-a-stack-by-using-a-resource-group">Create a stack by using a resource group</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#update-a-stack-with-a-load-balancer">Update a stack with a load balancer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#delete-a-stack-with-a-load-balancer">Delete a stack with a load balancer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-getting-started/using-cloud-orchestration">Create and manage stacks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#creating-a-simple-stack-for-a-cloud-server">Creating a simple stack for a cloud server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#listing-stacks">Listing stacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#showing-stack-details">Showing stack details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#deleting-a-stack">Deleting a stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#creating-a-stack-by-using-a-resource-group">Creating a stack by using a resource group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#updating-a-stack-with-a-load-balancer">Updating a stack with a load balancer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#deleting-a-stack-with-a-load-balancer">Deleting a stack with a load balancer</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-developer-guide"><strong>Developer Guide</strong></a></li>
