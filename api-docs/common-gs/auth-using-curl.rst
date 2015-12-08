@@ -155,7 +155,7 @@ To reference the value in an API request, prefix the variable name with a $, for
    
 .. note::
 
-   This guide uses the v1 DFW endpoint for the publicURL value.
+   This guide uses the v1 ORD endpoint for the publicURL value.
 
 
 

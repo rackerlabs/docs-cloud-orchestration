@@ -95,9 +95,10 @@ not require a request body.
 .. code::
 
       curl -s \
-      -H "X-Auth-Token: $OS_AUTH_TOKEN" \
+      -H "X-Auth-Token: $AUTH_TOKEN" \
+      -H "X-Project-Id: $TENANT_ID" \
       -H "Content-Type: application/json" \
-      https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/stacks/Single-Server-Stack/stack_id | python -m json.tool
+      $API_ENDPOINT/stacks/Single-Server-Stack/stack_id | python -m json.tool
 
 Remember to replace the following example values with their actual values:
 

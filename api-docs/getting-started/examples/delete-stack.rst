@@ -21,11 +21,14 @@ command:
 
 The command returns the following information for the stack:
 
-+----------+---------------------+--------------------+----------------------+
-| id       | stack_name          | stack_status       | creation_time        |
-+----------+---------------------+--------------------+----------------------+
-| bd...2d  | Single-Server-Stack | DELETE_IN_PROGRESS | 2014-01-23T19:41:05Z |
-+----------+---------------------+--------------------+----------------------+
+.. code::
+
+   +--------------------------------------+---------------------+----------------===-+----------------------+
+   | id                                   | stack_name          | stack_status       | creation_time        |
+   +--------------------------------------+---------------------+--------------------+----------------------+
+   | 3bd2c230-b02a-45d8-9f16-88c9a9f64d2d | Single-Server-Stack | DELETE_IN_PROGRESS | 2014-01-23T19:41:05Z |
+   +--------------------------------------+---------------------+--------------------+----------------------+
+
 
 The stack_status value shows that the stack is in the process of being
 deleted. After a minute or so, you can execute the list stacks operation

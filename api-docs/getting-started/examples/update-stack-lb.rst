@@ -147,11 +147,14 @@ Issue the following command:
 The command returns the information about the stack, including its
 status `UPDATE_IN_PROGRESS`:
 
-+---------+-----------------------+--------------------+----------------------+
-| id      | stack_name            | stack_status       | creation_time        |
-+---------+-----------------------+--------------------+----------------------+
-| e7...50 | Servers-With-LB-Stack | UPDATE_IN_PROGRESS | 2014-01-28T18:00:27Z |
-+---------+-----------------------+--------------------+----------------------+
+.. code::
+
+   +--------------------------------------+-----------------------+--------------------+----------------------+
+   | id                                   | stack_name            | stack_status       | creation_time        |
+   +--------------------------------------+-----------------------+--------------------+----------------------+
+   | e7b67698-3929-43af-8e59-9652d00b7250 | Servers-With-LB-Stack | UPDATE_IN_PROGRESS | 2014-01-28T18:00:27Z |
+   +--------------------------------------+-----------------------+--------------------+----------------------+
+
 
 Wait a couple of minutes and then issue the following command:
 
@@ -226,7 +229,7 @@ respective values:
 
 .. code::
 
-     curl -i -X PUT -H  'Accept: application/json' -H  'Content-Type: application/json' -H  "X-Auth-Token: $OS_AUTH_TOKEN" -d \
+     curl -i -X PUT -H  "Accept: application/json" -H  "Content-Type: application/json" -H  "X-Auth-Token: $AUTH_TOKEN" -H "X-Project-Id: $TENANT_ID" -d \
      '{
        "stack_name": "Servers-With-LB-Stack",
        "disable_rollback": true,
@@ -234,7 +237,7 @@ respective values:
        "template": "heat_template_version: 2014-10-16\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 cloud servers\n  and a cloud load balancer.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB General Purpose v1\n          image: CentOS 6 (PV)\n          name: LB-Compute Web Nodes  \n\n  lb:\n    type: Rackspace::Cloud::LoadBalancer\n    properties:\n      name: LB-Compute load balancer\n      nodes:\n      - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the\n                                                       # wiring magic happens\n        port: 80\n        condition: ENABLED\n      healthMonitor:\n        attemptsBeforeDeactivation: 3\n        delay: 10\n        timeout: 120\n        type: HTTP\n        path: \"/\"\n        statusRegex: \".\"\n        bodyRegex: \".\"\n      protocol: HTTP\n      port: 80\n      virtualIps:\n      - type: PUBLIC\n        ipVersion: IPV4\n\noutputs:\n  lb_public_ip:\n    description: The public IP address of the load balancer\n    value: { get_attr: [lb, PublicIp]}  \n\n",
        "timeout_mins": 60
      }' \
-     https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/stacks/Servers-With-LB-Stack/stack_id
+     $API_ENDPOINT/stacks/Servers-With-LB-Stack/stack_id
 
 The following example shows the response for update stack with load
 balancer:
@@ -272,9 +275,10 @@ values:
 .. code::
 
      curl -s \
-     -H "X-Auth-Token: $OS_AUTH_TOKEN" \
+     -H "X-Auth-Token: $AUTH_TOKEN" \
+     -H "X-Project-Id: $TENANT_ID" \
      -H "Content-Type: application/json" \
-     https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/stacks/Servers-With-LB-Stack/stack_id | python -m json.tool
+     $API_ENDPOINT/stacks/Servers-With-LB-Stack/stack_id | python -m json.tool
 
 The following example shows the response:
 

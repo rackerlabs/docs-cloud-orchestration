@@ -7,12 +7,12 @@ and manage stacks by using Cloud Orchestration API operations.
 
 You will perform the following tasks:
 
-* Create a stack to deploy a Cloud Server
-* List your stacks
-* List the stack details for the Cloud Server stack
-* Delete a stack
-* Create a stack using a resource group
-* Update your stack by adding a Load Balancer to manage traffic
+* Creating a stack to deploy a Cloud Server
+* Listing your stacks
+* Listing the stack details for the Cloud Server stack
+* Deleting a stack
+* Creating a stack using a resource group
+* Updating your stack by adding a Load Balancer to manage traffic
 
 
 .. note::

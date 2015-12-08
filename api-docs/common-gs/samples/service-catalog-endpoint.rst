@@ -1,40 +1,33 @@
 .. code-block:: json
 
           {
-               "name": "cloudOrchestration",
-               "endpoints": [
-                   {
-                       "region": "IAD",
-                       "tenantId": "123456",
-                       "publicURL": "https://iad.orchestration.api.rackspacecloud.com/v1.0/123456",
-                       "versionInfo": "httpis://iad.orchestration.api.rackspacecloud.com/v1.0",
-                       "versionList": "https://iad.orchestration.api.rackspacecloud.com/",
-                       "versionId": "1"
-                   },
-                   {
-                       "region": "DFW",
-                       "tenantId": "123456",
-                       "publicURL": "https://dfw.orchestration.api.rackspacecloud.com/v1.0/123456",
-                       "versionInfo": "https://dfw.orchestration.api.rackspacecloud.com/v1.0",
-                       "versionList": "https://dfw.orchestration.api.rackspacecloud.com/",
-                       "versionId": "1"
-                   },
-                   {
-                       "region": "IAD",
-                       "tenantId": "123456",
-                       "publicURL": "https://iad.orchestration.api.rackspacecloud.com/v2/123456",
-                       "versionInfo": "https://iad.orchestration.api.rackspacecloud.com/v2",
-                       "versionList": "https://iad.orchestration.api.rackspacecloud.com/",
-                       "versionId": "2"
-                   },
-                   {
-                       "region": "DFW",
-                       "tenantId": "123456",
-                       "publicURL": "https://dfw.orchestration.api.rackspacecloud.com/v2/123456",
-                       "versionInfo": "https://dfw.orchestration.api.rackspacecloud.com/v2",
-                       "versionList": "https://dfw.orchestration.api.rackspacecloud.com/",
-                       "versionId": "2"
-                   }
-               ],
-               "type": "rax:orchestration"
-           },
+                "endpoints": [
+                    {
+                        "publicURL": "https://hkg.orchestration.api.rackspacecloud.com/v1/123456",
+                        "region": "HKG",
+                        "tenantId": "123456"
+                    },
+                    {
+                        "publicURL": "https://dfw.orchestration.api.rackspacecloud.com/v1/123456",
+                        "region": "DFW",
+                        "tenantId": "123456"
+                    },
+                    {
+                        "publicURL": "https://ord.orchestration.api.rackspacecloud.com/v1/123456",
+                        "region": "ORD",
+                        "tenantId": "123456"
+                    },
+                    {
+                        "publicURL": "https://iad.orchestration.api.rackspacecloud.com/v1/123456",
+                        "region": "IAD",
+                        "tenantId": "123456"
+                    },
+                    {
+                        "publicURL": "https://syd.orchestration.api.rackspacecloud.com/v1/123456",
+                        "region": "SYD",
+                        "tenantId": "123456"
+                    }
+                ],
+                "name": "cloudOrchestration",
+                "type": "orchestration"
+            },

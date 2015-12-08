@@ -49,9 +49,9 @@ It has CentOS 6 installed, and is called Single Server Stack.
 
      .. code::
 
-          curl -i -X GET -H 'X-Auth-Token: xxxxxx' \
-          -H 'Content-Type: application/json' \
-          -H 'Accept: application/json'  https://dfw.orchestration.rackspacecloud.com/v1/<tenant_id>/resource_types
+          curl -i -X GET -H "X-Auth-Token: $AUTH_TOKEN" -H "X-Project-Id: $TENANT_ID" \
+          -H "Content-Type: application/json" \
+          -H "Accept: application/json"  $API_ENDPOINT/resource_types
 
 This template also has an ``outputs`` section. Outputs are used to provide
 important information to users, such as the IP address for the
@@ -83,12 +83,13 @@ You should get a list of your stacks, including one with a stack_name of
 `Single-Server-Stack` with a stack_status of `CREATE_IN_PROGRESS`.
 For example:
 
+.. code::
 
-+-----------+---------------------+--------------------+----------------------+
-| id        | stack_name          | stack_status       | creation_time        |
-+-----------+---------------------+--------------------+----------------------+
-| 3b..82d   | Single-Server-Stack | CREATE_IN_PROGRESS | 2014-01-24T20:12:47Z |
-+-----------+---------------------+--------------------+----------------------+
+   +--------------------------------------+---------------------+--------------------+----------------------+
+   | id                                   | stack_name          | stack_status       | creation_time        |
+   +--------------------------------------+---------------------+--------------------+----------------------+
+   | 3bd2c230-b02a-45d8-9f16-88c9a9f64d2d | Single-Server-Stack | CREATE_IN_PROGRESS | 2014-01-24T20:12:47Z |
+   +--------------------------------------+---------------------+--------------------+----------------------+
 
 .. _create-stack-curl:
 
@@ -101,9 +102,10 @@ shown in the following example:
 .. code::
 
      curl -i -X POST \
-     -H 'Accept: application/json' \
-     -H 'Content-Type: application/json'  \
-     -H  "X-Auth-Token: $OS_AUTH_TOKEN" -d \
+     -H "Accept: application/json" \
+     -H "Content-Type: application/json"  \
+     -H "X-Auth-Token: $AUTH_TOKEN" \
+     -H "X-Project-Id: $TENANT_ID" \
         '{
            "stack_name": "Single-Server-Stack",
            "disable_rollback": true,
@@ -111,7 +113,7 @@ shown in the following example:
            "template": "heat_template_version: 2014-10-16\n \nresources:\n  compute_instance:  \n    type: \"OS::Nova::Server\"\n    properties:\n      flavor: 1 GB General Purpose v1\n      image: CentOS 6 (PV)\n      name: Single Server Stack\n       \noutputs:\n  public_ip:\n    description: public IP address of the deployed compute instance\n    value: { get_attr: [compute_instance, accessIPv4] }      \n\n\n",
            "timeout_mins": 60
          }' \
-         https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/stacks
+         $API_ENDPOINT/stacks
 
 We recommend that you produce the value for the template attribute by
 executing the following heat client command:

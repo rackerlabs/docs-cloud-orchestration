@@ -76,20 +76,24 @@ file that you just created:
 The command returns the information about the stack, including its
 status `CREATE_IN_PROGRESS`:
 
-+---------+-----------------------+--------------------+----------------------+
-| id      | stack_name            | stack_status       | creation_time        |
-+---------+-----------------------+--------------------+----------------------+
-| e7...50 | Servers-With-LB-Stack | CREATE_IN_PROGRESS | 2014-01-28T18:00:27Z |
-+---------+-----------------------+--------------------+----------------------+
+.. code::
+
+   +--------------------------------------+-----------------------+--------------------+----------------------+
+   | id                                   | stack_name            | stack_status       | creation_time        |
+   +--------------------------------------+-----------------------+--------------------+----------------------+
+   | e7b67698-3929-43af-8e59-9652d00b7250 | Servers-With-LB-Stack | CREATE_IN_PROGRESS | 2014-01-28T18:00:27Z |
+   +--------------------------------------+-----------------------+--------------------+----------------------+
 
 After a couple of minutes, you can issue the list stacks (:ref:`list-stacks`)
 to confirm that your stack is now created:
 
-+----------+-----------------------+-----------------+----------------------+
-| id       | stack_name            | stack_status    | creation_time        |
-+----------+-----------------------+-----------------+----------------------+
-| e7...50  | Servers-With-LB-Stack | CREATE_COMPLETE | 2014-01-28T18:00:27Z |
-+----------+-----------------------+--------------------+-------------------+
+.. code::
+
+   +--------------------------------------+-----------------------+-----------------+----------------------+
+   | id                                   | stack_name            | stack_status    | creation_time        |
+   +--------------------------------------+-----------------------+-----------------+----------------------+
+   | e7b67698-3929-43af-8e59-9652d00b7250 | Servers-With-LB-Stack | CREATE_COMPLETE | 2014-01-28T18:00:27Z |
+   +--------------------------------------+-----------------------+-----------------+----------------------+
 
 .. _create-stack-rg-curl:
 
@@ -100,7 +104,7 @@ Issue the following command:
 
 .. code::
 
-     curl -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -H "X-Auth-Token: $OS_AUTH_TOKEN" -d \
+     curl -i -X POST -H "Accept: application/json" -H "Content-Type: application/json" -H "X-Auth-Token: $AUTH_TOKEN" -H "X-Project-Id: $TENANT_ID" -d \
      '{
        "stack_name": "Servers-With-LB-Stack",
        "disable_rollback": true,
@@ -108,7 +112,7 @@ Issue the following command:
        "template": "heat_template_version: 2014-10-16\n\ndescription: |   \n  Heat Orchestration Template that spins up a\n  resource group with 2 cloud servers.\n\nresources:\n  web_nodes:\n    type: OS::Heat::ResourceGroup\n    properties:\n      count: 2\n      resource_def:\n        type: OS::Nova::Server\n        properties:\n          flavor: 1 GB General Purpose v1\n          image: CentOS 6 (PV)\n          name: LB-Compute Web Nodes  \n\n\n",
        "timeout_mins": 60
        }' \
-       https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/stacks
+       $API_ENDPOINT/stacks
 
 The following example shows the response:
 

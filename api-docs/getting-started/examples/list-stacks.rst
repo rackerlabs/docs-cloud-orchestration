@@ -21,11 +21,14 @@ Issue the following command:
 The command returns the `id`, `stack_name`, `stack_status`, and
 `creation_time` for each of your stacks, as shown in the following example:
 
-+----------+---------------------+-----------------+----------------------+
-| id       | stack_name          | stack_status    | creation_time        |
-+----------+---------------------+-----------------+----------------------+
-| bd...2d  | Single-Server-Stack | CREATE_COMPLETE | 2014-01-23T19:41:05Z |
-+----------+---------------------+-----------------+----------------------+
+.. code::
+
+   +--------------------------------------+---------------------+-----------------+----------------------+
+   | id                                   | stack_name          | stack_status    | creation_time        |
+   +--------------------------------------+---------------------+-----------------+----------------------+
+   | 3bd2c230-b02a-45d8-9f16-88c9a9f64d2d | Single-Server-Stack | CREATE_COMPLETE | 2014-01-23T19:41:05Z |
+   +--------------------------------------+---------------------+-----------------+----------------------+
+
 
 In this case, you have just the `Single-Server-Stack` and its
 `stack_status` is `CREATE_COMPLETE`.
@@ -46,9 +49,9 @@ Execute the cURL request for list stacks:
 .. code::
 
      curl -s \
-     -H "X-Auth-Token: $OS_AUTH_TOKEN" \
-     -H "Content-Type: application/json" \
-     https://ord.orchestration.api.rackspacecloud.com/v1/$OS_TENANT_ID/stacks | python -m json.tool
+     -H "X-Auth-Token: $AUTH_TOKEN" \
+     -H "X-Project-Id: $TENANT_ID" \
+     $API_ENDPOINT/stacks | python -m json.tool
 
 The following example shows the response:
 
