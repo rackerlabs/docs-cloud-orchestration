@@ -17,20 +17,20 @@ Use one of the following service access/endpoint to access the Rackspace Cloud O
 +-------------------------+-----------------------------------------------------------------+
 | Region                  | Endpoint                                                        |
 +=========================+=================================================================+
-| Chicago (ORD)           | https://ord.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/ |
+| Chicago (ORD)           | https://ord.orchestration.api.rackspacecloud.com/v1/123456/     |
 +-------------------------+-----------------------------------------------------------------+
-| Dallas/Ft. Worth (DFW)  | https://dfw.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/ |
+| Dallas/Ft. Worth (DFW)  | https://dfw.orchestration.api.rackspacecloud.com/v1/123456/     |
 +-------------------------+-----------------------------------------------------------------+
-| Northern Virginia (IAD) | https://iad.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/ |
+| Northern Virginia (IAD) | https://iad.orchestration.api.rackspacecloud.com/v1/123456/     |
 +-------------------------+-----------------------------------------------------------------+
-| London (LON)            | https://lon.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/ |
+| London (LON)            | https://lon.orchestration.api.rackspacecloud.com/v1/123456/     |  
 +-------------------------+-----------------------------------------------------------------+
-| Sydney (SYD)            | https://syd.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/ |
+| Sydney (SYD)            | https://syd.orchestration.api.rackspacecloud.com/v1/123456/     |
 +-------------------------+-----------------------------------------------------------------+
-| Hong Kong (HKG)         | https://hkg.orchestration.api.rackspacecloud.com/v1/$TENANT_ID/ |
+| Hong Kong (HKG)         | https://hkg.orchestration.api.rackspacecloud.com/v1/123456/     |
 +-------------------------+-----------------------------------------------------------------+
 
-Replace the ``$TENANT_ID`` with your Rackspace Cloud account number. 
+Replace ``123456`` with your Rackspace Cloud account number. 
 
 ..  note:: 
 
