@@ -38,8 +38,9 @@ to use with the two servers.
          properties:
            name: LB-Compute load balancer
            nodes:
-           - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where the
-                                                            # wiring magic happens
+           - addresses: { get_attr: [web_nodes, accessIPv4]} # This is where
+                                                             # wiring magic
+                                                             # happens
              port: 80
              condition: ENABLED
            healthMonitor:
@@ -146,11 +147,11 @@ Issue the following command:
 The command returns the information about the stack, including its
 status `UPDATE_IN_PROGRESS`:
 
-+--------------------------------------+-----------------------+--------------------+----------------------+
-| id                                   | stack_name            | stack_status       | creation_time        |
-+--------------------------------------+-----------------------+--------------------+----------------------+
-| e7b67698-3929-43af-8e59-9652d00b7250 | Servers-With-LB-Stack | UPDATE_IN_PROGRESS | 2014-01-28T18:00:27Z |
-+--------------------------------------+-----------------------+--------------------+----------------------+
++---------+-----------------------+--------------------+----------------------+
+| id      | stack_name            | stack_status       | creation_time        |
++---------+-----------------------+--------------------+----------------------+
+| e7...50 | Servers-With-LB-Stack | UPDATE_IN_PROGRESS | 2014-01-28T18:00:27Z |
++---------+-----------------------+--------------------+----------------------+
 
 Wait a couple of minutes and then issue the following command:
 
@@ -164,41 +165,43 @@ status `UPDATE_COMPLETE`:
 
 .. code::
 
-   +----------------------+------------------------------------------------------------------------------------------------------------------------------+
-   | Property             | Value                                                                                                                        |
-   +----------------------+------------------------------------------------------------------------------------------------------------------------------+
-   | capabilities         | []                                                                                                                           |
-   | creation_time        | 2014-01-28T18:00:27Z                                                                                                         |
-   | description          | Heat Orchestration Template that spins up a resource                                                                         |
-   |                      | group with 2 cloud servers and a Cloud Load                                                                                  |
-   |                      | Balancer.                                                                                                                    |
-   | disable_rollback     | True                                                                                                                         |
-   | id                   | e7b67698-3929-43af-8e59-9652d00b7250                                                                                         |
-   | links                | http://ord.orchestration.api.rackspacecloud.com/v1/1234/stacks/Servers-With-LB-Stack/e7b67698-3929-43af-8e59-9652d00b7250    |
-   | notification_topics  | []                                                                                                                           |
-   |                      |                                                                                                                              |
-   | outputs              | [                                                                                                                            |
-   |                      |   {                                                                                                                          |
-   |                      |     "output_value": "162.242.141.48",                                                                                        |
-   |                      |     "description": "The public IP address of the load balancer",                                                             |
-   |                      |     "output_key": "lb_public_ip"                                                                                             |
-   |                      |   }                                                                                                                          |
-   |                      | ]                                                                                                                            |
-   |                      |                                                                                                                              |
-   | parameters           | {                                                                                                                            |
-   |                      |   "OS::stack_name": "Servers-With-LB-Stack",                                                                                 |
-   |                      |   "OS::stack_id": "e7b67698-3929-43af-8e59-9652d00b7250"                                                                     |
-   |                      | }                                                                                                                            |
-   |                      |                                                                                                                              |
-   | stack_name           | Servers-With-LB-Stack                                                                                                        |
-   | stack_status         | UPDATE_COMPLETE                                                                                                              |
-   | stack_status_reason  | Stack successfully updated                                                                                                   |
-   | template_description | Heat Orchestration Template that spins up a resource                                                                         |
-   |                      | group with 2 cloud servers and a Cloud Load                                                                                  |
-   |                      | Balancer.                                                                                                                    |
-   | timeout_mins         | 60                                                                                                                           |
-   | updated_time         | 2014-01-28T21:34:47Z                                                                                                         |
-   +----------------------+------------------------------------------------------------------------------------------------------------------------------+
+   +---------------------+----------------------------------------------------+
+   | Property             | Value                                             |
+   +---------------------+----------------------------------------------------+
+   | capabilities         | []                                                |
+   | creation_time        | 2014-01-28T18:00:27Z                              |
+   | description          | Heat Orchestration Template that spins up a       |
+   |                      | resource group with 2 cloud servers and a Cloud   |
+   |                      | Load Balancer                                     |
+   | disable_rollback     | True                                              |
+   | id                   | e7b67698-3929-43af-8e59-9652d00b7250              |
+   | links                | http://ord.orchestration.api.rackspacecloud.com/  |
+   |                      | v1/1234/stacks/Single-Server-Stack/3bd...d2d      |
+   | notification_topics  | []                                                |
+   |                      |                                                   |
+   | outputs              | [                                                 |
+   |                      |   {                                               |
+   |                      |     "output_value": "162.242.141.48",             |
+   |                      |     "description": "The public IP address of the  |
+   |                      |                     load balancer",               |
+   |                      |     "output_key": "lb_public_ip"                  |
+   |                      |   }                                               |
+   |                      | ]                                                 |
+   |                      |                                                   |
+   | parameters           | {                                                 |
+   |                      |   "OS::stack_name": "Servers-With-LB-Stack",      |
+   |                      |   "OS::stack_id": "e7b67698-...8e59-9652d00b7250" |
+   |                      | }                                                 |
+   |                      |                                                   |
+   | stack_name           | Servers-With-LB-Stack                             |
+   | stack_status         | UPDATE_COMPLETE                                   |
+   | stack_status_reason  | Stack successfully updated                        |
+   | template_description | Heat Orchestration Template that spins up a       |
+   |                      | resource group with 2 cloud servers and a Cloud   |
+   |                      | Load Balancer                                     |
+   | timeout_mins         | 60                                                |
+   | updated_time         | 2014-01-28T21:34:47Z                              |
+   +---------------------+----------------------------------------------------+
 
 The `outputs` property (set in the `outputs` section of the template),
 shows that the public IP address of the new load balancer is 162.242.141.48.
@@ -206,7 +209,7 @@ shows that the public IP address of the new load balancer is 162.242.141.48.
 .. _update-stack-curl:
 
 Update a stack with a load balancer by using cURL
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Update the stack by executing the following request:
 
