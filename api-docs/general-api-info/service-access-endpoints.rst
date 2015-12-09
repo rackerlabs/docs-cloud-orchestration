@@ -37,5 +37,5 @@ Replace ``123456`` with your Rackspace Cloud account number.
       You can find the complete URI to access the Cloud Orchestration API that includes 
       your account number in the service catalog returned in the 
       :ref:`authentication response <review-auth-resp>`. Search 
-      the catalog for the service type, ``cloudOrchestration``. Then copy the URI from 
+      the catalog for the service type, ``orchestration``. Then copy the URI from 
       the *publicURL* field included in the service information. 
