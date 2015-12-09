@@ -1,5 +1,6 @@
 target
 doctrees/
+rst/
 api-docs/_build/*
 .DS_store
 

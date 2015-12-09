@@ -65,7 +65,7 @@ in the *Cloud Orchestration Developer Guide*.
    :maxdepth: 2
 
    Cloud Orchestration 1.0 <self>
-   API Status <http://www.rackspacestatus.com/>
+   API Status <https://status.rackspace.com/>
    About the API <overview/index>
    getting-started
    getting-started/index
