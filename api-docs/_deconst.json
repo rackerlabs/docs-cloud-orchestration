@@ -1,7 +1,4 @@
 {
-  "contentIDBase": "https://github.com/rackerlabs/docs-cloud-orchestration/"
-}
-{
   "contentIDBase": "https://github.com/rackerlabs/docs-cloud-orchestration/",
   "githubUrl": "https://github.com/rackerlabs/docs-cloud-orchestration/",
   "githubBranch": "master",
