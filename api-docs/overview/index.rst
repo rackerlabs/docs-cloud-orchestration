@@ -15,5 +15,4 @@ Cloud Orchestration Developer Guide.
    intended-audience
    doc-change-history
    additional-resources
-   pricing-service-level
-   
+
