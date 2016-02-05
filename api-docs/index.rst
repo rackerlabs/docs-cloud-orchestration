@@ -75,3 +75,4 @@ in the *Cloud Orchestration Developer Guide*.
    api-reference
    api-operations/index
    release-notes
+   copyright
