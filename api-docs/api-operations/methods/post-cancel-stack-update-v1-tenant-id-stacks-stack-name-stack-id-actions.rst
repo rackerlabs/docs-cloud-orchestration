@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _post-cancel-stack-update-v1-tenant-id-stacks-stack-name-stack-id-actions:
 
 Cancel stack update

@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _get-get-stack-template-v1-tenant-id-stacks-stack-name-stack-id-template:
 
 Get stack template

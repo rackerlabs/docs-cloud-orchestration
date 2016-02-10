@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _get-show-deployment-details-v1-tenant-id-software-deployments-deployment-id:
 
 Show deployment details

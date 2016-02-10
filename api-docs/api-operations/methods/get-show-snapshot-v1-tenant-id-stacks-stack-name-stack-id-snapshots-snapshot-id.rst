@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _get-show-snapshot-v1-tenant-id-stacks-stack-name-stack-id-snapshots-snapshot-id:
 
 Show snapshot

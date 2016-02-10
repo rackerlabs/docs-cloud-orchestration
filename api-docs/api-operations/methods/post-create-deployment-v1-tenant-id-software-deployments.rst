@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _post-create-deployment-v1-tenant-id-software-deployments:
 
 Create deployment

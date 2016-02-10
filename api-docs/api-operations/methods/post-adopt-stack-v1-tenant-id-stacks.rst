@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _post-adopt-stack-v1-tenant-id-stacks:
 
 Adopt stack
