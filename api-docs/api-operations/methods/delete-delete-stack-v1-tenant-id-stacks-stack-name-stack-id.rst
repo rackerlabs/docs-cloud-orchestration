@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _delete-delete-stack-v1-tenant-id-stacks-stack-name-stack-id:
 
 Delete stack

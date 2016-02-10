@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _get-show-orchestration-engine-status-v1-tenant-id-services:
 
 Show orchestration engine status

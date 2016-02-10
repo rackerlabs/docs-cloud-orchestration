@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _delete-abandon-stack-v1-tenant-id-stacks-stack-name-stack-id-abandon:
 
 Abandon stack

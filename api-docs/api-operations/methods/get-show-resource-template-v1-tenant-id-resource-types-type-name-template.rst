@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _get-show-resource-template-v1-tenant-id-resource-types-type-name-template:
 
 Show resource template

@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _get-show-resource-schema-v1-tenant-id-resource-types-type-name:
 
 Show resource schema

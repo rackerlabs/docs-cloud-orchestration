@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _put-update-deployment-v1-tenant-id-software-deployments-deployment-id:
 
 Update deployment

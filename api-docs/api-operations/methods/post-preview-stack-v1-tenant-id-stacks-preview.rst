@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _post-preview-stack-v1-tenant-id-stacks-preview:
 
 Preview stack

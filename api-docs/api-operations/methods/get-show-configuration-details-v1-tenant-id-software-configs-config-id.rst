@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _get-show-configuration-details-v1-tenant-id-software-configs-config-id:
 
 Show configuration details

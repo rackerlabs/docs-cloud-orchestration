@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _get-show-server-configuration-metadata-v1-tenant-id-software-deployments-metadata-server-id:
 
 Show server configuration metadata

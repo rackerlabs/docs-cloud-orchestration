@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _get-find-stack-events-v1-tenant-id-stacks-stack-name-events:
 
 Find stack events

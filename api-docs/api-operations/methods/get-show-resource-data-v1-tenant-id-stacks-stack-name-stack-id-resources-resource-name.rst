@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _get-show-resource-data-v1-tenant-id-stacks-stack-name-stack-id-resources-resource-name:
 
 Show resource data

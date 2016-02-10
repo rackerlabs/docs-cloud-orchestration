@@ -1,6 +1,4 @@
 
-.. THIS OUTPUT IS GENERATED FROM THE WADL. DO NOT EDIT.
-
 .. _post-send-a-signal-to-a-resource-v1-tenant-id-stacks-stack-name-stack-id-resources-resource-name-signal:
 
 Send a signal to a resource
