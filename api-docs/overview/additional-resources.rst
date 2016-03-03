@@ -11,7 +11,7 @@ You can download the most current versions of templates at
 https://github.com/rackspace-orchestration-templates.
 
 You can find information about resources to use in your templates at
-http://orchestration.rackspace.com/raxdox/index.html.
+https://developer.rackspace.com/docs/cloud-orchestration/v1/resources-reference/.
 
 For information about Rackspace services, refer to
 http://docs.rackspace.com.
