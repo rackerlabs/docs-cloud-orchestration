@@ -12,6 +12,6 @@ For more information about Cloud Orchestration concepts and API operations, see 
 
 .. note::
      You can also use Rackspace Cloud Orchestration from the 
-     :kc-article:`Cloud Control panel <quick-set-up-with-rackspace-cloud-orchestration>`, 
+     :how-to:`Cloud Control panel <quick-set-up-with-rackspace-cloud-orchestration>`, 
      or by using one of the language-specific 
      :rax-devdocs:`Software development kits & tools <#sdks>`. 
