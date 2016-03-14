@@ -67,4 +67,4 @@ Permissions: The user can perform product admin functions in the control panel f
 RBAC Permissions Cross-reference to Cloud Orchestration API Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-API operations for Cloud Orchestration may or may not be available to all roles. To see which operations are permitted to invoke which calls, please review `the Knowledge Center article <http://www.rackspace.com/knowledge_center/article/permissions-matrix-for-next-generation-cloud-servers>`_.
+API operations for Cloud Orchestration may or may not be available to all roles. To see which operations are permitted to invoke which calls, please review the :how-to:`Permissions Matrix for Next Generation Cloud Servers<permissions-matrix-for-next-generation-cloud-servers>`.

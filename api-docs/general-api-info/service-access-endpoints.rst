@@ -9,8 +9,9 @@ The Orchestration service is a regionalized service.
 .. tip
 
   To help you decide which regionalized endpoint to use, read about special
-  considerations for choosing a region at http://www.rackspace.com/
-  knowledge_center/article/about-regions.
+  considerations for choosing a region in the :how-to:`About regions<about-regions>` 
+  article on the Rackspace Support site. 
+
 
 Use one of the following service access/endpoint to access the Rackspace Cloud Orchestration service: 
 
