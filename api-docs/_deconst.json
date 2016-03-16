@@ -3,6 +3,6 @@
   "githubUrl": "https://github.com/rackerlabs/docs-cloud-orchestration/",
   "githubBranch": "master",
   "meta": {
-    "preferGithubIssues": false
+    "preferGithubIssues": true
   }
 }
