@@ -1,0 +1,8 @@
+
+bashate
+doc8
+flake8
+pyenchant
+sphinxcontrib-spelling
+sphinx>=1.4.1
+sphinx_rtd_theme>=0.1.9
