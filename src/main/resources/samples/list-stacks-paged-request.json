@@ -1,8 +1,0 @@
-GET /v1/622dd71147164a92bf3915f5cbdfe261/stacks?limit=2 HTTP/1.1
-Accept: application/json
-Accept-Encoding: gzip, deflate, compress
-Host: 10.0.2.15:8004
-User-Agent: HTTPie/0.7.2
-X-Auth-Token: 286dbf02498f457399ee9b3db95ce65d
-
-
