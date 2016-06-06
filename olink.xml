@@ -1,5 +1,0 @@
-<books xmlns="http://docs.rackspace.com/olink">
-  <book path="src/main/resources/orchestration-devguide.xml"/>
-  <book path="src/main/resources/orchestration-getting-started.xml"/>
-  <book path="src/main/resources/orchestration-templates-devguide.xml"/>
-</books>
