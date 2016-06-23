@@ -8,7 +8,7 @@ Rackspace Cloud Orchestration API |contract version|
 
 Learn how to use the Cloud Orchestration service by using the ReST API.
 
-- :ref:`Getting Started Guide <getting-started>`
+- :ref:`Getting Started Guide <getting-started-guide>`
 - :ref:`Developer Guide <developer-guide>`
 - :ref:`API reference <api-reference>`
 - :ref:`Release Notes <release-notes>`
@@ -62,15 +62,12 @@ programmatically via the Rackspace Cloud Orchestration API as described
 in the *Cloud Orchestration Developer Guide*.
 
 .. toctree:: :hidden:
-   :maxdepth: 2
+   :maxdepth: 3
 
    Cloud Orchestration 1.0 <self>
-   API Status <https://status.rackspace.com/>
    About the API <overview/index>
-   getting-started
    getting-started/index
    developer-guide
-   concepts
    general-api-info/index
    api-reference
    api-operations/index
