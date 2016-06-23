@@ -3,11 +3,11 @@
 Creating a stack by using a resource group
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Assume that you would like to create a cloud load balancer to use with
-some cloud servers. You begin working on this task by creating a resource
-group to hold the servers. The advantage of this technique is that you
-can create the entire set of servers by creating one resource group,
-rather than specifying each server resource separately.
+Assume that you would like to create a cloud load balancer to use with some
+cloud servers. You begin working on this task by creating a resource group to
+hold the servers. The advantage of this technique is that you can create the
+entire set of servers by creating one resource group, rather than specifying
+each server resource separately.
 
 First, use your text editor to create the following template and save
 it in a file named **servers-with-lb.template**:
