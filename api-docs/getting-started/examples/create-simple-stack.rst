@@ -39,7 +39,7 @@ It has CentOS 6 installed, and is called Single Server Stack.
    * You can find the information for resources types either by looking it
      up or by using the API.
 
-   * You can look up the names for the supported attributes in the 
+   * You can look up the names for the supported attributes in the
      Supported resources reference`_ .
 
    * To find the various types of supported template resources, use the
@@ -49,9 +49,10 @@ It has CentOS 6 installed, and is called Single Server Stack.
 
      .. code::
 
-          curl -i -X GET -H "X-Auth-Token: $AUTH_TOKEN" -H "X-Project-Id: $TENANT_ID" \
-          -H "Content-Type: application/json" \
-          -H "Accept: application/json"  $API_ENDPOINT/resource_types
+          curl -i -X GET -H "X-Auth-Token: $AUTH_TOKEN" \
+               -H "X-Project-Id: $TENANT_ID" \
+               -H "Content-Type: application/json" \
+               -H "Accept: application/json"  $API_ENDPOINT/resource_types
 
 This template also has an ``outputs`` section. Outputs are used to provide
 important information to users, such as the IP address for the
@@ -60,7 +61,7 @@ Its value is set by calling the intrinsic function `get_attr`, and
 passing it the name of the cloud server resource (`compute_instance`) and
 the attribute whose value is needed (`accessIPv4`). You will see shortly how
 this public IP address is displayed to the user. You can find out more
-about intrinsic functions in the `Supported resources reference`_ . 
+about intrinsic functions in the `Supported resources reference`_ .
 
 
 .. _Supported resources reference: http://orchestration.rackspace.com/raxdox/index.html
