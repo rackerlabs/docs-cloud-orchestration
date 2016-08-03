@@ -1,19 +1,34 @@
-==========
-Pagination
-==========
+.. _paginated-collections:
 
-Pagination provides the ability to limit the size of the returned data
-in the response body as well as retrieve a specified subset of a large
-data set. Pagination has two key concepts: *limit* and *marker*.
+=====================
+Paginated collections
+=====================
 
-*  Limit is the restriction on the maximum number of items for that type
-   that can be returned.
+To reduce load on the service, retrieve operations return a maximum
+limit of 100 items at a time. If a request supplies no limit or one that
+exceeds the configured default limit, the default limit is used instead.
 
-*  Marker is the ID of the last item in the previous list returned.
+This behavior is called *pagination*. Pagination gives you the ability to
+limit the size of the returned data and to retrieve a specified subset of a
+large data set.  Pagination has two key concepts: limit and marker.
 
-   The ID is the UUID in the case of stacks. For example, a query could
-   request the next 10 stacks after the stack "1234" as follows:
-   ``?limit=10&marker=1234``. Items are displayed sorted by ID.
+* *Limit* is the restriction on the maximum number of items for that type that
+  can be returned.
+
+* *Marker* is a reference to an object's ID and is in the list of paged
+  results for a particular resource. For example, if the resource is a stack,
+  the marker is the ID (UUID) for the stack at which to begin the list of
+  the paged results.
+
+To navigate the collection, you can set the ``limit`` and ``marker``
+parameters in the URI. For example, ``?limit=10&marker=1234`` displays a
+maximum of 10 stacks in the paginated results, beginning with the
+stack whose UUID is 1234.
+
+You can also use the ``offset`` parameter, which is a count of the number
+of objects from where the paginated list is started.
+
+If a marker beyond the end of a list is given, an empty list is returned.
 
 If the content returned by a call is paginated, the response includes a
 structured link with the basic structure
@@ -22,10 +37,10 @@ that is truncated by pagination will have a *next* link, which points to
 the next item in the collection. If there are no more items, no *next*
 link is returned.
 
-Pagination applies only to GET /stacks which lists the information for all
-stacks.
+In the |apiservice|, pagination applies only to GET /stacks which lists the
+information for all stacks.
 
-See the example for a paged List Stacks call that follows.
+Following is an example of a paged List stacks API request:
 
 **Example: List Stacks Paged Request: JSON**
 
@@ -37,7 +52,6 @@ See the example for a paged List Stacks call that follows.
     Host: 10.0.2.15:8004
     User-Agent: HTTPie/0.7.2
     X-Auth-Token: 286dbf02498f457399ee9b3db95ce65d
-
 
 
 Notice that the paged request example above sets the limit to 2
@@ -96,4 +110,3 @@ element identified by the attribute ``"rel":"next"``:
             }
         ]
     }
-
