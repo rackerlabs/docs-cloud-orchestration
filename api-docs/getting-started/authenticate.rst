@@ -1,7 +1,8 @@
 .. _authenticate-to-cloud:
 
+===================================
 Authenticate to the Rackspace Cloud
--------------------------------------
+===================================
 
 Whether you use cURL, a REST client, or a command line client (CLI) to send
 requests to the |apiservice|, you need an authentication token to include in the
@@ -32,6 +33,15 @@ request to get a new one.
         authentication.
 
      - :rax-devdocs:`Manage tokens and token expiration<cloud-identity/v2/developer-guide/#manage-authentication-tokens>`
+
+To start using the API and run the examples in this section, you need the
+following items:
+
+- Rackspace Cloud account. If you don't have an account,
+  :rax-cart:`sign up <cloud>` for one.
+
+- :ref:`Command-line tool or browser client <send-api-requests>` for
+  communicating with the API service.
 
 
 .. include:: ../common-gs/auth-using-heat.rst

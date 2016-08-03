@@ -1,7 +1,8 @@
 .. _send-api-requests:
 
-Sending API requests to Cloud Orchestration
--------------------------------------------
+==============================
+Send API requests to |service|
+==============================
 
 .. contents::
    :local:
@@ -19,6 +20,7 @@ following resources:
 -  For API development, testing and workflow management in a graphical
    environment, try interacting with the API by using an application such as
    `Postman`_  or `RESTClient for Firefox`_.
+
 
 .. include:: ../common-gs/using-client.rst
 .. include:: ../common-gs/how-to-use-curl.rst

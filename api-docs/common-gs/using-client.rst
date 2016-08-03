@@ -17,7 +17,7 @@ have to install the client and set environment variables.
 
 
 Install the heat client
-^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 Install the python-heatclient using pip.
 
@@ -37,7 +37,8 @@ Install the python-heatclient using pip.
 .. _set-environment-variables:
 
 Set environment variables
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------
+
 Edit your **bash.profile** file or **.bashrc** file to add and set environment
 variables that enable the heat client to connect to your Rackspace
 Cloud account. Use nano, or a text editor of your choice, to edit the file.
@@ -73,7 +74,7 @@ The following table describes the environment variables:
 | OS_REGION_NAME        | The regional endpoint (for example, DFW) where  |
 |                       | you want to deploy the Cloud Orchestration      |
 |                       | resources. For details, see                     |
-|                       | :ref:`service-access-endpoints`.                |
+|                       | :ref:`service-access`.                          |
 +-----------------------+-------------------------------------------------+
 | OS_PASSWORD           | Your Rackspace Cloud password.                  |
 +-----------------------+-------------------------------------------------+
