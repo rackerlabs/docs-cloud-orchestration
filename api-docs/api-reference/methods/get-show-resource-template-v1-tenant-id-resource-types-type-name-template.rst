@@ -1,8 +1,8 @@
 
-.. _get-show-resource-template-v1-tenant-id-resource-types-type-name-template:
+.. _get-show-resource-template:
 
 Show resource template
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. code::
 
@@ -10,16 +10,21 @@ Show resource template
 
 Shows the template representation for a specified resource type.
 
-The returned template contains a single resource of the specified type. Each resource property is mapped to a template parameter and each resource attribute is mapped to a template output.
+The returned template contains a single resource of the specified type. Each
+resource property is mapped to a template parameter and each resource attribute
+is mapped to a template output.
 
-You can use these templates as a starting place for creating customized, template-based resources or as examples of using the particular resource in another template.
+You can use these templates as a starting place for creating customized,
+template-based resources or as examples of using the particular resource in
+another template.
 
-Use the ``template_type`` query parameter to specify the resource template type. Default type is ``cfn``. The ``hot`` template type is supported. For example:
+Use the ``template_type`` query parameter to specify the resource template
+type. Default type is ``cfn``. The ``hot`` template type is supported. For
+example:
 
- ``/v1/{tenant_id}/resource_types/{type_name}/template?template_type=cfn`` 
+ ``/v1/{tenant_id}/resource_types/{type_name}/template?template_type=cfn``
 
 This table shows the possible response codes for this operation:
-
 
 +--------------------------+-------------------------+-------------------------+
 |Response Code             |Name                     |Description              |
@@ -38,12 +43,8 @@ This table shows the possible response codes for this operation:
 |                          |                         |Request-URI.             |
 +--------------------------+-------------------------+-------------------------+
 
-
 Request
-""""""""""""""""
-
-
-
+-------
 
 This table shows the URI parameters for the request:
 
@@ -64,26 +65,10 @@ This table shows the URI parameters for the request:
 |                          |                         |supported.               |
 +--------------------------+-------------------------+-------------------------+
 
-
-
-
-
 This operation does not accept a request body.
 
-
-
-
 Response
-""""""""""""""""
-
-
-
-
-
-
-
-
-
+--------
 
 **Example Show resource template: JSON response**
 
@@ -140,8 +125,3 @@ Response
            }
        }
    }
-   
-
-
-
-
