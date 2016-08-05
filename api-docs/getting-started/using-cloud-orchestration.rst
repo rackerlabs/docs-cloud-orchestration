@@ -1,7 +1,8 @@
 .. _using-cloud-orchestration:
 
+========================
 Create and manage stacks
---------------------------------
+========================
 
 You can use the examples in the following sections to create
 and manage stacks by using Cloud Orchestration API operations.
@@ -20,7 +21,7 @@ messaging patterns, and use cases.
      variables to specify the API endpoint, Rackspace Cloud username,
      tenant ID,regional endpoint, and Rackspace Cloud password values
      for accessing the service. Make sure you
-     :ref:`configure these variables <set-environment-variables>` before
+     :ref:`configure these variables <request-using-heat-client>` before
      running the code samples.
 
 .. include:: examples/create-simple-stack.rst

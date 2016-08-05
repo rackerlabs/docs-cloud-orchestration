@@ -99,8 +99,8 @@ the following error message descriptions to determine next steps.
 
 ..  note::
        For additional information about authentication errors, see the
-       :rax-devdocs:`Identity API Reference documentation <cloud-identity/v2/
-       developer-guide/#document-api-operations/token-operations>`.
+       :rax-dev:`Identity API Reference documentation
+       <cloud-identity/v2/developer-guide/#token-operations>`.
 
 .. _configure-environment-variables:
 

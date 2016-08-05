@@ -16,11 +16,13 @@ first digit of the status code:
  - :ref:`5xx <common-dg-status-five>` (Server error)
 
 .. note::
-   -HTTP status codes are not standard across all Rackspace Cloud services.
-    The same code could have multiple status types. Read the response body
-    carefully to accurately determine the nature of the request status.
 
-   -For a more comprehensive list of HTTP status codes, refer to `RFC-7231`_.
+   - HTTP status codes are not standard across all Rackspace Cloud services.
+     The same code could have multiple status types. Read the response body
+     carefully to accurately determine the nature of the request status.
+
+   - For a more comprehensive list of HTTP status codes, refer to
+     `RFC-7231`_.
 
 .. _RFC-7231: http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
 
@@ -32,7 +34,7 @@ Response body
 The response body of HTTP status codes varies by service and type. Responses
 can contain some or all of these elements:
 
-- *title*
+- ``title``
 
 - ``type``
 

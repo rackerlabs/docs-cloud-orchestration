@@ -1,16 +1,20 @@
 .. _show-stack-details:
 
 Showing stack details
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
-In this section, you show the details for your stack.
+In this section, you submit an request to show the details for your stack.
 
-Following are two methods to show stack details:
+You can send the request using either of the following methods:
+
+.. contents::
+   :local:
+   :depth: 1
 
 .. _show-stack-heat:
 
 Show stack details by using the heat client
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------
 
 Show the details for your stack `Single-Server-Stack` by issuing the
 following command:
@@ -85,7 +89,7 @@ information to API users.
 .. _show-stack-curl:
 
 Show stack details by using cURL
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
 Show stack details by executing the following request. This operation does
 not require a request body.

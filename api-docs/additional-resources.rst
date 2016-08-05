@@ -13,7 +13,8 @@ API.
 - :how-to:`Rackspace Cloud Orchestration FAQ <cloud-orchestration-faq>`
 
 - For information about developing templates, see
-  :rax-devdocs: `Rackspace Cloud Orchestration User Guide <user-guides/orchestration/>`
+  :rax-devdocs:`Rackspace Cloud Orchestration User Guide
+  <user-guides/orchestration/>`
 
 - For information about the resources that you can use in templates, see
   :rax-devdocs:`Orchestration <cloud-orchestration/v1/resources-reference/>`.

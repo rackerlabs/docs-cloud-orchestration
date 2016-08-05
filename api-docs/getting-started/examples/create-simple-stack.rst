@@ -1,7 +1,7 @@
 .. _create-simple-stack:
 
 Creating a simple stack for a cloud server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Assume that you want to create a simple stack that defines a single
 cloud server. Use a text editor such as nano or vi to create the
@@ -66,12 +66,17 @@ about intrinsic functions in the `Supported resources reference`_ .
 
 .. _Supported resources reference: http://orchestration.rackspace.com/raxdox/index.html
 
-Following are two methods to create the stack:
+You can send the request to create a stack by using either of the following
+methods:
+
+.. contents::
+   :local:
+   :depth: 1
 
 .. _create-stack-heat:
 
 Create a stack by using the heat client
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------
 
 Issue the following command, which includes the name of the template
 file that you just created:
@@ -95,7 +100,7 @@ For example:
 .. _create-stack-curl:
 
 Create a stack by using cURL
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
 Use the create stack API operation (`/stacks`) in the cURL request, as
 shown in the following example:

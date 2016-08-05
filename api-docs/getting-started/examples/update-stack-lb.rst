@@ -1,10 +1,10 @@
 .. _update-stack-lb:
 
 Updating a stack with a load balancer
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this section you update your stack by adding a load balancer
-to use with the two servers.
+In this section you send a request to update your stack by adding a
+load balancer to use with the two servers.
 
   1. Make a copy of the ``servers-with-lb.template`` file from the previous
      section, and name the copy ``servers-with-lb-add.template``.
@@ -131,12 +131,16 @@ public IP address for the load balancer. Its value is assigned to the
 result of calling the `get_attr` intrinsic function with the name of the
 resource (`lb`) and its attribute (`PublicIp`).
 
-Following are two methods to update a stack with a load balancer:
+You can send the update request using either of the following methods:
+
+.. contents::
+   :local:
+   :depth: 1
 
 .. _update-stack-heat:
 
 Update a stack with a load balancer by using the heat client
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------------------
 
 Issue the following command:
 
@@ -212,7 +216,7 @@ shows that the public IP address of the new load balancer is 162.242.141.48.
 .. _update-stack-curl:
 
 Update a stack with a load balancer by using cURL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------
 
 Update the stack by executing the following request:
 

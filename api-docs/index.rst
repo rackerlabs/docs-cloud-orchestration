@@ -31,7 +31,8 @@ familiar with the following technologies:
   architecture (Cloud Servers, Cloud Load Balancers, Cloud Databases,
   and so forth)
 
-Learn how to use the Cloud Orchestration service by using the ReST API.
+Use the following links to jump directly to user and reference information for
+the |product name| service REST API:
 
 - :ref:`Getting Started Guide <getting-started-guide>`
 - :ref:`API reference <api-reference>`

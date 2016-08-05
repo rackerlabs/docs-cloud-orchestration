@@ -17,8 +17,6 @@ navigation pane. Then, select **Account Settings** to open the page.
 
 .. image:: ../common-gs/images/show-api-key-control-panel.png
 
-|
-
 Save your API key
 ~~~~~~~~~~~~~~~~~
 
