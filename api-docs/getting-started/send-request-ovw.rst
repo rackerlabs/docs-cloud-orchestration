@@ -4,12 +4,12 @@
 Send API requests to |service|
 ==============================
 
+This Getting Started Guide shows how to send requests by using either of the
+following methods:
+
 .. contents::
    :local:
    :depth: 1
-
-This Getting Started Guide shows how to send requests by using cURL and the
-heat client command line tools.
 
 To learn about other ways to use Rackspace Cloud API services, see the
 following resources:
