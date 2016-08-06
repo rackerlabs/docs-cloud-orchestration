@@ -128,4 +128,5 @@ RBAC Permissions Cross-reference to |product name| API Operations
 API operations for Cloud Orchestration may or may not be available to all
 roles. To see which operations are permitted to invoke which calls, please
 review the :how-to:`Permissions Matrix for Next Generation Cloud
-Servers<permissions-matrix-for-next-generation-cloud-servers>`.
+Servers<permissions-matrix-for-cloud-orchestration>`.
+

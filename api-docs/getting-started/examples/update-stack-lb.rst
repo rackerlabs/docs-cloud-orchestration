@@ -265,14 +265,12 @@ The request is accepted for processing.
 After a few minutes, you can execute the show stack details operation to
 ensure that the update completed successfully:
 
-Remember to replace the names in the example with their actual respective
-values:
+Remember to replace the following variable names in the example with the
+values you want to use.
 
-  * **Servers-With-LB-Stack** - If you used a different name for your
-    stack, specify it.
+* ``Servers-With-LB-Stack``
 
-  * **stack_id** - The stack ID, as returned in your create stack response.
-
+* ``stack_id``
 
 **cURL show stack details: JSON request**
 

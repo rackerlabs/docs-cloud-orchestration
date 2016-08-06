@@ -8,7 +8,7 @@ The service uses an ISO 8601 compliant date format for the
 display and consumption of date and time values. The system time is
 expressed as UTC.
 
-.. _datetime-loadbalance:
+.. _datetime-format:
 
 **Service date and time format**
 

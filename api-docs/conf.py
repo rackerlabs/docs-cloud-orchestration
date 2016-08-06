@@ -70,6 +70,7 @@ builder = 'deconst-serial'
 # General information about the project.
 project = 'Rackspace Developer Documentation'
 copyright = '2015-2016, Rackspace'
+author = 'Rackspace'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -123,7 +124,6 @@ extlinks = {
     'rax-cart': ('http://cart.rackspace.com/%s', ''),
     'rax-dev': ('https://developer.rackspace.com/%s', ''),
     'rax-devdocs': ('http://developer.rackspace.com/docs/%s', ''),
-    'rax-devguide': ('http:/developer.rackspace.com/docs/%s', ''),
     'rax-api':
     ('http:/developer.rackspace.com/docs/%s/api-reference', ''),
     'rax-git': ('https://github.com/rackspace/%s', ''),
@@ -268,6 +268,9 @@ html_use_smartypants = False
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'docs-cloud-orchestrationdoc'
 
+# this will change the 'paragraph' character to '#'
+html_add_permalinks = '#'
+
 # -- Options for LaTeX output ---------------------------------------------
 
 # latex_elements =
@@ -335,8 +338,9 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'reponame', 'Rackspace Cloud Orchestration API Documentation',
-   'Rackspace', 'reponame', 'Learn about using the Rackspace Cloud',
+  (master_doc, 'docs-cloud-orchestration',
+   'Rackspace Cloud Orchestration API Documentation',
+   'Learn about using the Rackspace Cloud',
    'Miscellaneous'),
 ]
 

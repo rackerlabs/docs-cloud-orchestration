@@ -47,6 +47,6 @@ the |product name| service REST API:
    general-api-info/index
    api-reference/index
    release-notes/index
-   additional-resources
    service-updates
+   additional-resources
    copyright
