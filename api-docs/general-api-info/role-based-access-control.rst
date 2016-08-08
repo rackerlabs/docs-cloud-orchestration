@@ -2,69 +2,131 @@
 Role Based Access Control
 =========================
 
-Role Based Access Control (RBAC) restricts access to the capabilities of Rackspace Cloud services, including the Cloud Orchestration API, to authorized users only. RBAC enables Rackspace Cloud customers to specify which account users of their Cloud account have access to which Cloud Orchestration API service capabilities, based on roles defined by Rackspace (see Cloud Orchestration Product Roles and Permissions). The permissions to perform certain operations in Cloud Orchestration API – create, read, update, delete – are assigned to specific roles. The account owner user assigns these roles, either global (multiproduct) or product-specific (for example, Cloud Orchestration), to account users.
+Role-based access control (RBAC) restricts access to the capabilities of
+Rackspace Cloud services, including the |product name| API, to authorized
+users only. RBAC enables Rackspace Cloud customers to specify
+users have access to which |product name| API
+service capabilities, based on roles defined by Rackspace. The
+permissions to perform certain operations in |product name| API (create,
+read, update, delete) are assigned to specific roles. The account owner user
+assigns these roles, either global (multiproduct) or product-specific (for
+example, |product name|), to account users.
 
-Assigning Roles to Account Users
+.. _rbac-assign:
+
+Assigning roles to account users
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The account owner (identity:user-admin) can create account users on the account and then assign roles to those users. The roles grant the account users specific permissions for accessing the capabilities of the Cloud Orchestration service. Each account has only one account owner, and that role is assigned by default to any Rackspace Cloud account when the account is created.
+The account owner (identity:user-admin) can create account users on the
+account and then assign roles to those users. The roles grant the account
+users specific permissions for accessing the capabilities of the
+|product name| service. Each account has only one account owner, and that role
+is assigned by default to any Rackspace Cloud account when the account is
+created.
 
-See the *Cloud Identity Client Developer Guide* for information about how to perform the following tasks:
+See the Cloud Identity API guide for information about how to
+perform the following tasks:
 
--  :rax-devdocs:`Add user <cloud-identity/v2/developer-guide/#add-user>` 
+* :rax-devdocs:`Add account users <cloud-identity/v2/developer-guide/#add-user>`
 
--  :rax-devdocs:`Add role to user <cloud-identity/v2/developer-guide/#add-role-to-user>`
+* :rax-devdocs:`Add role to user \
+  <cloud-identity/v2/developer-guide/#add-role-to-user>`
 
--  :rax-devdocs:`Delete global role from user <cloud-identity/v2/developer-guide/#delete-global-role-from-user>`
-
+* :rax-devdocs:`Delete global role from user \
+  <cloud-identity/v2/developer-guide/#delete-global-role-from-user>`
 
 .. note::
 
-    The account owner (identity:user-admin) role cannot hold any additional roles because it already has full access to all capabilities.
+    The account owner (identity:user-admin) role cannot hold any
+    additional roles because it already has full access to all capabilities.
 
-Roles Available for Cloud Orchestration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    .. _rbac-available-roles:
 
-Three roles (observer, creator, and admin) can be used to access the Cloud Orchestration API specifically. The following table describes these roles and their permissions.
+Roles available for |product name|
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Cloud Orchestration Product Roles and Permissions**
+The following table describes the roles that can be used to access the
+|product name| API.
 
-heat:admin - This role provides Create, Read, Update, and Delete permissions in Cloud Orchestration, where access is granted.
+.. list-table:: **Product roles and capabilities**
+   :widths: 20 50
+   :header-rows: 1
 
-heat:creator - This role provides Create, Read, and Update permissions in Cloud Orchestration, where access is granted.
+   * - Role name
+     - Role permissions
+   * - heat:admin
+     - This role provides Create, Read, Update, and Delete permissions
+       in |product name|, where access is granted.
+   * - heat:creator
+     - This role provides Create, Read and Update permissions in |product name|,
+       where access is granted.
+   * - heat:observer
+     - This role provides Read permission in |product name|, where access
+       is granted.
 
-heat:observer - This role provides Read permission in Cloud Orchestration, where access is granted.
+.. _rbac-available-multi-roles:
 
-Additionally, two multiproduct roles apply to all products. Users with multiproduct roles inherit access to future products when those products become RBAC-enabled. The following table describes these roles and their permissions.
+Multiproduct global roles and permissions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Multiproduct (Global) Roles and Permissions**
+Additionally, two multiproduct roles apply to all products. Users with
+multiproduct roles inherit access to products when those products become
+RBAC-enabled. The following table describes these roles and their permissions.
 
-admin - This role provides Create, Read, Update, and Delete permissions in all products, where access is granted.
+**Multiproduct roles and permissions**
 
-observer - This role provides Read permission in all products, where access is granted.
+.. list-table:: **Multiproduct roles and permissions**
+   :widths: 20 40
+   :header-rows: 1
 
-Resolving Conflicts Between Roles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   * - Role name
+     - Role permissions
+   * - admin
+     - This role provides create, read, update, and delete permissions
+       in all products, where access is granted.
+   * - observer
+     - This role provides read permission in all products,
+       where access is granted.
 
-The account owner can set roles for both multiproduct and Cloud Orchestration scope, and it is important to understand how any potential conflicts among these roles are resolved. When two roles appear to conflict, the role that provides the more extensive permissions takes precedence. Therefore, admin roles take precedence over observer and creator roles, because admin roles provide more permissions.
+.. _rbac-resolve-role-conflict:
 
-The following scenarios show examples of how potential conflicts between user roles in the Control Panel are resolved:
+Resolving conflicts between RBAC multiproduct and product-specific roles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Scenario 1:
-Configuration : User is assigned the following roles: multiproduct **observer** and Cloud Orchestration **admin**
+The account owner can set roles for both multiproduct and |product name|
+scope, and it is important to understand how any potential conflicts between
+these roles are resolved. When two roles appear to conflict, the role that
+provides the more extensive permissions takes precedence. Therefore, admin
+roles take precedence over observer and creator roles, because admin roles
+provide more permissions.
 
-View: Appears that the user has only the multiproduct **observer** role.
+The following table shows two examples of how potential conflicts between user
+roles in the Control Panel are resolved.
 
-Permissions: The user can perform product admin functions in the control panel for Cloud Orchestration only. The user has the **observer** role for the rest of the products.
 
-Scenario 2:
-Configuration: User is assigned the following roles: multiproduct **admin** and Cloud Orchestration **observer**
+.. list-table:: **Example of resolving permissions**
+   :widths: 10 10 40
+   :header-rows: 1
 
-View: Appears that the user has only the multiproduct **admin** role.
+   * - Permission configuration
+     - Control Panel permission view
+     - Control Panel admin capabilities
+   * - User is assigned the following roles: multiproduct **observer** and
+       |product name| **admin**
+     - Appears that the user has only the multiproduct **observer** role
+     - User can perform admin functions for |product name| only. The user has
+       the **observer** role for the rest of the products.
+   * - User is assigned to the following roles: multiproduct **admin** and
+       |product name| **observer**
+     - Appears that the user has only the multiprodcut **admin** role
+     - User can perform admin functions for all of the products.
+       The |product name| **observer** role is ignored.
 
-Permissions: The user can perform product admin functions in the control panel for all of the products. The Cloud Orchestration **observer** role is ignored.
+RBAC Permissions Cross-reference to |product name| API Operations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-RBAC Permissions Cross-reference to Cloud Orchestration API Operations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+API operations for Cloud Orchestration may or may not be available to all
+roles. To see which operations are permitted to invoke which calls, please
+review the :how-to:`Permissions Matrix for Next Generation Cloud
+Servers<permissions-matrix-for-cloud-orchestration>`.
 
-API operations for Cloud Orchestration may or may not be available to all roles. To see which operations are permitted to invoke which calls, please review the :how-to:`Permissions Matrix for Next Generation Cloud Servers<permissions-matrix-for-next-generation-cloud-servers>`.

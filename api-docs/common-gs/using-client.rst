@@ -3,11 +3,14 @@
 Using the heat client
 ~~~~~~~~~~~~~~~~~~~~~
 
-The heat client is a command-line tool that provides access to all public
-Cloud Orchestration API methods. To send requests using the client, you
-have to install the client and set environment variables.
+The heat client is a command-line tool that provides access to all
+Cloud Orchestration API methods. Before you can send requests using the
+client, you must install the client and set the environment variables
+that enable the heat client to connect to your Rackspace
+Cloud account.
 
-**Prerequisites**
+Before installing the heat client, make sure the following software and
+packages are available on your system:
 
 - Linux or Mac OS X
 - Python 2.7 or later
@@ -15,47 +18,33 @@ have to install the client and set environment variables.
 - **pip** package
 - Rackspace Cloud account and access to Rackspace Cloud Orchestration
 
+To install the python-client, perform the following steps:
 
-Install the heat client
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Install the python-heatclient using pip.
-
-.. code::
-
-     $ sudo pip install python-heatclient
-
-.. note::
-   If you previously installed the python-heatclient package, run the following
-   command to upgrade it:
+1. Install the python-heatclient using pip.
 
    .. code::
 
-        $ sudo pip install --upgrade python-heatclient
+      $ sudo pip install python-heatclient
 
+   .. note::
 
-.. _set-environment-variables:
+      If you previously installed the python-heatclient package, run the
+      following command to upgrade it:
 
-Set environment variables
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Edit your **bash.profile** file or **.bashrc** file to add and set environment
-variables that enable the heat client to connect to your Rackspace
-Cloud account. Use nano, or a text editor of your choice, to edit the file.
+      .. code::
 
-.. code::
+         $ sudo pip install --upgrade python-heatclient
 
-     $ nano ~/.bash_profile
+2. Export the following environment variables manually, or update your
+   ``.bash_profile`` or ``.bashrc`` files with these variables:
 
-Add the following sets of lines to your bash profile and save the file.
-Information about the environment variables is provided after the examples.
+   .. code::
 
-.. code::
-
-     export OS_AUTH_URL=https://identity.api.rackspacecloud.com/v2.0/
-     export OS_USERNAME=yourUserName
-     export OS_TENANT_ID=yourTenantId
-     export OS_REGION_NAME=yourRegionName
-     export OS_PASSWORD=yourPassword
+        export OS_AUTH_URL=https://identity.api.rackspacecloud.com/v2.0/
+        export OS_USERNAME=yourUserName
+        export OS_TENANT_ID=yourTenantId
+        export OS_REGION_NAME=yourRegionName
+        export OS_PASSWORD=yourPassword
 
 The following table describes the environment variables:
 
@@ -73,14 +62,14 @@ The following table describes the environment variables:
 | OS_REGION_NAME        | The regional endpoint (for example, DFW) where  |
 |                       | you want to deploy the Cloud Orchestration      |
 |                       | resources. For details, see                     |
-|                       | :ref:`service-access-endpoints`.                |
+|                       | :ref:`service-access`.                          |
 +-----------------------+-------------------------------------------------+
 | OS_PASSWORD           | Your Rackspace Cloud password.                  |
 +-----------------------+-------------------------------------------------+
 
-Be sure to source the file containing the environment variables after
-editing so that the new settings will take effect immediately. For example,
-`source .bash_profile`.
+After you update the ``bash_profile`` or ``bash.rc`` file, make sure to source
+the file so that the new settings take effect immediately, for example
+``source .bash_profile``.
 
 Run the help command to ensure that the client has installed correctly and
 to review information about using the client.

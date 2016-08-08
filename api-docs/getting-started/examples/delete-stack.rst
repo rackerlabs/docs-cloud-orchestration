@@ -1,16 +1,21 @@
 .. _delete-stack:
 
 Deleting a stack
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
-Since you are done using the stack, you can delete it.
+After you have finished using the stack, use the delete stack operation to
+delete it.
 
-Following are two methods to delete a stack:
+You can send the request using either of the following methods:
+
+.. contents::
+   :local:
+   :depth: 1
 
 .. _delete-stack-heat:
 
 Delete a stack by using the heat client
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------
 
 Delete your stack `Single-Server-Stack` by issuing the following
 command:
@@ -38,7 +43,7 @@ listed.
 .. _delete-stack-curl:
 
 Delete a stack by using cURL
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
 Delete your `Single-Server-Stack` by executing the following request.
 

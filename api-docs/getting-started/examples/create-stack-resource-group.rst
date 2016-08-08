@@ -1,13 +1,13 @@
 .. _create-stack-resource-group:
 
 Creating a stack by using a resource group
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Assume that you would like to create a cloud load balancer to use with
-some cloud servers. You begin working on this task by creating a resource
-group to hold the servers. The advantage of this technique is that you
-can create the entire set of servers by creating one resource group,
-rather than specifying each server resource separately.
+Assume that you would like to create a cloud load balancer to use with some
+cloud servers. You begin working on this task by creating a resource group to
+hold the servers. The advantage of this technique is that you can create the
+entire set of servers by creating one resource group, rather than specifying
+each server resource separately.
 
 First, use your text editor to create the following template and save
 it in a file named **servers-with-lb.template**:
@@ -59,12 +59,18 @@ in the group specifies the following values:
 
         count: 3
 
-Following are two methods to create a stack by using a resource group:
+You can send the request to create the stack by using either of the following
+methods:
+
+.. contents::
+   :local:
+   :depth: 1
+
 
 .. _create-stack-rg-heat:
 
 Create a stack by using a resource group with the heat client
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------------------------
 
 Issue the following command, which includes the name of the template
 file that you just created:
@@ -98,7 +104,7 @@ to confirm that your stack is now created:
 .. _create-stack-rg-curl:
 
 Create a stack by using a resource group with cURL
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------------------
 
 Issue the following command:
 

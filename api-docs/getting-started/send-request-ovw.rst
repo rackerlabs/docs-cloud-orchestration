@@ -1,23 +1,26 @@
 .. _send-api-requests:
 
-Sending API requests to Cloud Orchestration
--------------------------------------------
+==============================
+Send API requests to |service|
+==============================
+
+This Getting Started Guide shows how to send requests by using either of the
+following methods:
 
 .. contents::
    :local:
    :depth: 1
 
-This Getting Started Guide shows how to send requests by using cURL and the
-heat client command line tools.
+To learn about other ways to use Rackspace Cloud API services, see the
+following resources:
 
-To learn about other ways to use Rackspace Cloud API services, see the following resources:
+-  If you are developing applications or automation, try using
+   `Rackspace SDKs`_, the `Rackspace CLI`_, or `OpenStack client applications`_.
 
--  If you are developing applications or automation, try using `Rackspace SDKs`_, the
-   `Rackspace CLI`_, or `OpenStack client applications`_.
-
--  For API development, testing and workflow management in a graphical environment, try
-   interacting with the API by using an application such as
+-  For API development, testing and workflow management in a graphical
+   environment, try interacting with the API by using an application such as
    `Postman`_  or `RESTClient for Firefox`_.
+
 
 .. include:: ../common-gs/using-client.rst
 .. include:: ../common-gs/how-to-use-curl.rst

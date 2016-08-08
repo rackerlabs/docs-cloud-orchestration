@@ -1,15 +1,15 @@
 .. _update-stack-lb:
 
 Updating a stack with a load balancer
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this section you update your stack by adding a load balancer
-to use with the two servers.
+In this section you send a request to update your stack by adding a
+load balancer to use with the two servers.
 
-  1. Make a copy of your **servers-with-lb.template** from the previous
-     section and name the copy **servers-with-lb-add.template**.
+  1. Make a copy of the ``servers-with-lb.template`` file from the previous
+     section, and name the copy ``servers-with-lb-add.template``.
 
-  2. Add the load balancer to your **servers-with-lb-add.template** file
+  2. Add the load balancer to the ``servers-with-lb-add.template`` file
      by adding the highlighted text in the following example.
 
 .. code::
@@ -131,12 +131,16 @@ public IP address for the load balancer. Its value is assigned to the
 result of calling the `get_attr` intrinsic function with the name of the
 resource (`lb`) and its attribute (`PublicIp`).
 
-Following are two methods to update a stack with a load balancer:
+You can send the update request using either of the following methods:
+
+.. contents::
+   :local:
+   :depth: 1
 
 .. _update-stack-heat:
 
 Update a stack with a load balancer by using the heat client
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------------------------
 
 Issue the following command:
 
@@ -212,17 +216,17 @@ shows that the public IP address of the new load balancer is 162.242.141.48.
 .. _update-stack-curl:
 
 Update a stack with a load balancer by using cURL
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------------
 
 Update the stack by executing the following request:
 
 Remember to replace the names in the example preceding with their actual
 respective values:
 
-  * **Server-With-LB-Stack** - The name of the stack, if you changed it
+* **Server-With-LB-Stack** - The name of the stack, if you changed it
 
-  * **stack_id** - The ID of the stack, as returned in your 
-    :ref:`create stack<post-create-stack-v1-tenant-id-stacks>`.
+* **stack_id** - The ID of the stack, as returned in your
+    :ref:`create stack<post-create-stacks>`.
 
 
 **cURL update stack with load balancer: JSON request**
@@ -261,14 +265,12 @@ The request is accepted for processing.
 After a few minutes, you can execute the show stack details operation to
 ensure that the update completed successfully:
 
-Remember to replace the names in the example with their actual respective
-values:
+Remember to replace the following variable names in the example with the
+values you want to use.
 
-  * **Servers-With-LB-Stack** - If you used a different name for your
-    stack, specify it.
+* ``Servers-With-LB-Stack``
 
-  * **stack_id** - The stack ID, as returned in your create stack response.
-
+* ``stack_id``
 
 **cURL show stack details: JSON request**
 

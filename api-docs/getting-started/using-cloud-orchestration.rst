@@ -1,19 +1,19 @@
 .. _using-cloud-orchestration:
 
+========================
 Create and manage stacks
---------------------------------
+========================
+
 You can use the examples in the following sections to create
-and manage stacks by using Cloud Orchestration API operations. 
+and manage stacks by using Cloud Orchestration API operations.
 
-You will perform the following tasks:
+.. contents::
+   :local:
+   :depth: 1
 
-* Creating a stack to deploy a Cloud Server
-* Listing your stacks
-* Listing the stack details for the Cloud Server stack
-* Deleting a stack
-* Creating a stack using a resource group
-* Updating your stack by adding a Load Balancer to manage traffic
-
+Before running the examples, review the
+:ref:`Cloud Orchestration concepts<concepts>` to understand the API workflow,
+messaging patterns, and use cases.
 
 .. note::
      These examples use the ``$AUTH_URL``, ``$USERNAME``, ``$TENANT_ID``,
@@ -21,8 +21,8 @@ You will perform the following tasks:
      variables to specify the API endpoint, Rackspace Cloud username,
      tenant ID,regional endpoint, and Rackspace Cloud password values
      for accessing the service. Make sure you
-     :ref:`configure these variables <set-environment-variables>` before running the
-     code samples.
+     :ref:`configure these variables <request-using-heat-client>` before
+     running the code samples.
 
 .. include:: examples/create-simple-stack.rst
 .. include:: examples/list-stacks.rst
