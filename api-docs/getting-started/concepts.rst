@@ -17,6 +17,11 @@ working stack. The template specifies what resources should be used,
 what attributes can be set, and other parameters that are critical to
 the successful, repeatable automation of a specific application stack.
 
+.. note:: 
+   
+   For details on using and customizing templates, see 
+   the :rax-devdocs:`Rackspace Cloud Orchestration Templates User Guide </user-guides/orchestration/>`.
+
 Resource
 ~~~~~~~~
 
