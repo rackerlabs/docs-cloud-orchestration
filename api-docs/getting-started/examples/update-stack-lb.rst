@@ -223,7 +223,7 @@ Update the stack by executing the following request:
 Remember to replace the names in the example preceding with their actual
 respective values:
 
-* **Server-With-LB-Stack** - The name of the stack, if you changed it
+* **Server-With-LB-Stack** - The name of the stack, if you changed it.
 
 * **stack_id** - The ID of the stack, as returned in your :ref:`create stack operation <post-create-stacks>`.
 
