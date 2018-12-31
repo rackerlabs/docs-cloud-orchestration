@@ -24,7 +24,7 @@ users specific permissions for accessing the capabilities of the
 is assigned by default to any Rackspace Cloud account when the account is
 created.
 
-See the Cloud Identity API guide for information about how to
+See the Rackspace Identity API guide for information about how to
 perform the following tasks:
 
 * :rax-devdocs:`Add account users <cloud-identity/v2/developer-guide/#add-user>`
@@ -129,4 +129,3 @@ API operations for Cloud Orchestration may or may not be available to all
 roles. To see which operations are permitted to invoke which calls, please
 review the :how-to:`Permissions Matrix for Next Generation Cloud
 Servers<permissions-matrix-for-cloud-orchestration>`.
-
