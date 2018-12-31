@@ -19,7 +19,6 @@ endpoints that you are authorized to use. The authentication response includes a
 token expiration date. When a token expires, you can send another authentication
 request to get a new one.
 
-
 .. note::
      For more information about authentication tokens, see the following topics
      in the Rackspace Identity API documentation.
