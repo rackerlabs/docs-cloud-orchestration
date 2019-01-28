@@ -51,7 +51,7 @@ The following table describes the environment variables:
 +-----------------------+-------------------------------------------------+
 | Environment variable  | Description                                     |
 +=======================+=================================================+
-| OS_AUTH_URL           | The endpoint for the Rackspace Identity         |
+| OS_AUTH_URL           | The endpoint for the Identity                   |
 |                       | service, which the heat client uses for         |
 |                       | authentication.                                 |
 +-----------------------+-------------------------------------------------+
