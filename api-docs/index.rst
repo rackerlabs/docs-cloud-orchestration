@@ -38,7 +38,6 @@ the |product name| service REST API:
 - :ref:`API reference <api-reference>`
 - :ref:`Release Notes <release-notes-collection>`
 
-
 .. toctree:: :hidden:
    :maxdepth: 3
 
