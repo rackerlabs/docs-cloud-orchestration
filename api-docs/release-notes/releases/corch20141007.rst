@@ -7,8 +7,6 @@ What's new
 ~~~~~~~~~~~~
 
 This Unlimited Availability (UA) release of Cloud Orchestration contains the following changes:
-
-- Early support of the SDK for Cloud Orchestration.
  
 - The term *Cloud Deployments* has been dropped, and what was known as Cloud Deployments
   has been unified under the Cloud Orchestration product.

@@ -28,8 +28,5 @@ API.
   Control Panel, see :how-to:`Cloud Orchestration quick setup
   <quick-set-up-with-rackspace-cloud-orchestration>`.
 
-- To learn about using Rackspace Cloud SDKs, see
-  :rax-devdocs:`Software Development Kits & Tools <#sdks>`.
-
 - To get information about other Rackspace Cloud services APIs, see the
   :rax-devdocs:`API documentation home <>`.
