@@ -57,9 +57,9 @@ html:
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
 dirhtml:
-	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
+	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml/docs/cloud-orchestration/v1
 	@echo
-	@echo "Build finished. The HTML pages are in $(BUILDDIR)/dirhtml."
+	@echo "Build finished. The HTML pages are in $(BUILDDIR)/dirhtml/docs/cloud-orchestration/v1."
 
 singlehtml:
 	$(SPHINXBUILD) -b singlehtml $(ALLSPHINXOPTS) $(BUILDDIR)/singlehtml
