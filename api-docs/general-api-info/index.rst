@@ -1,4 +1,4 @@
-.. _general-api-index:
+.. _general-api-info:
 
 =======================
 General API information
