@@ -14,6 +14,9 @@
 
 # import sys
 # import os
+import os
+import re
+import sphinx
 
 try:
     import sphinx_rtd_theme
@@ -83,7 +86,7 @@ release = '1'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -93,8 +96,7 @@ language = None
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build', 'api-reference/methods*', 'common-gs',
-                    'getting-started/examples*', 'release-notes/releases/*']
+exclude_patterns = ['_build', 'api-reference/methods*', 'common-gs', 'getting-started/examples*', 'release-notes/releases/*']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -216,7 +218,7 @@ html_style = 'css/styles.css'
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
-html_use_smartypants = False
+html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
 # html_sidebars = {}
