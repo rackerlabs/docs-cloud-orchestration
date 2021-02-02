@@ -16,8 +16,8 @@ see request and response examples.
 .. toctree::
    :maxdepth: 1
 
-   stack-operations.rst
-   stack-resources.rst
-   stack-events.rst
-   templates.rst
-   build-info.rst
+   stack-operations
+   stack-resources
+   stack-events
+   templates
+   build-info

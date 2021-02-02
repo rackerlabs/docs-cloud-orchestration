@@ -23,11 +23,11 @@ access between products and services.
 .. toctree::
    :maxdepth: 1
 
-   service-access.rst
-   contract-version.rst
-   request-response-types.rst
-   date-time-format.rst
-   pagination.rst
-   http-status-codes.rst
-   stack-status.rst
-   role-based-access-control.rst
+   service-access
+   contract-version
+   request-response-types
+   date-time-format
+   pagination
+   http-status-codes
+   stack-status
+   role-based-access-control
