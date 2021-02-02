@@ -1,4 +1,4 @@
-.. _release-notes-collection:
+.. _release-notes:
 
 =============
 Release notes
