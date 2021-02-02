@@ -46,7 +46,12 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
-    'sphinx.ext.extlinks'
+    'sphinx.ext.extlinks',
+    'hoverxref.extension',
+    'notfound.extension',
+    'sphinx.ext.coverage',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.viewcode'
 ]
 
 if spelling is not None:
@@ -157,6 +162,16 @@ rst_epilog = """
 .. |contract version| replace:: 1.0
 .. |product name| replace:: Cloud Orchestration
 """
+# sphinxcontrib-versioning options
+# See https://robpol86.github.io/sphinxcontrib-versioning/settings.html
+scv_root_ref = 'master'
+scv_overflow = ('-q', )
+scv_show_banner = True
+scv_banner_main_ref = 'master'
+# scv_whitelist_branches = (re.compile(r"\bmaster\b|\bv1[234]\b"),)
+# scv_whitelist_tags = ('NIL', )
+scv_push_remote = 'internal'
+scv_grm_exclude = ('.nojekyll', '.gitignore')
 
 # -- Options for HTML output ----------------------------------------------
 
@@ -357,3 +372,83 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 # texinfo_no_detailmenu = False
+
+# Options for the Coverage extension
+# ----------------------------------
+coverage_ignore_pyobjects = [
+    # Contract’s add_pre_hook and add_post_hook are not documented because
+    # they should be transparent to contract developers, for whom pre_hook and
+    # post_hook should be the actual concern.
+    r'\bContract\.add_(pre|post)_hook$',
+
+    # ContractsManager is an internal class, developers are not expected to
+    # interact with it directly in any way.
+    r'\bContractsManager\b$',
+
+    # For default contracts we only want to document their general purpose in
+    # their __init__ method, the methods they reimplement to achieve that purpose
+    # should be irrelevant to developers using those contracts.
+    r'\w+Contract\.(adjust_request_args|(pre|post)_process)$',
+
+    # Base classes of downloader middlewares are implementation details that
+    # are not meant for users.
+
+
+    # Private exception used by the command-line interface implementation.
+
+
+
+    # Methods of BaseItemExporter subclasses are only documented in
+    # BaseItemExporter.
+
+
+
+    # Extension behavior is only modified through settings. Methods of
+    # extension classes, as well as helper functions, are implementation
+
+
+    # Never documented before, and deprecated now.
+
+]
+
+
+# Options for the InterSphinx extension
+# -------------------------------------
+
+intersphinx_mapping = {
+    'attrs': ('https://www.attrs.org/en/stable/', None),
+    'coverage': ('https://coverage.readthedocs.io/en/stable', None),
+    'cryptography' : ('https://cryptography.io/en/latest/', None),
+    'cssselect': ('https://cssselect.readthedocs.io/en/latest', None),
+    'itemloaders': ('https://itemloaders.readthedocs.io/en/latest/', None),
+    'pytest': ('https://docs.pytest.org/en/latest', None),
+    'python': ('https://docs.python.org/3', None),
+    'sphinx': ('https://www.sphinx-doc.org/en/master', None),
+    'tox': ('https://tox.readthedocs.io/en/latest', None)
+}
+
+
+# Options for sphinx-hoverxref options
+# ------------------------------------
+
+hoverxref_auto_ref = True
+hoverxref_role_types = {
+    "class": "tooltip",
+    "confval": "tooltip",
+    "hoverxref": "tooltip",
+    "mod": "tooltip",
+    "ref": "tooltip",
+}
+hoverxref_roles = ['command', 'reqmeta', 'setting', 'signal']
+
+
+def setup(app):
+    app.connect('autodoc-skip-member', maybe_skip_member)
+
+
+def maybe_skip_member(app, what, name, obj, skip, options):
+    if not skip:
+        # autodocs was generating a text "alias of" for the following members
+        # https://github.com/sphinx-doc/sphinx/issues/4422
+        return name in {'default_item_class', 'default_selector_class'}
+    return skip
