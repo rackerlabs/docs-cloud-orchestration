@@ -11,10 +11,10 @@ and complete basic operations by using the |apiservice|.
    :maxdepth: 1
 
    get-credentials-include
-   send-request-ovw
-   authenticate
-   concepts
-   using-cloud-orchestration
+   send-request-ovw.rst
+   authenticate.rst
+   concepts.rst
+   using-cloud-orchestration.rst
 
 To start using the API and run the examples in this section, you need the
 following items:
