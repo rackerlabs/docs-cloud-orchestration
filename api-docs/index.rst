@@ -38,14 +38,14 @@ the |product name| service REST API:
 - :ref:`API reference <api-reference>`
 - :ref:`Release Notes <release-notes-collection>`
 
-.. toctree:: :hidden:
+.. toctree::
    :maxdepth: 3
 
    Cloud Orchestration 1.0 <self>
-   getting-started/index
-   general-api-info/index
-   api-reference/index
-   release-notes/index
-   service-updates
-   additional-resources
-   copyright
+   getting-started/index.rst
+   general-api-info/index.rst
+   api-reference/index.rst
+   release-notes/index.rst
+   service-updates.rst
+   additional-resources.rst
+   copyright.rst
